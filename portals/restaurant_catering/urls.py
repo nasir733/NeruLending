@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from .views import *
 
-app_name = 'restaurant_catering'
+app_name = 'restaurant and catering'
 
 urlpatterns = [
     url('^$', login_required(BusinessHomePage.as_view(), login_url='/user/login'), name='homepage'),
@@ -113,8 +113,7 @@ urlpatterns = [
         name='invoice-financings'),
     url('equipment-financings/', login_required(EquipmentFinancingView.as_view(), login_url='/user/login'),
         name='equipment-financings'),
-    url('apply-loan/', login_required(EquipmentFinancingView.as_view(), login_url='/user/login'),
-        name='applyforloan'),
+
     url('marketing-business/', login_required(MarketingYourBusiness.as_view(), login_url='/user/login'),
         name='marketing-business'),
     url('customer-financing-offer/', login_required(OfferFinancingToCustomer.as_view(), login_url='/user/login'),

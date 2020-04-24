@@ -1,12 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>MbbSoftwareupdate</title>
+    <title>{{ request.resolver_match.app_name }} portal</title>
     <link rel="stylesheet" type="text/css" href='{% static "lib/metisMenu/metisMenu.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/bootstrap/css/bootstrap.min.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/vectormap/jquery-jvectormap-2.0.2.css" %}'>
@@ -15,340 +15,424 @@
     <link rel="stylesheet" type="text/css" href='{% static "lib/datatables/jquery.dataTables.min.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/datatables/responsive.bootstrap.min.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/toast/jquery.toast.min.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "style.css" %}'>    
+    <link rel="stylesheet" type="text/css" href='{% static "style.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/jquery-ui/jquery-ui.css" %}'>
     {% block extrastyle %}
-        
+
     {% endblock extrastyle %}
-  </head>
+</head>
 
-  <body class=''>
-      <!-- ============================================================== -->
-      <!--            Topbar Start              -->
-      <!-- ============================================================== -->
-      <div class="top-bar light-top-bar">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col">
-                  <a href="/" class="admin-logo dark-logo">
-                     <h1>
+<body class=''>
+<!-- ============================================================== -->
+<!--            Topbar Start              -->
+<!-- ============================================================== -->
+<div class="top-bar light-top-bar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <a href="/" class="admin-logo dark-logo">
+                    <h1>
                         <!--<img src="{% static 'images/logo.png' %}" alt="getdinero"> -->
-                         <img src="{% static 'images/logo.png' %}"  class="logo-icon margin-r-10">
-                         <!-- <img src="{% static 'images/logo-default.png' %}" class="toggle-none hidden-xs"> -->
-                     </h1>                    
-                  </a>
-                  <div class="left-nav-toggle" >
-                     <a  href="#" class="nav-collapse"><i class="fa fa-bars"></i></a>
-                  </div>
-                  <div class="left-nav-collapsed" >
-                     <a  href="#" class="nav-collapsed"><i class="fa fa-bars"></i></a>
-                  </div>
-                  <div class="search-form hidden-xs">
+                        <img src="{% static 'images/logo.png' %}" class="logo-icon margin-r-10">
+                        <!-- <img src="{% static 'images/logo-default.png' %}" class="toggle-none hidden-xs"> -->
+                    </h1>
+                </a>
+                <div class="left-nav-toggle">
+                    <a href="#" class="nav-collapse"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class="left-nav-collapsed">
+                    <a href="#" class="nav-collapsed"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class="search-form hidden-xs">
 
-                  </div>
-               </div>
-               <div class="col">
-                  <ul class="list-inline top-right-nav">
-                     <li class="dropdown avtar-dropdown">
+                </div>
+            </div>
+            <div class="col">
+                <ul class="list-inline top-right-nav">
+                    <li class="dropdown avtar-dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                          <img src='{% static "images/avtar-2.png" %}' class="rounded-circle" width="30">
+                            <img src='{% static "images/avtar-2.png" %}' class="rounded-circle" width="30">
                         </a>
                         <ul class="dropdown-menu top-dropdown">
-                          {% if request.user.is_authenticated %}
-                            <li>
-                              <a href="{% url 'user:myprogress' %}"><i class="icon-bell"></i>My Progress</a>
-                            </li>
-                            <!--<li>-->
-                            <!-- <a href="#"><i class="icon-user"></i> Profile</a>-->
-                            <!--</li>-->
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a href="{% url 'user:logout'%}" class="dropdown-item">
-                                    <i class="icon-logout"></i> Logout
-                                </a>
-                            </li>                              
-                          {% else %}
-                            <a class="navbar-link" href="#">Sign up</a>
-                            <a class="navbar-link" href="#">Login</a>
-                          {% endif %}
+                            {% if request.user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'user:myprogress' %}"><i class="icon-bell"></i>My Progress</a>
+                                </li>
+                                <!--<li>-->
+                                <!-- <a href="#"><i class="icon-user"></i> Profile</a>-->
+                                <!--</li>-->
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <a href="{% url 'user:logout' %}" class="dropdown-item">
+                                        <i class="icon-logout"></i> Logout
+                                    </a>
+                                </li>
+                            {% else %}
+                                <a class="navbar-link" href="#">Sign up</a>
+                                <a class="navbar-link" href="#">Login</a>
+                            {% endif %}
                         </ul>
-                     </li>
-                  </ul>
-               </div>
+                    </li>
+                </ul>
             </div>
-         </div>
-      </div>
-      <!-- ============================================================== -->
-      <!--                        Topbar End                              -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!--                        Right Side Start                        -->
-      <!-- ============================================================== -->
-      <nav class="toggle-sidebar" id="right-sidebar-toggle">
-         <div class="nano">
-            <div class="nano-content">
-               <div>
-                  <ul class="list-inline nav-tab-card clearfix" role="tablist">
-                     <li class="active" role="presentation">
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!--                        Topbar End                              -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!--                        Right Side Start                        -->
+<!-- ============================================================== -->
+<nav class="toggle-sidebar" id="right-sidebar-toggle">
+    <div class="nano">
+        <div class="nano-content">
+            <div>
+                <ul class="list-inline nav-tab-card clearfix" role="tablist">
+                    <li class="active" role="presentation">
                         <a aria-controls="friends" data-toggle="tab" href="#friends" role="tab">Friends</a>
-                     </li>
-                  </ul>
-                  <div class="tab-content">
-                     <div class="tab-pane active" id="friends" role="tabcard">
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="friends" role="tabcard">
                         <ul class="list-unstyled sidebar-contact-list">
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-success circle-lg"></span></span>
-                                <span class="float-left">
-                                <img src='{% static "images/avtar-2.png" %}' class="media-box-object rounded-circle" width="50">
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span>
+                                    <span class="float-left">
+                                <img src='{% static "images/avtar-2.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
                               </span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>John Doe</strong><br>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>John Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-success circle-lg"></span></span> <span class="float-left">
-                              <img src='{% static "images/avtar-1.png" %}' class="media-box-object rounded-circle" width="50"></span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>Govinda Doe</strong><br>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                              <img src='{% static "images/avtar-1.png" %}' class="media-box-object rounded-circle"
+                                   width="50"></span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Govinda Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-danger circle-lg"></span></span> <span class="float-left">
-                                <img src='{% static "images/avtar-3.png" %}' class="media-box-object rounded-circle" width="50">
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-danger circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-3.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
                               </span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>Megan Doe</strong><br>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Megan Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-success circle-lg"></span></span> <span class="float-left">
-                               <img src='{% static "images/avtar-4.png" %}' class="media-box-object rounded-circle" width="50">
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                               <img src='{% static "images/avtar-4.png" %}' class="media-box-object rounded-circle"
+                                    width="50">
                              </span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>Hritik Doe</strong><br>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Hritik Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-success circle-lg"></span></span> <span class="float-left">
-                                <img src='{% static "images/avtar-5.png" %}' class="media-box-object rounded-circle" width="50">
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-5.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
                               </span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>Bianca Doe</strong><br>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Bianca Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-success circle-lg"></span></span> <span class="float-left">
-                                <img src='{% static "images/avtar-6.png" %}' class="media-box-object rounded-circle" width="50">
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-6.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
                               </span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>John Doe</strong><br>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>John Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-success circle-lg"></span></span> <span class="float-left">
-                                <img src='{% static "images/avtar-1.png" %}' class="media-box-object rounded-circle" width="50">
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-1.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
                               </span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>Govinda Doe</strong><br>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Govinda Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li class="clearfix">
-                              <a class="media-box" href="#"><span class="float-right"><span class="circle circle-danger circle-lg"></span></span> <span class="float-left">
-                                <img src='{% static "images/avtar-2.png" %}' class="media-box-object rounded-circle" width="50">
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-danger circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-2.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
                               </span>
-                              <span class="media-box-body"><span class="media-box-heading"><strong>Megan Doe</strong><br>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Megan Doe</strong><br>
                               <small class="text-muted">Designer</small></span></span></a>
-                           </li>
-                           <li>
-                              <div class=" text-center">
-                                 <a class="btn btn-teal" href="javascript:void(0);" title="See more contacts">Load more..</a>
-                              </div>
-                           </li>
+                            </li>
+                            <li>
+                                <div class=" text-center">
+                                    <a class="btn btn-teal" href="javascript:void(0);" title="See more contacts">Load
+                                        more..</a>
+                                </div>
+                            </li>
                         </ul>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </nav>
-      <!-- ============================================================== -->
-      <!--                        Right Side End                          -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!--            Navigation Start            -->
-      <!-- ============================================================== -->
-      <div class="main-sidebar-nav dark-navigation">
-         <div class="nano">
-            <div class="nano-content sidebar-nav">
-               <div class="card-body border-bottom text-center nav-profile">
+        </div>
+    </div>
+</nav>
+<!-- ============================================================== -->
+<!--                        Right Side End                          -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!--            Navigation Start            -->
+<!-- ============================================================== -->
+<div class="main-sidebar-nav dark-navigation">
+    <div class="nano">
+        <div class="nano-content sidebar-nav">
+            <div class="card-body border-bottom text-center nav-profile">
                 <!--<img src='{% static "images/avtar-2.png" %}' width="90" class="rounded-circle mar-btm margin-b-10 box-shadow"> -->
-                 <br>
-                  <p class="lead margin-b-0 toggle-none">
+                <br>
+                <p class="lead margin-b-0 toggle-none">
                     {{ request.user.get_full_name }}
-                  </p>
-                  <p class="text-muted mv-0 toggle-none">Welcome</p>
-               </div>
-               <ul class="metisMenu nav flex-column" id="menu">
-{#                  <li class="nav-heading"><span>MAIN</span></li>#}
-                  <li class="nav-item">
-                    <a href="/" class="nav-link"><span class="toggle-none">Dashboard</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{% url 'business:upgrade' %}" class="nav-link">Upgrade to Full Business Builder Program with No Money Down</a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="https://www.youtube.com/watch?v=TS7hk62T7jE&feature=youtu.be" target="_blank" class="nav-link"> Watch Webinar On Building Business Credit </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:financing' %}" class="nav-link"> Create My Financing Plan </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:business-credit-plan' %}" class="nav-link"> Create My Business Credit Building Plan </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:credit-situation' %}" class="nav-link"> Create My Credit Repair Plan </a>
-                   </li>
-                  <li class="nav-item">
-                     <a class="nav-link"  href="javascript: void(0);" aria-expanded="false"><span class="toggle-none">Business Credit Building <span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column " aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'business:business-entity' %}" class="nav-link">Business Entity</a></li>
-                        <li class="nav-item"><a href="{% url 'business:ein' %}" class="nav-link">EIN Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-license'%}" class="nav-link">Business License</a></li>
-                        <li class="nav-item"><a href="{% url 'business:website-creation-options' %}" class="nav-link">Website Creation</a></li>
-                        <li class="nav-item"><a href="{% url 'business:fax-number-options' %}" class="nav-link">Fax Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:four-eleven' %}" class="nav-link">411 Listings</a></li>
-                        <li class="nav-item"><a href="{% url 'business:professional-email'%}" class="nav-link">Professional Email Address</a></li>
-                        <li class="nav-item"><a href="{% url 'business:domain'%}" class="nav-link">Domain</a></li>
-                        <li class="nav-item"><a href="{% url 'business:toll-free-options'%}" class="nav-link">Toll Free Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:virtual-address'%}" class="nav-link">Virtual Address</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-bank-account'%}" class="nav-link">Business Bank Account</a></li>
-                        <li class="nav-item"><a href="{% url 'business:merchant-account'%}" class="nav-link">Merchant Account</a></li>
-                        <li class="nav-item"><a href="{% url 'business:duns'%}" class="nav-link">Duns Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:sic'%}" class="nav-link">SIC & NAISC Codes</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-good-standing'%}" class="nav-link">Checking If Your Business Is In Good Standing  </a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-in-good-standing'%}" class="nav-link">How To Get Your Business Back In Good Standing</a></li>
-                     </ul>
-                  </li>
-                  <li class="nav-item">
-                     <a href="{% url 'business:business-credit-step'%}" class="nav-link"> Choose Business Credit Building Steps You Need Done For You </a>
-                   </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none"> Business Credit Bureaus To Become Established With  <span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                         <li class="nav-item"><a href="{% url 'business:experian'%}" class="nav-link"> Experian Business </a></li>
-                        <li class="nav-item"><a href="{% url 'business:dunn-brad'%}" class="nav-link"> Dunn & Bradsheet </a></li>
-                        <li class="nav-item"><a href="{% url 'business:equifax'%}" class="nav-link"> Equifax Business </a></li>
-                     </ul>
-                  </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Corporate Credit List<span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'business:vendor-list'%}" class="nav-link">Starter Vendor List</a></li>
-                        <li class="nav-item"><a href="{% url 'business:store-credit-vendor-list'%}" class="nav-link">Store Credit Vendor List</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-credit-vendor'%}" class="nav-link">Revolving Business Credit Vendor List</a></li>
-                        <li class="nav-item"><a href="{% url 'business:cc-credit-vendor'%}" class="nav-link">Credit Card No Personal Gaurantee Vendor List</a></li>
-                     </ul>
-                  </li>
-                  
-                  <li class="nav-item">
-                     <a class="nav-link"  href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Full List Of Financing Products<span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                         <li class="nav-item"><a href="{% url 'business:personal-credit-card' %}" class="nav-link">Personal Credit Cards</a></li>
-                         <li class="nav-item"><a href="{% url 'business:business-credit-card' %}" class="nav-link">Business Credit Cards</a></li>
-                         <li class="nav-item"><a href="{% url 'business:short-term-loan' %}" class="nav-link">Short Term Loans</a></li>
-                         <li class="nav-item"><a href="{% url 'business:business-term-loan' %}" class="nav-link">Business Term Loans</a></li>
-                         <li class="nav-item"><a href="{% url 'business:small-business-loan' %}" class="nav-link">Small Business Adminstration Loans</a></li>
-                         <li class="nav-item"><a href="{% url 'business:personal-loan' %}" class="nav-link">Personal Loans</a></li>
-                         <li class="nav-item"><a href="{% url 'business:business-line-credit' %}" class="nav-link">Business Lines Of Credit</a></li>
-                         <li class="nav-item"><a href="{% url 'business:nocredit-financings' %}" class="nav-link">No Credit Check Loans</a></li>
-                         <li class="nav-item"><a href="{% url 'business:invoice-factoring' %}" class="nav-link">Invoice Factoring</a></li>
-                         <li class="nav-item"><a href="{% url 'business:invoice-financings' %}" class="nav-link">Invoice Financing</a></li>
-                         <li class="nav-item"><a href="{% url 'business:equipment-financings' %}" class="nav-link">Equipment Financing</a></li>
-                     </ul>
-                  </li>
-                  <li class="nav-item">
-                     <a href="{% url 'business:marketing-business' %}" class="nav-link"> Marketing Your Business </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="/businesscreditcourse/home" target="_blank" class="nav-link"> Business Credit Building Course </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:customer-financing-offer' %}" class="nav-link"> Offering Financing To Your Customers </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:apply-loans' %}" class="nav-link"> Apply For Business Loans </a>
-                   </li>
-                    <!-- <li class="nav-item">
-                      <a href="{% url 'business:credit-repair-options' %}" class="nav-link"> Sign Up For Credit Repair </a>
-                    </li>-->
-                   <li class="nav-item">
-                     <a href="{% url 'business:credit-trade-lines' %}" class="nav-link"> Personal Credit Primary Tradelines </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:business-credit-repair-new' %}" class="nav-link"> Business Credit Repair </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:business-credit-monitoring' %}" class="nav-link"> Sign Up For Business Credit Monitoring </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:business-credit-strategy' %}" class="nav-link"> 0% Business Credit Card Strategy </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:refer' %}" class="nav-link"> Make Extra Money Referring Friends! </a>
-                   </li>
-                   <li class="nav-item">
-                     <a href="{% url 'business:insurance-products' %}" class="nav-link"> Insurance Products </a>
-                   </li>
-               </ul>
+                </p>
+                <p class="text-muted mv-0 toggle-none">Welcome</p>
             </div>
-         </div>
-      </div>
-      <!-- ============================================================== -->
-      <!--            Navigation End              -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!--            Content Start             -->
-      <!-- ============================================================== -->
-    {% comment %}
-      <% end %>
-      <% yeild %>
-    {% endcomment %}
+            <ul class="metisMenu nav flex-column" id="menu">
+                {#                  <li class="nav-heading"><span>MAIN</span></li>#}
+                {#                   <li class="nav-item">#}
+                {#                    <a href="/" class="nav-link"><span class="toggle-none">Home</span></a>#}
+                {#                  </li>#}
+                <li class="nav-item"><a href="/" class="nav-link">Go Back To Main Portal</a></li>
+                <li class="nav-item">
+                    <a href="/credit_repair" class="nav-link"><span
+                            class="toggle-none">{{ request.resolver_match.app_name }} Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/upgrade" class="nav-link">Upgrade to Full Business
+                        Builder Program with No Money Down
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.youtube.com/watch?v=TS7hk62T7jE&feature=youtu.be" target="_blank"
+                       class="nav-link"> Watch Webinar On Building Business Credit </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/financing" class="nav-link"> Create
+                        My {{ request.resolver_match.app_name }} Business Financing Plan </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/business-credit-plan" class="nav-link"> Create
+                        My {{ request.resolver_match.app_name }} Business Credit Building Plan </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/credit-situation" class="nav-link"> Create My Credit
+                        Repair Plan </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: void(0);" aria-expanded="false"><span class="toggle-none">Business Credit Building <span
+                            class="fa arrow"></span></span></a>
+                    <ul class="nav-second-level nav flex-column " aria-expanded="false">
+                        <li class="nav-item"><a href="/credit_repair/business-entity"
+                                                class="nav-link">Business Entity</a></li>
+                        <li class="nav-item"><a href="/credit_repair/ein" class="nav-link">EIN
+                            Number</a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-license"
+                                                class="nav-link">Business License</a></li>
+                        <li class="nav-item"><a href="/credit_repair/website-creation-options"
+                                                class="nav-link">Website Creation</a></li>
+                        <li class="nav-item"><a href="/credit_repair/fax-number-options"
+                                                class="nav-link">Fax Number</a></li>
+                        <li class="nav-item"><a href="/credit_repair/four-eleven"
+                                                class="nav-link">411 Listings</a></li>
+                        <li class="nav-item"><a href="/credit_repair/professional-email"
+                                                class="nav-link">Professional Email Address</a></li>
+                        <li class="nav-item"><a href="/credit_repair/domain" class="nav-link">Domain</a>
+                        </li>
+                        <li class="nav-item"><a href="/credit_repair/toll-free-options"
+                                                class="nav-link">Toll Free Number</a></li>
+                        <li class="nav-item"><a href="/credit_repair/virtual-address"
+                                                class="nav-link">Virtual Address</a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-bank-account"
+                                                class="nav-link">Business Bank Account</a></li>
+                        <li class="nav-item"><a href="/credit_repair/merchant-account"
+                                                class="nav-link">Merchant Account</a></li>
+                        <li class="nav-item"><a href="/credit_repair/duns" class="nav-link">Duns
+                            Number</a></li>
+                        <li class="nav-item"><a href="/credit_repair/sic" class="nav-link">SIC &
+                            NAISC Codes</a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-good-standing"
+                                                class="nav-link">Checking If Your Business Is In Good Standing </a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-in-good-standing"
+                                                class="nav-link">How To Get Your Business Back In Good Standing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/business-credit-step" class="nav-link"> Choose
+                        Business Credit Building Steps You Need Done For You </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none"> Business Credit Bureaus To Become Established With  <span
+                            class="fa arrow"></span></span></a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
+                        <li class="nav-item"><a href="/credit_repair/experian" class="nav-link">
+                            Experian Business </a></li>
+                        <li class="nav-item"><a href="/credit_repair/dunn-brad"
+                                                class="nav-link"> Dunn & Bradsheet </a></li>
+                        <li class="nav-item"><a href="/credit_repair/equifax" class="nav-link">
+                            Equifax Business </a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Corporate Credit List<span
+                            class="fa arrow"></span></span></a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
+                        <li class="nav-item"><a href="/credit_repair/vendor-list"
+                                                class="nav-link">Starter Vendor List</a></li>
+                        <li class="nav-item"><a href="/credit_repair/store-credit-vendor-list"
+                                                class="nav-link">Store Credit Vendor List</a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-credit-vendor"
+                                                class="nav-link">Revolving Business Credit Vendor List</a></li>
+                        <li class="nav-item"><a href="/credit_repair/cc-credit-vendor"
+                                                class="nav-link">Credit Card No Personal Gaurantee Vendor List</a></li>
+                    </ul>
+                </li>
 
-    {% comment %}
-      {% include "layouts/bot_script_headers.html" %}
-    {% endcomment %}
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Full List Of Financing Products<span
+                            class="fa arrow"></span></span></a>
+                    <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
+                        <li class="nav-item"><a href="/credit_repair/personal-credit-card"
+                                                class="nav-link">Personal Credit Cards</a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-credit-card"
+                                                class="nav-link">Business Credit Cards</a></li>
+                        <li class="nav-item"><a href="/credit_repair/short-term-loan"
+                                                class="nav-link">Short Term Loans</a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-term-loan"
+                                                class="nav-link">Business Term Loans</a></li>
+                        <li class="nav-item"><a href="/credit_repair/small-business-loan"
+                                                class="nav-link">Small Business Adminstration Loans</a></li>
+                        <li class="nav-item"><a href="/credit_repair/personal-loan"
+                                                class="nav-link">Personal Loans</a></li>
+                        <li class="nav-item"><a href="/credit_repair/business-line-credit"
+                                                class="nav-link">Business Lines Of Credit</a></li>
+                        <li class="nav-item"><a href="/credit_repair/nocredit-financings"
+                                                class="nav-link">No Credit Check Loans</a></li>
+                        <li class="nav-item"><a href="/credit_repair/invoice-factoring"
+                                                class="nav-link">Invoice Factoring</a></li>
+                        <li class="nav-item"><a href="/credit_repair/invoice-financings"
+                                                class="nav-link">Invoice Financing</a></li>
+                        <li class="nav-item"><a href="/credit_repair/equipment-financings"
+                                                class="nav-link">Equipment Financing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/marketing-business" class="nav-link"> Marketing
+                        Your {{ request.resolver_match.app_name }} Business </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/businesscreditcourse/home" target="_blank" class="nav-link"> Business Credit Building
+                        Course </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/customer-financing-offer" class="nav-link"> Offering
+                        Financing To Your {{ request.resolver_match.app_name }} Business Customers </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/apply-loans" class="nav-link"> Apply For The
+                        Best {{ request.resolver_match.app_name }} Business Loans </a>
+                </li>
+                <!-- <li class="nav-item">
+                      <a href="/credit_repair/credit-repair-options" class="nav-link"> Sign Up For Credit Repair </a>
+                    </li>-->
+                <li class="nav-item">
+                    <a href="/credit_repair/credit-trade-lines" class="nav-link"> Personal
+                        Credit Primary Tradelines </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/business-credit-repair-new" class="nav-link">
+                        Business Credit Repair </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/business-credit-monitoring" class="nav-link"> Sign
+                        Up For Business Credit Monitoring </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/business-credit-strategy" class="nav-link"> 0%
+                        Business Credit Card Strategy </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/refer" class="nav-link"> Make Extra Money Referring
+                        Friends! </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/credit_repair/insurance-products" class="nav-link"> Insurance
+                        Products </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!--            Navigation End              -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% comment %}
+    <% end %>
+    <% yeild %>
+{% endcomment %}
 
-    {% block content %}
-        
-    {% endblock content %}
-    <footer class="footer">
-       <span>Copyright © {% now "Y" %} Get Dinero Today / Need Help? Give Us A Call At 844-874-7572</span>
-    </footer>
+{% comment %}
+    {% include "layouts/bot_script_headers.html" %}
+{% endcomment %}
 
-    <script src='{% static "lib/jquery/dist/jquery.min.js" %}'></script>
-    <script src='{% static "lib/jquery-ui/jquery-ui.min.js" %}'></script>
-    <script src='{% static "lib/bootstrap/js/popper.min.js" %}'></script>
-    <script src='{% static "lib/bootstrap/js/bootstrap.min.js" %}'></script>
+{% block content %}
 
-    <script src='{% static "lib/jasny-bootstrap/js/jasny-bootstrap.min.js" %}'></script>
-    <script src='{% static "lib/slimscroll/jquery.slimscroll.min.js" %}'></script>
-    <script src='{% static "lib/nano-scroll/jquery.nanoscroller.min.js" %}'></script>
-    <script src='{% static "lib/metisMenu/metisMenu.min.js" %}'></script>
-    <script src='{% static "custom.js" %}'></script>
+{% endblock content %}
+<footer class="footer">
+    <span>Copyright © {% now "Y" %} Get Dinero Today / Need Help? Give Us A Call At 844-874-7572</span>
+</footer>
 
-    <script src='{% static "lib/chartjs/chart.min.js" %}'></script>
-    <script src='{% static "lib/chartjs/chartjs-sass.js" %}'></script>
+<script src='{% static "lib/jquery/dist/jquery.min.js" %}'></script>
+<script src='{% static "lib/jquery-ui/jquery-ui.min.js" %}'></script>
+<script src='{% static "lib/bootstrap/js/popper.min.js" %}'></script>
+<script src='{% static "lib/bootstrap/js/bootstrap.min.js" %}'></script>
 
-    <script src='{% static "lib/vectormap/jquery-jvectormap-2.0.2.min.js" %}'></script>
-    <script src='{% static "lib/vectormap/jquery-jvectormap-us-aea-en.js" %}'></script>
+<script src='{% static "lib/jasny-bootstrap/js/jasny-bootstrap.min.js" %}'></script>
+<script src='{% static "lib/slimscroll/jquery.slimscroll.min.js" %}'></script>
+<script src='{% static "lib/nano-scroll/jquery.nanoscroller.min.js" %}'></script>
+<script src='{% static "lib/metisMenu/metisMenu.min.js" %}'></script>
+<script src='{% static "custom.js" %}'></script>
 
-    <script src='{% static "lib/chart-c3/d3.min.js" %}'></script>
-    <script src='{% static "lib/chart-c3/c3.min.js" %}'></script>
+<script src='{% static "lib/chartjs/chart.min.js" %}'></script>
+<script src='{% static "lib/chartjs/chartjs-sass.js" %}'></script>
 
-    <script src='{% static "lib/datatables/jquery.dataTables.min.js" %}'></script>
-    <script src='{% static "lib/datatables/dataTables.responsive.min.js" %}'></script>
-    <script src='{% static "lib/toast/jquery.toast.min.js" %}'></script>
-    <script src='{% static "dashboard.js" %}'></script>
+<script src='{% static "lib/vectormap/jquery-jvectormap-2.0.2.min.js" %}'></script>
+<script src='{% static "lib/vectormap/jquery-jvectormap-us-aea-en.js" %}'></script>
+
+<script src='{% static "lib/chart-c3/d3.min.js" %}'></script>
+<script src='{% static "lib/chart-c3/c3.min.js" %}'></script>
+
+<script src='{% static "lib/datatables/jquery.dataTables.min.js" %}'></script>
+<script src='{% static "lib/datatables/dataTables.responsive.min.js" %}'></script>
+<script src='{% static "lib/toast/jquery.toast.min.js" %}'></script>
+<script src='{% static "dashboard.js" %}'></script>
 
 
-
-    <script>
+<script>
     // var chatPal = new ChatPal({embedId: 'DfT7BnTm5dGn', remoteBaseUrl: 'https://chatterpal.me/', version: '7.23'});
-    </script>
-  <script>
+</script>
+<script>
     $(".nano").nanoScroller();
 
     // Left menu collapse
@@ -356,42 +440,42 @@
     //     event.preventDefault();
     //     $("body").toggleClass("nav-toggle");
     // });
-    $(document).ready(function(){
-        $(".left-nav-toggle a").off("click").on("click", function() {
-          event.preventDefault();
-          $("body").toggleClass("nav-toggle");
+    $(document).ready(function () {
+        $(".left-nav-toggle a").off("click").on("click", function () {
+            event.preventDefault();
+            $("body").toggleClass("nav-toggle");
         });
     })
 
     // Left menu collapse
-      // $('.left-nav-collapsed a').on('click', function (event) {
-      //     event.preventDefault();
-      //     $("body").toggleClass("nav-collapsed");
-      // });
+    // $('.left-nav-collapsed a').on('click', function (event) {
+    //     event.preventDefault();
+    //     $("body").toggleClass("nav-collapsed");
+    // });
 
     // Left menu collapse
-      $('.right-sidebar-toggle').on('click', function (event) {
-          event.preventDefault();
-          $("#right-sidebar-toggle").toggleClass("right-sidebar-toggle");
-      });
+    $('.right-sidebar-toggle').on('click', function (event) {
+        event.preventDefault();
+        $("#right-sidebar-toggle").toggleClass("right-sidebar-toggle");
+    });
 
-        //metis menu-->
-        $('#menu').metisMenu();
-          
-      //slim scroll
-      $('.scrollDiv').slimScroll({
-          color: '#eee',
-          size: '5px',
-          height: '293px',
-          alwaysVisible: false
-      });
+    //metis menu-->
+    $('#menu').metisMenu();
+
+    //slim scroll
+    $('.scrollDiv').slimScroll({
+        color: '#eee',
+        size: '5px',
+        height: '293px',
+        alwaysVisible: false
+    });
 
     //tooltip popover
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-toggle="popover"]').popover();
-  </script>
+</script>
 
 {% block javascriptblock %}
 {% endblock javascriptblock %}
-  </body>
+</body>
 </html>
