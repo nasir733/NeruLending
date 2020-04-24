@@ -1,0 +1,71 @@
+{% extends "base-whitelabel.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    <script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous"
+            data-cfasync="false">
+    </script>
+    <script>
+        var chatPal = new ChatPal({
+            embedId: 'DfT7BnTm5dGn',
+            remoteBaseUrl: 'https://chatterpal.me/',
+            version: '7.23'
+        });
+    </script>
+{% endblock extrastyle %}
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% block content %}
+
+    <section class="main-content">
+
+
+     {% if form %}
+            <div class="row">
+                <div style="margin: 0 auto">
+                    <h1>Edit PayPal Information</h1>
+                </div>
+
+            </div>
+
+            <div class="row">
+            <div style="margin: 0 auto 100px auto; width: 400px">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+
+                <div style="display: flex; justify-content: space-around">
+                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                    <a class="btn btn-primary" href="javascript:history.go(-1)">Back</a>
+                </div>
+            </form>
+
+        {% else %}
+
+        <div class="row">
+            <div style="margin: 0 auto">
+                <h1>Enter In New Payment Information</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div style="margin: 0 auto 100px auto; width: 400px">
+                <form action="/whitelabelpartnerportal/addpaypalinfo_form" accept-charset="UTF-8"
+                      method="post">{% csrf_token %}
+                    <br>
+                    <h4>Paypal Email</h4>
+                    <input type="text" name="paypal_email" id="paypal_email"/>
+                    <br>
+                    <div style="display: flex; justify-content: space-around">
+                        <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-primary" href="javascript:history.go(-1)">Back</a>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </section>
+
+
+{% endblock %}

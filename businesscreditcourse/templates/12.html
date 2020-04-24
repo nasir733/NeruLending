@@ -1,0 +1,34 @@
+{% extends "base-creditcourse.html" %}
+{% load static %}
+
+{% block extrastyle %}
+<script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous" data-cfasync="false">
+</script>
+<script>
+    var chatPal = new ChatPal({
+        embedId: 'DfT7BnTm5dGn',
+        remoteBaseUrl: 'https://chatterpal.me/',
+        version: '7.23'
+    });
+</script>
+{% endblock extrastyle %}
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% block content %}
+
+<div class="row page-header">
+   <div class="col-lg-6 align-self-center ">
+      <h2>Obtain a Federal Employer Identification Number (EIN)</h2>
+   </div>
+</div>
+<section class="main-content">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card-body">
+          <center> <h3>To build business credit your business must have a Federal Tax Identification Number (EIN). To obtain an EIN, or to determine if you need a new one go to irs.gov and do it yourself or simply have a professional incorporation service provider do it for you.</h3> </center>
+      </div>
+   </div>
+</section>
+
+{% endblock %}

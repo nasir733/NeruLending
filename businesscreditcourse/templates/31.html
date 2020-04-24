@@ -1,0 +1,34 @@
+{% extends "base-creditcourse.html" %}
+{% load static %}
+
+{% block extrastyle %}
+<script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous" data-cfasync="false">
+</script>
+<script>
+    var chatPal = new ChatPal({
+        embedId: 'DfT7BnTm5dGn',
+        remoteBaseUrl: 'https://chatterpal.me/',
+        version: '7.23'
+    });
+</script>
+{% endblock extrastyle %}
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% block content %}
+
+<div class="row page-header">
+   <div class="col-lg-6 align-self-center ">
+      <h2>Equifax Small Business Credit Risk Score</h2>
+   </div>
+</div>
+<section class="main-content">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="card-body">
+          <center> <h3>Equifax Small Business is more guarded about what their commercial scoring model is based on. However, it's safe to say a large portion of their risk scoring model is based on making payments on time and keeping your company's report free from any public records, collections, or excessive credit inquiries. The score used for businesses is known as the Small Business Credit Risk Score. To view a sample score report click on the download file below.</h3> </center>
+      </div>
+   </div>
+</section>
+
+{% endblock %}
