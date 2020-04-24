@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from .views import *
 
-app_name = 'wedding_planner'
+app_name = 'wedding planner'
 
 urlpatterns = [
     url('^$', login_required(BusinessHomePage.as_view(), login_url='/user/login'), name='homepage'),

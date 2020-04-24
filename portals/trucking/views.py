@@ -635,7 +635,7 @@ class OfferFinancingToCustomer(View):
 
 class ApplyingForLoans(View):
     def get(self, request):
-        return render(request, f"{app_name}/applyforLoan.html")
+        return render(request, f"{app_name}/applyForLoan.html")
 
 
 class CreditRepairOptionsView(View):
