@@ -38,5 +38,4 @@ class Document(models.Model):
         return self.user.user.get_full_name() + " " + self.type
 
     def fieldname_download(self):
-        return mark_safe('<a href="/media/{0}">{1}</a>'.format(
-            self.document, self.document))
+        return mark_safe(f'<a href="{self.document.url}">Download</a>')

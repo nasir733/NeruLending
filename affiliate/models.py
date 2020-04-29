@@ -5,7 +5,6 @@ from django.utils import timezone
 
 app_name = 'affiliate'
 
-
 class ModelMixin:
     def save(self, *args, **kwargs):
         if not self.id:
@@ -27,6 +26,7 @@ class Residual(ModelMixin, models.Model):
     def __str__(self):
         return self.user.user.get_full_name()
 
+
 class ShareLinks(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_sharelink'
@@ -41,6 +41,7 @@ class ShareLinks(ModelMixin, models.Model):
 
     def __str__(self):
         return self.user.user.get_full_name()
+
 
 class Sale(ModelMixin, models.Model):
     class Meta:
@@ -110,6 +111,7 @@ class PaypalInformation(ModelMixin, models.Model):
 
     def __str__(self):
         return self.user.user.get_full_name()
+
 
 class Webinar(ModelMixin, models.Model):
     class Meta:

@@ -2,13 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5HNNWWL');</script>
-<!-- End Google Tag Manager -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,17 +17,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" type="text/css" href='{% static "lib/toast/jquery.toast.min.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "style.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/jquery-ui/jquery-ui.css" %}'>
-
     {% block extrastyle %}
 
     {% endblock extrastyle %}
 </head>
 
 <body class=''>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HNNWWL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 <!-- ============================================================== -->
 <!--            Topbar Start              -->
 <!-- ============================================================== -->
@@ -91,6 +79,120 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </div>
 <!-- ============================================================== -->
+<!--                        Topbar End                              -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!--                        Right Side Start                        -->
+<!-- ============================================================== -->
+<nav class="toggle-sidebar" id="right-sidebar-toggle">
+    <div class="nano">
+        <div class="nano-content">
+            <div>
+                <ul class="list-inline nav-tab-card clearfix" role="tablist">
+                    <li class="active" role="presentation">
+                        <a aria-controls="friends" data-toggle="tab" href="#friends" role="tab">Friends</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="friends" role="tabcard">
+                        <ul class="list-unstyled sidebar-contact-list">
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span>
+                                    <span class="float-left">
+                                <img src='{% static "images/avtar-2.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
+                              </span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>John Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                              <img src='{% static "images/avtar-1.png" %}' class="media-box-object rounded-circle"
+                                   width="50"></span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Govinda Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-danger circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-3.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
+                              </span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Megan Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                               <img src='{% static "images/avtar-4.png" %}' class="media-box-object rounded-circle"
+                                    width="50">
+                             </span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Hritik Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-5.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
+                              </span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Bianca Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-6.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
+                              </span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>John Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-success circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-1.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
+                              </span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Govinda Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li class="clearfix">
+                                <a class="media-box" href="#"><span class="float-right"><span
+                                        class="circle circle-danger circle-lg"></span></span> <span class="float-left">
+                                <img src='{% static "images/avtar-2.png" %}' class="media-box-object rounded-circle"
+                                     width="50">
+                              </span>
+                                    <span class="media-box-body"><span
+                                            class="media-box-heading"><strong>Megan Doe</strong><br>
+                              <small class="text-muted">Designer</small></span></span></a>
+                            </li>
+                            <li>
+                                <div class=" text-center">
+                                    <a class="btn btn-teal" href="javascript:void(0);" title="See more contacts">Load
+                                        more..</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- ============================================================== -->
+<!--                        Right Side End                          -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
 <!--            Navigation Start            -->
 <!-- ============================================================== -->
 <div class="main-sidebar-nav dark-navigation">
@@ -111,11 +213,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 {#                  </li>#}
                 <li class="nav-item"><a href="/" class="nav-link">Go Back To Main Portal</a></li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}" class="nav-link"><span
+                    <a href="/hair_salon" class="nav-link"><span
                             class="toggle-none">{{ request.resolver_match.app_name }} Dashboard</span></a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/upgrade" class="nav-link">Upgrade to Full Business
+                    <a href="/hair_salon/upgrade" class="nav-link">Upgrade to Full Business
                         Builder Program with No Money Down
                     </a>
                 </li>
@@ -124,68 +226,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                        class="nav-link"> Watch Webinar On Building Business Credit </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/financing" class="nav-link"> Create
+                    <a href="/hair_salon/financing" class="nav-link"> Create
                         My {{ request.resolver_match.app_name }} Business Financing Plan </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/business-credit-plan" class="nav-link"> Create
+                    <a href="/hair_salon/business-credit-plan" class="nav-link"> Create
                         My {{ request.resolver_match.app_name }} Business Credit Building Plan </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/credit-situation" class="nav-link"> Create My Credit
+                    <a href="/hair_salon/credit-situation" class="nav-link"> Create My Credit
                         Repair Plan </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"><span class="toggle-none">Business Credit Building <span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column " aria-expanded="false">
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-entity"
+                        <li class="nav-item"><a href="/hair_salon/business-entity"
                                                 class="nav-link">Business Entity</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/ein" class="nav-link">EIN
+                        <li class="nav-item"><a href="/hair_salon/ein" class="nav-link">EIN
                             Number</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-license"
+                        <li class="nav-item"><a href="/hair_salon/business-license"
                                                 class="nav-link">Business License</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/website-creation-options"
+                        <li class="nav-item"><a href="/hair_salon/website-creation-options"
                                                 class="nav-link">Website Creation</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/fax-number-options"
+                        <li class="nav-item"><a href="/hair_salon/fax-number-options"
                                                 class="nav-link">Fax Number</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/four-eleven"
+                        <li class="nav-item"><a href="/hair_salon/four-eleven"
                                                 class="nav-link">411 Listings</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/professional-email"
+                        <li class="nav-item"><a href="/hair_salon/professional-email"
                                                 class="nav-link">Professional Email Address</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/domain" class="nav-link">Domain</a>
+                        <li class="nav-item"><a href="/hair_salon/domain" class="nav-link">Domain</a>
                         </li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/toll-free-options"
+                        <li class="nav-item"><a href="/hair_salon/toll-free-options"
                                                 class="nav-link">Toll Free Number</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/virtual-address"
+                        <li class="nav-item"><a href="/hair_salon/virtual-address"
                                                 class="nav-link">Virtual Address</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-bank-account"
+                        <li class="nav-item"><a href="/hair_salon/business-bank-account"
                                                 class="nav-link">Business Bank Account</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/merchant-account"
+                        <li class="nav-item"><a href="/hair_salon/merchant-account"
                                                 class="nav-link">Merchant Account</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/duns" class="nav-link">Duns
+                        <li class="nav-item"><a href="/hair_salon/duns" class="nav-link">Duns
                             Number</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/sic" class="nav-link">SIC &
+                        <li class="nav-item"><a href="/hair_salon/sic" class="nav-link">SIC &
                             NAISC Codes</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-good-standing"
+                        <li class="nav-item"><a href="/hair_salon/business-good-standing"
                                                 class="nav-link">Checking If Your Business Is In Good Standing </a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-in-good-standing"
+                        <li class="nav-item"><a href="/hair_salon/business-in-good-standing"
                                                 class="nav-link">How To Get Your Business Back In Good Standing</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/business-credit-step" class="nav-link"> Choose
+                    <a href="/hair_salon/business-credit-step" class="nav-link"> Choose
                         Business Credit Building Steps You Need Done For You </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none"> Business Credit Bureaus To Become Established With  <span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/experian" class="nav-link">
+                        <li class="nav-item"><a href="/hair_salon/experian" class="nav-link">
                             Experian Business </a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/dunn-brad"
+                        <li class="nav-item"><a href="/hair_salon/dunn-brad"
                                                 class="nav-link"> Dunn & Bradsheet </a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/equifax" class="nav-link">
+                        <li class="nav-item"><a href="/hair_salon/equifax" class="nav-link">
                             Equifax Business </a></li>
                     </ul>
                 </li>
@@ -193,13 +295,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Corporate Credit List<span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/vendor-list"
+                        <li class="nav-item"><a href="/hair_salon/vendor-list"
                                                 class="nav-link">Starter Vendor List</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/store-credit-vendor-list"
+                        <li class="nav-item"><a href="/hair_salon/store-credit-vendor-list"
                                                 class="nav-link">Store Credit Vendor List</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-credit-vendor"
+                        <li class="nav-item"><a href="/hair_salon/business-credit-vendor"
                                                 class="nav-link">Revolving Business Credit Vendor List</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/cc-credit-vendor"
+                        <li class="nav-item"><a href="/hair_salon/cc-credit-vendor"
                                                 class="nav-link">Credit Card No Personal Gaurantee Vendor List</a></li>
                     </ul>
                 </li>
@@ -208,32 +310,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Full List Of Financing Products<span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/personal-credit-card"
+                        <li class="nav-item"><a href="/hair_salon/personal-credit-card"
                                                 class="nav-link">Personal Credit Cards</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-credit-card"
+                        <li class="nav-item"><a href="/hair_salon/business-credit-card"
                                                 class="nav-link">Business Credit Cards</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/short-term-loan"
+                        <li class="nav-item"><a href="/hair_salon/short-term-loan"
                                                 class="nav-link">Short Term Loans</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-term-loan"
+                        <li class="nav-item"><a href="/hair_salon/business-term-loan"
                                                 class="nav-link">Business Term Loans</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/small-business-loan"
+                        <li class="nav-item"><a href="/hair_salon/small-business-loan"
                                                 class="nav-link">Small Business Adminstration Loans</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/personal-loan"
+                        <li class="nav-item"><a href="/hair_salon/personal-loan"
                                                 class="nav-link">Personal Loans</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-line-credit"
+                        <li class="nav-item"><a href="/hair_salon/business-line-credit"
                                                 class="nav-link">Business Lines Of Credit</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/nocredit-financings"
+                        <li class="nav-item"><a href="/hair_salon/nocredit-financings"
                                                 class="nav-link">No Credit Check Loans</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/invoice-factoring"
+                        <li class="nav-item"><a href="/hair_salon/invoice-factoring"
                                                 class="nav-link">Invoice Factoring</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/invoice-financings"
+                        <li class="nav-item"><a href="/hair_salon/invoice-financings"
                                                 class="nav-link">Invoice Financing</a></li>
-                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/equipment-financings"
+                        <li class="nav-item"><a href="/hair_salon/equipment-financings"
                                                 class="nav-link">Equipment Financing</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/marketing-business" class="nav-link"> Marketing
+                    <a href="/hair_salon/marketing-business" class="nav-link"> Marketing
                         Your {{ request.resolver_match.app_name }} Business </a>
                 </li>
                 <li class="nav-item">
@@ -241,38 +343,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         Course </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/customer-financing-offer" class="nav-link"> Offering
+                    <a href="/hair_salon/customer-financing-offer" class="nav-link"> Offering
                         Financing To Your {{ request.resolver_match.app_name }} Business Customers </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/apply-loans" class="nav-link"> Apply For The
+                    <a href="/hair_salon/apply-loans" class="nav-link"> Apply For The
                         Best {{ request.resolver_match.app_name }} Business Loans </a>
                 </li>
                 <!-- <li class="nav-item">
-                      <a href="/{{ request.resolver_match.app_name }}/credit-repair-options" class="nav-link"> Sign Up For Credit Repair </a>
+                      <a href="/hair_salon/credit-repair-options" class="nav-link"> Sign Up For Credit Repair </a>
                     </li>-->
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/credit-trade-lines" class="nav-link"> Personal
+                    <a href="/hair_salon/credit-trade-lines" class="nav-link"> Personal
                         Credit Primary Tradelines </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/business-credit-repair-new" class="nav-link">
+                    <a href="/hair_salon/business-credit-repair-new" class="nav-link">
                         Business Credit Repair </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/business-credit-monitoring" class="nav-link"> Sign
+                    <a href="/hair_salon/business-credit-monitoring" class="nav-link"> Sign
                         Up For Business Credit Monitoring </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/business-credit-strategy" class="nav-link"> 0%
+                    <a href="/hair_salon/business-credit-strategy" class="nav-link"> 0%
                         Business Credit Card Strategy </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/refer" class="nav-link"> Make Extra Money Referring
+                    <a href="/hair_salon/refer" class="nav-link"> Make Extra Money Referring
                         Friends! </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/insurance-products" class="nav-link"> Insurance
+                    <a href="/hair_salon/insurance-products" class="nav-link"> Insurance
                         Products </a>
                 </li>
             </ul>
@@ -298,7 +400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 {% endblock content %}
 <footer class="footer">
-    <span>Copyright © {% now "Y" %} Get Dinero Today / Need Help? Give Us A Call At 877-726-2604</span>
+    <span>Copyright © {% now "Y" %} Get Dinero Today / Need Help? Give Us A Call At 844-874-7572</span>
 </footer>
 
 <script src='{% static "lib/jquery/dist/jquery.min.js" %}'></script>

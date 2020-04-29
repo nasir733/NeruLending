@@ -34,8 +34,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card-body">
-                    <center><h3>Watch The Video Above To Learn How To Navigate The Your Financing Plan / Make A Payment
-                        Page</h3></center>
+                    <h3>Watch The Video Above To Learn How To Navigate The Your Financing Plan / Make A Payment
+                        Page</h3>
                 </div>
             </div>
 
@@ -70,38 +70,34 @@
                 </div>
 
                 <div class="sources">
-                <div class="row">
+                    <div class="row">
                         {% if sezzle %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://cdn.shopify.com/s/files/1/1026/0635/files/sezzle-header_x1000.png?v=1557862796"
                                          height="270px" width="100%" alt="">
                                     <div class="card-body">
                                         <h4 class="card-text">Financing Sources Name: Sezzle</h4>
-
                                         <h4 class="card-text">How Much Is Owed: {{ sezzle.how_much_owed }}</h4>
                                         <h4 class="card-text">Financed So Far: {{ sezzle.financed_so_far }}</h4>
                                         <h4 class="card-text">Payments Left: {{ sezzle.payment_left }}</h4>
                                         <h4 class="card-text">Payment Terms: {{ sezzle.payment_terms }}</h4>
-
                                         <a target="_blank" class="btn btn-primary" href="edit_link">Make Payment</a>
                                     </div>
                                 </div>
                             </div>
                         {% endif %}
                         {% if viabill %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_c27f7d3b7956c63b895fdf2e13bffd32/viabill.png"
                                          height="270px" width="100%" alt="">
                                     <div class="card-body">
                                         <h4 class="card-text">Financing Sources Name: Viabill</h4>
-
                                         <h4 class="card-text">How Much Is Owed: {{ viabill.how_much_owed }}</h4>
                                         <h4 class="card-text">Financed So Far: {{ viabill.financed_so_far }}</h4>
                                         <h4 class="card-text">Payments Left: {{ viabill.payment_left }}</h4>
                                         <h4 class="card-text">Payment Terms: {{ viabill.payment_terms }}</h4>
-
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
                                                 <a target="_blank" class="btn btn-primary"
@@ -113,7 +109,7 @@
                             </div>
                         {% endif %}
                         {% if klarna %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://www.klarna.com/assets/sites/2/2019/07/05131457/Klarna_Smoooth_Payments_OG.png"
                                          height="270px" width="100%" alt="">
@@ -135,14 +131,12 @@
                             </div>
                         {% endif %}
                         {% if regularpayment %}
-
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://image.cnbcfm.com/api/v1/image/106187392-1571322289627gettyimages-1044704448.jpg?v=1571322316&w=1400&h=950"
                                          height="270px" width="100%" alt="">
                                     <div class="card-body">
                                         <h4 class="card-text">Financing Sources Name: Regular Payment</h4>
-
                                         <h4 class="card-text">How Much Is Owed: {{ regularpayment.how_much_owed }}</h4>
                                         <h4 class="card-text">Financed So Far: {{ regularpayment.financed_so_far }}</h4>
                                         <h4 class="card-text">Payments Left: {{ regularpayment.payment_left }}</h4>
@@ -157,7 +151,7 @@
                             </div>
                         {% endif %}
                         {% if fundboxpay %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://financesonline.com/uploads/2019/09/FundBox-logo1.png"
                                          height="270px"
@@ -180,7 +174,7 @@
                             </div>
                         {% endif %}
                         {% if paypal %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://cdn.shopify.com/s/files/1/0051/5886/2936/files/PaypalCredit_480x480.png?v=1567674606"
                                          height="270px" width="100%" alt="">
@@ -202,7 +196,7 @@
                             </div>
                         {% endif %}
                         {% if invoicefactoringpayment %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://digital.com/wp-content/uploads/invoice-factoring-featured.png"
                                          height="270px"
@@ -227,7 +221,7 @@
                             </div>
                         {% endif %}
                         {% if behalf %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://res.cloudinary.com/dkswpljtg/image/upload/v1531301200/behalf_logo_c_iirtzq.png"
                                          height="270px" width="100%" alt="">
@@ -248,7 +242,7 @@
                             </div>
                         {% endif %}
                         {% if quadpay %}
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col">
                                 <div class="card mb-4 shadow-sm">
                                     <img src="https://i0.wp.com/www.mycrownhairextensions.com/wp-content/uploads/2019/09/QuadPay-Tagline-2.png?fit=650%2C409&ssl=1"
                                          height="270px" width="100%" alt="">
@@ -269,6 +263,27 @@
                                 </div>
                             </div>
                         {% endif %}
+                        {% if stripe %}
+                            <div class="col">
+                                <div class="card mb-4 shadow-sm">
+                                    <img src="https://i.pinimg.com/474x/8f/c6/a2/8fc6a20dd42803d99e5f782d03916991--visual-effects-mockup.jpg"
+                                         height="270px" width="100%" alt="">
+                                    <div class="card-body">
+                                        <h4 class="card-text">Financing Sources Name: Stripe</h4>
+                                        <h4 class="card-text">How Much Is Owed: {{ stripe.how_much_owed }}</h4>
+                                        <h4 class="card-text">Financed So Far: {{ stripe.financed_so_far }}</h4>
+                                        <h4 class="card-text">Payments Left: {{ stripe.payment_left }}</h4>
+                                        <h4 class="card-text">Payment Terms: {{ stripe.payment_terms }}</h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a target="_blank" class="btn btn-primary" href="https://stripe.com">Make Payment</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -277,7 +292,7 @@
         <style media="screen">
             .sources {
                 padding: 40px;
-                {#display: flex;#}
+            {#display: flex;#}
             }
         </style>
 

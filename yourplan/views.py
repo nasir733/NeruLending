@@ -1,8 +1,5 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponseRedirect
-from django.views.generic.base import ContextMixin
 from .models import *
 
 
@@ -21,6 +18,7 @@ class YourPlanView(View):
             "behalf": Behalf,
             "fundboxpay": FundBoxPay,
             "invoicefactoringpayment": InvoiceFactoringPayment,
+            "stripe": Stripe,
 
         }
         data = {}

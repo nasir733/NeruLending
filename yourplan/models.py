@@ -61,7 +61,7 @@ class Paypal(ModelMixin, models.Model):
 class Quadpay(ModelMixin, models.Model):
     class Meta:
         db_table = 'quadpay'
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     how_much_owed = models.CharField(max_length=50)
     financed_so_far = models.CharField(max_length=50)
     payment_left = models.CharField(max_length=50)
@@ -74,7 +74,7 @@ class Quadpay(ModelMixin, models.Model):
 class Sezzle(ModelMixin, models.Model):
     class Meta:
         db_table = 'sezzle'
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     how_much_owed = models.CharField(max_length=50)
     financed_so_far = models.CharField(max_length=50)
     payment_left = models.CharField(max_length=50)
@@ -152,6 +152,19 @@ class Viabill(ModelMixin, models.Model):
 class RegularPayment(ModelMixin, models.Model):
     class Meta:
         db_table = 'regularpayment'
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    how_much_owed = models.CharField(max_length=50)
+    financed_so_far = models.CharField(max_length=50)
+    payment_left = models.CharField(max_length=50)
+    payment_terms = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.user.user.get_full_name()
+
+
+class Stripe(ModelMixin, models.Model):
+    class Meta:
+        db_table = 'stripe'
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     how_much_owed = models.CharField(max_length=50)
     financed_so_far = models.CharField(max_length=50)
