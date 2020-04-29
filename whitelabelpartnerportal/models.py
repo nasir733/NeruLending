@@ -27,6 +27,18 @@ class Residual(ModelMixin, models.Model):
     def __str__(self):
         return self.user.user.get_full_name()
 
+class BecomingAPartner(ModelMixin, models.Model):
+    class Meta:
+        db_table = f'{app_name}_becomingapartner'
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
+    business_name = models.CharField(max_length=50, null=True)
+    business_number = models.CharField(max_length=500, null=True)
+    created_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return self.user.user.get_full_name()
+
 
 class Lead(ModelMixin, models.Model):
     class Meta:

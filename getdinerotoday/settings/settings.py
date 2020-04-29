@@ -55,6 +55,9 @@ INSTALLED_APPS = [
     'marketingcourse',
     'yourplan',
     'whitelabelpartnerportal',
+    'creditcourse',
+    'covid19',
+    'affiliate',
 ]
 #
 # INSTALLED_APPS += ('storages',)

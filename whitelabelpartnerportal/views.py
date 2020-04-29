@@ -12,6 +12,9 @@ class HomeWhiteLabelView(View):
     def get(self, request):
         return render(request, "home-whitelabel.html")
 
+class BecomingAPartnerView(View):
+    def get(self, request):
+        return render(request, "becomingapartner.html")
 
 class WhiteLabelTrainingView(View):
     def get(self, request):
