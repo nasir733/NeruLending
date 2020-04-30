@@ -117,3 +117,5 @@ sent_emails/
 .idea/
 media/
 staticfiles/
+__pycache__
+.DS_Store

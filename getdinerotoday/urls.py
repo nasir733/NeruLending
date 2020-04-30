@@ -23,8 +23,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.static import serve
 
 urlpatterns = [
-    path('newee_tsdsdest/', include('portals.newee_tsdsdest.urls')),
-    path('newee_test/', include('portals.newee_test.urls')),
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('business/', include('business.urls')),

@@ -22,8 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application definition
 
 INSTALLED_APPS = [
-    'portals.newee_tsdsdest',
-    'portals.newee_test',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
