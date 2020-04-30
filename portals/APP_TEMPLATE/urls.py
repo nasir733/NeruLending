@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from .views import *
 
-app_name = 'APP_TEMPLATE_NAME'
+app_name = 'APP_TEMPLATE'
 
 urlpatterns = [
     url('^$', login_required(BusinessHomePage.as_view(), login_url='/user/login'), name='homepage'),
