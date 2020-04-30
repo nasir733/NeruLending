@@ -1,5 +1,9 @@
 from getdinerotoday.settings.settings import *
 import dj_database_url
+import django_heroku
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 DEBUG = False  # Should be false But using True to render static images from local in heroku
 
@@ -21,3 +25,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 # SECURITY WARNING: update this when you have the production host
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com', 'testdineroooo.herokuapp.com']
+
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True

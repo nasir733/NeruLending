@@ -5,6 +5,7 @@ from django.utils import timezone
 
 app_name = 'affiliate'
 
+
 class ModelMixin:
     def save(self, *args, **kwargs):
         if not self.id:
