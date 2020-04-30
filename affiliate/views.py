@@ -1,20 +1,22 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import *
-
-from django.views.generic.base import ContextMixin
-from django.urls import reverse
+from django.views.generic import CreateView
 from django.http import HttpResponseRedirect
 from django.forms import ModelForm
+
+from .forms import LeadForm
 
 
 class HomeAffiliateView(View):
     def get(self, request):
         return render(request, "home-affiliate.html")
 
+
 class ShareLinksView(View):
     def get(self, request):
         return render(request, "affiliate-sharelinks.html")
+
 
 class MyResidualsView(View):
     def get(self, request):
@@ -36,14 +38,8 @@ class EnterNewLeadsView(View):
         }
         new_lead = Lead(user=Profile.objects.get(user=request.user), **data)
         new_lead.save()
-        return HttpResponseRedirect(reverse("affiliate:affiliate-leadoverview"))
+        return HttpResponseRedirect("/affiliate/leadoverview")
         # return render(request, "enternewleads.html", {"submitted": True})
-
-
-class LeadForm(ModelForm):
-    class Meta:
-        model = Lead
-        fields = ['first_name', 'last_name', 'business_name', 'business_package']
 
 
 def lead_update(request, pk, template_name='affiliate-enternewleads.html'):
@@ -51,7 +47,7 @@ def lead_update(request, pk, template_name='affiliate-enternewleads.html'):
     form = LeadForm(request.POST or None, instance=lead)
     if form.is_valid():
         form.save()
-        return redirect('affiliate:affiliate-leadoverview')
+        return redirect('/affiliate/leadoverview')
 
     return render(request, template_name, {'form': form})
 
@@ -68,7 +64,7 @@ class LeadOverviewView(View):
                 instance.delete()
             except Exception as e:
                 pass
-        return HttpResponseRedirect(reverse("affiliate:affiliate-leadoverview"))
+        return HttpResponseRedirect("/affiliate/leadoverview")
 
 
 class MySalesView(View):
@@ -94,7 +90,7 @@ class AddBankInfoView(View):
                 instance.delete()
             except Exception as e:
                 pass
-        return HttpResponseRedirect(reverse("affiliate:affiliate-addbankinfo"))
+        return HttpResponseRedirect("/affiliate/addbankinfo")
 
 
 class BankInfoForm(ModelForm):
@@ -127,10 +123,7 @@ class AddBankInfoFormView(View):
         }
         new_bank = BankPaymentInformation(user=Profile.objects.get(user=request.user), **data)
         new_bank.save()
-        return HttpResponseRedirect(reverse("affiliate:affiliate-addbankinfo"))
-
-
-
+        return HttpResponseRedirect("/affiliate/addbankinfo")
 
 
 class AddPaypalInfoView(View):
@@ -145,7 +138,7 @@ class AddPaypalInfoView(View):
                 instance.delete()
             except Exception as e:
                 pass
-        return HttpResponseRedirect(reverse("affiliate:affiliate-addpaypalinfo"))
+        return HttpResponseRedirect("/affiliate/addpaypalinfo")
 
 
 class AddPaypalInfoFormView(View):
@@ -158,7 +151,7 @@ class AddPaypalInfoFormView(View):
         }
         new_bank = PaypalInformation(user=Profile.objects.get(user=request.user), **data)
         new_bank.save()
-        return HttpResponseRedirect(reverse("affiliate:affiliate-addpaypalinfo"))
+        return HttpResponseRedirect("/affiliate/addpaypalinfo")
 
 
 class PayPalInfoForm(ModelForm):
@@ -174,3 +167,17 @@ def paypal_info_update(request, pk, template_name='affiliate-addpaypalinfo_form.
         form.save()
         return redirect('affiliate:affiliate-addpaypalinfo')
     return render(request, template_name, {'form': form})
+
+
+class LeadCreateView(CreateView):
+    model = Lead
+    form_class = LeadForm
+    template_name = "affiliate-enternewleads.html"
+    success_url = "/affiliate/leadoverview"
+
+    def form_valid(self, form):
+        lead = form.save(commit=False)
+        lead.user = self.request.user.profile
+        lead.save()
+
+        return HttpResponseRedirect("/affiliate/leadoverview")
