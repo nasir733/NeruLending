@@ -318,6 +318,7 @@ class CreditSituationView(View):
             else:
                 return HttpResponseRedirect(reverse("business:credit_repair_17"))
 
+
 class BusinessEntity(View):
     def get(self, request):
         return render(request, 'businessCreditBuilding/businessEntity.html')
@@ -846,3 +847,9 @@ class CreditRepairPlan17View(ContextMixin, View):
         context = super().get_context_data(**kwargs)
         context['shortterm'] = []
         return context
+
+
+class VirtualCardView(View):
+    def get(self, request):
+        card = request.user.virtual_card
+        return render(request, "home/virtualcard.html", {"virtual_card": card})

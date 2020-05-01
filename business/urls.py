@@ -60,6 +60,7 @@ urlpatterns = [
     url('merchant-account/', login_required(MerchantAccountView.as_view(), login_url='/user/login'),
         name='merchant-account'),
     url('duns/', login_required(DunsView.as_view(), login_url='/user/login'), name='duns'),
+    url('virtual-card/', login_required(VirtualCardView.as_view(), login_url='/user/login'), name='virtual_card'),
     url('sic/', login_required(SICView.as_view(), login_url='/user/login'), name='sic'),
     url('business-good-standing/', login_required(BusinessGoodStandingView.as_view(), login_url='/user/login'),
         name='business-good-standing'),
