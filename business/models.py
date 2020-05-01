@@ -136,15 +136,16 @@ class LinesOfCredit(ModelMixin, models.Model):
 class Nopg(ModelMixin, models.Model):
     class Meta:
         db_table = 'nopg'
-    name = models.CharField(max_length=50)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    report_to = models.CharField(max_length=50)
-    monthly_payment = models.CharField(max_length=15)
-    estimated_term = models.DateField()
-    payment_terms = models.CharField(max_length=50)
-    url = models.CharField(blank=True, max_length=100)
+    name = models.CharField(max_length=200)
+    terms = models.CharField(max_length=200)
+    reports_to = models.CharField(max_length=200)
+    estimated_amount = models.CharField(max_length=200)
+    description = models.CharField(max_length=100)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class ProfessionalEmailAddress(ModelMixin, models.Model):
@@ -210,13 +211,15 @@ class RevenueLending(ModelMixin, models.Model):
 class RevolvingCredit(ModelMixin, models.Model):
     class Meta:
         db_table = 'revolving_credit'
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=50)
-    terms = models.CharField(max_length=50)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    report_to = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
+    report_to = models.CharField(max_length=200)
+    terms = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class SbaLoan(ModelMixin, models.Model):
@@ -272,16 +275,18 @@ class BusinessTermLoan(ModelMixin, models.Model):
 
 class StoreCreditVendorList(ModelMixin, models.Model):
     class Meta:
-        db_table = 'store_credit_vendor'
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=50)
-    terms = models.CharField(max_length=50)
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
-    report_to = models.CharField(max_length=50)
-    url = models.CharField(blank=True, max_length=100)
+        db_table = 'store_credit_vendor_2'
+    lender_name = models.CharField(max_length=200)
+    personal_credit_score = models.CharField(max_length=200)
+    time_in_business = models.CharField(max_length=200)
+    business_revenue = models.CharField(max_length=200)
+    term_length = models.CharField(max_length=200)
+    apr = models.CharField(max_length=200)
+    strategy = models.CharField(max_length=200)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
-
+    def __str__(self):
+        return self.lender_name
 
 class StarterVendorList(ModelMixin, models.Model):
     class Meta:
