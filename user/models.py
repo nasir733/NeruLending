@@ -12,12 +12,28 @@ class ProfileUserManager(models.Manager):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=15)
     fax_number_paid = models.BooleanField(default=False)
     toll_free_number_paid = models.BooleanField(default=False)
     website_creation_paid = models.BooleanField(default=False)
+    virtual_access_card_paid = models.BooleanField(default=False)
     objects = ProfileUserManager()
 
     def __str__(self):
         return str(self.user.first_name) + " " + str(self.user.last_name)
+
+
+class VirtualCard(models.Model):
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE, related_name='virtual_card', null=True)
+    card_number = models.CharField("Card Number", max_length=20)
+    mm_yy = models.CharField("MM/YY", max_length=50)
+    cvc = models.CharField("CVC", max_length=3)
+    zip_code = models.CharField("Zip Code", max_length=50)
+
+    class Meta:
+        verbose_name = "Virtual Card"
+        verbose_name_plural = "Virtual Cards"
+
+    def __str__(self):
+        return self.card_number
