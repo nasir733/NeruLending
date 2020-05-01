@@ -274,9 +274,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src='{% static "lib/datatables/dataTables.responsive.min.js" %}'></script>
     <script src='{% static "lib/toast/jquery.toast.min.js" %}'></script>
     <script src='{% static "dashboard.js" %}'></script>
-
-
-
+    <style>
+      body.nav-collapsed .main-sidebar-nav.dark-navigation{
+        display: none !important;
+      }
+      body.nav-collapsed .admin-logo {
+        display: none !important;
+      }
+      body.nav-collapsed .main-content {
+          margin-left: 20px;
+      }
+    </style>
     <script>
     // var chatPal = new ChatPal({embedId: 'DfT7BnTm5dGn', remoteBaseUrl: 'https://chatterpal.me/', version: '7.23'});
     </script>
@@ -294,6 +302,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           $("body").toggleClass("nav-toggle");
         });
     })
+
+          // if ($("body").hasClass("nav-collapsed")) {
+          //   console.log("nav-collapsed")
+          // }
 
     // Left menu collapse
       // $('.left-nav-collapsed a').on('click', function (event) {
