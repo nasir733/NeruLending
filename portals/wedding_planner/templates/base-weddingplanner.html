@@ -17,6 +17,17 @@
     <link rel="stylesheet" type="text/css" href='{% static "lib/toast/jquery.toast.min.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "style.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/jquery-ui/jquery-ui.css" %}'>
+    <style>
+      body.nav-collapsed .main-sidebar-nav.dark-navigation{
+        display: none !important;
+      }
+      body.nav-collapsed .admin-logo {
+        display: none !important;
+      }
+      body.nav-collapsed .main-content {
+          margin-left: 20px;
+      }
+    </style>
     {% block extrastyle %}
 
     {% endblock extrastyle %}
