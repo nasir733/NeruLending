@@ -83,14 +83,42 @@ def create_new_portal(new_app, new_app_name, img_url):
         print('app with that name is already installed.')
 
 
+def change_video_on_portal(portal, url):
+    id = None
+    if "youtu.be/" in url:
+        id = url.split("youtu.be/")[1]
+    elif "watch?v=" in url:
+        id = url.split("watch?v=")[1]
+
+    if "&" in url:
+        id = id.split("&")[0]
+
+    if id:
+        print(id)
+        url = f"https://youtube.com/embed/{id}"
+    else:
+        print('Could not get video id.')
+        return
+
+    embed_string = f'<iframe width="100%" height="515" src="{url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>'
+    with open(f'portals/{portal}/templates/{portal}/index-{portal}.html', "r") as f:
+        data = f.read()
+        index = data.index("<iframe")
+        end_index = data.index(">", index)+1
+        data = data[:index] + f"{embed_string}" + data[end_index:]
+
+    with open(f'portals/{portal}/templates/{portal}/index-{portal}.html', "w") as f:
+        f.write(data)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='List the content of a folder')
     parser.add_argument('Action', metavar='action', type=str, help='An action you would like to perform')
-    parser.add_argument('-n', action='store', type=str, nargs='?',
-                        help='Name of the new portal, should not contain any special chars')
+    parser.add_argument('-n', action='store', type=str, nargs='?', help='Name of the new portal, should not contain any special chars')
     parser.add_argument('-dn', action='store', type=str, nargs='?', help='Displayed name of the new portal')
     parser.add_argument('-img', action='store', type=str, nargs='?', help='Image url')
-
+    parser.add_argument('-url', action='store', type=str, nargs='?', help='Url for video')
+    parser.add_argument('-p', action='store', type=str, nargs='?', help='Portal name')
     args = parser.parse_args()
     action = args.Action
 
@@ -98,11 +126,20 @@ if __name__ == '__main__':
         app = args.n
         app_name = args.dn
         imgurl = args.img
-
         if app and app_name and imgurl:
             create_new_portal(app, app_name, imgurl)
             parser.exit(0, message=f'Successfully created new portal {app_name}')
-
         else:
             parser.format_help()
             parser.exit(1, message='Check action, app, and displayname')
+
+    elif action == 'changevideo':
+        portal = args.p
+        url = args.url
+        if portal and url:
+            change_video_on_portal(portal, url)
+            parser.exit(0, message=f'Successfully changed video on portal {portal}')
+        else:
+            parser.format_help()
+            parser.exit(1, message='Check action, portal, url')
+
