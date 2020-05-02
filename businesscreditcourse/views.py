@@ -14,7 +14,7 @@ class HomeView(View):
 
 class OneView(View):
     def get(self, request):
-        return render(request, "1.html")
+        return render(request, "one.html")
 
 
 class TwoView(View):
@@ -64,7 +64,7 @@ class ElevenView(View):
 
 class TwelveView(View):
     def get(self, request):
-        return render(request, "12.html")
+        return render(request, "twelve.html")
 
 class ThirteenView(View):
     def get(self, request):
