@@ -1,9 +1,7 @@
 from getdinerotoday.settings.settings import *
 import dj_database_url
-import django_heroku
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+
 
 DEBUG = True  # Should be false But using True to render static images from local in heroku
 
