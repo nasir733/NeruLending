@@ -75,6 +75,9 @@ class UpgradeView(View):
     def get(self, request):
         return render(request, "home/upgrade.html")
 
+class RestrictedView(View):
+    def get(self, request):
+        return render(request, "home/restricted.html")
 
 class FinancingView(View):
     def get(self, request):

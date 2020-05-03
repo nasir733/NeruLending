@@ -2,15 +2,6 @@
 {% load static %}
 
 {% block extrastyle %}
-<script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous" data-cfasync="false">
-</script>
-<script>
-    var chatPal = new ChatPal({
-        embedId: 'DfT7BnTm5dGn',
-        remoteBaseUrl: 'https://chatterpal.me/',
-        version: '7.23'
-    });
-</script>    
 {% endblock extrastyle %}
 <!-- ============================================================== -->
 <!--            Content Start             -->
@@ -29,17 +20,25 @@
      <iframe width="100%" height="515" src="https://www.youtube.com/embed/shWcVnZm6Js" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  </div>
     </div>
     <br><br>
- 
+
     <div class="row">
-       <div class="col-md-6">
-         <h2 style="text-align:center;">Click THe Image Below To Go Get Your 411 Listing</h2><br>
-         <a href="http://www.listyourself.net/ListYourself/listing.jsp" target="_blank">
-         <img src="https://millennialbusinessbuilders.com/411.jpg" width="100%" height="400px" alt="">
-         </a>
-       </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                  <img src="https://millennialbusinessbuilders.com/411.jpg" height="200px" width="100%" alt="">
+                  <br><br>
+                  <h3><b>Step 1</b></h3>
+                    <h5 class="card-title">Is Your Business Listed On 411?</h5>
+                    <h5 class="card-title">If It Isn't Watch The Video Above To See How To List Your Business For Free. Then Click The Button Below To Go To The Website Where You Would List Your Business. </h5>
+                    <div class="btn-group">
+                     <a target="_blank" class="btn btn-primary" href="http://www.listyourself.net/ListYourself/listing.jsp">Click Here To Go <br>& List Your Business On 411</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
  </section>
- 
+
        <!--Start of Tawk.to Script-->
        <script type="text/javascript">
        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -53,7 +52,7 @@
        })();
        </script>
        <!--End of Tawk.to Script-->
- 
+
 
 
 {% endblock %}

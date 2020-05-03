@@ -6,6 +6,7 @@ from .views import *
 app_name = 'business'
 urlpatterns = [
     url('upgrade/', login_required(UpgradeView.as_view(), login_url='/user/login'), name='upgrade'),
+    url('restricted/', login_required(RestrictedView.as_view(), login_url='/user/login'), name='restricted'),
     url('financing/', login_required(FinancingView.as_view(), login_url='/user/login'), name='financing'),
     url('financing-plan-1/', login_required(FinancingPlan1View.as_view(), login_url='/user/login'), name='financing_plan_1'),
     url('financing-plan-2/', login_required(FinancingPlan2View.as_view(), login_url='/user/login'), name='financing_plan_2'),

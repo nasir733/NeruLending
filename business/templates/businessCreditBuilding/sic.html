@@ -2,15 +2,6 @@
 {% load static %}
 
 {% block extrastyle %}
-<script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous" data-cfasync="false">
-</script>
-<script>
-    var chatPal = new ChatPal({
-        embedId: 'DfT7BnTm5dGn',
-        remoteBaseUrl: 'https://chatterpal.me/',
-        version: '7.23'
-    });
-</script>    
 {% endblock extrastyle %}
 <!-- ============================================================== -->
 <!--            Content Start             -->
@@ -29,32 +20,22 @@
     </div>
     <br><br>
     <div class="row">
-      <div class="col-md-12 lastButton">
-        <h2 style="">Click The Button Below To Check For Your SIC & NAICS Code For Your Industry</h2>
-        <div class="btn-group">
-         <a target="_blank" class="btn btn-primary" href="https://www.naics.com/search/">Check For Your SIC &amp; NAICS Code</a>
-        </div>
+
+      <div class="col-md-5">
+          <div class="card">
+              <div class="card-body">
+                <img src="https://images.pexels.com/photos/461077/pexels-photo-461077.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" height="200px" width="100%" alt="">
+                <br><br>
+                  <h5 class="card-title">Do You Know Your SIC & NAISC Code?</h5>
+                  <h5 class="card-title">Watch The Video Above To Learn What These Codes Are</h5>
+                  <div class="btn-group">
+                   <a target="_blank" class="btn btn-primary" href="https://www.naics.com/search/">Click The Button To <br>Check For Your SIC <br>& NAICS Code For Your Industry</a>
+                  </div>
+              </div>
+          </div>
       </div>
     </div>
   </section>
-  <style>
-      .lastButton{
-    margin-bottom: 26px;
-   }
-  </style>
-  
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/5e0518eb7e39ea1242a1ea79/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
-        </script>
         <!--End of Tawk.to Script-->
 
 {% endblock %}
