@@ -115,7 +115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   {% if request.user.profile.virtual_access_card_paid %}
                   <li class="nav-item">
                     <a href="{% url 'business:virtual_card' %}" class="nav-link"><span class="toggle-none">Virtual Card Access</span></a>
-                  </li>                                      
+                  </li>
                   {% endif %}
                   <li class="nav-item">
                     <a href="{% url 'business:upgrade' %}" class="nav-link">Upgrade to Full Business Builder Program with No Money Down</a>
@@ -153,6 +153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <li class="nav-item"><a href="{% url 'business:business-in-good-standing'%}" class="nav-link">How To Get Your Business Back In Good Standing</a></li>
                      </ul>
                   </li>
+                    <li class="nav-item"><a href="{% url 'business:goals'%}" class="nav-link">My Goals With The Platform</a></li>
                   <li class="nav-item">
                      <a href="{% url 'business:business-credit-step'%}" class="nav-link"> Choose Business Credit Building Steps You Need Done For You </a>
                    </li>
@@ -342,5 +343,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 {% block javascriptblock %}
 {% endblock javascriptblock %}
+<script>
+  window.intercomSettings = {
+    app_id: "f8skyzlf"
+  };
+</script>
+
+<script>
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/f8skyzlf'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/f8skyzlf';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>
   </body>
 </html>

@@ -79,6 +79,10 @@ class RestrictedView(View):
     def get(self, request):
         return render(request, "home/restricted.html")
 
+class GoalView(View):
+    def get(self, request):
+        return render(request, "businessCreditBuilding/goals.html")
+
 class FinancingView(View):
     def get(self, request):
         return render(request, 'financing.html')

@@ -13,7 +13,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Credit Course</title>
+    <title>Loan Portal</title>
     <link rel="stylesheet" type="text/css" href='{% static "lib/metisMenu/metisMenu.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/bootstrap/css/bootstrap.min.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/vectormap/jquery-jvectormap-2.0.2.css" %}'>
@@ -24,7 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" type="text/css" href='{% static "lib/toast/jquery.toast.min.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "style.css" %}'>
     <link rel="stylesheet" type="text/css" href='{% static "lib/jquery-ui/jquery-ui.css" %}'>
-    <style>
+        <style>
       body.nav-collapsed .main-sidebar-nav.dark-navigation{
         display: none !important;
       }
@@ -78,9 +78,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </a>
                         <ul class="dropdown-menu top-dropdown">
                           {% if request.user.is_authenticated %}
-                            <!-- <li>
+                            <li>
                               <a href="{% url 'user:myprogress' %}"><i class="icon-bell"></i>My Progress</a>
-                            </li> -->
+                            </li>
                             <!--<li>-->
                             <!-- <a href="#"><i class="icon-user"></i> Profile</a>-->
                             <!--</li>-->
@@ -116,63 +116,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <p class="lead margin-b-0 toggle-none">
                     {{ request.user.get_full_name }}
                   </p>
-                  <p class="text-muted mv-0 toggle-none">Welcome To Our Credit Repair Course</p>
+                  <p class="text-muted mv-0 toggle-none">Welcome</p>
                </div>
                <ul class="metisMenu nav flex-column" id="menu">
-{#                  <li class="nav-heading"><span>MAIN</span></li>#}
-                  <li class="nav-item">
-                    <a href="/" class="nav-link"><span class="toggle-none">Go Back To Main Portal</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{% url 'creditcourse:maincreditfile' %}" class="nav-link"> Introduction Page </a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link"  href="javascript: void(0);" aria-expanded="false"><span class="toggle-none">How To Get A Good Mortgage Rate <span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column " aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'creditcourse:mortgageone' %}" class="nav-link">8 effective credit tips for getting mortgage ready in 2020</a></li>
-                        <li class="nav-item"><a href="{% url 'creditcourse:mortgagetwo' %}" class="nav-link">How To Get Approved For A Home Loan</a></li>
-                        <li class="nav-item"><a href="{% url 'creditcourse:mortgagethree'%}" class="nav-link">How Much Does It Actually Cost To Buy A Home?</a></li>
-                        <li class="nav-item"><a href="{% url 'creditcourse:mortgagefour'%}" class="nav-link">FHA vs. Conventional (Which One Is Better?)</a></li>
-                     </ul>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link"  href="javascript: void(0);" aria-expanded="false"><span class="toggle-none"> How To Build Personal Credit <span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                         <li class="nav-item"><a href="{% url 'creditcourse:personalcreditone'%}" class="nav-link">Chase 5/24 Rule Full Guide In 2020 </a></li>
-                        <li class="nav-item"><a href="{% url 'creditcourse:personalcredittwo'%}" class="nav-link"> How To Get 100% Approved For Business Credit Cards For New Business</a></li>
-                        <li class="nav-item"><a href="{% url 'creditcourse:personalcreditthree'%}" class="nav-link">Five Tips To Boost Your Credit Score In 2020 </a></li>
-                       <li class="nav-item"><a href="{% url 'creditcourse:personalcreditfour'%}" class="nav-link"> The 5 Best Credit Cards For Beginners In 2020</a></li>
-                       <li class="nav-item"><a href="{% url 'creditcourse:personalcreditfive'%}" class="nav-link">How I got my Credit Score from 0 to 792 - Beginner Guide </a></li>
-                      <li class="nav-item"><a href="{% url 'creditcourse:personalcreditsix'%}" class="nav-link"> How To Get 100% Instant Approval For Credit Cards</a></li>
-                      <li class="nav-item"><a href="{% url 'creditcourse:personalcreditseven'%}" class="nav-link">How To Get A Business Credit Card Without A Business (2020)</a></li>
-                     <li class="nav-item"><a href="{% url 'creditcourse:personalcrediteight'%}" class="nav-link"> Business Credit Cards Explained</a></li>
-                     <li class="nav-item"><a href="{% url 'creditcourse:personalcreditnine'%}" class="nav-link">Credit Scores Fully Explained </a></li>
+                  <li class="nav-heading"><span>MAIN</span></li>
+                  <!-- <li class="nav-item"><a href="{% url 'business:domain' %}" class="nav-link">Go Back To Main Portal</a></li> -->
+                  <li class="nav-item"><a href="/" class="nav-link">Go Back To Main Portal</a></li>
 
-                     </ul>
-                  </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">How To Repair Your Credit<span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'creditcourse:repaircreditone'%}" class="nav-link">How To Fix A Bad Credit Score</a></li>
-                        <li class="nav-item"><a href="{% url 'creditcourse:repaircredittwo'%}" class="nav-link">Best Credit Cards During Credit Repair</a></li>
-                        <li class="nav-item"><a href="{% url 'creditcourse:personalcredittwelve'%}" class="nav-link">How To Repair Your Credit</a></li>
-                     </ul>
-                  </li>
-
-                  <li class="nav-item">
-                     <a class="nav-link"  href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">How To Get A Great Car Loan<span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                         <li class="nav-item"><a href="{% url 'creditcourse:carloanone' %}" class="nav-link">How to Negotiate a Car Deal (And Save Big)</a></li>
-                         <li class="nav-item"><a href="{% url 'creditcourse:carloantwo' %}" class="nav-link">How To Do Google Remarketing Ads</a></li>
-                     </ul>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link"  href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Templates For Credit Repair<span class="fa arrow"></span></span></a>
-                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                         <li class="nav-item"><a href="{% url 'creditcourse:carloanone' %}" class="nav-link">How to Negotiate a Car Deal (And Save Big)</a></li>
-                         <li class="nav-item"><a href="{% url 'creditcourse:carloantwo' %}" class="nav-link">How To Do Google Remarketing Ads</a></li>
-                     </ul>
-                  </li>
+                  <li class="nav-item"><a href="{% url 'repairbusinesscredit:repairbusinesscredit' %}" class="nav-link">Repair My Business Credit</a></li>
                </ul>
             </div>
          </div>
