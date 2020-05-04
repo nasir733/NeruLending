@@ -11,6 +11,30 @@ class ModelMixin:
         return super().save(*args, **kwargs)
 
 
+class FinancingInformation(ModelMixin, models.Model):
+    class Meta:
+        db_table = 'financing_information'
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    experian = models.CharField(max_length=50)
+    equifax = models.CharField(max_length=50)
+    transunion = models.CharField(max_length=50)
+    monthly_revenue_3 = models.CharField(max_length=50)
+    daily_balance_3 = models.CharField(max_length=50)
+    monthlty_ending_balance_3 = models.CharField(max_length=50)
+    monthly_revenue_6 = models.CharField(max_length=50)
+    daily_balance_6 = models.CharField(max_length=50)
+    monthlty_ending_balance_6 = models.CharField(max_length=50)
+    business_revenue = models.CharField(max_length=50)
+    nonsufficient_6 = models.CharField(max_length=50)
+    nonsufficient_12 = models.CharField(max_length=50)
+    current_liens = models.CharField(max_length=50)
+    business_account = models.CharField(max_length=50)
+    business_loan = models.CharField(max_length=50)
+    business_age = models.CharField(max_length=50)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+
+
 class Domain(ModelMixin, models.Model):
     class Meta:
         db_table = 'domain'
@@ -37,6 +61,7 @@ class FinancingPlanRegularPerson(ModelMixin, models.Model):
 
     def __str__(self):
         return self.name
+
 
 class EquipmentFinancing(ModelMixin, models.Model):
     class Meta:

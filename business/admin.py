@@ -11,6 +11,15 @@ app = apps.get_app_config('business')
 #     admin.site.register(model)
 
 
+class FinancingInformationAdmin(admin.ModelAdmin):
+    list_display = ("user", 'created_at', 'updated_at')
+    list_filter = ('user',)
+    # search_fields = ("user__email",)
+
+
+admin.site.register(FinancingInformation, FinancingInformationAdmin)
+
+
 class DomainResource(resources.ModelResource):
     class Meta:
         model = Domain

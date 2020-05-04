@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import (
     Profile, Lender, StoreCreditVendorList, RevolvingCredit, Nopg, ShortTermLoan, BusinessTermLoan, SbaLoan,
     LinesOfCredit, StarterVendorList, PersonalCreditCard, PersonalLoan, RevolvingBusinessCreditVendor,
-    BusinessCreditCard, EquipmentFinancing, PersonalCreditTradeLine, FinancingPlanRegularPerson
+    BusinessCreditCard, EquipmentFinancing, PersonalCreditTradeLine, FinancingPlanRegularPerson, FinancingInformation
 )
 from django.urls import reverse
 from django.views import View
@@ -75,13 +75,16 @@ class UpgradeView(View):
     def get(self, request):
         return render(request, "home/upgrade.html")
 
+
 class RestrictedView(View):
     def get(self, request):
         return render(request, "home/restricted.html")
 
+
 class GoalView(View):
     def get(self, request):
         return render(request, "businessCreditBuilding/goals.html")
+
 
 class FinancingView(View):
     def get(self, request):
@@ -105,6 +108,62 @@ class FinancingView(View):
         business_account = int(data['business_account'])
         business_loan = int(data['business_loan'])
         business_age = int(data['business_age'])
+
+        dic1 = {
+            1: "599 or below",
+            2: "600-679",
+            3: "680+ Credit Score or Higher"
+        }
+
+        dic2 = {
+            1: "$3499 or below",
+            2: "$3500 or above"
+        }
+
+        dic3 = {
+            1: "$499 or below",
+            2: "$500 or above"
+        }
+
+        dic4 = {
+            1: "$41,999 or below",
+            2: "$42,000 - $99,000",
+            3: "$100,000 or above"
+        }
+
+        dic5 = {
+            1: "Yes",
+            2: "No"
+        }
+
+        dic6 = {
+            1: "Less Than 3 Months Ago",
+            2: "3 Months - 8 Months",
+            3: "9 Months - 11 Months",
+            4: "1 Year - 2 Years",
+            5: "3 years Or More",
+        }
+
+
+        dic = {'experian': dic1[experian],
+               'equifax': dic1[equifax],
+               'transunion': dic1[transunion],
+               'monthly_revenue_3': dic2[monthly_revenue_3],
+               'daily_balance_3': dic3[daily_balance_3],
+               'monthlty_ending_balance_3': dic3[monthlty_ending_balance_3],
+               'monthly_revenue_6': dic2[monthly_revenue_6],
+               'daily_balance_6': dic3[daily_balance_6],
+               'monthlty_ending_balance_6': dic3[monthlty_ending_balance_6],
+               'business_revenue': dic4[business_revenue],
+               'nonsufficient_6': dic5[nonsufficient_6],
+               'nonsufficient_12': dic5[nonsufficient_12],
+               'current_liens': dic5[current_liens],
+               'business_account': dic5[business_account],
+               'business_loan': dic5[business_loan],
+               'business_age': dic6[business_age]}
+
+        information = FinancingInformation(user=Profile.objects.get(user=request.user), **dic)
+        information.save()
 
         if experian == 1:
             if monthly_revenue_3 == 1:
@@ -562,7 +621,8 @@ class NoPgDetailsView(View):
 class PersonalCreditCardsView(View):
     def get(self, request):
         personal_credit_cards = PersonalCreditCard.objects.all()
-        return render(request, "financingProducts/personalCreditCard.html", {'personal_credit_cards': personal_credit_cards})
+        return render(request, "financingProducts/personalCreditCard.html",
+                      {'personal_credit_cards': personal_credit_cards})
 
 
 class BusinessCreditCardsView(View):
