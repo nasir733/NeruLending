@@ -1,9 +1,5 @@
-{% extends "base.html" %}
+{% extends "pages/base-business.html" %}
 {% load static %}
-
-<!-- ============================================================== -->
-<!--            Content Start             -->
-<!-- ============================================================== -->
 {% block content %}
     <div class="row page-header no-background no-shadow margin-b-0">
         <div class="col-lg-6 align-self-center ">
@@ -13,10 +9,6 @@
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
         </div>
-
-    </div>
-    <div class="row page-header no-background no-shadow margin-b-0">
-        {% include "layouts/alerts.html" %}
     </div>
     <section class="main-content">
         <div class="row w-no-padding margin-b-30">
@@ -426,7 +418,5 @@
             <!-- Dont remove this comment -->
 
         </div>
-
     </section>
 {% endblock content %}
-<!--            Content End               -->

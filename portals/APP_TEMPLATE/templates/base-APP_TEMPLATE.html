@@ -2,101 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>{{ APP_TEMPLATE_NAME }} portal</title>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/metisMenu/metisMenu.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/bootstrap/css/bootstrap.min.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/vectormap/jquery-jvectormap-2.0.2.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/chart-c3/c3.min.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/chartjs/chartjs-sass-default.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/datatables/jquery.dataTables.min.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/datatables/responsive.bootstrap.min.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/toast/jquery.toast.min.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "style.css" %}'>
-    <link rel="stylesheet" type="text/css" href='{% static "lib/jquery-ui/jquery-ui.css" %}'>
-    <style>
-      body.nav-collapsed .main-sidebar-nav.dark-navigation{
-        display: none !important;
-      }
-      body.nav-collapsed .admin-logo {
-        display: none !important;
-      }
-      body.nav-collapsed .main-content {
-          margin-left: 20px;
-      }
-    </style>
+    {% include "components/StylesBlock.html" %}
+    {% block extrastyle %}
+    {% endblock extrastyle %}
 </head>
-
 <body class=''>
-<!-- ============================================================== -->
-<!--            Topbar Start              -->
-<!-- ============================================================== -->
-<div class="top-bar light-top-bar">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <a href="/" class="admin-logo dark-logo">
-                    <h1>
-                        <!--<img src="{% static 'images/logo.png' %}" alt="getdinero"> -->
-                        <img src="{% static 'images/logo.png' %}" class="logo-icon margin-r-10">
-                        <!-- <img src="{% static 'images/logo-default.png' %}" class="toggle-none hidden-xs"> -->
-                    </h1>
-                </a>
-                <div class="left-nav-toggle">
-                    <a href="#" class="nav-collapse"><i class="fa fa-bars"></i></a>
-                </div>
-                <div class="left-nav-collapsed">
-                    <a href="#" class="nav-collapsed"><i class="fa fa-bars"></i></a>
-                </div>
-                <div class="search-form hidden-xs">
-
-                </div>
-            </div>
-            <div class="col">
-                <ul class="list-inline top-right-nav">
-                    <li class="dropdown avtar-dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <img src='{% static "images/avtar-2.png" %}' class="rounded-circle" width="30">
-                        </a>
-                        <ul class="dropdown-menu top-dropdown">
-                            {% if request.user.is_authenticated %}
-                                <li>
-                                    <a href="{% url 'user:myprogress' %}"><i class="icon-bell"></i>My Progress</a>
-                                </li>
-                                <!--<li>-->
-                                <!-- <a href="#"><i class="icon-user"></i> Profile</a>-->
-                                <!--</li>-->
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="{% url 'user:logout' %}" class="dropdown-item">
-                                        <i class="icon-logout"></i> Logout
-                                    </a>
-                                </li>
-                            {% else %}
-                                <a class="navbar-link" href="#">Sign up</a>
-                                <a class="navbar-link" href="#">Login</a>
-                            {% endif %}
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ============================================================== -->
-<!--                        Topbar End                              -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!--            Navigation Start            -->
-<!-- ============================================================== -->
+{% include "components/TopBar.html" %}
 <div class="main-sidebar-nav dark-navigation">
     <div class="nano">
         <div class="nano-content sidebar-nav">
             <div class="card-body border-bottom text-center nav-profile">
-                <!--<img src='{% static "images/avtar-2.png" %}' width="90" class="rounded-circle mar-btm margin-b-10 box-shadow"> -->
                 <br>
                 <p class="lead margin-b-0 toggle-none">
                     {{ request.user.get_full_name }}
@@ -104,10 +20,6 @@
                 <p class="text-muted mv-0 toggle-none">Welcome</p>
             </div>
             <ul class="metisMenu nav flex-column" id="menu">
-                {#                  <li class="nav-heading"><span>MAIN</span></li>#}
-                {#                   <li class="nav-item">#}
-                {#                    <a href="/" class="nav-link"><span class="toggle-none">Home</span></a>#}
-                {#                  </li>#}
                 <li class="nav-item"><a href="/" class="nav-link">Go Back To Main Portal</a></li>
                 <li class="nav-item">
                     <a href="/APP_TEMPLATE" class="nav-link"><span
@@ -278,101 +190,10 @@
         </div>
     </div>
 </div>
-<!-- ============================================================== -->
-<!--            Navigation End              -->
-<!-- ============================================================== -->
-<!-- ============================================================== -->
-<!--            Content Start             -->
-<!-- ============================================================== -->
-{% comment %}
-    <% end %>
-    <% yeild %>
-{% endcomment %}
-
-{% comment %}
-    {% include "layouts/bot_script_headers.html" %}
-{% endcomment %}
 
 {% block content %}
-
 {% endblock content %}
-<footer class="footer">
-    <span>Copyright © {% now "Y" %} Get Dinero Today / Need Help? Give Us A Call At 844-874-7572</span>
-</footer>
-
-<script src='{% static "lib/jquery/dist/jquery.min.js" %}'></script>
-<script src='{% static "lib/jquery-ui/jquery-ui.min.js" %}'></script>
-<script src='{% static "lib/bootstrap/js/popper.min.js" %}'></script>
-<script src='{% static "lib/bootstrap/js/bootstrap.min.js" %}'></script>
-
-<script src='{% static "lib/jasny-bootstrap/js/jasny-bootstrap.min.js" %}'></script>
-<script src='{% static "lib/slimscroll/jquery.slimscroll.min.js" %}'></script>
-<script src='{% static "lib/nano-scroll/jquery.nanoscroller.min.js" %}'></script>
-<script src='{% static "lib/metisMenu/metisMenu.min.js" %}'></script>
-<script src='{% static "custom.js" %}'></script>
-
-<script src='{% static "lib/chartjs/chart.min.js" %}'></script>
-<script src='{% static "lib/chartjs/chartjs-sass.js" %}'></script>
-
-<script src='{% static "lib/vectormap/jquery-jvectormap-2.0.2.min.js" %}'></script>
-<script src='{% static "lib/vectormap/jquery-jvectormap-us-aea-en.js" %}'></script>
-
-<script src='{% static "lib/chart-c3/d3.min.js" %}'></script>
-<script src='{% static "lib/chart-c3/c3.min.js" %}'></script>
-
-<script src='{% static "lib/datatables/jquery.dataTables.min.js" %}'></script>
-<script src='{% static "lib/datatables/dataTables.responsive.min.js" %}'></script>
-<script src='{% static "lib/toast/jquery.toast.min.js" %}'></script>
-<script src='{% static "dashboard.js" %}'></script>
-
-
-<script>
-    // var chatPal = new ChatPal({embedId: 'DfT7BnTm5dGn', remoteBaseUrl: 'https://chatterpal.me/', version: '7.23'});
-</script>
-<script>
-    $(".nano").nanoScroller();
-
-    // Left menu collapse
-    // $('.left-nav-toggle a').on('click', function (event) {
-    //     event.preventDefault();
-    //     $("body").toggleClass("nav-toggle");
-    // });
-    $(document).ready(function () {
-        $(".left-nav-toggle a").off("click").on("click", function () {
-            event.preventDefault();
-            $("body").toggleClass("nav-toggle");
-        });
-    })
-
-    // Left menu collapse
-    // $('.left-nav-collapsed a').on('click', function (event) {
-    //     event.preventDefault();
-    //     $("body").toggleClass("nav-collapsed");
-    // });
-
-    // Left menu collapse
-    $('.right-sidebar-toggle').on('click', function (event) {
-        event.preventDefault();
-        $("#right-sidebar-toggle").toggleClass("right-sidebar-toggle");
-    });
-
-    //metis menu-->
-    $('#menu').metisMenu();
-
-    //slim scroll
-    $('.scrollDiv').slimScroll({
-        color: '#eee',
-        size: '5px',
-        height: '293px',
-        alwaysVisible: false
-    });
-
-    //tooltip popover
-    $('[data-toggle="tooltip"]').tooltip();
-    $('[data-toggle="popover"]').popover();
-</script>
-
-{% block javascriptblock %}
-{% endblock javascriptblock %}
+{% include "components/Footer.html" %}
+{% include "components/JavaScriptBlock.html" %}
 </body>
 </html>
