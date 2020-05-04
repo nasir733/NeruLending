@@ -1,77 +1,86 @@
 {% extends "userBase.html" %}
 
 {% block content %}
-{% if error %}
-<p class=" text-center"><font size="3" color="red">{{error}}</font></p>
-{% endif %}
-<form class="new_user" id="new_user" action="" accept-charset="UTF-8" method="post"> {% csrf_token %}
-    <div class="form-group">
-        <label for="user_first_name">First name</label>
-        <div class="group-icon">
-          <input autofocus="autofocus" placeholder="First Name" class="form-control" required="required" type="text" name="first_name" id="user_first_name" />
-          <span class="icon-user text-muted icon-input"></span>
+    {% if error %}
+        <p class=" text-center"><font size="3" color="red">{{ error }}</font></p>
+    {% endif %}
+    <form class="new_user" id="new_user" action="" accept-charset="UTF-8" method="post"> {% csrf_token %}
+        <div class="form-group">
+            <label for="user_first_name">First name</label>
+            <div class="group-icon">
+                <input autofocus="autofocus" placeholder="First Name" class="form-control" required="required"
+                       type="text" name="first_name" id="user_first_name"/>
+                <span class="icon-user text-muted icon-input"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="user_last_name">Last name</label>
-        <div class="group-icon">
-          <input placeholder="Last Name" class="form-control" required="required" type="text" name="last_name" id="user_last_name" />
-          <span class="icon-user text-muted icon-input"></span>
+        <div class="form-group">
+            <label for="user_last_name">Last name</label>
+            <div class="group-icon">
+                <input placeholder="Last Name" class="form-control" required="required" type="text" name="last_name"
+                       id="user_last_name"/>
+                <span class="icon-user text-muted icon-input"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="user_email">Email</label>
-        <div class="group-icon">
-          <input autocomplete="email" placeholder="Email" class="form-control" required="required" type="email" value="" name="email" id="user_email" />
-          <span class="icon-user text-muted icon-input"></span>
+        <div class="form-group">
+            <label for="user_email">Email</label>
+            <div class="group-icon">
+                <input autocomplete="email" placeholder="Email" class="form-control" required="required" type="email"
+                       value="" name="email" id="user_email"/>
+                <span class="icon-user text-muted icon-input"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="user_password">Password</label><br />
-        <div class="group-icon">
-          <input autocomplete="new-password" placeholder="Password" class="form-control" required="required" type="password" name="password" id="user_password" />
-          <span class="icon-lock text-muted icon-input"></span>
+        <div class="form-group">
+            <label for="user_password">Password</label><br/>
+            <div class="group-icon">
+                <input autocomplete="new-password" placeholder="Password" class="form-control" required="required"
+                       type="password" name="password" id="user_password"/>
+                <span class="icon-lock text-muted icon-input"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="user_password_confirmation">Password confirmation</label><br />
-        <div class="group-icon">
-          <input autocomplete="new-password" placeholder="Confirm Password" class="form-control" required="required" type="password" name="user[password_confirmation]" id="user_password_confirmation" />
-          <span class="icon-lock text-muted icon-input"></span>
+        <div class="form-group">
+            <label for="user_password_confirmation">Password confirmation</label><br/>
+            <div class="group-icon">
+                <input autocomplete="new-password" placeholder="Confirm Password" class="form-control"
+                       required="required" type="password" name="user[password_confirmation]"
+                       id="user_password_confirmation"/>
+                <span class="icon-lock text-muted icon-input"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="phone_number">Phone</label>
-        <div class="group-icon">
-          <input placeholder="Phone" class="form-control" required="required" type="text" name="phone_number" id="phone_number" />
-          <span class="icon-user text-muted icon-input"></span>
+        <div class="form-group">
+            <label for="phone_number">Phone</label>
+            <div class="group-icon">
+                <input placeholder="Phone" class="form-control" required="required" type="text" name="phone_number"
+                       id="phone_number"/>
+                <span class="icon-user text-muted icon-input"></span>
+            </div>
         </div>
-    </div>
-    <div class="clearfix">
-        <div class="float-left">
-          <div class="checkbox checkbox-primary margin-r-5">
-            <input id="checkbox2" type="checkbox" checked="">
-            <label for="checkbox2"> I Agree with Terms <a href="#">Terms</a> </label>
-          </div>
+        <div class="clearfix">
+            <div class="float-left">
+                <div class="checkbox checkbox-primary margin-r-5">
+                    <input id="checkbox2" type="checkbox" checked="">
+                    <label for="checkbox2"> I Agree with Terms <a href="#">Terms</a> </label>
+                </div>
+            </div>
         </div>
-    </div>
-    <input type="submit" name="commit" value="Register Now" class="newButton btn btn-block btn-primary btn-rounded box-shadow mt-10" data-disable-with="Register Now" />
-    <hr>
+        <input type="submit" name="commit" value="Register Now"
+               class="newButton btn btn-block btn-primary btn-rounded box-shadow mt-10"
+               data-disable-with="Register Now"/>
+        <hr>
 
-    <p class=" text-center">Have an account?</p>
-    <a class="btn btn-block btn-success btn-rounded box-shadow" href="{% url 'user:login' %}">Login</a>
-</form> 
+        <p class=" text-center">Have an account?</p>
+        <a class="btn btn-block btn-success btn-rounded box-shadow" href="{% url 'user:login' %}">Login</a>
+    </form>
 
-<style>
-    .newButton{
-        height: 40px !important;
-    }
-    
+    <style>
+        .newButton {
+            height: 40px !important;
+        }
+
         hr {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-    
-</style>
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+    </style>
 
 {% endblock %}
