@@ -51,6 +51,12 @@ urlpatterns = [
     path('creditcourse/', include('creditcourse.urls')),
     path('covid19/', include('covid19.urls')),
     path('affiliate/', include('affiliate.urls')),
+    path('buildpersonalcredit/', include('buildpersonalcredit.urls')),
+    path('merchant/', include('merchant.urls')),
+    path('repairbusinesscredit/', include('repairbusinesscredit.urls')),
+    path('nopgbusinesscredit/', include('nopgbusinesscredit.urls')),
+    path('makeextramoney/', include('makeextramoney.urls')),
+    path('immediatemoney/', include('immediatemoney.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
     url('^$', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
