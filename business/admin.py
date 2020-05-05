@@ -14,10 +14,17 @@ app = apps.get_app_config('business')
 class FinancingInformationAdmin(admin.ModelAdmin):
     list_display = ("user", 'created_at', 'updated_at')
     list_filter = ('user',)
-    # search_fields = ("user__email",)
 
 
 admin.site.register(FinancingInformation, FinancingInformationAdmin)
+
+
+class CreditRepairInformationAdmin(admin.ModelAdmin):
+    list_display = ("user", 'created_at', 'updated_at')
+    list_filter = ('user',)
+
+
+admin.site.register(CreditRepairInformation, CreditRepairInformationAdmin)
 
 
 class DomainResource(resources.ModelResource):

@@ -35,6 +35,31 @@ class FinancingInformation(ModelMixin, models.Model):
     updated_at = models.DateTimeField(null=True, blank=True)
 
 
+class CreditRepairInformation(ModelMixin, models.Model):
+    class Meta:
+        db_table = 'credit_repair_information'
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    experian_score = models.CharField(max_length=50)
+    equifax_score = models.CharField(max_length=50)
+    transunion_score = models.CharField(max_length=50)
+    experian_utilization = models.CharField(max_length=50)
+    equifax_utilization = models.CharField(max_length=50)
+    transunion_utilization = models.CharField(max_length=50)
+    current_collections = models.CharField(max_length=50)
+    bankruptcies = models.CharField(max_length=50)
+    bankruptcies_10 = models.CharField(max_length=50)
+    inquiries = models.CharField(max_length=50)
+    missed_payments = models.CharField(max_length=50)
+    current_acc_experian = models.CharField(max_length=50)
+    current_acc_equifax = models.CharField(max_length=50)
+    current_acc_transunion = models.CharField(max_length=50)
+    credit_history_experian = models.CharField(max_length=50)
+    credit_history_equifax = models.CharField(max_length=50)
+    credit_history_transunion = models.CharField(max_length=50)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+
+
 class Domain(ModelMixin, models.Model):
     class Meta:
         db_table = 'domain'

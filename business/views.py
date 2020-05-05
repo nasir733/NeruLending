@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import (
     Profile, Lender, StoreCreditVendorList, RevolvingCredit, Nopg, ShortTermLoan, BusinessTermLoan, SbaLoan,
     LinesOfCredit, StarterVendorList, PersonalCreditCard, PersonalLoan, RevolvingBusinessCreditVendor,
-    BusinessCreditCard, EquipmentFinancing, PersonalCreditTradeLine, FinancingPlanRegularPerson, FinancingInformation
+    BusinessCreditCard, EquipmentFinancing, PersonalCreditTradeLine, FinancingPlanRegularPerson, FinancingInformation, CreditRepairInformation
 )
 from django.urls import reverse
 from django.views import View
@@ -345,6 +345,54 @@ class CreditSituationView(View):
         credit_history_experian = int(data['credit_history_experian'])
         credit_history_equifax = int(data['credit_history_equifax'])
         credit_history_transunion = int(data['credit_history_transunion'])
+
+        dic1 = {
+            1: "599 or below",
+            2: "600-679",
+            3: "680+ Credit Score or Higher"
+        }
+
+        dic5 = {
+            1: "Yes",
+            2: "No"
+        }
+
+        dic7 = {
+            1: '30% Or Lower',
+            2: '31% Or More'
+        }
+
+        dic8 = {
+            1: '3 Or Less',
+            2: '4 Or More'
+        }
+        dic9 = {
+            1: '2 years Or Less',
+            2: '3 years Or More'
+        }
+
+        data_dict = {
+            'experian_score': dic1[experian_score],
+            'equifax_score': dic1[equifax_score],
+            'transunion_score': dic1[transunion_score],
+            'experian_utilization': dic7[experian_utilization],
+            'equifax_utilization': dic7[equifax_utilization],
+            'transunion_utilization': dic7[transunion_utilization],
+            'current_collections': dic5[current_collections],
+            'bankruptcies': dic5[bankruptcies],
+            'bankruptcies_10': dic5[bankruptcies_10],
+            'inquiries': dic5[inquiries],
+            'missed_payments': dic5[missed_payments],
+            'current_acc_experian': dic8[current_acc_experian],
+            'current_acc_equifax': dic8[current_acc_equifax],
+            'current_acc_transunion': dic8[current_acc_transunion],
+            'credit_history_experian': dic9[credit_history_experian],
+            'credit_history_equifax': dic9[credit_history_equifax],
+            'credit_history_transunion': dic9[credit_history_transunion],
+        }
+
+        new_info = CreditRepairInformation(user=Profile.objects.get(user=request.user), **data_dict)
+        new_info.save()
 
         if experian_score == 1:
             if bankruptcies_10 == 1:
