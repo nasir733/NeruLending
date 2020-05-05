@@ -1,33 +1,15 @@
-{% extends "pages/base-businesscreditcourse.html" %}
+{% extends "business-credit-course-template.html" %}
 {% load static %}
+{% block title %}
+    Task Number 2 - If Your Company Shows Up in Search
+{% endblock title %}
+{% block img-url %}
+    https://images.pexels.com/photos/48148/document-agreement-documents-sign-48148.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500
+{% endblock img-url %}
+{% block card-content %}
+    If your company shows up then you may want to sign-up for Credit Signal to get free
+    access to changes in your D&B credit scores and ratings. With Credit Signal you’ll know
+    firsthand whether your business credit scores have been affected by your business
+    activities.
+{% endblock card-content %}
 
-{% block extrastyle %}
-<script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous" data-cfasync="false">
-</script>
-<script>
-    var chatPal = new ChatPal({
-        embedId: 'DfT7BnTm5dGn',
-        remoteBaseUrl: 'https://chatterpal.me/',
-        version: '7.23'
-    });
-</script>
-{% endblock extrastyle %}
-<!-- ============================================================== -->
-<!--            Content Start             -->
-<!-- ============================================================== -->
-{% block content %}
-
-<div class="row page-header">
-   <div class="col-lg-6 align-self-center ">
-      <h2>Task Number 2 - If Your Company Shows Up in Search</h2>
-   </div>
-</div>
-<section class="main-content">
-   <div class="row">
-      <div class="col-md-12">
-         <div class="card-body">
-          <center> <h3>If your company shows up then you may want to sign-up for Credit Signal to get free access to changes in your D&B credit scores and ratings. With Credit Signal you’ll know firsthand whether your business credit scores have been affected by your business activities.</h3> </center>
-      </div>
-   </div>
-</section>
-{% endblock %}

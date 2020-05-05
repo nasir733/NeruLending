@@ -1,35 +1,12 @@
-{% extends "pages/base-businesscreditcourse.html" %}
+{% extends "business-credit-course-template.html" %}
 {% load static %}
+{% block title %}
+    Task Number 1
+{% endblock title %}
+{% block img-url %}
+    https://images.pexels.com/photos/48148/document-agreement-documents-sign-48148.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500
+{% endblock img-url %}
+{% block card-content %}
+Monitor your Experian Business file by enrolling in Business Credit Advantage℠
+{% endblock card-content %}
 
-{% block extrastyle %}
-<script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous" data-cfasync="false">
-</script>
-<script>
-    var chatPal = new ChatPal({
-        embedId: 'DfT7BnTm5dGn',
-        remoteBaseUrl: 'https://chatterpal.me/',
-        version: '7.23'
-    });
-</script>
-{% endblock extrastyle %}
-<!-- ============================================================== -->
-<!--            Content Start             -->
-<!-- ============================================================== -->
-{% block content %}
-
-<div class="row page-header">
-   <div class="col-lg-6 align-self-center ">
-      <h2>Task Number 1</h2>
-   </div>
-</div>
-<section class="main-content">
-   <div class="row">
-      <div class="col-md-12">
-         <div class="card-body">
-          <center> <h3>Monitor your Experian Business file by enrolling in Business Credit Advantage℠</h3> </center>
-      </div>
-   </div>
-</section>
-
-
-{% endblock %}
