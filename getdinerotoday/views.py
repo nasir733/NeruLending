@@ -5,4 +5,5 @@ from django.shortcuts import render
 
 class HomePage(View):
     def get(self, request):
+        request.resolver_match.app_name = 'business'
         return render(request, 'homepage.html')
