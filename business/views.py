@@ -1,10 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import (
-    Profile, Lender, StoreCreditVendorList, RevolvingCredit, Nopg, ShortTermLoan, BusinessTermLoan, SbaLoan,
-    LinesOfCredit, StarterVendorList, PersonalCreditCard, PersonalLoan, RevolvingBusinessCreditVendor,
-    BusinessCreditCard, EquipmentFinancing, PersonalCreditTradeLine, FinancingPlanRegularPerson, FinancingInformation,
-    CreditRepairInformation
-)
+from .models import *
 from django.urls import reverse
 from django.views import View
 from django.http import HttpResponseRedirect
@@ -87,6 +82,27 @@ class BusinessCreditBuildingPlanView(View):
         data = request.POST
         business_time = int(data['business_time'])
         trade_lines = int(data['trade_lines'])
+
+        dic1 = {
+            1: "Less Than 1 year",
+            2: "1 Year - 2 Years",
+            3: "3 years Or More",
+        }
+
+        dic2 = {
+            1: "4 Or Less Tradelines Reporting",
+            2: "5-9 Tradelines Reporting",
+            3: "10 or More Tradelines Reporting",
+        }
+
+        dic = {
+            'business_time': dic1[business_time],
+            'trade_lines': dic2[trade_lines]
+        }
+
+        information = BusinessCreditInformation(user=Profile.objects.get(user=request.user), **dic)
+        information.save()
+
         if business_time == 1:
             if trade_lines == 1:
                 return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))

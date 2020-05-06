@@ -60,6 +60,15 @@ class CreditRepairInformation(ModelMixin, models.Model):
     updated_at = models.DateTimeField(null=True, blank=True)
 
 
+class BusinessCreditInformation(ModelMixin, models.Model):
+    class Meta:
+        db_table = 'businesscredit_information'
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+
+
 class Domain(ModelMixin, models.Model):
     class Meta:
         db_table = 'domain'

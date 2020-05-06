@@ -6,7 +6,7 @@ from .views import *
 
 app_name = 'affiliate'
 urlpatterns = [
-        url('affiliate', login_required(HomeAffiliateView.as_view(), login_url='/user/login'),
+        url('^$', login_required(HomeAffiliateView.as_view(), login_url='/user/login'),
             name='home-affiliate'),
     url('myresiduals', login_required(MyResidualsView.as_view(), login_url='/user/login'),
         name='myresiduals'),
