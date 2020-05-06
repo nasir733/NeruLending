@@ -41,11 +41,16 @@
                         <ul class="dropdown-menu top-dropdown">
                             {% if request.user.is_authenticated %}
                                 <li>
-                                    <a href="{% url 'user:myprogress' %}"><i class="icon-bell"></i>My Progress</a>
+                                    <a href="{% url 'user:myprogress' %}"><i class="icon-bell0"></i>My Progress</a>
                                 </li>
+                                <li class="dropdown-divider"></li>
                                 <li>
-                                    <a href="{% url 'loanportal:loanapplication' %}"><i class="icon-bell"></i>Loan
+                                    <a href="{% url 'loanportal:loanapplication' %}"><i class="icon-money"></i>Loan
                                         Portal</a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
+                                    <a href="{% url 'business:create_specific_portal' %}">Edit Site Goals</a>
                                 </li>
                                 <li class="dropdown-divider"></li>
                                 <li>
