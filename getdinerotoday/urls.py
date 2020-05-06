@@ -20,7 +20,7 @@ from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
-from django.views.static import serve
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -51,12 +51,7 @@ urlpatterns = [
     path('creditcourse/', include('creditcourse.urls')),
     path('covid19/', include('covid19.urls')),
     path('affiliate/', include('affiliate.urls')),
-    # path('buildpersonalcredit/', include('buildpersonalcredit.urls')),
-    # path('merchant/', include('merchant.urls')),
-    # path('repairbusinesscredit/', include('repairbusinesscredit.urls')),
-    # path('nopgbusinesscredit/', include('nopgbusinesscredit.urls')),
-    # path('makeextramoney/', include('makeextramoney.urls')),
-    # path('immediatemoney/', include('immediatemoney.urls')),
+    path('goals/', include('goals.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
     url('^$', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

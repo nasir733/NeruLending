@@ -12,16 +12,28 @@
                 <p class="text-muted mv-0 toggle-none">Welcome</p>
             </div>
             <ul class="metisMenu nav flex-column" id="menu">
+
+                {% if request.resolver_match.app_name != 'business' %}
+                <li class="nav-item"><a href="/" class="nav-link">Go Back To Main Portal</a></li>
+                {% endif %}
+
+
                 <li class="nav-item">
+                    {% if request.resolver_match.app_name == 'business' %}
                     <a href="/" class="nav-link"><span class="toggle-none">Dashboard</span></a>
+                    {% else %}
+                    <a href="/{{ request.resolver_match.app_name }}" class="nav-link"><span class="toggle-none">{{ verbose_portal_name }} Dashboard</span></a>
+                    {% endif %}
                 </li>
+
                 {% if request.user.profile.virtual_access_card_paid %}
                     <li class="nav-item">
-                        <a href="{% url 'business:virtual_card' %}" class="nav-link"><span class="toggle-none">Virtual Card Access</span></a>
+                        <a href="/{{ request.resolver_match.app_name }}/virtual_card" class="nav-link"><span class="toggle-none">Virtual Card Access</span></a>
                     </li>
                 {% endif %}
+
                 <li class="nav-item">
-                    <a href="{% url 'business:upgrade' %}" class="nav-link">Upgrade to Full Business Builder Program
+                    <a href="/{{ request.resolver_match.app_name }}/upgrade" class="nav-link">Upgrade to Full Business Builder Program
                         with No Money Down</a>
                 </li>
                 <li class="nav-item">
@@ -29,65 +41,65 @@
                        class="nav-link"> Watch Webinar On Building Business Credit </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:financing' %}" class="nav-link"> Create My Financing Plan </a>
+                    <a href="/{{ request.resolver_match.app_name }}/financing" class="nav-link"> Create My {{ verbose_portal_name }} Business Financing Plan </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:business-credit-plan' %}" class="nav-link"> Create My Business Credit
+                    <a href="/{{ request.resolver_match.app_name }}/business-credit-plan" class="nav-link"> Create My {{ verbose_portal_name }} Business Credit
                         Building Plan </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:credit-situation' %}" class="nav-link"> Create My Credit Repair Plan </a>
+                    <a href="/{{ request.resolver_match.app_name }}/credit-situation" class="nav-link"> Create My Credit Repair Plan </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"><span class="toggle-none">Business Credit Building <span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column " aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'business:business-entity' %}" class="nav-link">Business
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-entity" class="nav-link">Business
                             Entity</a></li>
-                        <li class="nav-item"><a href="{% url 'business:ein' %}" class="nav-link">EIN Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-license' %}" class="nav-link">Business
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/ein" class="nav-link">EIN Number</a></li>
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-license" class="nav-link">Business
                             License</a></li>
-                        <li class="nav-item"><a href="{% url 'business:website-creation-options' %}" class="nav-link">Website
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/website-creation-options" class="nav-link">Website
                             Creation</a></li>
-                        <li class="nav-item"><a href="{% url 'business:fax-number-options' %}" class="nav-link">Fax
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/fax-number-options" class="nav-link">Fax
                             Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:four-eleven' %}" class="nav-link">411
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/four-eleven" class="nav-link">411
                             Listings</a></li>
-                        <li class="nav-item"><a href="{% url 'business:professional-email' %}" class="nav-link">Professional
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/professional-email" class="nav-link">Professional
                             Email Address</a></li>
-                        <li class="nav-item"><a href="{% url 'business:domain' %}" class="nav-link">Domain</a></li>
-                        <li class="nav-item"><a href="{% url 'business:toll-free-options' %}" class="nav-link">Toll Free
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/domain" class="nav-link">Domain</a></li>
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/toll-free-options" class="nav-link">Toll Free
                             Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:virtual-address' %}" class="nav-link">Virtual
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/virtual-address" class="nav-link">Virtual
                             Address</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-bank-account' %}" class="nav-link">Business
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-bank-account" class="nav-link">Business
                             Bank Account</a></li>
-                        <li class="nav-item"><a href="{% url 'business:merchant-account' %}" class="nav-link">Merchant
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/merchant-account" class="nav-link">Merchant
                             Account</a></li>
-                        <li class="nav-item"><a href="{% url 'business:duns' %}" class="nav-link">Duns Number</a></li>
-                        <li class="nav-item"><a href="{% url 'business:sic' %}" class="nav-link">SIC & NAISC Codes</a>
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/duns" class="nav-link">Duns Number</a></li>
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/sic" class="nav-link">SIC & NAISC Codes</a>
                         </li>
-                        <li class="nav-item"><a href="{% url 'business:business-good-standing' %}" class="nav-link">Checking
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-good-standing" class="nav-link">Checking
                             If Your Business Is In Good Standing </a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-in-good-standing' %}" class="nav-link">How
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-in-good-standing" class="nav-link">How
                             To Get Your Business Back In Good Standing</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a href="{% url 'business:goals' %}" class="nav-link">My Goals With The
+                <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/goals" class="nav-link">My Goals With The
                     Platform</a></li>
                 <li class="nav-item">
-                    <a href="{% url 'business:business-credit-step' %}" class="nav-link"> Choose Business Credit
+                    <a href="/{{ request.resolver_match.app_name }}/business-credit-step" class="nav-link"> Choose Business Credit
                         Building Steps You Need Done For You </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none"> Business Credit Bureaus To Become Established With  <span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'business:experian' %}" class="nav-link"> Experian
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/experian" class="nav-link"> Experian
                             Business </a></li>
-                        <li class="nav-item"><a href="{% url 'business:dunn-brad' %}" class="nav-link"> Dunn &
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/dunn-brad" class="nav-link"> Dunn &
                             Bradsheet </a></li>
-                        <li class="nav-item"><a href="{% url 'business:equifax' %}" class="nav-link"> Equifax
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/equifax" class="nav-link"> Equifax
                             Business </a></li>
                     </ul>
                 </li>
@@ -95,13 +107,13 @@
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Corporate Credit List<span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'business:vendor-list' %}" class="nav-link">Starter Vendor
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/vendor-list" class="nav-link">Starter Vendor
                             List</a></li>
-                        <li class="nav-item"><a href="{% url 'business:store-credit-vendor-list' %}" class="nav-link">Store
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/store-credit-vendor-list" class="nav-link">Store
                             Credit Vendor List</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-credit-vendor' %}" class="nav-link">Revolving
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-credit-vendor" class="nav-link">Revolving
                             Business Credit Vendor List</a></li>
-                        <li class="nav-item"><a href="{% url 'business:cc-credit-vendor' %}" class="nav-link">Credit
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/cc-credit-vendor" class="nav-link">Credit
                             Card No Personal Gaurantee Vendor List</a></li>
                     </ul>
                 </li>
@@ -110,32 +122,32 @@
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span class="toggle-none">Full List Of Financing Products<span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                        <li class="nav-item"><a href="{% url 'business:personal-credit-card' %}" class="nav-link">Personal
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/personal-credit-card" class="nav-link">Personal
                             Credit Cards</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-credit-card' %}" class="nav-link">Business
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-credit-card" class="nav-link">Business
                             Credit Cards</a></li>
-                        <li class="nav-item"><a href="{% url 'business:short-term-loan' %}" class="nav-link">Short Term
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/short-term-loan" class="nav-link">Short Term
                             Loans</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-term-loan' %}" class="nav-link">Business
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-term-loan" class="nav-link">Business
                             Term Loans</a></li>
-                        <li class="nav-item"><a href="{% url 'business:small-business-loan' %}" class="nav-link">Small
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/small-business-loan" class="nav-link">Small
                             Business Adminstration Loans</a></li>
-                        <li class="nav-item"><a href="{% url 'business:personal-loan' %}" class="nav-link">Personal
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/personal-loan" class="nav-link">Personal
                             Loans</a></li>
-                        <li class="nav-item"><a href="{% url 'business:business-line-credit' %}" class="nav-link">Business
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/business-line-credit" class="nav-link">Business
                             Lines Of Credit</a></li>
-                        <li class="nav-item"><a href="{% url 'business:nocredit-financings' %}" class="nav-link">No
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/nocredit-financings" class="nav-link">No
                             Credit Check Loans</a></li>
-                        <li class="nav-item"><a href="{% url 'business:invoice-factoring' %}" class="nav-link">Invoice
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/invoice-factoring" class="nav-link">Invoice
                             Factoring</a></li>
-                        <li class="nav-item"><a href="{% url 'business:invoice-financings' %}" class="nav-link">Invoice
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/invoice-financings" class="nav-link">Invoice
                             Financing</a></li>
-                        <li class="nav-item"><a href="{% url 'business:equipment-financings' %}" class="nav-link">Equipment
+                        <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/equipment-financings" class="nav-link">Equipment
                             Financing</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:marketing-business' %}" class="nav-link"> Marketing Your Business </a>
+                    <a href="/{{ request.resolver_match.app_name }}/marketing-business" class="nav-link"> Marketing Your {{ verbose_portal_name }} Business </a>
                 </li>
                 <li class="nav-item">
                     <a href="/businesscreditcourse/home" target="_blank" class="nav-link"> Business Credit Building
@@ -146,39 +158,39 @@
                         Course </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:customer-financing-offer' %}" class="nav-link"> Offering Financing To Your
+                    <a href="/{{ request.resolver_match.app_name }}/customer-financing-offer" class="nav-link"> Offering Financing To Your
                         Customers </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:apply-loans' %}" class="nav-link"> Apply For Business Loans </a>
+                    <a href="/{{ request.resolver_match.app_name }}/apply-loans" class="nav-link"> Apply For Business Loans </a>
                 </li>
                 <li class="nav-item">
                     <a href="{% url 'covid19:homeone' %}" class="nav-link"> Covid-19 Business Loan Section</a>
                 </li>
                 <!-- <li class="nav-item">
-                      <a href="{% url 'business:credit-repair-options' %}" class="nav-link"> Sign Up For Credit Repair </a>
+                      <a href="/{{ request.resolver_match.app_name }}/credit-repair-options" class="nav-link"> Sign Up For Credit Repair </a>
                     </li>-->
                 <li class="nav-item">
-                    <a href="{% url 'business:credit-trade-lines' %}" class="nav-link"> Personal Credit Primary
+                    <a href="/{{ request.resolver_match.app_name }}/credit-trade-lines" class="nav-link"> Personal Credit Primary
                         Tradelines </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:business-credit-repair-new' %}" class="nav-link"> Business Credit
+                    <a href="/{{ request.resolver_match.app_name }}/business-credit-repair-new" class="nav-link"> Business Credit
                         Repair </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:business-credit-monitoring' %}" class="nav-link"> Sign Up For Business
+                    <a href="/{{ request.resolver_match.app_name }}/business-credit-monitoring" class="nav-link"> Sign Up For Business
                         Credit Monitoring </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:business-credit-strategy' %}" class="nav-link"> 0% Business Credit Card
+                    <a href="/{{ request.resolver_match.app_name }}/business-credit-strategy" class="nav-link"> 0% Business Credit Card
                         Strategy </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:refer' %}" class="nav-link"> Make Extra Money Referring Friends! </a>
+                    <a href="/{{ request.resolver_match.app_name }}/refer" class="nav-link"> Make Extra Money Referring Friends! </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{% url 'business:insurance-products' %}" class="nav-link"> Insurance Products </a>
+                    <a href="/{{ request.resolver_match.app_name }}/insurance-products" class="nav-link"> Insurance Products </a>
                 </li>
             </ul>
         </div>
@@ -189,5 +201,4 @@
 {% endblock content %}
 
 {% block javascriptblock %}
-    
 {% endblock javascriptblock %}

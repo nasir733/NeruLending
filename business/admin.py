@@ -7,24 +7,23 @@ from django.apps import apps
 from .models import *
 app = apps.get_app_config('business')
 
-# for model in app.get_models():
-#     admin.site.register(model)
-
 
 class FinancingInformationAdmin(admin.ModelAdmin):
     list_display = ("user", 'created_at', 'updated_at')
     list_filter = ('user',)
-
-
 admin.site.register(FinancingInformation, FinancingInformationAdmin)
 
 
 class CreditRepairInformationAdmin(admin.ModelAdmin):
     list_display = ("user", 'created_at', 'updated_at')
     list_filter = ('user',)
-
-
 admin.site.register(CreditRepairInformation, CreditRepairInformationAdmin)
+
+
+class BusinessCreditInformationAdmin(admin.ModelAdmin):
+    list_display = ("user", 'created_at', 'updated_at')
+    list_filter = ('user',)
+admin.site.register(BusinessCreditInformation, BusinessCreditInformationAdmin)
 
 
 class DomainResource(resources.ModelResource):

@@ -1,13 +1,31 @@
 from django.shortcuts import render, redirect
-from .models import (
-    Profile, Lender, StoreCreditVendorList, RevolvingCredit, Nopg, ShortTermLoan, BusinessTermLoan, SbaLoan,
-    LinesOfCredit, StarterVendorList, PersonalCreditCard, PersonalLoan, RevolvingBusinessCreditVendor,
-    BusinessCreditCard, EquipmentFinancing, PersonalCreditTradeLine, FinancingPlanRegularPerson, FinancingInformation, CreditRepairInformation
-)
+from .models import *
 from django.urls import reverse
 from django.views import View
 from django.http import HttpResponseRedirect
 from django.views.generic.base import ContextMixin
+
+portal_list = {
+    "business": "",
+    "fitness": "Fitness",
+    "accountant": "Accountant",
+    "automotive": "Automotive",
+    "cannabis": "cannabis",
+    "credit_repair": "credit repair",
+    "ecommerce": "ecommerce",
+    "hair_salon": "hair salon",
+    "handy_man": "handy man",
+    "insurance_agent": "insurance agent",
+    "lawyer": "lawyer",
+    "medical": "medical",
+    "musician": "musician",
+    "photography": "photography",
+    "real_estate": "real estate",
+    "restaurant_catering": "restaurant and catering",
+    "transportation": "transportation",
+    "trucking": "trucking",
+    "wedding_planner": "wedding planner",
+}
 
 
 def get_business_plan_context():
@@ -19,76 +37,113 @@ def get_business_plan_context():
         "lenders": lenders,
         "store_credits": store_credits,
         "revolvings": revolvings,
-        "nopgs": nopgs
+        "nopgs": nopgs,
     }
 
     return context
 
 
+def get_context_for_all(request, context=None):
+    if not context:
+        context = {}
+    context["verbose_portal_name"] = portal_list[request.resolver_match.app_name]
+    return context
+
+
+class BusinessHomePage(View):
+    def get(self, request):
+        return render(request, f"index-{request.resolver_match.app_name}.html",
+                      context=get_context_for_all(request, get_business_plan_context()))
+
+
 class BusinessPlan1View(View):
     def get(self, request):
-        return render(request, "home/businessplan1.html", context=get_business_plan_context())
+        return render(request, "home/businessplan1.html",
+                      context=get_context_for_all(request, get_business_plan_context()))
 
 
 class BusinessPlan2View(View):
     def get(self, request):
-        return render(request, "home/businessplan2.html", context=get_business_plan_context())
+        return render(request, "home/businessplan2.html",
+                      context=get_context_for_all(request, get_business_plan_context()))
 
 
 class BusinessPlan3View(View):
     def get(self, request):
-        return render(request, "home/businessplan3.html", context=get_business_plan_context())
+        return render(request, "home/businessplan3.html",
+                      context=get_context_for_all(request, get_business_plan_context()))
 
 
 class BusinessCreditBuildingPlanView(View):
     def get(self, request):
-        return render(request, "home/business.html")
+        return render(request, "home/business.html", context=get_context_for_all(request))
 
     def post(self, request):
         data = request.POST
         business_time = int(data['business_time'])
         trade_lines = int(data['trade_lines'])
+
+        dic1 = {
+            1: "Less Than 1 year",
+            2: "1 Year - 2 Years",
+            3: "3 years Or More",
+        }
+
+        dic2 = {
+            1: "4 Or Less Tradelines Reporting",
+            2: "5-9 Tradelines Reporting",
+            3: "10 or More Tradelines Reporting",
+        }
+
+        dic = {
+            'business_time': dic1[business_time],
+            'trade_lines': dic2[trade_lines]
+        }
+
+        information = BusinessCreditInformation(user=Profile.objects.get(user=request.user), **dic)
+        information.save()
+
         if business_time == 1:
             if trade_lines == 1:
-                return HttpResponseRedirect(reverse("business:business_plan_1"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
             elif trade_lines == 2:
-                return HttpResponseRedirect(reverse("business:business_plan_2"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
             elif trade_lines == 3:
-                return HttpResponseRedirect(reverse("business:business_plan_3"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
         elif business_time == 2:
             if trade_lines == 1:
-                return HttpResponseRedirect(reverse("business:business_plan_1"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
             elif trade_lines == 2:
-                return HttpResponseRedirect(reverse("business:business_plan_2"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
             elif trade_lines == 3:
-                return HttpResponseRedirect(reverse("business:business_plan_3"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
         elif business_time == 3:
             if trade_lines == 1:
-                return HttpResponseRedirect(reverse("business:business_plan_1"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
             elif trade_lines == 2:
-                return HttpResponseRedirect(reverse("business:business_plan_2"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
             elif trade_lines == 3:
-                return HttpResponseRedirect(reverse("business:business_plan_3"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
 
 
 class UpgradeView(View):
     def get(self, request):
-        return render(request, "home/upgrade.html")
+        return render(request, "home/upgrade.html", context=get_context_for_all(request))
 
 
 class RestrictedView(View):
     def get(self, request):
-        return render(request, "home/restricted.html")
+        return render(request, "home/restricted.html", context=get_context_for_all(request))
 
 
 class GoalView(View):
     def get(self, request):
-        return render(request, "businessCreditBuilding/goals.html")
+        return render(request, "businessCreditBuilding/goals.html", context=get_context_for_all(request))
 
 
 class FinancingView(View):
     def get(self, request):
-        return render(request, 'financing.html')
+        return render(request, 'financing.html', context=get_context_for_all(request))
 
     def post(self, request):
         data = request.POST
@@ -144,7 +199,6 @@ class FinancingView(View):
             5: "3 years Or More",
         }
 
-
         dic = {'experian': dic1[experian],
                'equifax': dic1[equifax],
                'transunion': dic1[transunion],
@@ -167,34 +221,35 @@ class FinancingView(View):
 
         if experian == 1:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(reverse("business:financing_plan_8"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_8"))
             else:
                 if business_age == 5:
-                    return HttpResponseRedirect(reverse("business:financing_plan_12"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_12"))
                 else:
-                    return HttpResponseRedirect(reverse("business:financing_plan_1"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_1"))
         if experian == 2:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(reverse("business:financing_plan_7"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_7"))
             elif monthly_revenue_3 == 2:
                 if business_age == 5:
-                    return HttpResponseRedirect(reverse("business:financing_plan_15"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_15"))
             else:
-                return HttpResponseRedirect(reverse("business:financing_plan_2"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_2"))
 
         if experian == 3:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(reverse("business:financing_plan_6"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_6"))
             else:
                 if business_age <= 4:
-                    return HttpResponseRedirect(reverse("business:financing_plan_3"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_3"))
                 else:
-                    return HttpResponseRedirect(reverse("business:financing_plan_10"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_10"))
 
 
 class FinancingPlan1View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan1.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan1.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -209,7 +264,8 @@ class FinancingPlan1View(ContextMixin, View):
 
 class FinancingPlan2View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan2.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan2.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -225,7 +281,8 @@ class FinancingPlan2View(ContextMixin, View):
 
 class FinancingPlan3View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan3.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan3.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -240,7 +297,8 @@ class FinancingPlan3View(ContextMixin, View):
 
 class FinancingPlan6View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan6.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan6.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -251,7 +309,8 @@ class FinancingPlan6View(ContextMixin, View):
 
 class FinancingPlan7View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan7.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan7.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -263,7 +322,8 @@ class FinancingPlan7View(ContextMixin, View):
 
 class FinancingPlan8View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan8.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan8.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -274,7 +334,8 @@ class FinancingPlan8View(ContextMixin, View):
 
 class FinancingPlan10View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan10.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan10.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -291,7 +352,8 @@ class FinancingPlan10View(ContextMixin, View):
 
 class FinancingPlan12View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan12.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan12.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -307,7 +369,8 @@ class FinancingPlan12View(ContextMixin, View):
 
 class FinancingPlan15View(ContextMixin, View):
     def get(self, request):
-        return render(request, "financingplans/financingplan15.html", context=self.get_context_data())
+        return render(request, "financingplans/financingplan15.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -324,7 +387,7 @@ class FinancingPlan15View(ContextMixin, View):
 
 class CreditSituationView(View):
     def get(self, request):
-        return render(request, "home/creditsituation.html")
+        return render(request, "home/creditsituation.html", context=get_context_for_all(request))
 
     def post(self, request):
         data = request.POST
@@ -397,55 +460,55 @@ class CreditSituationView(View):
         if experian_score == 1:
             if bankruptcies_10 == 1:
                 if credit_history_experian == 1:
-                    return HttpResponseRedirect(reverse("business:credit_repair_1"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_1"))
                 else:
                     # a tie btn 4 and 7
-                    return HttpResponseRedirect(reverse("business:credit_repair_7"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_7"))
             if inquiries == 2:
-                return HttpResponseRedirect(reverse("business:credit_repair_14"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_14"))
             else:
                 if missed_payments == 1:
-                    return HttpResponseRedirect(reverse("business:credit_repair_8"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_8"))
                 else:
-                    return HttpResponseRedirect(reverse("business:credit_repair_11"))
+                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_11"))
         elif experian_score == 2:
             if bankruptcies_10 == 1:
-                return HttpResponseRedirect(reverse("business:credit_repair_5"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_5"))
             if inquiries == 2:
-                return HttpResponseRedirect(reverse("business:credit_repair_15"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_15"))
             if missed_payments == 1:
-                return HttpResponseRedirect(reverse("business:credit_repair_9"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_9"))
             if missed_payments == 2:
-                return HttpResponseRedirect(reverse("business:credit_repair_12"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_12"))
             else:
-                return HttpResponseRedirect(reverse("business:credit_repair_17"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_17"))
 
         else:
             if bankruptcies_10 == 1:
-                return HttpResponseRedirect(reverse("business:credit_repair_6"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_6"))
             if inquiries == 2:
-                return HttpResponseRedirect(reverse("business:credit_repair_16"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_16"))
             if missed_payments == 1:
-                return HttpResponseRedirect(reverse("business:credit_repair_10"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_10"))
             if missed_payments == 2:
-                return HttpResponseRedirect(reverse("business:credit_repair_13"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_13"))
             else:
-                return HttpResponseRedirect(reverse("business:credit_repair_17"))
+                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_17"))
 
 
 class BusinessEntity(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/businessEntity.html')
+        return render(request, 'businessCreditBuilding/businessEntity.html', context=get_context_for_all(request))
 
 
 class EinView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/ein.html')
+        return render(request, 'businessCreditBuilding/ein.html', context=get_context_for_all(request))
 
 
 class BusinessLicenseView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/businessLicense.html')
+        return render(request, 'businessCreditBuilding/businessLicense.html', context=get_context_for_all(request))
 
 
 class WebsiteCreationOptionsView(View):
@@ -455,20 +518,20 @@ class WebsiteCreationOptionsView(View):
         if profile:
             website_creation_paid = profile[0].website_creation_paid
         if website_creation_paid:
-            return redirect(reverse('business:website-creation-paid'))
-        return redirect(reverse('business:website-creation'))
+            return redirect(reverse(f"{request.resolver_match.app_name}:website-creation-paid"))
+        return redirect(reverse(f"{request.resolver_match.app_name}:website-creation"))
         # return render(request, 'businessCreditBuilding/websiteCreationOptions.html', {'website_creation_paid': website
         # _creation_paid})
 
 
 class WebsiteCreationPaidView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/websiteCreationPaid.html')
+        return render(request, 'businessCreditBuilding/websiteCreationPaid.html', context=get_context_for_all(request))
 
 
 class WebsiteCreationView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/websiteCreation.html')
+        return render(request, 'businessCreditBuilding/websiteCreation.html', context=get_context_for_all(request))
 
 
 class FaxNumberOptionsView(View):
@@ -478,34 +541,35 @@ class FaxNumberOptionsView(View):
         if profile:
             fax_number_paid = profile[0].fax_number_paid
         if fax_number_paid:
-            return redirect(reverse('business:fax-number-paid'))
-        return redirect(reverse('business:fax-number'))
-        # return render(request, 'businessCreditBuilding/faxNumberOptions.html', {'fax_number_paid': fax_number_paid})
+            return redirect(reverse(f"{request.resolver_match.app_name}:fax-number-paid"))
+        return redirect(reverse(f"{request.resolver_match.app_name}:fax-number"))
+        # return render(request, 'businessCreditBuilding/fa_xNumberOptionsgetcontext_for_all(html', {'fax_number_paid': fax_number_paid}))
 
 
 class FaxNumberPaidView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/faxNumberPaid.html')
+        return render(request, 'businessCreditBuilding/faxNumberPaid.html', context=get_context_for_all(request))
 
 
 class FaxNumberView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/faxNumber.html')
+        return render(request, 'businessCreditBuilding/faxNumber.html', context=get_context_for_all(request))
 
 
 class FourElevenListingView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/FourElevenListing.html')
+        return render(request, 'businessCreditBuilding/FourElevenListing.html', context=get_context_for_all(request))
 
 
 class ProfessionalEmailAddress(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/professionalEmailAddress.html')
+        return render(request, 'businessCreditBuilding/professionalEmailAddress.html',
+                      context=get_context_for_all(request))
 
 
 class DomainView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/domain.html')
+        return render(request, 'businessCreditBuilding/domain.html', context=get_context_for_all(request))
 
 
 class TollFreeNumberOptionsView(View):
@@ -515,88 +579,90 @@ class TollFreeNumberOptionsView(View):
         if profile:
             toll_free_number_paid = profile[0].toll_free_number_paid
         if toll_free_number_paid:
-            return redirect(reverse('business:toll-free-paid'))
-        return redirect(reverse('business:toll-free'))
+            return redirect(reverse(f"{request.resolver_match.app_name}:toll-free-paid"))
+        return redirect(reverse(f"{request.resolver_match.app_name}:toll-free"))
         # return render(request, 'businessCreditBuilding/tollFreeNumberOptions.html', {'toll_free_number_paid':
         # toll_free_number_paid})
 
 
 class TollFreeNumberPaidView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html')
+        return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html', context=get_context_for_all(request))
 
 
 class TollFreeNumberView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/tollFreeNumber.html')
+        return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
 
 
 class VirtualAddressView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/virtualAddress.html')
+        return render(request, 'businessCreditBuilding/virtualAddress.html', context=get_context_for_all(request))
 
 
 class BusinessBankAccountView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/businessBankAccount.html')
+        return render(request, 'businessCreditBuilding/businessBankAccount.html', context=get_context_for_all(request))
 
 
 class MerchantAccountView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/merchantAccount.html')
+        return render(request, 'businessCreditBuilding/merchantAccount.html', context=get_context_for_all(request))
 
 
 class DunsView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/duns.html')
+        return render(request, 'businessCreditBuilding/duns.html', context=get_context_for_all(request))
 
 
 class SICView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/sic.html')
+        return render(request, 'businessCreditBuilding/sic.html', context=get_context_for_all(request))
 
 
 class BusinessGoodStandingView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/businessGoodStanding.html')
+        return render(request, 'businessCreditBuilding/businessGoodStanding.html', context=get_context_for_all(request))
 
 
 class BusinessBackInGoodStandingView(View):
     def get(self, request):
-        return render(request, 'businessCreditBuilding/businessBackInGoodStanding.html')
+        return render(request, 'businessCreditBuilding/businessBackInGoodStanding.html',
+                      context=get_context_for_all(request))
 
 
 class BusinessCreditStep(View):
     def get(self, request):
-        return render(request, 'businessCreditStep.html')
+        return render(request, 'businessCreditStep.html', context=get_context_for_all(request))
 
 
 class ExperianView(View):
     def get(self, request):
-        return render(request, 'creditBureaus/experian.html')
+        return render(request, 'creditBureaus/experian.html', context=get_context_for_all(request))
 
 
 class DunnAndBradView(View):
     def get(self, request):
-        return render(request, 'creditBureaus/dunnbradstreet.html')
+        return render(request, 'creditBureaus/dunnbradstreet.html', context=get_context_for_all(request))
 
 
 class EquifaxView(View):
     def get(self, request):
-        return render(request, 'creditBureaus/equifax.html')
+        return render(request, 'creditBureaus/equifax.html', context=get_context_for_all(request))
 
 
 class StarterVendorListView(View):
     def get(self, request):
         starter_vendors = StarterVendorList.objects.all()
-        return render(request, 'cooperateCredit/starter_vendor_list.html', {"starter_vendors": starter_vendors})
+        return render(request, 'cooperateCredit/starter_vendor_list.html',
+                      get_context_for_all(request, {"starter_vendors": starter_vendors}))
 
 
 class StoreCreditVendorListView(View):
     def get(self, request):
         store_credit_vendors = StoreCreditVendorList.objects.all()
         return render(request, "cooperateCredit/store_credit_vendor_list.html",
-                      {"store_credit_vendors": store_credit_vendors})
+                      get_context_for_all(request, {"store_credit_vendors": store_credit_vendors}))
 
 
 class ResolvingBusinessCreditVendorList(View):
@@ -607,7 +673,8 @@ class ResolvingBusinessCreditVendorList(View):
             {"Name": "United Rentals", "category": '', "reportTo": 'Dun &amp; Bradstreet', "link": "3"},
             {"Name": "Copperfield", "category": '', "reportTo": 'Equifax Small Business', "link": "4"},
         ]
-        return render(request, 'cooperateCredit/store_credit_vendor_list.html', {"list_data": data})
+        return render(request, 'cooperateCredit/store_credit_vendor_list.html',
+                      get_context_for_all(request, {"list_data": data}))
 
 
 class LeaderDetailsView(View):
@@ -619,13 +686,13 @@ class LeaderDetailsView(View):
             "terms": '',
             "description": ' If your business uses cars, vans or trucks, Fleet-One Local Fuel Cards can make your job easier with security, control, convenience and savings. Use the Fleet-One Local card to pay for fuel and maintenance. With reduced fraud and more control, the savings for your business add up. Approval Requirements: Do not apply for this no personal guarantor account until you have at least 10 reporting trade lines and one trade line with a $10k credit limit reporting. They will check 411 listing, secretary of state for status of your corporation or LLC to make sure it&#39;s in good standing. You&#39;ll need to supply your EIN, copy of a voided business check, copy of a utility bill showing the business address and phone number, and a copy of your business license. (if a business license is required in your state) Leave the personal guarantor section blank.'
         }
-        return render(request, 'cooperateCredit/lender_detail.html', data)
+        return render(request, 'cooperateCredit/lender_detail.html', get_context_for_all(data))
 
 
 class RevolvingBusinessCreditVendorList(View):
     def get(self, request):
         vendor_list = RevolvingBusinessCreditVendor.objects.all()
-        return render(request, 'cooperateCredit/revolving.html', {"vendor_list": vendor_list})
+        return render(request, 'cooperateCredit/revolving.html', get_context_for_all(request, {"vendor_list": vendor_list}))
 
 
 class RevolvingDetailsView(View):
@@ -645,13 +712,13 @@ class RevolvingDetailsView(View):
             the business address and phone number, and a copy of your business license. (if a business license is \
             required in your state) Leave the personal guarantor section blank.'
         }
-        return render(request, 'cooperateCredit/revolving_credit_detail.html', data)
+        return render(request, 'cooperateCredit/revolving_credit_detail.html', get_context_for_all(data))
 
 
 class CCNoGuaranteeVendorList(View):
     def get(self, request):
         nopg_list = Nopg.objects.all()
-        return render(request, 'cooperateCredit/nopg.html', {"nopg_list": nopg_list})
+        return render(request, 'cooperateCredit/nopg.html', get_context_for_all(request, {"nopg_list": nopg_list}))
 
 
 class NoPgDetailsView(View):
@@ -663,140 +730,145 @@ class NoPgDetailsView(View):
             "terms": '',
             "description": ' If your business uses cars, vans or trucks, Fleet-One Local Fuel Cards can make your job easier with security, control, convenience and savings. Use the Fleet-One Local card to pay for fuel and maintenance. With reduced fraud and more control, the savings for your business add up. Approval Requirements: Do not apply for this no personal guarantor account until you have at least 10 reporting trade lines and one trade line with a $10k credit limit reporting. They will check 411 listing, secretary of state for status of your corporation or LLC to make sure it&#39;s in good standing. You&#39;ll need to supply your EIN, copy of a voided business check, copy of a utility bill showing the business address and phone number, and a copy of your business license. (if a business license is required in your state) Leave the personal guarantor section blank.'
         }
-        return render(request, 'cooperateCredit/nopg_detail.html', data)
+        return render(request, 'cooperateCredit/nopg_detail.html', get_context_for_all(data))
 
 
 class PersonalCreditCardsView(View):
     def get(self, request):
         personal_credit_cards = PersonalCreditCard.objects.all()
         return render(request, "financingProducts/personalCreditCard.html",
-                      {'personal_credit_cards': personal_credit_cards})
+                      get_context_for_all(request, {'personal_credit_cards': personal_credit_cards}))
 
 
 class BusinessCreditCardsView(View):
     def get(self, request):
         cc_list = BusinessCreditCard.objects.all()
-        return render(request, "home/businesscards.html", {"cc_list": cc_list})
+        return render(request, "home/businesscards.html", get_context_for_all(request, {"cc_list": cc_list}))
 
 
 class ShortTermLoans(View):
     def get(self, request):
         short_term_loans = ShortTermLoan.objects.all()
-        return render(request, "financingProducts/shortTerm.html", {'short_term_loans': short_term_loans})
+        return render(request, "financingProducts/shortTerm.html",
+                      get_context_for_all(request, {'short_term_loans': short_term_loans}))
 
 
 class BusinessTermLoanView(View):
     def get(self, request):
         business_term_loans = BusinessTermLoan.objects.all()
-        return render(request, "financingProducts/businessTermLoan.html", {'business_term_loans': business_term_loans})
+        return render(request, "financingProducts/businessTermLoan.html",
+                      get_context_for_all(request, {'business_term_loans': business_term_loans}))
 
 
 class SmallBusinessAdminLoanView(View):
     def get(self, request):
         small_business_loans = SbaLoan.objects.all()
         return render(request, "financingProducts/smallBusinessAdminLoan.html",
-                      {'small_business_loans': small_business_loans})
+                      get_context_for_all(request, {'small_business_loans': small_business_loans}))
 
 
 class PersonalLoanView(View):
     def get(self, request):
         personal_loans = PersonalLoan.objects.all()
-        return render(request, "financingProducts/personalLoan.html", {'personal_loans': personal_loans})
+        return render(request, "financingProducts/personalLoan.html",
+                      get_context_for_all(request, {'personal_loans': personal_loans}))
 
 
 class BusinessLineOfCredit(View):
     def get(self, request):
         business_line_credit = LinesOfCredit.objects.all()
         return render(request, "financingProducts/businessLineOfCredit.html",
-                      {'business_line_credit': business_line_credit})
+                      get_context_for_all(request, {'business_line_credit': business_line_credit}))
 
 
 class NoCreditCheckFinancing(View):
     def get(self, request):
-        return render(request, "financingProducts/noCreditCheckFinancing.html")
+        return render(request, "financingProducts/noCreditCheckFinancing.html", context=get_context_for_all(request))
 
 
 class InvoiceFactoring(View):
     def get(self, request):
-        return render(request, "financingProducts/invoiceFactoring.html")
+        return render(request, "financingProducts/invoiceFactoring.html", context=get_context_for_all(request))
 
 
 class InvoiceFinancing(View):
     def get(self, request):
-        return render(request, "financingProducts/invoiceFinancing.html")
+        return render(request, "financingProducts/invoiceFinancing.html", context=get_context_for_all(request))
 
 
 class EquipmentFinancingView(View):
     def get(self, request):
         data_list = EquipmentFinancing.objects.all()
-        return render(request, "financingProducts/equipmentFinancing.html", {"data_list": data_list})
+        return render(request, "financingProducts/equipmentFinancing.html",
+                      get_context_for_all(request, {"data_list": data_list}))
 
 
 class MarketingYourBusiness(View):
     def get(self, request):
-        return render(request, 'marketingYourBusiness.html')
+        return render(request, 'marketingYourBusiness.html', context=get_context_for_all(request))
 
 
 class OfferFinancingToCustomer(View):
     def get(self, request):
-        return render(request, 'customerFinancing.html')
+        return render(request, 'customerFinancing.html', context=get_context_for_all(request))
 
 
 class ApplyingForLoans(View):
     def get(self, request):
-        return render(request, 'applyForLoan.html')
+        return render(request, 'applyForLoan.html', context=get_context_for_all(request))
 
 
 class CreditRepairOptionsView(View):
     def get(self, request):
-        return render(request, 'creditRepairOptions.html')
+        return render(request, 'creditRepairOptions.html', context=get_context_for_all(request))
 
 
 class CreditRepairPaidView(View):
     def get(self, request):
-        return render(request, 'creditRepairPaid.html')
+        return render(request, 'creditRepairPaid.html', context=get_context_for_all(request))
 
 
 class CreditRepairView(View):
     def get(self, request):
-        return render(request, 'creditRepair.html')
+        return render(request, 'creditRepair.html', context=get_context_for_all(request))
 
 
 class CreditPrimaryTradeLines(View):
     def get(self, request):
         data_list = PersonalCreditTradeLine.objects.all()
-        return render(request, 'creditPrimaryTradeline.html', {'data_list': data_list})
+        return render(request, 'creditPrimaryTradeline.html', get_context_for_all(request, {'data_list': data_list}))
 
 
 class BusinessCreditRepair(View):
     def get(self, request):
-        return render(request, 'businessCreditRepair.html')
+        return render(request, 'businessCreditRepair.html', context=get_context_for_all(request))
 
 
 class BusinessCreditMonitoringSingUp(View):
     def get(self, request):
-        return render(request, 'businessCreditMonitoringSingup.html')
+        return render(request, 'businessCreditMonitoringSingup.html', context=get_context_for_all(request))
 
 
 class BusinessCreditCardStrategy(View):
     def get(self, request):
         cc_list = BusinessCreditCard.objects.all()
-        return render(request, 'businessCreditCardStrategy.html', {'cc_list': cc_list})
+        return render(request, 'businessCreditCardStrategy.html', get_context_for_all(request, {'cc_list': cc_list}))
 
 
 class MoneyReferringFriends(View):
     def get(self, request):
-        return render(request, 'MoneyReferringFriends.html')
+        return render(request, 'MoneyReferringFriends.html', context=get_context_for_all(request))
 
 
 class InsuranceProduct(View):
     def get(self, request):
-        return render(request, 'insuranceProduct.html')
+        return render(request, 'insuranceProduct.html', context=get_context_for_all(request))
 
 
 class CreditRepairPlan1View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan1.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan1.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -806,7 +878,8 @@ class CreditRepairPlan1View(ContextMixin, View):
 
 class CreditRepairPlan2View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan2.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan2.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -816,7 +889,8 @@ class CreditRepairPlan2View(ContextMixin, View):
 
 class CreditRepairPlan3View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan3.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan3.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -826,7 +900,8 @@ class CreditRepairPlan3View(ContextMixin, View):
 
 class CreditRepairPlan4View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan4.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan4.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -836,7 +911,8 @@ class CreditRepairPlan4View(ContextMixin, View):
 
 class CreditRepairPlan5View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan5.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan5.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -846,7 +922,8 @@ class CreditRepairPlan5View(ContextMixin, View):
 
 class CreditRepairPlan6View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan6.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan6.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -856,7 +933,8 @@ class CreditRepairPlan6View(ContextMixin, View):
 
 class CreditRepairPlan7View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan7.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan7.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -866,7 +944,8 @@ class CreditRepairPlan7View(ContextMixin, View):
 
 class CreditRepairPlan8View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan8.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan8.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -876,7 +955,8 @@ class CreditRepairPlan8View(ContextMixin, View):
 
 class CreditRepairPlan9View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan9.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan9.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -886,7 +966,8 @@ class CreditRepairPlan9View(ContextMixin, View):
 
 class CreditRepairPlan10View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan10.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan10.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -896,7 +977,8 @@ class CreditRepairPlan10View(ContextMixin, View):
 
 class CreditRepairPlan11View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan11.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan11.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -906,7 +988,8 @@ class CreditRepairPlan11View(ContextMixin, View):
 
 class CreditRepairPlan12View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan12.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan12.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -916,7 +999,8 @@ class CreditRepairPlan12View(ContextMixin, View):
 
 class CreditRepairPlan13View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan13.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan13.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -926,7 +1010,8 @@ class CreditRepairPlan13View(ContextMixin, View):
 
 class CreditRepairPlan14View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan14.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan14.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -936,7 +1021,8 @@ class CreditRepairPlan14View(ContextMixin, View):
 
 class CreditRepairPlan15View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan15.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan15.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -946,7 +1032,8 @@ class CreditRepairPlan15View(ContextMixin, View):
 
 class CreditRepairPlan16View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan16.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan16.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -956,7 +1043,8 @@ class CreditRepairPlan16View(ContextMixin, View):
 
 class CreditRepairPlan17View(ContextMixin, View):
     def get(self, request):
-        return render(request, "creditrepair/creditrepairplan17.html", context=self.get_context_data())
+        return render(request, "creditrepair/creditrepairplan17.html",
+                      context=get_context_for_all(request, self.get_context_data()))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -967,4 +1055,4 @@ class CreditRepairPlan17View(ContextMixin, View):
 class VirtualCardView(View):
     def get(self, request):
         card = request.user.virtual_card
-        return render(request, "home/virtualcard.html", {"virtual_card": card})
+        return render(request, "home/virtualcard.html", get_context_for_all(request, {"virtual_card": card}))
