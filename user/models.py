@@ -18,11 +18,14 @@ class Profile(models.Model):
     toll_free_number_paid = models.BooleanField(default=False)
     website_creation_paid = models.BooleanField(default=False)
     virtual_access_card_paid = models.BooleanField(default=False)
-    portals = models.ManyToManyField("Portal", related_name='portals_subscribed', blank=True)
     objects = ProfileUserManager()
 
     def __str__(self):
         return str(self.user.first_name) + " " + str(self.user.last_name)
+
+    class Meta:
+        verbose_name = "1. Profile"
+        verbose_name_plural = "1. Profiles"
 
 
 class VirtualCard(models.Model):
@@ -33,8 +36,8 @@ class VirtualCard(models.Model):
     zip_code = models.CharField("Zip Code", max_length=50)
 
     class Meta:
-        verbose_name = "Virtual Card"
-        verbose_name_plural = "Virtual Cards"
+        verbose_name = "2. Virtual Card"
+        verbose_name_plural = "2. Virtual Cards"
 
     def __str__(self):
         return self.card_number
@@ -44,8 +47,21 @@ class Portal(models.Model):
     name = models.CharField("Portal Name", max_length=255)
 
     class Meta:
-        verbose_name = "Portal"
-        verbose_name_plural = "Portals"
+        verbose_name = "3. Portal"
+        verbose_name_plural = "3. Portals"
 
     def __str__(self):
         return self.name
+
+
+class PortalGoal(models.Model):
+    name = models.CharField("Custom portal name", max_length=50, null=True)
+    profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='portal_goals')
+    portals = models.ManyToManyField("Portal")
+
+    class Meta:
+        verbose_name = "4. Portal Goal"
+        verbose_name_plural = "4. Portal Goals"
+
+    def __str__(self):
+        return "{}-portals-goals".format(self.profile)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, VirtualCard, Portal
+from .models import Profile, VirtualCard, Portal, PortalGoal
 
 admin.site.site_header = "Get Dinero Today Admin"
 admin.site.site_title = "Get Dinero Today"
@@ -15,10 +15,9 @@ class ProfileAdmin(admin.ModelAdmin):
                     "virtual_access_card_paid",)
     filds = [
         "user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
-        "virtual_access_card_paid", "portals",
+        "virtual_access_card_paid",
     ]
     list_filter = ("fax_number_paid", "toll_free_number_paid", "website_creation_paid", "virtual_access_card_paid",)
-    filter_horizontal = ["portals", ]
     search_fields = ('user__first_name', "user__last_name")
 
 
@@ -46,3 +45,16 @@ class PortalAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Portal, PortalAdmin)
+
+
+class PortalGoalAdmin(admin.ModelAdmin):
+    '''
+        Admin View for PortalGoal
+    '''
+    list_display = ("name", "profile",)
+    list_filter = ('profile',)
+    search_fields = ("name", "profile_user__first_name", "profile_user__last_name")
+    filter_horizontal = ["portals", ]
+
+
+admin.site.register(PortalGoal, PortalGoalAdmin)

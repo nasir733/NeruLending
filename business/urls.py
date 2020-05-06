@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-
+from user.views import CreateSpecificPortal
 from .views import *
 
 app_name = 'business'
@@ -80,15 +80,15 @@ urlpatterns = [
         name='store-credit-vendor-list'),
     url('vendor-list/', login_required(StarterVendorListView.as_view(), login_url='/user/login'),
         name='vendor-list'),
-    url('lender-detail/(\d+)/', login_required(LeaderDetailsView.as_view(), login_url='/user/login'),
+    url(r'lender-detail/(\d+)/', login_required(LeaderDetailsView.as_view(), login_url='/user/login'),
         name='lender_detail'),
     url('business-credit-vendor/', login_required(RevolvingBusinessCreditVendorList.as_view(), login_url='/user/login'),
         name='business-credit-vendor'),
-    url('revolving-credit-details/(\d+)/', login_required(RevolvingDetailsView.as_view(), login_url='/user/login'),
+    url(r'revolving-credit-details/(\d+)/', login_required(RevolvingDetailsView.as_view(), login_url='/user/login'),
         name='revolving-credit-details'),
     url('cc-credit-vendor/', login_required(CCNoGuaranteeVendorList.as_view(), login_url='/user/login'),
         name='cc-credit-vendor'),
-    url('nopg-detail/(\d+)/', login_required(NoPgDetailsView.as_view(), login_url='/user/login'),
+    url(r'nopg-detail/(\d+)/', login_required(NoPgDetailsView.as_view(), login_url='/user/login'),
         name='nopg-detail'),
 
 
@@ -155,4 +155,5 @@ urlpatterns = [
     url('credit-repair-15/', login_required(CreditRepairPlan15View.as_view(), login_url='/user/login'), name='credit_repair_15'),
     url('credit-repair-16/', login_required(CreditRepairPlan16View.as_view(), login_url='/user/login'), name='credit_repair_16'),
     url('credit-repair-17/', login_required(CreditRepairPlan17View.as_view(), login_url='/user/login'), name='credit_repair_17'),
+    url('create-my-specific-portal/', login_required(CreateSpecificPortal.as_view(), login_url='/user/login'), name='create_specific_portal'),
 ]
