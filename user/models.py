@@ -18,6 +18,7 @@ class Profile(models.Model):
     toll_free_number_paid = models.BooleanField(default=False)
     website_creation_paid = models.BooleanField(default=False)
     virtual_access_card_paid = models.BooleanField(default=False)
+    portals = models.ManyToManyField("Portal", related_name='portals_subscribed', blank=True)
     objects = ProfileUserManager()
 
     def __str__(self):
@@ -37,3 +38,14 @@ class VirtualCard(models.Model):
 
     def __str__(self):
         return self.card_number
+
+
+class Portal(models.Model):
+    name = models.CharField("Portal Name", max_length=255)
+
+    class Meta:
+        verbose_name = "Portal"
+        verbose_name_plural = "Portals"
+
+    def __str__(self):
+        return self.name
