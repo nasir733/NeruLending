@@ -1,7 +1,11 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from .views import LoginView, SignUpView, MyProgressView, LogoutView, PasswordResetView, PasswordResetDoneView, \
-    PasswordResetConfirmView, PasswordChangeDoneView
+from .views import (
+    LoginView, SignUpView, MyProgressView, LogoutView, PasswordResetView, PasswordResetDoneView,
+    PasswordResetConfirmView, PasswordChangeDoneView, delete_portal_goal
+)
+
+from django.urls import path
 
 app_name = 'user'
 urlpatterns = [
@@ -9,8 +13,8 @@ urlpatterns = [
     url('logout/', LogoutView.as_view(), name='logout'),
     url('signup/', SignUpView.as_view(), name='signup'),
     url(r'forgot-password/', PasswordResetView.as_view(
-                                                       email_template_name='email_templates'
-                                                                           '/reset_password_email.html', ),
+        email_template_name='email_templates'
+        '/reset_password_email.html', ),
         name="password_change"),
     url(r'forgot-password-done/', PasswordResetDoneView.as_view(),
         name="password_reset_done"),
@@ -20,4 +24,5 @@ urlpatterns = [
         PasswordResetConfirmView.as_view(),
         name="password_reset_confirm"),
     url('my-progress', login_required(MyProgressView.as_view(), login_url='/user/login'), name='myprogress'),
+    path('delete_portal_goal/<slug:pk>/', delete_portal_goal, name='delete_portal_goal'),
 ]

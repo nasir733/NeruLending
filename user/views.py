@@ -4,11 +4,13 @@ from django.contrib.auth import views as auth_views
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.urls import reverse
-
+from user.models import Portal, PortalGoal
 from .models import Profile
 from django.shortcuts import render
 from .decorators import unauthenticated_user
 from django.contrib.auth.models import User
+from django.views.generic import TemplateView
+import json
 
 
 @method_decorator(unauthenticated_user, name='dispatch')
@@ -40,7 +42,7 @@ class SignUpView(View):
                                                   data['last_name'], data['phone_number'])
             login(request, profile.user)
             return HttpResponseRedirect(reverse('homepage'))
-        except Exception as e:
+        except Exception:
             return render(request, 'registration.html', {"error": "Registration Failed"})
 
 
@@ -96,3 +98,30 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect(reverse('user:login'))
+
+
+class CreateSpecificPortal(TemplateView):
+    template_name = "home/create_my_portal.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['available_portals'] = Portal.objects.all()
+        context['my_portals'] = PortalGoal.objects.filter(profile=self.request.user.profile)
+        return context
+
+    def post(self, request):
+        data = request.POST
+        name = data['name']
+        portal_ids = json.loads(data['portals'])
+        portal_goal = PortalGoal.objects.create(name=name, profile=request.user.profile)
+        portal_goal.portals.set(portal_ids)
+
+        return HttpResponseRedirect("/business/create-my-specific-portal/")
+
+
+def delete_portal_goal(request, pk):
+    try:
+        obj = PortalGoal.objects.get(pk=pk)
+        obj.delete()
+    finally:
+        return HttpResponseRedirect("/business/create-my-specific-portal/")
