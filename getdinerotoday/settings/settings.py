@@ -59,12 +59,7 @@ INSTALLED_APPS = [
     'covid19',
     'affiliate',
     'storages',
-    'goals.buildpersonalcredit',
-    'goals.immediatemoney',
-    'goals.makeextramoney',
-    'goals.merchant',
-    'goals.nopgbusinesscredit',
-    'goals.repairbusinesscredit',
+    'goals',
 ]
 #
 # INSTALLED_APPS += ('storages',)
