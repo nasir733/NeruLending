@@ -789,7 +789,9 @@ class NoCreditCheckFinancing(View):
 
 class InvoiceFactoringView(View):
     def get(self, request):
-        return render(request, "financingProducts/invoiceFactoring.html", context=get_context_for_all(request))
+        data_list = InvoiceFactoring.objects.all()
+
+        return render(request, "financingProducts/invoiceFactoring.html", context=get_context_for_all(request, {"data_list": data_list}))
 
 
 class InvoiceFinancingView(View):
