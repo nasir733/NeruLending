@@ -787,14 +787,15 @@ class NoCreditCheckFinancing(View):
         return render(request, "financingProducts/noCreditCheckFinancing.html", context=get_context_for_all(request))
 
 
-class InvoiceFactoring(View):
+class InvoiceFactoringView(View):
     def get(self, request):
         return render(request, "financingProducts/invoiceFactoring.html", context=get_context_for_all(request))
 
 
-class InvoiceFinancing(View):
+class InvoiceFinancingView(View):
     def get(self, request):
-        return render(request, "financingProducts/invoiceFinancing.html", context=get_context_for_all(request))
+        data_list = InvoiceFinancing.objects.all()
+        return render(request, "financingProducts/invoiceFinancing.html", context=get_context_for_all(request, {"data_list": data_list}))
 
 
 class EquipmentFinancingView(View):

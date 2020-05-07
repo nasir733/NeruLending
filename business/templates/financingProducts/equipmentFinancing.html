@@ -1,21 +1,6 @@
 {% extends "pages/base-business.html" %}
 {% load static %}
 
-{% block extrastyle %}
-    <script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous"
-            data-cfasync="false">
-    </script>
-    <script>
-        var chatPal = new ChatPal({
-            embedId: 'DfT7BnTm5dGn',
-            remoteBaseUrl: 'https://chatterpal.me/',
-            version: '7.23'
-        });
-    </script>
-{% endblock extrastyle %}
-<!-- ============================================================== -->
-<!--            Content Start             -->
-<!-- ============================================================== -->
 {% block content %}
     <div class="row page-header">
         <div class="col-lg-6 align-self-center ">
@@ -49,10 +34,8 @@
                                 <th>Apply Now</th>
                             </tr>
                             </thead>
-
-                            </tbody>
                             <tbody>
-                            {% for invoice in invoices %}
+                            {% for invoice in data_list %}
                                 <tr>
                                     <td>{{ invoice.lender_name }}</td>
                                     <td>{{ invoice.personal_credit_score }}</td>
@@ -61,7 +44,7 @@
                                     <td>{{ invoice.apr }}</td>
                                     <td>{{ invoice.strategy }}</td>
                                     <td>
-                                        <a href="{% url 'business:applyforloan' %}" class="btn btn-sm btn-primary">Apply
+                                        <a href="{% url 'business:apply-loans' %}" class="btn btn-sm btn-primary">Apply
                                             Now</a>
                                     </td>
                                 </tr>
@@ -73,21 +56,5 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-
-
-        </div>
-
-
-        </form>
-        </div>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
-
-
     </section>
 {% endblock %}
