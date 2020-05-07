@@ -111,8 +111,7 @@ class BuildPersonalCreditViewThree(View):
     def get(self, request):
         return render(request, "buildpersonalcredit/3.html")
 
+
 class MarketingBusinessView(View):
     def get(self, request):
         return render(request, "marketingbusiness/marketingbusiness.html")
-
-

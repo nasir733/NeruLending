@@ -35,5 +35,4 @@ urlpatterns = [
     url('buildpersonalcredit_1', login_required(BuildPersonalCreditViewOne.as_view(), login_url='/user/login'), name='buildpersonalcredit1'),
     url('buildpersonalcredit_2', login_required(BuildPersonalCreditViewTwo.as_view(), login_url='/user/login'), name='buildpersonalcredit2'),
     url('buildpersonalcredit_3', login_required(BuildPersonalCreditViewThree.as_view(), login_url='/user/login'), name='buildpersonalcredit3'),
-
 ]
