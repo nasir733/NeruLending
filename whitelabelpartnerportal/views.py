@@ -12,9 +12,50 @@ class HomeWhiteLabelView(View):
     def get(self, request):
         return render(request, "home-whitelabel.html")
 
+
+class BecomingAPartnerForm(ModelForm):
+    class Meta:
+        model = BecomingAPartner
+        fields = ['business_name', 'business_number', 'logo']
+
+
+def BecomingAPartner_update(request, pk, template_name='becomingapartner.html'):
+    lead = get_object_or_404(BecomingAPartner, pk=pk)
+    form = BecomingAPartnerForm(request.POST or None, instance=lead)
+    if form.is_valid():
+        form.save()
+        return redirect('whitelabelpartnerportal:becomingapartner')
+
+    return render(request, template_name, {'form': form})
+
+
 class BecomingAPartnerView(View):
     def get(self, request):
-        return render(request, "becomingapartner.html")
+        partners = BecomingAPartner.objects.filter(user=Profile.objects.get(user=request.user))
+        return render(request, "becomingapartner.html", {"partners": partners})
+
+    def post(self, request):
+        if 'delete' in request.POST:
+            try:
+                instance = BecomingAPartner.objects.get(id=request.POST['delete'])
+                instance.delete()
+                return redirect('whitelabelpartnerportal:becomingapartner')
+            except Exception as e:
+                print(e)
+                return redirect('whitelabelpartnerportal:becomingapartner')
+
+        else:
+            data = {
+                'business_name': request.POST['business_name'],
+                'business_number': request.POST['business_number'],
+            }
+            if 'logo' in request.FILES:
+                data['logo'] = request.FILES['logo']
+
+            new_lead = BecomingAPartner(user=Profile.objects.get(user=request.user), **data)
+            new_lead.save()
+            return redirect('whitelabelpartnerportal:becomingapartner')
+
 
 class WhiteLabelTrainingView(View):
     def get(self, request):
@@ -32,7 +73,6 @@ class EnterNewLeadsView(View):
         return render(request, "enternewleads.html")
 
     def post(self, request):
-
         data = {
             'first_name': request.POST['firstname'],
             'last_name': request.POST['lastname'],
@@ -269,9 +309,6 @@ class AddBankInfoFormView(View):
         return HttpResponseRedirect(reverse("whitelabelpartnerportal:addbankinfo"))
 
 
-
-
-
 class AddPaypalInfoView(View):
     def get(self, request):
         paypals = PaypalInformation.objects.filter(user=Profile.objects.get(user=request.user))
@@ -313,7 +350,6 @@ def paypal_info_update(request, pk, template_name='addpaypalinfo_form.html'):
         form.save()
         return redirect('whitelabelpartnerportal:addpaypalinfo')
     return render(request, template_name, {'form': form})
-
 
 
 class MerchantView(View):

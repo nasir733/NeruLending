@@ -1,9 +1,14 @@
 from django.db import models
 from user.models import Profile
 from django.utils import timezone
-
+import uuid
+import os
 
 app_name = 'whitelabelpartnerportal'
+
+
+def get_file_path(instance, filename):
+    return os.path.join(f'documents/{uuid.uuid4()}', filename)
 
 
 class ModelMixin:
@@ -27,12 +32,14 @@ class Residual(ModelMixin, models.Model):
     def __str__(self):
         return self.user.user.get_full_name()
 
+
 class BecomingAPartner(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_becomingapartner'
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
     business_name = models.CharField(max_length=50, null=True)
     business_number = models.CharField(max_length=500, null=True)
+    logo = models.FileField(upload_to=get_file_path, null=True)
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
 

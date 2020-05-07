@@ -14,6 +14,7 @@ urlpatterns = [
         name='myresiduals'),
     url('enternewleads', login_required(EnterNewLeadsView.as_view(), login_url='/user/login'),
         name='enternewleads'),
+    path('becomingapartner/edit/<int:pk>', BecomingAPartner_update, name='becomingapartner_edit'),
     path('leadoverview/edit/<int:pk>', lead_update, name='lead_edit'),
     path('salesaffiliates/edit/<int:pk>', affiliate_agent_update, name='affiliate_agent_edit'),
     path('addbankinfo/edit/<int:pk>', bank_info_update, name='paypal_info_update'),
