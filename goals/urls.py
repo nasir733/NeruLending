@@ -8,7 +8,6 @@ app_name = 'goals'
 urlpatterns = [
     url('repairbusinesscredit/', login_required(RepairBusinessCreditView.as_view(), login_url='/user/login'), name='repairbusinesscredit'),
     url('repairbusinesscredit_1', login_required(RepairBusinessCreditViewOne.as_view(), login_url='/user/login'), name='repairbusinesscredit1'),
-    url('repairbusinesscredit_2', login_required(RepairBusinessCreditViewTwo.as_view(), login_url='/user/login'), name='repairbusinesscredit2'),
 
     url('offeringfinancing/', login_required(OfferingFinancingView.as_view(), login_url='/user/login'), name='offeringfinancing'),
 
