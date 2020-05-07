@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
-from django.http import HttpResponseRedirect
 from django.views.generic.base import ContextMixin
 
 

@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from .views import (
-    GDTLoginView, SignUpView, MyProgressView, LogoutView, PasswordResetView, PasswordResetDoneView,
-    PasswordResetConfirmView, PasswordChangeDoneView, delete_portal_goal, PortalGoalsDetailView
-)
-
 from django.urls import path
+
+from .views import (GDTLoginView, LogoutView, MyProgressView,
+                    PasswordChangeDoneView, PasswordResetConfirmView,
+                    PasswordResetDoneView, PasswordResetView,
+                    PortalGoalsDetailView, SignUpView, delete_portal_goal)
 
 app_name = 'user'
 urlpatterns = [

@@ -1,6 +1,5 @@
-from getdinerotoday.settings.settings import *
 import dj_database_url
-
+from getdinerotoday.settings.settings import *
 
 DEBUG = False  # Should be false But using True to render static images from local in heroku
 

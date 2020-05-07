@@ -1,19 +1,21 @@
-from django.http import HttpResponseRedirect, Http404
+import json
+
+from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.http import Http404, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
-from django.urls import reverse
-from user.models import Portal, PortalGoal
-from .models import Profile
-from django.shortcuts import render
-from .decorators import unauthenticated_user
 # from django.contrib.auth.models import User
-from django.views.generic import TemplateView, DetailView
-from django.contrib.auth.views import LoginView
-from django.contrib.auth import login as auth_login
-from django.contrib.auth.mixins import LoginRequiredMixin
-import json
+from django.views.generic import DetailView, TemplateView
+from user.models import Portal, PortalGoal
+
+from .decorators import unauthenticated_user
+from .models import Profile
 
 
 class GDTLoginView(LoginView):

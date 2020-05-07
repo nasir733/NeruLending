@@ -1,7 +1,8 @@
-import getdinerotoday.settings.settings as settings
-import shutil
-import os
 import argparse
+import os
+import shutil
+
+import getdinerotoday.settings.settings as settings
 
 
 def getListOfFiles(dirName):
@@ -142,4 +143,3 @@ if __name__ == '__main__':
         else:
             parser.format_help()
             parser.exit(1, message='Check action, portal, url')
-

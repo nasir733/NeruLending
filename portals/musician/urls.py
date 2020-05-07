@@ -1,7 +1,6 @@
+from business.views import *
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-
-from business.views import *
 
 app_name = 'musician'
 

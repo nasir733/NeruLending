@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
-from .models import *
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
-from django.http import HttpResponseRedirect
 from django.views.generic.base import ContextMixin
+
+from .models import *
 
 portal_list = {
     "business": "",
