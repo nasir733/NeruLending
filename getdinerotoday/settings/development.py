@@ -1,6 +1,5 @@
 from getdinerotoday.settings.settings import *
 
-
 DEBUG = True
 
 # Database

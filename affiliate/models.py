@@ -1,7 +1,6 @@
 from django.db import models
-from user.models import Profile
 from django.utils import timezone
-
+from user.models import Profile
 
 app_name = 'affiliate'
 

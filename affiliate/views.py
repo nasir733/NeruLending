@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
-from .models import *
-from django.views.generic import CreateView
-from django.http import HttpResponseRedirect
 from django.forms import ModelForm
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views import View
+from django.views.generic import CreateView
 
 from .forms import LeadForm
+from .models import *
 
 
 class HomeAffiliateView(View):

@@ -1,4 +1,5 @@
 import os
+
 import pandas as pd
 
 csvs = os.listdir('database_lenders')

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Profile, VirtualCard, Portal, PortalGoal
+
+from .models import Portal, PortalGoal, Profile, VirtualCard
 
 admin.site.site_header = "Get Dinero Today Admin"
 admin.site.site_title = "Get Dinero Today"
