@@ -39,7 +39,7 @@
                             Gauranteed <br><br><b> *Credit That Is Only In The Business Name*</b></h4></h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/goals/buildbusinesscredit" target="_blank" class="btn btn-primary">
+                                <a href="{% url 'goals:buildbusinesscredit' %}" target="_blank" class="btn btn-primary">
                                     Click For This Goal
                                 </a>
                             </div>
@@ -58,7 +58,7 @@
                         </h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/goals/immediatemoney" target="_blank" class="btn btn-primary">
+                                <a href="{% url 'goals:immediatemoney' %}" target="_blank" class="btn btn-primary">
                                     Click For This Goal
                                 </a>
                             </div>
@@ -75,7 +75,7 @@
                             Least $5,000 Per Month Over The Last Three months*</b></h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/loanportal" target="_blank" class="btn btn-primary">Click For This
+                                <a href="{% url 'loanportal:loanoffers' %}" target="_blank" class="btn btn-primary">Click For This
                                     Goal</a>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                         <h4 class="card-text">Fix & Or Build My Personal Credit</h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/goals/buildpersonalcredit" target="_blank" class="btn btn-primary">
+                                <a href="{% url 'goals:buildpersonalcredit' %}" target="_blank" class="btn btn-primary">
                                     Click For This Goal
                                 </a>
                             </div>
@@ -107,7 +107,7 @@
                             To Join*</b></h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/business/refer/" target="_blank" class="btn btn-primary">
+                                <a href="{% url 'goals:makeextramoney' %}" target="_blank" class="btn btn-primary">
                                     Click For This Goal
                                 </a>
                             </div>
@@ -123,7 +123,7 @@
                         <h4 class="card-text">Learn How To Market My Business & Get $500 In Marketing</h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/business/marketing-business/" target="_blank" class="btn btn-primary">Click For This Goal</a>
+                                <a href="{% url 'goals:marketingbusiness' %}" target="_blank" class="btn btn-primary">Click For This Goal</a>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                         <h4 class="card-text">Repair My Business Credit</h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/goals/repairbusinesscredit/" target="_blank" class="btn btn-primary">
+                                <a href="{% url 'goals:repairbusinesscredit' %}" target="_blank" class="btn btn-primary">
                                     Click For This Goal
                                 </a>
                             </div>
@@ -154,7 +154,7 @@
                             Card Payments. <br><br><b>*Get A $50-$100 Sign Up Bonus For Your Merchant Account*</b></h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/business/merchant-account/" target="_blank" class="btn btn-primary">
+                                <a href="{% url 'goals:merchant' %}" target="_blank" class="btn btn-primary">
                                     Click For This Goal
                                 </a>
                             </div>
@@ -170,7 +170,7 @@
                         <h4 class="card-text">I Want To Learn How To Offer Financing To My Existing Customers</h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/business/customer-financing-offer/" target="_blank" class="btn btn-primary">Click For This Goal</a>
+                                <a href="{% url 'goals:offeringfinancing' %}" target="_blank" class="btn btn-primary">Click For This Goal</a>
                             </div>
                         </div>
                     </div>
@@ -181,4 +181,3 @@
 
     </section>
 {% endblock content %}
-<!--            Content End               -->

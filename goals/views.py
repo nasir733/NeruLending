@@ -15,7 +15,7 @@ class RepairBusinessCreditViewTwo(View):
 
 class OfferingFinancingView(View):
     def get(self, request):
-        return render(request, "offeringfinanicgtocustomers/offeringfinancingtocustomers.html")
+        return render(request, "offeringfinanicg/offeringfinancing.html")
 
 
 class NopgBusinessView(View):
@@ -25,7 +25,7 @@ class NopgBusinessView(View):
 
 class MerchantView(View):
     def get(self, request):
-        return render(request, 'merchantaccount.html')
+        return render(request, 'merchant/merchantaccount.html')
 
 
 class MakeExtraMoneyView(View):
@@ -83,3 +83,9 @@ class BuildPersonalCreditViewTwo(View):
 class BuildPersonalCreditViewThree(View):
     def get(self, request):
         return render(request, "buildpersonalcredit/3.html")
+
+class MarketingBusinessView(View):
+    def get(self, request):
+        return render(request, "marketingbusiness/marketingbusiness.html")
+
+
