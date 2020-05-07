@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from autoslug import AutoSlugField
+from django.urls import reverse
 
 
 class ProfileUserManager(models.Manager):
@@ -45,6 +47,7 @@ class VirtualCard(models.Model):
 
 class Portal(models.Model):
     name = models.CharField("Portal Name", max_length=255)
+    code = models.CharField("Unique portal code", max_length=50, null=True, unique=True)
 
     class Meta:
         verbose_name = "3. Portal"
@@ -56,6 +59,7 @@ class Portal(models.Model):
 
 class PortalGoal(models.Model):
     name = models.CharField("Custom portal name", max_length=50, null=True)
+    slug = AutoSlugField(populate_from='name', unique=True, max_length=200, blank=True, null=True)
     profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='portal_goals')
     portals = models.ManyToManyField("Portal")
 
@@ -65,3 +69,8 @@ class PortalGoal(models.Model):
 
     def __str__(self):
         return "{}-portals-goals".format(self.profile)
+
+    def get_absolute_url(self):
+        if not self.slug:
+            self.save()
+        return reverse("user:portal_goals", kwargs={"slug": self.slug})

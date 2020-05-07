@@ -2,8 +2,13 @@
 
 {% block content %}
     {% if error %}
-        <p class="text-center"><font size="3" color="red">{{ error }}</font></p>
+        
     {% endif %}
+    {% if form.errors %}
+        <p class="text-center"><font size="3" color="red">
+            Your username and password didn't match. Please try again.
+        </font></p>
+    {% endif %}    
     {% if password_change_msg %}
         <p class="text-center"><font size="3" color="green">{{ password_change_msg }}</font></p>
     {% endif %}
@@ -12,16 +17,14 @@
         <div class="form-group">
             <label for="user_email">Email</label>
             <div class="group-icon">
-                <input autofocus="autofocus" autocomplete="email" placeholder="Email" class="form-control"
-                       required="required" type="email" value="" name="username" id="user_email"/>
+                {{ form.username }}
                 <span class="icon-user text-muted icon-input"></span>
             </div>
         </div>
         <div class="form-group">
             <label for="user_password">Password</label><br/>
             <div class="group-icon">
-                <input autocomplete="current-password" placeholder="Password" class="form-control" required="required"
-                       type="password" name="password" id="user_password"/>
+                {{ form.password }}
                 <span class="icon-lock text-muted icon-input"></span>
             </div>
         </div>
