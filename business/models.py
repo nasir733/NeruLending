@@ -111,6 +111,9 @@ class EquipmentFinancing(ModelMixin, models.Model):
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return self.lender_name
+
 
 class Fax(ModelMixin, models.Model):
     class Meta:
@@ -336,17 +339,17 @@ class BusinessTermLoan(ModelMixin, models.Model):
 class StoreCreditVendorList(ModelMixin, models.Model):
     class Meta:
         db_table = 'store_credit_vendor_2'
-    lender_name = models.CharField(max_length=200)
-    personal_credit_score = models.CharField(max_length=200)
-    time_in_business = models.CharField(max_length=200)
-    business_revenue = models.CharField(max_length=200)
-    term_length = models.CharField(max_length=200)
-    apr = models.CharField(max_length=200)
-    strategy = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
+    terms = models.CharField(max_length=200)
+    reports_to = models.CharField(max_length=200)
+    estimated_amount = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
+
     def __str__(self):
-        return self.lender_name
+        return self.name
+
 
 class StarterVendorList(ModelMixin, models.Model):
     class Meta:
