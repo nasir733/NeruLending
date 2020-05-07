@@ -100,7 +100,7 @@ class LogoutView(View):
 
 
 class CreateSpecificPortal(TemplateView):
-    template_name = "home/create_my_portal.html"
+    template_name = "goals/create_my_portal.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -128,7 +128,7 @@ def delete_portal_goal(request, pk):
 
 class PortalGoalsDetailView(LoginRequiredMixin, DetailView):
     model = PortalGoal
-    template_name = "home/portal_goals.html"
+    template_name = "goals/portal_goals.html"
     context_object_name = 'portal_goal'
 
     def get_object(self):
