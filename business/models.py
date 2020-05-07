@@ -64,7 +64,8 @@ class BusinessCreditInformation(ModelMixin, models.Model):
     class Meta:
         db_table = 'businesscredit_information'
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
+    business_time = models.CharField(max_length=50, null=True)
+    trade_lines = models.CharField(max_length=50, null=True)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
