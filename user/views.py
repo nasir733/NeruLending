@@ -80,7 +80,7 @@ class PasswordChangeDoneView(View):
 
 class MyProgressView(View):
     def get(self, request):
-        return render(request, "home/my_progress.html")
+        return render(request, "my_progress.html")
 
     def post(self, request):
         data = request.POST
@@ -139,3 +139,9 @@ class PortalGoalsDetailView(LoginRequiredMixin, DetailView):
             return obj
         except PortalGoal.DoesNotExist:
             raise Http404
+
+    def get_context_data(self, **kwargs):
+        context = super(PortalGoalsDetailView, self).get_context_data(**kwargs)
+        if 'slug' in self.kwargs:
+            context['portal_number'] = self.kwargs['slug']
+        return context

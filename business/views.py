@@ -28,7 +28,8 @@ portal_list = {
     "trucking": "trucking",
     "wedding_planner": "wedding planner",
     "goals": "Goals",
-    "user": "User"
+    "user": "User",
+    "user:business": "User"
 }
 
 
@@ -55,8 +56,13 @@ def get_context_for_all(request, context=None):
     if not hasattr(request.resolver_match, 'page_template'):
         request.resolver_match.page_template = 'pages/base-business.html'
 
-    if request.resolver_match.app_name == 'user':
+    if request.resolver_match.app_name == 'user:business':
         request.resolver_match.page_template = 'goals/goals_base.html'
+        slug = request.path.split('/my-portal-goals/')[1].split("/")[0]
+        obj = PortalGoal.objects.get(slug=slug)
+        context['portal_goal'] = obj
+        print()
+        context['portal_number'] = slug
 
     return context
 
@@ -130,28 +136,40 @@ class BusinessCreditBuildingPlanView(View):
 
         information = BusinessCreditInformation(user=Profile.objects.get(user=request.user), **dic)
         information.save()
+        path = '/'.join(request.path.split("/")[:-3])+"/"
 
         if business_time == 1:
             if trade_lines == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
+                return HttpResponseRedirect(path+'business-plan-1')
             elif trade_lines == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
+                return HttpResponseRedirect(path + 'business-plan-2')
+
             elif trade_lines == 3:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
+                return HttpResponseRedirect(path + 'business-plan-3')
+
         elif business_time == 2:
             if trade_lines == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
+                return HttpResponseRedirect(path + 'business-plan-1')
             elif trade_lines == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
+                return HttpResponseRedirect(path + 'business-plan-2')
             elif trade_lines == 3:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
+                return HttpResponseRedirect(path + 'business-plan-3')
         elif business_time == 3:
             if trade_lines == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
+                return HttpResponseRedirect(path + 'business-plan-1')
             elif trade_lines == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
+                return HttpResponseRedirect(path + 'business-plan-1')
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
             elif trade_lines == 3:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
+                return HttpResponseRedirect(path + 'business-plan-1')
+                # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_3"))
 
 
 class UpgradeView(View):
@@ -255,32 +273,59 @@ class FinancingView(View):
 
         information = FinancingInformation(user=Profile.objects.get(user=request.user), **dic)
         information.save()
+        path = '/'.join(request.path.split("/")[:-2])+"/"
+
+        # if experian == 1:
+        #     if monthly_revenue_3 == 1:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_8"))
+        #     else:
+        #         if business_age == 5:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_12"))
+        #         else:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_1"))
+        # if experian == 2:
+        #     if monthly_revenue_3 == 1:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_7"))
+        #     elif monthly_revenue_3 == 2:
+        #         if business_age == 5:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_15"))
+        #     else:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_2"))
+        #
+        # if experian == 3:
+        #     if monthly_revenue_3 == 1:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_6"))
+        #     else:
+        #         if business_age <= 4:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_3"))
+        #         else:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_10"))
 
         if experian == 1:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_8"))
+                return HttpResponseRedirect(path+"financing-plan-8")
             else:
                 if business_age == 5:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_12"))
+                    return HttpResponseRedirect(path + "financing-plan-12")
                 else:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_1"))
+                    return HttpResponseRedirect(path + "financing-plan-1")
         if experian == 2:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_7"))
+                return HttpResponseRedirect(path+"financing-plan-7")
             elif monthly_revenue_3 == 2:
                 if business_age == 5:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_15"))
+                    return HttpResponseRedirect(path + "financing-plan-15")
             else:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_2"))
+                return HttpResponseRedirect(path+"financing-plan-2")
 
         if experian == 3:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_6"))
+                return HttpResponseRedirect(path+"financing-plan-6")
             else:
                 if business_age <= 4:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_3"))
+                    return HttpResponseRedirect(path + "financing-plan-3")
                 else:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:financing_plan_10"))
+                    return HttpResponseRedirect(path + "financing-plan-10")
 
 
 class FinancingPlan1View(ContextMixin, View):
@@ -533,44 +578,83 @@ class CreditSituationView(View):
 
         new_info = CreditRepairInformation(user=Profile.objects.get(user=request.user), **data_dict)
         new_info.save()
+        path = '/'.join(request.path.split("/")[:-2])+"/"
+
+        # if experian_score == 1:
+        #     if bankruptcies_10 == 1:
+        #         if credit_history_experian == 1:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_1"))
+        #         else:
+        #             # a tie btn 4 and 7
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_7"))
+        #     if inquiries == 2:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_14"))
+        #     else:
+        #         if missed_payments == 1:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_8"))
+        #         else:
+        #             return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_11"))
+        # elif experian_score == 2:
+        #     if bankruptcies_10 == 1:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_5"))
+        #     if inquiries == 2:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_15"))
+        #     if missed_payments == 1:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_9"))
+        #     if missed_payments == 2:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_12"))
+        #     else:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_17"))
+        #
+        # else:
+        #     if bankruptcies_10 == 1:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_6"))
+        #     if inquiries == 2:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_16"))
+        #     if missed_payments == 1:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_10"))
+        #     if missed_payments == 2:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_13"))
+        #     else:
+        #         return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_17"))
 
         if experian_score == 1:
             if bankruptcies_10 == 1:
                 if credit_history_experian == 1:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_1"))
+                    return HttpResponseRedirect(path+"credit-repair-1")
                 else:
                     # a tie btn 4 and 7
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_7"))
+                    return HttpResponseRedirect(path+"credit-repair-7")
             if inquiries == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_14"))
+                return HttpResponseRedirect(path+"credit-repair-14")
             else:
                 if missed_payments == 1:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_8"))
+                    return HttpResponseRedirect(path+"credit-repair-8")
                 else:
-                    return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_11"))
+                    return HttpResponseRedirect(path+"credit-repair-11")
         elif experian_score == 2:
             if bankruptcies_10 == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_5"))
+                return HttpResponseRedirect(path + "credit-repair-5")
             if inquiries == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_15"))
+                return HttpResponseRedirect(path + "credit-repair-15")
             if missed_payments == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_9"))
+                return HttpResponseRedirect(path+"credit-repair-9")
             if missed_payments == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_12"))
+                return HttpResponseRedirect(path+"credit-repair-12")
             else:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_17"))
+                return HttpResponseRedirect(path+"credit-repair-17")
 
         else:
             if bankruptcies_10 == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_6"))
+                return HttpResponseRedirect(path+"credit-repair-6")
             if inquiries == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_16"))
+                return HttpResponseRedirect(path + "credit-repair-16")
             if missed_payments == 1:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_10"))
+                return HttpResponseRedirect(path + "credit-repair-10")
             if missed_payments == 2:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_13"))
+                return HttpResponseRedirect(path + "credit-repair-13")
             else:
-                return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:credit_repair_17"))
+                return HttpResponseRedirect(path + "credit-repair-17")
 
 
 class BusinessEntity(View):
