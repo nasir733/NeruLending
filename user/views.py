@@ -80,6 +80,8 @@ class PasswordChangeDoneView(View):
 
 class MyProgressView(View):
     def get(self, request):
+
+        request.resolver_match.app_name = 'business'
         return render(request, "my_progress.html")
 
     def post(self, request):
