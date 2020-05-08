@@ -7,6 +7,8 @@ from .views import (GDTLoginView, LogoutView, MyProgressView,
                     PasswordResetDoneView, PasswordResetView,
                     PortalGoalsDetailView, SignUpView, delete_portal_goal)
 
+from business.urls import urlpatterns as business_urls
+
 app_name = 'user'
 urlpatterns = [
     url('login/', GDTLoginView.as_view(), name='login'),
@@ -26,4 +28,5 @@ urlpatterns = [
     url('my-progress', login_required(MyProgressView.as_view(), login_url='/user/login'), name='myprogress'),
     path('delete_portal_goal/<slug:pk>/', delete_portal_goal, name='delete_portal_goal'),
     path('my-portal-goals/<slug:slug>/', PortalGoalsDetailView.as_view(), name="portal_goals"),
-]
+
+] + business_urls[:-1]

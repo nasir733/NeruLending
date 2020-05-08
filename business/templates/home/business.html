@@ -1,4 +1,5 @@
-{% extends "pages/base-business.html" %}
+{#{% extends "pages/base-business.html" %}#}
+{% extends request.resolver_match.page_template %}
 
 {% block title %}
 
@@ -25,7 +26,8 @@
             </div>
         </div>
         <h2 style="text-align:center;">My Corporate Business Credit Solution</h2><br>
-        <form accept-charset="UTF-8" action="." method="post">
+{#        <form accept-charset="UTF-8" action="{% url 'business:business-credit-plan' %}" method="post">#}
+        <form accept-charset="UTF-8" action="business-credit-plan/" method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-12">

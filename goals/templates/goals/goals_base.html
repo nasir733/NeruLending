@@ -20,17 +20,17 @@
 
                     {% if request.user.profile.virtual_access_card_paid %}
                         <li class="nav-item">
-                            <a href="/business/virtual-card/" class="nav-link"><span class="toggle-none">Virtual Card Access</span></a>
+                            <a href="/user/virtual-card/" class="nav-link"><span class="toggle-none">Virtual Card Access</span></a>
                         </li>
                     {% endif %}
                     {% for portal in portal_goal.portals.all %}
                         {% if portal.code == 'business_credit_with_nopg' %}
                             <li class="nav-item">
-                                <a href="/business/upgrade" class="nav-link">
+                                <a href="/user/upgrade" class="nav-link">
                                     Upgrade to Full Business Builder Program with No Money Down</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/business/business-credit-plan" class="nav-link"> Create My Business Credit
+                                <a href="/user/business-credit-plan" class="nav-link"> Create My Business Credit
                                     Building Plan </a>
                             </li>
                             <li class="nav-item">
@@ -38,40 +38,40 @@
                                         class="toggle-none">Business Credit Building <span
                                         class="fa arrow"></span></span></a>
                                 <ul class="nav-second-level nav flex-column " aria-expanded="false">
-                                    <li class="nav-item"><a href="/business/business-entity" class="nav-link">Business
+                                    <li class="nav-item"><a href="/user/business-entity" class="nav-link">Business
                                         Entity</a></li>
-                                    <li class="nav-item"><a href="/business/ein" class="nav-link">EIN Number</a></li>
-                                    <li class="nav-item"><a href="/business/business-license" class="nav-link">Business
+                                    <li class="nav-item"><a href="/user/ein" class="nav-link">EIN Number</a></li>
+                                    <li class="nav-item"><a href="/user/business-license" class="nav-link">Business
                                         License</a></li>
-                                    <li class="nav-item"><a href="/business/website-creation-options" class="nav-link">Website
+                                    <li class="nav-item"><a href="/user/website-creation-options" class="nav-link">Website
                                         Creation</a></li>
-                                    <li class="nav-item"><a href="/business/fax-number-options" class="nav-link">Fax
+                                    <li class="nav-item"><a href="/user/fax-number-options" class="nav-link">Fax
                                         Number</a></li>
-                                    <li class="nav-item"><a href="/business/four-eleven" class="nav-link">411
+                                    <li class="nav-item"><a href="/user/four-eleven" class="nav-link">411
                                         Listings</a></li>
-                                    <li class="nav-item"><a href="/business/professional-email" class="nav-link">Professional
+                                    <li class="nav-item"><a href="/user/professional-email" class="nav-link">Professional
                                         Email Address</a></li>
-                                    <li class="nav-item"><a href="/business/domain" class="nav-link">Domain</a></li>
-                                    <li class="nav-item"><a href="/business/toll-free-options" class="nav-link">Toll
+                                    <li class="nav-item"><a href="/user/domain" class="nav-link">Domain</a></li>
+                                    <li class="nav-item"><a href="/user/toll-free-options" class="nav-link">Toll
                                         Free
                                         Number</a></li>
-                                    <li class="nav-item"><a href="/business/virtual-address" class="nav-link">Virtual
+                                    <li class="nav-item"><a href="/user/virtual-address" class="nav-link">Virtual
                                         Address</a></li>
-                                    <li class="nav-item"><a href="/business/business-bank-account" class="nav-link">Business
+                                    <li class="nav-item"><a href="/user/business-bank-account" class="nav-link">Business
                                         Bank Account</a></li>
-                                    <li class="nav-item"><a href="/business/merchant-account" class="nav-link">Merchant
+                                    <li class="nav-item"><a href="/user/merchant-account" class="nav-link">Merchant
                                         Account</a></li>
-                                    <li class="nav-item"><a href="/business/duns" class="nav-link">Duns Number</a></li>
-                                    <li class="nav-item"><a href="/business/sic" class="nav-link">SIC & NAISC Codes</a>
+                                    <li class="nav-item"><a href="/user/duns" class="nav-link">Duns Number</a></li>
+                                    <li class="nav-item"><a href="/user/sic" class="nav-link">SIC & NAISC Codes</a>
                                     </li>
-                                    <li class="nav-item"><a href="/business/business-good-standing" class="nav-link">Checking
+                                    <li class="nav-item"><a href="/user/business-good-standing" class="nav-link">Checking
                                         If Your Business Is In Good Standing </a></li>
-                                    <li class="nav-item"><a href="/business/business-in-good-standing" class="nav-link">How
+                                    <li class="nav-item"><a href="/user/business-in-good-standing" class="nav-link">How
                                         To Get Your Business Back In Good Standing</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a href="/business/business-credit-step" class="nav-link"> Choose Business Credit
+                                <a href="/user/business-credit-step" class="nav-link"> Choose Business Credit
                                     Building Steps You Need Done For You </a>
                             </li>
                             <li class="nav-item">
@@ -79,11 +79,11 @@
                                         class="toggle-none"> Business Credit Bureaus To Become Established With  <span
                                         class="fa arrow"></span></span></a>
                                 <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                                    <li class="nav-item"><a href="/business/experian" class="nav-link"> Experian
+                                    <li class="nav-item"><a href="/user/experian" class="nav-link"> Experian
                                         Business </a></li>
-                                    <li class="nav-item"><a href="/business/dunn-brad" class="nav-link"> Dunn &
+                                    <li class="nav-item"><a href="/user/dunn-brad" class="nav-link"> Dunn &
                                         Bradsheet </a></li>
-                                    <li class="nav-item"><a href="/business/equifax" class="nav-link"> Equifax
+                                    <li class="nav-item"><a href="/user/equifax" class="nav-link"> Equifax
                                         Business </a></li>
                                 </ul>
                             </li>
@@ -96,109 +96,109 @@
                                         class="toggle-none">Corporate Credit List<span
                                         class="fa arrow"></span></span></a>
                                 <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                                    <li class="nav-item"><a href="/business/vendor-list" class="nav-link">Starter Vendor
+                                    <li class="nav-item"><a href="/user/vendor-list" class="nav-link">Starter Vendor
                                         List</a></li>
-                                    <li class="nav-item"><a href="/business/store-credit-vendor-list" class="nav-link">Store
+                                    <li class="nav-item"><a href="/user/store-credit-vendor-list" class="nav-link">Store
                                         Credit Vendor List</a></li>
-                                    <li class="nav-item"><a href="/business/business-credit-vendor" class="nav-link">Revolving
+                                    <li class="nav-item"><a href="/user/business-credit-vendor" class="nav-link">Revolving
                                         Business Credit Vendor List</a></li>
-                                    <li class="nav-item"><a href="/business/cc-credit-vendor" class="nav-link">Credit
+                                    <li class="nav-item"><a href="/user/cc-credit-vendor" class="nav-link">Credit
                                         Card No Personal Gaurantee Vendor List</a></li>
                                 </ul>
                             </li>
                         {% endif %}
                         {% if portal.code == 'long_term_loan' %}
                             <li class="nav-item">
-                                <a href="/business/apply-loans" class="nav-link"> Apply For Business Loans </a>
+                                <a href="/user/apply-loans" class="nav-link"> Apply For Business Loans </a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'imediate_business_credit' %}
                             <li class="nav-item">
-                                <a href="/business/financing" class="nav-link"> Create My Business Financing Plan </a>
+                                <a href="/user/financing" class="nav-link"> Create My Business Financing Plan </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span
                                         class="toggle-none">Full List Of Financing Products<span
                                         class="fa arrow"></span></span></a>
                                 <ul class="nav-second-level nav flex-column sub-menu" aria-expanded="false">
-                                    <li class="nav-item"><a href="/business/personal-credit-card" class="nav-link">Personal
+                                    <li class="nav-item"><a href="/user/personal-credit-card" class="nav-link">Personal
                                         Credit Cards</a></li>
-                                    <li class="nav-item"><a href="/business/business-credit-card" class="nav-link">Business
+                                    <li class="nav-item"><a href="/user/business-credit-card" class="nav-link">Business
                                         Credit Cards</a></li>
-                                    <li class="nav-item"><a href="/business/short-term-loan" class="nav-link">Short Term
+                                    <li class="nav-item"><a href="/user/short-term-loan" class="nav-link">Short Term
                                         Loans</a></li>
-                                    <li class="nav-item"><a href="/business/business-term-loan" class="nav-link">Business
+                                    <li class="nav-item"><a href="/user/business-term-loan" class="nav-link">Business
                                         Term Loans</a></li>
-                                    <li class="nav-item"><a href="/business/small-business-loan" class="nav-link">Small
+                                    <li class="nav-item"><a href="/user/small-business-loan" class="nav-link">Small
                                         Business Adminstration Loans</a></li>
-                                    <li class="nav-item"><a href="/business/personal-loan" class="nav-link">Personal
+                                    <li class="nav-item"><a href="/user/personal-loan" class="nav-link">Personal
                                         Loans</a></li>
-                                    <li class="nav-item"><a href="/business/business-line-credit" class="nav-link">Business
+                                    <li class="nav-item"><a href="/user/business-line-credit" class="nav-link">Business
                                         Lines Of Credit</a></li>
-                                    <li class="nav-item"><a href="/business/nocredit-financings" class="nav-link">No
+                                    <li class="nav-item"><a href="/user/nocredit-financings" class="nav-link">No
                                         Credit Check Loans</a></li>
-                                    <li class="nav-item"><a href="/business/invoice-factoring" class="nav-link">Invoice
+                                    <li class="nav-item"><a href="/user/invoice-factoring" class="nav-link">Invoice
                                         Factoring</a></li>
-                                    <li class="nav-item"><a href="/business/invoice-financings" class="nav-link">Invoice
+                                    <li class="nav-item"><a href="/user/invoice-financings" class="nav-link">Invoice
                                         Financing</a></li>
-                                    <li class="nav-item"><a href="/business/equipment-financings" class="nav-link">Equipment
+                                    <li class="nav-item"><a href="/user/equipment-financings" class="nav-link">Equipment
                                         Financing</a></li>
                                 </ul>
                             </li>
                         {% endif %}
                         {% if portal.code == 'fix_personal_credit' %}
                             <li class="nav-item">
-                                <a href="/business/credit-situation" class="nav-link"> Create My Credit Repair Plan </a>
+                                <a href="/user/credit-situation" class="nav-link"> Create My Credit Repair Plan </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/business/maincreditfile" class="nav-link">Personal credit course</a>
+                                <a href="/user/maincreditfile" class="nav-link">Personal credit course</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/business/credit-trade-lines" class="nav-link"> Personal Credit Primary
+                                <a href="/user/credit-trade-lines" class="nav-link"> Personal Credit Primary
                                     Tradelines </a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'affiliate_partner' %}
                             <li class="nav-item">
-                                <a href="/business/refer/" class="nav-link">Make Extra Money Referring Friends</a>
+                                <a href="/user/refer/" class="nav-link">Make Extra Money Referring Friends</a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'business_marketing' %}
                             <li class="nav-item">
-                                <a href="/business/marketing-business/" class="nav-link">Marketing Your Busines</a>
+                                <a href="/user/marketing-business/" class="nav-link">Marketing Your Busines</a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'repair_business_credit' %}
                             <li class="nav-item">
-                                <a href="/business/business-credit-monitoring/" class="nav-link">
+                                <a href="/user/business-credit-monitoring/" class="nav-link">
                                     Sign Up For Business Credit Monitoring
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/business/business-credit-repair-new/">Business Credit
+                                <a class="nav-link" href="/user/business-credit-repair-new/">Business Credit
                                     Repair</a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'services_you_offer' %}
                             <li class="nav-item">
-                                <a href="/business/business-credit-step/" class="nav-link">Choose Business Credit
+                                <a href="/user/business-credit-step/" class="nav-link">Choose Business Credit
                                     Building Steps You Need Done For You</a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'business_insurance' %}
                             <li class="nav-item">
-                                <a href="/business/insurance-products" class="nav-link"> Insurance Products </a>
+                                <a href="/user/insurance-products" class="nav-link"> Insurance Products </a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'need_merchant_account' %}
                             <li class="nav-item">
-                                <a href="/business/merchant-account" class="nav-link">Merchant
+                                <a href="/user/merchant-account" class="nav-link">Merchant
                                     Account</a>
                             </li>
                         {% endif %}
                         {% if portal.code == 'offer_financing2_customers' %}
                             <li class="nav-item">
-                                <a href="/business/customer-financing-offer" class="nav-link"> Offering Financing To
+                                <a href="/user/customer-financing-offer" class="nav-link"> Offering Financing To
                                     Your
                                     Customers </a>
                             </li>

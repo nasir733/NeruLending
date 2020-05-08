@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
 from .views import *
+from business.urls import urlpatterns as business_urls
 
 app_name = 'goals'
 
@@ -34,4 +35,5 @@ urlpatterns = [
     url('buildpersonalcredit_1', login_required(BuildPersonalCreditViewOne.as_view(), login_url='/user/login'), name='buildpersonalcredit1'),
     url('buildpersonalcredit_2', login_required(BuildPersonalCreditViewTwo.as_view(), login_url='/user/login'), name='buildpersonalcredit2'),
     url('buildpersonalcredit_3', login_required(BuildPersonalCreditViewThree.as_view(), login_url='/user/login'), name='buildpersonalcredit3'),
-]
+
+] + business_urls[:-1]

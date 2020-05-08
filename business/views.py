@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic.base import ContextMixin
 
+from user.models import PortalGoal
 from .models import *
 
 portal_list = {
@@ -26,6 +27,8 @@ portal_list = {
     "transportation": "transportation",
     "trucking": "trucking",
     "wedding_planner": "wedding planner",
+    "goals": "Goals",
+    "user": "User"
 }
 
 
@@ -45,9 +48,16 @@ def get_business_plan_context():
 
 
 def get_context_for_all(request, context=None):
+    app_name = request.resolver_match.app_name
     if not context:
         context = {}
-    context["verbose_portal_name"] = portal_list[request.resolver_match.app_name]
+    context["verbose_portal_name"] = portal_list[app_name]
+    if not hasattr(request.resolver_match, 'page_template'):
+        request.resolver_match.page_template = 'pages/base-business.html'
+
+    if request.resolver_match.app_name == 'user':
+        request.resolver_match.page_template = 'goals/goals_base.html'
+
     return context
 
 
@@ -59,24 +69,41 @@ class BusinessHomePage(View):
 
 class BusinessPlan1View(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "home/businessplan1.html",
                       context=get_context_for_all(request, get_business_plan_context()))
 
 
 class BusinessPlan2View(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "home/businessplan2.html",
                       context=get_context_for_all(request, get_business_plan_context()))
 
 
 class BusinessPlan3View(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "home/businessplan3.html",
                       context=get_context_for_all(request, get_business_plan_context()))
 
 
 class BusinessCreditBuildingPlanView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
+
         return render(request, "home/business.html", context=get_context_for_all(request))
 
     def post(self, request):
@@ -129,6 +156,10 @@ class BusinessCreditBuildingPlanView(View):
 
 class UpgradeView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "home/upgrade.html", context=get_context_for_all(request))
 
 
@@ -139,11 +170,16 @@ class RestrictedView(View):
 
 class GoalView(View):
     def get(self, request):
+        request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "businessCreditBuilding/goals.html", context=get_context_for_all(request))
 
 
 class FinancingView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'financing.html', context=get_context_for_all(request))
 
     def post(self, request):
@@ -249,6 +285,10 @@ class FinancingView(View):
 
 class FinancingPlan1View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan1.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -265,6 +305,10 @@ class FinancingPlan1View(ContextMixin, View):
 
 class FinancingPlan2View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan2.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -282,6 +326,10 @@ class FinancingPlan2View(ContextMixin, View):
 
 class FinancingPlan3View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan3.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -298,6 +346,10 @@ class FinancingPlan3View(ContextMixin, View):
 
 class FinancingPlan6View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan6.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -310,6 +362,10 @@ class FinancingPlan6View(ContextMixin, View):
 
 class FinancingPlan7View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan7.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -323,6 +379,10 @@ class FinancingPlan7View(ContextMixin, View):
 
 class FinancingPlan8View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan8.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -335,6 +395,10 @@ class FinancingPlan8View(ContextMixin, View):
 
 class FinancingPlan10View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan10.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -353,6 +417,10 @@ class FinancingPlan10View(ContextMixin, View):
 
 class FinancingPlan12View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan12.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -370,6 +438,10 @@ class FinancingPlan12View(ContextMixin, View):
 
 class FinancingPlan15View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingplans/financingplan15.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -388,6 +460,10 @@ class FinancingPlan15View(ContextMixin, View):
 
 class CreditSituationView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "home/creditsituation.html", context=get_context_for_all(request))
 
     def post(self, request):
@@ -499,21 +575,37 @@ class CreditSituationView(View):
 
 class BusinessEntity(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/businessEntity.html', context=get_context_for_all(request))
 
 
 class EinView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/ein.html', context=get_context_for_all(request))
 
 
 class BusinessLicenseView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/businessLicense.html', context=get_context_for_all(request))
 
 
 class WebsiteCreationOptionsView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         profile = Profile.objects.filter(user=request.user)
         website_creation_paid = False
         if profile:
@@ -527,16 +619,28 @@ class WebsiteCreationOptionsView(View):
 
 class WebsiteCreationPaidView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/websiteCreationPaid.html', context=get_context_for_all(request))
 
 
 class WebsiteCreationView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/websiteCreation.html', context=get_context_for_all(request))
 
 
 class FaxNumberOptionsView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         profile = Profile.objects.filter(user=request.user)
         fax_number_paid = False
         if profile:
@@ -549,32 +653,56 @@ class FaxNumberOptionsView(View):
 
 class FaxNumberPaidView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/faxNumberPaid.html', context=get_context_for_all(request))
 
 
 class FaxNumberView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/faxNumber.html', context=get_context_for_all(request))
 
 
 class FourElevenListingView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/FourElevenListing.html', context=get_context_for_all(request))
 
 
 class ProfessionalEmailAddress(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/professionalEmailAddress.html',
                       context=get_context_for_all(request))
 
 
 class DomainView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/domain.html', context=get_context_for_all(request))
 
 
 class TollFreeNumberOptionsView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         profile = Profile.objects.filter(user=request.user)
         toll_free_number_paid = False
         if profile:
@@ -588,72 +716,128 @@ class TollFreeNumberOptionsView(View):
 
 class TollFreeNumberPaidView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html', context=get_context_for_all(request))
 
 
 class TollFreeNumberView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
 
 
 class VirtualAddressView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/virtualAddress.html', context=get_context_for_all(request))
 
 
 class BusinessBankAccountView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/businessBankAccount.html', context=get_context_for_all(request))
 
 
 class MerchantAccountView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/merchantAccount.html', context=get_context_for_all(request))
 
 
 class DunsView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/duns.html', context=get_context_for_all(request))
 
 
 class SICView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/sic.html', context=get_context_for_all(request))
 
 
 class BusinessGoodStandingView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/businessGoodStanding.html', context=get_context_for_all(request))
 
 
 class BusinessBackInGoodStandingView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/businessBackInGoodStanding.html',
                       context=get_context_for_all(request))
 
 
 class BusinessCreditStep(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditStep.html', context=get_context_for_all(request))
 
 
 class ExperianView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'creditBureaus/experian.html', context=get_context_for_all(request))
 
 
 class DunnAndBradView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'creditBureaus/dunnbradstreet.html', context=get_context_for_all(request))
 
 
 class EquifaxView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'creditBureaus/equifax.html', context=get_context_for_all(request))
 
 
 class StarterVendorListView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         starter_vendors = StarterVendorList.objects.all()
         return render(request, 'cooperateCredit/starter_vendor_list.html',
                       get_context_for_all(request, {"starter_vendors": starter_vendors}))
@@ -661,6 +845,10 @@ class StarterVendorListView(View):
 
 class StoreCreditVendorListView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         store_credit_vendors = StoreCreditVendorList.objects.all()
         return render(request, "cooperateCredit/store_credit_vendor_list.html",
                       get_context_for_all(request, {"store_credit_vendors": store_credit_vendors}))
@@ -668,6 +856,10 @@ class StoreCreditVendorListView(View):
 
 class ResolvingBusinessCreditVendorList(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data = [
             {"Name": "Enco Manufacturing Company", "category": '', "reportTo": 'Dun &amp; Bradstreet', "link": "1"},
             {"Name": "REW Materials", "category": '', "reportTo": 'Equifax Small Business', "link": "2"},
@@ -680,6 +872,10 @@ class ResolvingBusinessCreditVendorList(View):
 
 class LeaderDetailsView(View):
     def get(self, request, state):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data = {
             "name": "Fleet-One Local Fleet Card",
             "category": '',
@@ -692,12 +888,20 @@ class LeaderDetailsView(View):
 
 class RevolvingBusinessCreditVendorList(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         vendor_list = RevolvingBusinessCreditVendor.objects.all()
         return render(request, 'cooperateCredit/revolving.html', get_context_for_all(request, {"vendor_list": vendor_list}))
 
 
 class RevolvingDetailsView(View):
     def get(self, request, state):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data = {
             "name": "Fleet-One Local Fleet Card",
             "category": '',
@@ -718,12 +922,20 @@ class RevolvingDetailsView(View):
 
 class CCNoGuaranteeVendorList(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         nopg_list = Nopg.objects.all()
         return render(request, 'cooperateCredit/nopg.html', get_context_for_all(request, {"nopg_list": nopg_list}))
 
 
 class NoPgDetailsView(View):
     def get(self, request, state):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data = {
             "name": "Fleet-One Local Fleet Card",
             "category": '',
@@ -736,6 +948,10 @@ class NoPgDetailsView(View):
 
 class PersonalCreditCardsView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         personal_credit_cards = PersonalCreditCard.objects.all()
         return render(request, "financingProducts/personalCreditCard.html",
                       get_context_for_all(request, {'personal_credit_cards': personal_credit_cards}))
@@ -743,12 +959,20 @@ class PersonalCreditCardsView(View):
 
 class BusinessCreditCardsView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         cc_list = BusinessCreditCard.objects.all()
         return render(request, "home/businesscards.html", get_context_for_all(request, {"cc_list": cc_list}))
 
 
 class ShortTermLoans(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         short_term_loans = ShortTermLoan.objects.all()
         return render(request, "financingProducts/shortTerm.html",
                       get_context_for_all(request, {'short_term_loans': short_term_loans}))
@@ -756,6 +980,10 @@ class ShortTermLoans(View):
 
 class BusinessTermLoanView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         business_term_loans = BusinessTermLoan.objects.all()
         return render(request, "financingProducts/businessTermLoan.html",
                       get_context_for_all(request, {'business_term_loans': business_term_loans}))
@@ -763,6 +991,10 @@ class BusinessTermLoanView(View):
 
 class SmallBusinessAdminLoanView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         small_business_loans = SbaLoan.objects.all()
         return render(request, "financingProducts/smallBusinessAdminLoan.html",
                       get_context_for_all(request, {'small_business_loans': small_business_loans}))
@@ -770,6 +1002,10 @@ class SmallBusinessAdminLoanView(View):
 
 class PersonalLoanView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         personal_loans = PersonalLoan.objects.all()
         return render(request, "financingProducts/personalLoan.html",
                       get_context_for_all(request, {'personal_loans': personal_loans}))
@@ -777,6 +1013,10 @@ class PersonalLoanView(View):
 
 class BusinessLineOfCredit(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         business_line_credit = LinesOfCredit.objects.all()
         return render(request, "financingProducts/businessLineOfCredit.html",
                       get_context_for_all(request, {'business_line_credit': business_line_credit}))
@@ -784,11 +1024,19 @@ class BusinessLineOfCredit(View):
 
 class NoCreditCheckFinancing(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "financingProducts/noCreditCheckFinancing.html", context=get_context_for_all(request))
 
 
 class InvoiceFactoringView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data_list = InvoiceFactoring.objects.all()
 
         return render(request, "financingProducts/invoiceFactoring.html", context=get_context_for_all(request, {"data_list": data_list}))
@@ -796,12 +1044,20 @@ class InvoiceFactoringView(View):
 
 class InvoiceFinancingView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data_list = InvoiceFinancing.objects.all()
         return render(request, "financingProducts/invoiceFinancing.html", context=get_context_for_all(request, {"data_list": data_list}))
 
 
 class EquipmentFinancingView(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data_list = EquipmentFinancing.objects.all()
         return render(request, "financingProducts/equipmentFinancing.html",
                       get_context_for_all(request, {"data_list": data_list}))
@@ -839,6 +1095,10 @@ class CreditRepairView(View):
 
 class CreditPrimaryTradeLines(View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         data_list = PersonalCreditTradeLine.objects.all()
         return render(request, 'creditPrimaryTradeline.html', get_context_for_all(request, {'data_list': data_list}))
 
@@ -871,6 +1131,10 @@ class InsuranceProduct(View):
 
 class CreditRepairPlan1View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan1.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -882,6 +1146,10 @@ class CreditRepairPlan1View(ContextMixin, View):
 
 class CreditRepairPlan2View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan2.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -893,6 +1161,10 @@ class CreditRepairPlan2View(ContextMixin, View):
 
 class CreditRepairPlan3View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan3.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -904,6 +1176,10 @@ class CreditRepairPlan3View(ContextMixin, View):
 
 class CreditRepairPlan4View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan4.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -915,6 +1191,10 @@ class CreditRepairPlan4View(ContextMixin, View):
 
 class CreditRepairPlan5View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan5.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -926,6 +1206,10 @@ class CreditRepairPlan5View(ContextMixin, View):
 
 class CreditRepairPlan6View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan6.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -937,6 +1221,10 @@ class CreditRepairPlan6View(ContextMixin, View):
 
 class CreditRepairPlan7View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan7.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -948,6 +1236,10 @@ class CreditRepairPlan7View(ContextMixin, View):
 
 class CreditRepairPlan8View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan8.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -959,6 +1251,10 @@ class CreditRepairPlan8View(ContextMixin, View):
 
 class CreditRepairPlan9View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan9.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -970,6 +1266,10 @@ class CreditRepairPlan9View(ContextMixin, View):
 
 class CreditRepairPlan10View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan10.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -981,6 +1281,10 @@ class CreditRepairPlan10View(ContextMixin, View):
 
 class CreditRepairPlan11View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan11.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -992,6 +1296,10 @@ class CreditRepairPlan11View(ContextMixin, View):
 
 class CreditRepairPlan12View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan12.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -1003,6 +1311,10 @@ class CreditRepairPlan12View(ContextMixin, View):
 
 class CreditRepairPlan13View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan13.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -1014,6 +1326,10 @@ class CreditRepairPlan13View(ContextMixin, View):
 
 class CreditRepairPlan14View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan14.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -1025,6 +1341,10 @@ class CreditRepairPlan14View(ContextMixin, View):
 
 class CreditRepairPlan15View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan15.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -1036,6 +1356,10 @@ class CreditRepairPlan15View(ContextMixin, View):
 
 class CreditRepairPlan16View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan16.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
@@ -1047,6 +1371,10 @@ class CreditRepairPlan16View(ContextMixin, View):
 
 class CreditRepairPlan17View(ContextMixin, View):
     def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildpersonalcredit/base-buildpersonalcredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "creditrepair/creditrepairplan17.html",
                       context=get_context_for_all(request, self.get_context_data()))
 
