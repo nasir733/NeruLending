@@ -192,6 +192,12 @@
                 <li class="nav-item">
                     <a href="/{{ request.resolver_match.app_name }}/insurance-products" class="nav-link"> Insurance Products </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link"> Go To White Label Partner Portal </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'affiliate:home-affiliate' %}" class="nav-link"> Go To Affiliate Agent Portal </a>
+                </li>
             </ul>
         </div>
     </div>
