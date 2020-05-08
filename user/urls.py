@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
-from django.urls import path
+from django.urls import include, path
 
 from .views import (GDTLoginView, LogoutView, MyProgressView,
                     PasswordChangeDoneView, PasswordResetConfirmView,
@@ -8,6 +8,7 @@ from .views import (GDTLoginView, LogoutView, MyProgressView,
                     PortalGoalsDetailView, SignUpView, delete_portal_goal)
 
 from business.urls import urlpatterns as business_urls
+from business.views import UpgradeView
 
 app_name = 'user'
 urlpatterns = [
@@ -26,7 +27,9 @@ urlpatterns = [
         PasswordResetConfirmView.as_view(),
         name="password_reset_confirm"),
     url('my-progress', login_required(MyProgressView.as_view(), login_url='/user/login'), name='myprogress'),
+
     path('delete_portal_goal/<slug:pk>/', delete_portal_goal, name='delete_portal_goal'),
     path('my-portal-goals/<slug:slug>/', PortalGoalsDetailView.as_view(), name="portal_goals"),
+    url(r'my-portal-goals/[0-9A-Za-z_\-]+/', include('business.urls')),
 
-] + business_urls[:-1]
+]

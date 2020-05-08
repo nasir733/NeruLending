@@ -28,7 +28,8 @@ portal_list = {
     "trucking": "trucking",
     "wedding_planner": "wedding planner",
     "goals": "Goals",
-    "user": "User"
+    "user": "User",
+    "user:business": "User"
 }
 
 
@@ -55,8 +56,13 @@ def get_context_for_all(request, context=None):
     if not hasattr(request.resolver_match, 'page_template'):
         request.resolver_match.page_template = 'pages/base-business.html'
 
-    if request.resolver_match.app_name == 'user':
+    if request.resolver_match.app_name == 'user:business':
         request.resolver_match.page_template = 'goals/goals_base.html'
+        slug = request.path.split('/my-portal-goals/')[1].split("/")[0]
+        obj = PortalGoal.objects.get(slug=slug)
+        context['portal_goal'] = obj
+        print()
+        context['portal_number'] = slug
 
     return context
 
