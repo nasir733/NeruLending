@@ -80,7 +80,7 @@ class PasswordChangeDoneView(View):
 
 class MyProgressView(View):
     def get(self, request):
-        return render(request, "home/my_progress.html")
+        return render(request, "my_progress.html")
 
     def post(self, request):
         data = request.POST
