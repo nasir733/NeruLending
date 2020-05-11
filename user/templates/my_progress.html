@@ -29,8 +29,6 @@
             <div class="col-md-4">
                 <div class="widget white-bg">
                     <div class="padding-20 text-center">
-                        <img src="{% static 'images/avtar-2.png' %}"
-                             class="rounded-circle mar-btm margin-b-10 box-shadow" width="140">
                         <p class="lead font-500 margin-b-0">
                             {{ request.user.get_full_name|title }}
                         </p>
@@ -81,7 +79,55 @@
                         <div class="card-body">
                             <p>Apply For Loans</p>
                             <a class="btn btn-primary" href="{% url 'loanportal:loanapplication' %}" target="_blank">Click
-                                Here To Login To Your Portal To Apply For Loans</a>
+                                Here To Login To Your <br> Portal To Apply For Loans</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Create Your Specific Portal / <br> View Saved Portals</p>
+                            <a class="btn btn-primary" href="{% url 'marketingcourse:mainfile' %}" target="_blank">
+                                Click Here To Create Your Specific <br>Portal & View Your Saved Portals
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Choose Your Goal With This Platform</p>
+                            <a class="btn btn-primary" href="{% url 'marketingcourse:mainfile' %}" target="_blank">
+                                Click Here To Choose  <br>Your Goal With This Platform
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Go To White Label Partner Portal</p>
+                            <a class="btn btn-primary" href="{% url 'marketingcourse:mainfile' %}" target="_blank">
+                                Click Here To Go To The White <br> Label Partner Portal
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Go To Affiliate Agent Portal</p>
+                            <a class="btn btn-primary" href="{% url 'businesscreditcourse:home' %}" target="_blank">
+                                Click Here To Go To The <br> Affiliate Agent Portal
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Purchase Dunn & Bradstreet Products</p>
+                            <a class="btn btn-primary" href="{% url 'marketingcourse:mainfile' %}" target="_blank">
+                                Click Here To Go Purchase <br> Dunn & Bradstreet Products <br>To Grow Your Business
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Get The Online Tools To Grow Your Business</p>
+                            <a class="btn btn-primary" href="{% url 'onlinetools:onlinetoolshome' %}" target="_blank">
+                                Click Here To Go To <br>The Online Tools Portal
+                            </a>
                         </div>
                     </div>
                     <div class="card">
@@ -96,7 +142,7 @@
                         <div class="card-body">
                             <p>Go To Business Credit Building Course</p>
                             <a class="btn btn-primary" href="{% url 'businesscreditcourse:home' %}" target="_blank">
-                                Click Here To Go To The Business Credit Building Course
+                                Click Here To Go To The Business <br> Credit Building Course
                             </a>
                         </div>
                     </div>

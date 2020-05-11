@@ -52,6 +52,8 @@ urlpatterns = [
     path('covid19/', include('covid19.urls')),
     path('affiliate/', include('affiliate.urls')),
     path('goals/', include('goals.urls')),
+    path('products/', include('products.urls')),
+    path('onlinetools/', include('onlinetools.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
     url('^$', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

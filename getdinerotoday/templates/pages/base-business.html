@@ -51,6 +51,10 @@
                     <a href="/{{ request.resolver_match.app_name }}/credit-situation" class="nav-link"> Create My Credit Repair Plan </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{% url 'business:create_specific_portal' %}" class="nav-link"> Create My Specific Portal </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"><span class="toggle-none">Business Credit Building <span
                             class="fa arrow"></span></span></a>
                     <ul class="nav-second-level nav flex-column " aria-expanded="false">
@@ -190,14 +194,18 @@
                     <a href="/{{ request.resolver_match.app_name }}/refer" class="nav-link"> Make Extra Money Referring Friends! </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/insurance-products" class="nav-link"> Insurance Products </a>
-                </li>
-                <li class="nav-item">
                     <a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link"> Go To White Label Partner Portal </a>
                 </li>
                 <li class="nav-item">
                     <a href="{% url 'affiliate:home-affiliate' %}" class="nav-link"> Go To Affiliate Agent Portal </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{% url 'products:dnbproducts' %}" class="nav-link"> Purchase Dunn & Bradstreet Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/{{ request.resolver_match.app_name }}/insurance-products" class="nav-link"> Insurance Products </a>
+                </li>
+
             </ul>
         </div>
     </div>

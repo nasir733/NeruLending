@@ -10,7 +10,7 @@
         padding-bottom: 10px
       }
   </style>
-	
+
 {% endblock extrastyle %}
 
 {% block content %}
@@ -19,6 +19,22 @@
 <h2>Create My Specific Portal</h2></div></div>
 
 <section class="main-content" id="starting">
+  <div class="row">
+    <div class="col-md-6">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="cake-walk">
+      <p style="font-size:22px; text-align:center;">Check The Boxes Below To Create Your Specific Portal. <br><br><p style="font-size:19.5px; text-align:center;"><b>Watch The Video To The Right For A Complete Walk Through</b></p> <br><p style="font-size:18px; text-align:center;">*You Can Have Multiple Saved Portals*</p></p>
+    </div>
+</div>
+  </div>
+      <div class="col-md-6">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/d1orlaf11PE" frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+
+  </div>
+  </div>
+  <br><br><br>
     <div class="row mb-5">
       {% for portal in available_portals %}
       <div class="col-md-3 col-sm-6">
@@ -32,11 +48,11 @@
                             {{ portal.name }}
                           </label>
                         </div>
-                      </div>                      
+                      </div>
                   </div>
               </div>
           </div>
-      </div>        
+      </div>
       {% endfor %}
       <div class="col-12 mb-3">
         <button type="button" class="btn btn-primary" v-on:click="confirmChanges()">
@@ -47,9 +63,9 @@
           {% if my_portals.all.count > 0 %}
             <div class="col-12 mb-3">
               <h3>Your Saved Portal Goals</h3>
-            </div>            
+            </div>
           {% endif %}
-          {% for portal_goal in my_portals %}  
+          {% for portal_goal in my_portals %}
             <div class="col-md-3 col-lg-3 col-sm-12 m-1">
                 <div class="card" style="width: 18rem;">
                   <h5 class="card-header text-center pb-0">
@@ -62,9 +78,9 @@
                     <!--<a href="#" class="card-link">Edit</a> -->
                     <a href="{% url 'user:delete_portal_goal' pk=portal_goal.id %}" class="card-link">
                       Remove
-                    </a>                
+                    </a>
                   </div>
-                </div>                  
+                </div>
             </div>
           {% endfor %}
       </div>
@@ -86,7 +102,7 @@
           <div class="card0">
             <h4 class="card-title0">Selected Portal Goals</h4>
             <div class="card-body0">
-              <ul><li v-for="id in selectedPortals">${ getPortalById(id) }</li></ul>              
+              <ul><li v-for="id in selectedPortals">${ getPortalById(id) }</li></ul>
             </div>
             <div class="dropdown-divider"></div>
           </div>
@@ -101,12 +117,12 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-      </form>        
+      </form>
       </div>
     </div>
-  </div>    
+  </div>
   </section>
-	
+
 {% endblock content %}
 
 {% block javascriptblock %}
@@ -123,7 +139,7 @@
             {
               name: "{{ portal.name }}", id: "{{ portal.id }}"
             },
-          {% endfor %}            
+          {% endfor %}
         ]
       },
       mounted: function() {

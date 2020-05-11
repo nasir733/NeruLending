@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'affiliate',
     'storages',
     'goals',
+    'products',
+    'onlinetools'
 ]
 
 MIDDLEWARE = [
