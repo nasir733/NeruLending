@@ -62,9 +62,10 @@
                   {{ form }}
 
                 <div style="display: flex; justify-content: space-around">
-                    <button type="submit" name="commit" value="Create Newlead" class="btn btn-primary"
-                            data-disable-with="Create Newlead">Create Newlead
-                    </button>
+                  <div class="form-group">
+                      <a class="btn btn-primary" href="{% url 'affiliate:add_new_lead' %}">Create A New
+                          Lead</a>
+                  </div>
                     <a class="btn btn-primary" href="javascript:history.go(-1)">Back</a>
                 </div>
 
