@@ -40,6 +40,10 @@
                         </a>
                         <ul class="dropdown-menu top-dropdown">
                             {% if request.user.is_authenticated %}
+                            <li>
+                                <a href="/" ><i class="icon-bell0"></i>Go To Main Portal</a>
+                            </li>
+                            <li class="dropdown-divider"></li>
                                 <li>
                                     <a href="{% url 'user:myprogress' %}"><i class="icon-bell0"></i>My Dashboard</a>
                                 </li>

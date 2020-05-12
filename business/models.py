@@ -137,7 +137,6 @@ class InvoiceFactoring(ModelMixin, models.Model):
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
-
 class InvoiceFinancing(ModelMixin, models.Model):
     class Meta:
         db_table = 'invoice_financing'
