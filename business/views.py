@@ -1112,7 +1112,8 @@ class NoCreditCheckFinancing(View):
             request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, "financingProducts/noCreditCheckFinancing.html", context=get_context_for_all(request))
+        loans = NoCreditCheckLoans.objects.all()
+        return render(request, "financingProducts/noCreditCheckFinancing.html", context=get_context_for_all(request, {"loans":loans}))
 
 
 class InvoiceFactoringView(View):

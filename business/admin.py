@@ -35,8 +35,20 @@ class DomainResource(resources.ModelResource):
 class DomainAdmin(ImportExportModelAdmin):
     resource_class = DomainResource
 
-
 admin.site.register(Domain, DomainAdmin)
+
+
+
+class NoCreditCheckLoanResource(resources.ModelResource):
+    class Meta:
+        model = NoCreditCheckLoans
+        exclude = ('created_at', 'updated_at')
+
+
+class NoCreditCheckLoanAdmin(ImportExportModelAdmin):
+    resource_class = NoCreditCheckLoanResource
+    list_display = ('lender_name', 'created_at', 'updated_at')
+admin.site.register(NoCreditCheckLoans, NoCreditCheckLoanAdmin)
 
 
 class RevolvingCreditResource(resources.ModelResource):

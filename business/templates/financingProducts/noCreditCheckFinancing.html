@@ -30,7 +30,7 @@
                         <table id="datatable" class="table table-striped dt-responsive nowrap">
                             <thead>
                             <tr>
-                                <th> Lender Name</th>
+                                <th>Lender Name</th>
                                 <th>Estimated Terms</th>
                                 <th>Apply Now</th>
                             </tr>
@@ -38,12 +38,11 @@
 
 
                             <tbody>
-                            {% for data in nopg_list %}
+                            {% for data in loans %}
                                 <tr>
-                                    <td>{{ data.name }}</td>
-                                    <td>{{ data.category }}</td>
-                                    <td>{{ data.report_to }}</td>
-                                    <td><a class="btn btn-primary" href="/nopg-detail/{{ data.url }}">Click Here For
+                                    <td>{{ data.lender_name }}</td>
+                                    <td>{{ data.estimated_terms }}</td>
+                                    <td><a class="btn btn-primary" href="{{ data.url }}">Click Here For
                                         More Details</a></td>
                                 </tr>
                             {% endfor %}

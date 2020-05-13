@@ -26,15 +26,15 @@ class MyResidualsView(View):
 
 class EnterNewLeadsView(View):
     def get(self, request):
-        return render(request, "affiliate-enternewleads.html")
+        form = LeadForm()
+        return render(request, "affiliate-enternewleads.html", {'form': form})
 
     def post(self, request):
-
         data = {
-            'first_name': request.POST['firstname'],
-            'last_name': request.POST['lastname'],
-            'business_name': request.POST['businessname'],
-            'business_package': request.POST['businesspackage'],
+            'first_name': request.POST['first_name'],
+            'last_name': request.POST['last_name'],
+            'business_name': request.POST['business_name'],
+            'business_package': request.POST['business_package'],
         }
         new_lead = Lead(user=Profile.objects.get(user=request.user), **data)
         new_lead.save()
