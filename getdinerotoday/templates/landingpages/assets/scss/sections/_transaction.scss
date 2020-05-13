@@ -1,0 +1,157 @@
+/*==========================================
+    transaction
+==========================================*/
+.transaction {
+    background: -webkit-linear-gradient( -30deg, rgb(5,33,87) 0%, rgb(145,3,159) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 114px 0 105px;
+    z-index: 2;
+    &:after {
+        background: url(../img/banner-bg.png) bottom no-repeat;
+        background-size: 100%;
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    .section-title {
+        margin-bottom: 57px;
+        h2 {
+            background-image: -webkit-linear-gradient( -30deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+        }
+        p {
+            color: $white;
+        }
+    }
+    .transaction-area {
+        .nav-tabs {
+            border-bottom: none;    
+            display: inline-flex;
+            position: relative;
+            left: 50%;
+            margin-left: -156px;
+            margin-bottom: 40px;
+            height: 50px;
+            border-radius: 6px;
+            .nav-item {
+                .nav-link {
+                    display: inline-block;
+                    color: $white;
+                    background: transparent;
+                    font-weight: 600;
+                    font-size: 16px;
+                    padding: 14px 0;
+                    text-align: center;
+                    width: 140px;
+                    border-color: $white;
+                    border-radius: 6px 0 0 6px;
+                    @include transition($transition);
+                    &:hover, &.active {
+                        background: $white;
+                        color: #91039f;
+                    }
+                }
+                &:last-child {
+                    .nav-link {
+                        border-radius: 0 6px 6px 0;
+                    }
+                }
+            }
+        }
+        .tab-content {
+            .table {
+                box-shadow: 0px 0px 250px 0px rgba(69, 81, 100, 0.1);
+                position: relative;
+                border-radius: 10px;
+                overflow: hidden;
+                &:after {
+                    position: absolute;
+                    content: '';
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: $white;
+                    opacity: .1;
+                    z-index: -1;
+                }
+                thead {
+                    position: relative;
+                    &:after {
+                        position: absolute;
+                        content: '';
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 80px;
+                        background: $white;
+                        opacity: .03;
+                    }
+                    th {
+                        border: none;
+                        padding: 23px 15px;
+                        font-size: 20px;
+                        font-weight: 500;
+                        color: $white;
+                        &:first-child {
+                            padding-left: 38px;
+                        }
+                    }
+                    td {
+                        padding: 15px 0;
+                    }
+                }
+                tbody {
+                    tr {
+                        &:first-child {
+                            th {
+                                padding-top: 33px;
+                            }
+                            td {
+                                padding-top: 47px;
+                            }
+                        }
+                        &:last-child {
+                            th {
+                                padding-bottom: 30px;
+                            }
+                        }
+                        th {
+                            border-top: none;
+                            padding-left: 40px;
+                            .user-img {
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50px;
+                                overflow: hidden;
+                                margin-right: 20px;
+                                img {
+                                    width: 100%;
+                                }
+                            }
+                            span {
+                                font-size: 16px;
+                                color: $white;
+                                padding-top: 15px;
+                                font-weight: 500;
+                            }
+                        }
+                        td {
+                            padding: 28px 15px;
+                            border-top: none;
+                            color: $white;
+                            font-size: 16px;
+                            &:last-child {
+                                padding-right: 40px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

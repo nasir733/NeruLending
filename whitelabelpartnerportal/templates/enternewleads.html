@@ -1,17 +1,6 @@
 {% extends "pages/base-whitelabel.html" %}
 {% load static %}
 
-{% block extrastyle %}
-    <script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous"
-            data-cfasync="false"></script>
-    <script>
-        var chatPal = new ChatPal({
-            embedId: 'DfT7BnTm5dGn',
-            remoteBaseUrl: 'https://chatterpal.me/',
-            version: '7.23'
-        });
-    </script>
-{% endblock extrastyle %}
 <!-- ============================================================== -->
 <!--            Content Start             -->
 <!-- ============================================================== -->
@@ -28,63 +17,64 @@
 
 
         {% if form %}
-            <div class="row">
-                <div style="margin: 0 auto">
-                    <h1>Edit Leads</h1>
+            <div class="card">
+                <div class="card-header">
+                    Edit Leads
                 </div>
-
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <form method="post">{% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="btn-toolbar">
+                                <input type="submit" value="Submit" class="btn btn-primary mr-1"/>
+                                <a class="btn btn-primary" href="javascript:history.go(-1)">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <div class="row">
-            <div style="margin: 0 auto 100px auto; width: 400px">
-            <form method="post">{% csrf_token %}
-                {{ form.as_p }}
-
-                <div style="display: flex; justify-content: space-around">
-                    <input type="submit" value="Submit" class="btn btn-primary"/>
-                    <a class="btn btn-primary" href="javascript:history.go(-1)">Back</a>
-                </div>
-            </form>
 
         {% else %}
-            <div class="row">
-                <div style="margin: 0 auto">
-                    <h1>Enter In Your New Leads</h1>
+            <div class="card">
+                <div class="card-header">
+                    Enter In Your New Leads
                 </div>
 
+
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <form action="/whitelabelpartnerportal/enternewleads" accept-charset="UTF-8"
+                              method="post">{% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="newlead_firstname">First Name</label>
+                                <input type="text" name="firstname" id="newlead_firstname"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="newlead_lastname">Last Name</label>
+                                <input type="text" name="lastname" id="newlead_lastname"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="newlead_businessname">Business Name</label>
+                                <input type="text" name="businessname" id="newlead_businessname"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="newlead_businesspackage">Business Package</label>
+                                <input type="text" name="businesspackage" id="newlead_businesspackage"/>
+                            </div>
+                            <div class="btn-toolbar">
+                                <button type="submit" name="commit" value="Create Newlead" class="btn btn-primary mr-1"
+                                        data-disable-with="Create Newlead">Create Newlead
+                                </button>
+                                <a class="btn btn-primary" href="javascript:history.go(-1)">Back</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
 
-            <div class="row">
-            <div style="margin: 0 auto 100px auto; width: 400px">
-            <form action="/whitelabelpartnerportal/enternewleads" accept-charset="UTF-8"
-                  method="post">{% csrf_token %}
-
-                <br>
-                <h4>First Name</h4>
-                <input type="text" name="firstname" id="newlead_firstname"/>
-                <br>
-                <h4>Last Name</h4>
-                <input type="text" name="lastname" id="newlead_lastname"/>
-                <br>
-                <h4>Business Name</h4>
-                <input type="text" name="businessname" id="newlead_businessname"/>
-                <br>
-                <h4>Business Package</h4>
-                <input type="text" name="businesspackage" id="newlead_businesspackage"/>
-                <br>
-                <div style="display: flex; justify-content: space-around">
-                    <button type="submit" name="commit" value="Create Newlead" class="btn btn-primary"
-                            data-disable-with="Create Newlead">Create Newlead
-                    </button>
-                    <a class="btn btn-primary" href="javascript:history.go(-1)">Back</a>
-                </div>
-
-            </form>
         {% endif %}
-
-        </div>
-
-        </div>
 
     </section>
 

@@ -1,0 +1,42 @@
+.page-title {
+    &.blog-details{
+        padding: 264px 0 98px 0;
+    }
+    &.login-page{
+        padding: 265px 0 98px 0;
+    }
+    &.register-page{
+        padding: 265px 0 98px 0;
+    }
+    background: -webkit-linear-gradient( -30deg, rgb(5,33,87) 0%, rgb(145,3,159) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 262px 0 98px;
+    z-index: 2;
+    text-align: center;
+    &:after {
+        background: url(../img/banner-bg.png) bottom no-repeat;
+        background-size: cover;
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 160px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: $white;
+        margin-bottom: 11px;
+        &.extra-margin {
+            margin-bottom: 21px;
+        }
+    }
+    p {
+        color: $white;
+        font-weight: 400;
+        line-height: 30px;
+    }
+}

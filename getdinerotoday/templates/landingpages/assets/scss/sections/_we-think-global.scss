@@ -1,0 +1,115 @@
+/*==========================================
+    we think global
+==========================================*/
+.we-think-global {
+    background: -webkit-linear-gradient( -30deg, rgb(145,3,159) 0%, rgb(5,33,87) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 121px 0 120px;
+    z-index: 2;
+    &:after {
+        background: url(../img/banner-bg.png) bottom no-repeat;
+        background-size: 100%;
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    .part-left {
+        h2 {
+            color: $white;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 23px;
+            margin-top: -9px;
+            text-transform: capitalize;
+        }
+        p {
+            color: $white; 
+            opacity: .8;
+        }
+        a {
+            width: 170px;
+            text-align: center;
+            display: inline-block;
+            border: 1px solid $white;
+            padding: 20px 0;
+            border-radius: 6px; 
+            position: relative;
+            font-weight: 500;
+            margin-right: 16px;
+            margin-top: 21px;
+            background: -webkit-linear-gradient( -30deg, rgb(5,33,87) 0%, rgb(145,3,159) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            &:hover {
+                background: -webkit-linear-gradient( -30deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                &:before {
+                    opacity: 1;
+                }
+                &:after {
+                    opacity: 0;
+                }
+            }
+            &:before {
+                position: absolute;
+                content: '';
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: -webkit-linear-gradient( -30deg, rgb(5,33,87) 0%, rgb(145,3,159) 100%);
+                z-index: -2;
+                opacity: 0;
+                @include transition($transition);
+            }
+            &:after {
+                position: absolute;
+                content: '';
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                background: $white;
+                z-index: -1;
+                @include transition($transition);
+            }
+        }
+    }
+    .part-right {
+        background-image: -webkit-linear-gradient( -30deg, #5B0E83 0%, rgb(145,3,159) 100%);
+        border-radius: 10px;
+        padding: 35px 40px 40px;
+        text-align: center;
+        h3 {
+            font-size: 22px;
+            color: $white;
+            margin-bottom: 17px;
+        }
+        p {
+            color: $white;
+            opacity: .8;
+        }
+        a {
+            width: 170px;
+            text-align: center;
+            display: inline-block;
+            border: 1px solid $white;
+            padding: 20px 0;
+            border-radius: 6px; 
+            position: relative;
+            font-weight: 500;
+            color: $white;
+            @include transition($transition);
+            margin-top: 22px;
+            &:hover {
+                background: #0b205a;
+            }
+        }
+    }
+}

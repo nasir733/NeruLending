@@ -34,35 +34,29 @@
         <h2 style="text-align:center;">White Label Webinar Presentation</h2>
         <br>
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <img src="https://millennialbusinessbuilders.com/assets/img/webinar4.png" height="300px" alt="">
                     <div class="card-body">
                         <p class="card-text">Webinar With $1499 Offer</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="https://docs.google.com/presentation/d/e/2PACX-1vQYDm2NpbvTeLMkxRPGiK_o04MBP0WRZ8PApR7IystJb5qEGIpg2T_9m-7VIG737BFg-Z30cToK_eAh/pub?start=false&loop=false&delayms=3000"
-                                   target="_blank">
-                                    <button type="button" class="btn btn-sm btn-primary">Get Webinar Presentation
-                                        Slides
-                                    </button>
-                                </a>
-
-                            </div>
+                            <button class="btn btn-sm btn-primary"
+                                    href="https://docs.google.com/presentation/d/e/2PACX-1vQYDm2NpbvTeLMkxRPGiK_o04MBP0WRZ8PApR7IystJb5qEGIpg2T_9m-7VIG737BFg-Z30cToK_eAh/pub?start=false&loop=false&delayms=3000"
+                                    target="_blank">
+                                Get Webinar Presentation Slides
+                            </button>
                         </div>
+                        <br>
                         <table id="datatable" class="">
-                            <thead>
-                            </thead>
-                            <tbody>
-                            <tbody>
-                            <br>
-                            <tr>
-                                <td><a target="_blank" class="btn btn-primary"
-                                       href="https://events.genndi.com/register/819005285141056405/66fc93c8f9	">Click
-                                    Here For Your White Label Webinar</a></td>
-                            </tr>
-                            </tbody>
-                            </tbody>
+                            {% for webinar in webinars %}
+                                <tr>
+                                    <td>
+                                        <a target="_blank" class="btn btn-primary"
+                                           href="{{ webinar.link }}">Click
+                                            Here For Your White Label Webinar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
                         </table>
                     </div>
                 </div>

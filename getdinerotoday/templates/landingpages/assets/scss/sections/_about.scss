@@ -1,0 +1,74 @@
+/*==========================================
+    about
+==========================================*/
+.about {
+    padding: 111px 0 90px;
+    position: relative;
+    .section-title {
+        margin-bottom: 57px;
+    }
+    &:after {
+        position: absolute;
+        content: '';
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(63, 75, 110);
+        opacity: 0.02;
+        z-index: -1;
+    }
+    .single-about {
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 30px 100px 0px rgba(0, 0, 0, 0.05);
+        padding: 34px 40px 39px;
+        margin-bottom: 30px;
+        .heading {
+            margin-bottom: 19px;
+            position: relative;
+            .part-icon {
+                margin-right: 20px;
+                display: inline-block;
+                width: auto;
+                height: 50px;
+                line-height: 50px;
+                i {
+                    font-size: 40px;
+                    background-image: -webkit-linear-gradient( -30deg, rgb(5,33,87) 0%, rgb(145,3,159) 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+            .part-text {
+                display: inline-block;
+                position: absolute;
+                top: 13px;
+                h3 {
+                    font-size: 22px;
+                    color: $heading-color;
+                }
+            }
+        }
+        p {
+            color: $base-color;
+            margin-bottom: 21px;
+        }
+        a {
+            background-image: -webkit-linear-gradient( -30deg, rgb(5,33,87) 0%, rgb(145,3,159) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            position: relative;
+            &:after {
+                position: absolute;
+                content: '';
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                height: 1px;
+                background: -webkit-linear-gradient( -30deg, rgb(5,33,87) 0%, rgb(145,3,159) 100%);
+            }
+        }
+    }
+}

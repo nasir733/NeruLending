@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import include, path
 
-from .views import HomePage
+from .views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -55,5 +55,17 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('onlinetools/', include('onlinetools.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
-    url('^$', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
+    url('dashboard/', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
+    url('about-us/', AboutUsView.as_view(), name='about-us'),
+    url('pricing/', PricingView.as_view(), name='pricing'),
+    url('services/', ServicesView.as_view(), name='services'),
+    url('financing/', FinancingView.as_view(), name='financing'),
+
+    url('partner/', PartnerView.as_view(), name='partner'),
+    url('contact/', ContactView.as_view(), name='contact'),
+    url('whitelabel/', WhiteLabelView.as_view(), name='whitelabel'),
+    url('affiliate_program/', AffiliatelView.as_view(), name='affiliate'),
+    url('faq/', FAQView.as_view(), name='faq'),
+    url('testimonial/', TestimonialsView.as_view(), name='testimonial'),
+    url('^$', IndexView.as_view(), name='index'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

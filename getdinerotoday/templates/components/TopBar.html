@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <a href="/" class="admin-logo dark-logo">
+                <a href="/dashboard" class="admin-logo dark-logo">
                     <h1>
                         <img src="{% static 'images/logo.png' %}" class="logo-icon margin-r-10">
                     </h1>
@@ -41,7 +41,7 @@
                         <ul class="dropdown-menu top-dropdown">
                             {% if request.user.is_authenticated %}
                             <li>
-                                <a href="/" ><i class="icon-bell0"></i>Go To Main Portal</a>
+                                <a href="/dashboard" ><i class="icon-bell0"></i>Go To Main Portal</a>
                             </li>
                             <li class="dropdown-divider"></li>
                                 <li>

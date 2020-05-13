@@ -229,7 +229,10 @@ class OfferingFinancingView(View):
 
 class WhiteLabelWebinarView(View):
     def get(self, request):
-        return render(request, "whitelabelwebinar.html")
+
+        webinars = Webinar.objects.filter(user=Profile.objects.get(user=request.user))
+
+        return render(request, "whitelabelwebinar.html", {'webinars': webinars})
 
 
 class BuyWhitelabelWebsiteView(View):
@@ -244,7 +247,9 @@ class BuyWhitelabelBusinessPackageView(View):
 
 class ViewPortalsView(View):
     def get(self, request):
-        return render(request, "viewportals.html")
+        portals = WhitelabelPortal.objects.filter(user=Profile.objects.get(user=request.user))
+
+        return render(request, "viewportals.html", {"portals" : portals})
 
 
 class ViewWhiteLabelWebsiteView(View):
