@@ -110,7 +110,8 @@ def bank_info_update(request, pk, template_name='affiliate-addbankinfo_form.html
 
 class AddBankInfoFormView(View):
     def get(self, request):
-        return render(request, "affiliate-addbankinfo_form.html")
+        form = BankInfoForm()
+        return render(request, "affiliate-addbankinfo_form.html", {'form': form})
 
     def post(self, request):
         data = {
@@ -143,7 +144,8 @@ class AddPaypalInfoView(View):
 
 class AddPaypalInfoFormView(View):
     def get(self, request):
-        return render(request, "affiliate-addpaypalinfo_form.html")
+        form = PayPalInfoForm()
+        return render(request, "affiliate-addpaypalinfo_form.html", {'form': form})
 
     def post(self, request):
         data = {
