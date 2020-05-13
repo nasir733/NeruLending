@@ -243,8 +243,7 @@ class WhitelabelPortal(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_whitelabel_portal'
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
-    free_portal = models.CharField(max_length=500, null=True, default='')
-    paid_portal = models.CharField(max_length=500, null=True, default='')
+    portal_link = models.CharField(max_length=500, null=True, default='')
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
 

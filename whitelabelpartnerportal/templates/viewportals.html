@@ -26,28 +26,18 @@
                         <table id="datatable" class="table table-striped dt-responsive nowrap">
                             <thead>
                             <tr>
-                                <th>View Your White Label Free Portal Website</th>
-                                <th>View Your White Label Paid Portal Website</th>
+                                <th>View Your White Label Portal Website</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             {% for portal in portals %}
                                 <tr>
-                                    {% if portal.free_portal %}
-                                        <td>
-                                            <a target="_blank" class="btn btn-primary"
-                                               href="{{ portal.free_portal }}">Click Here To View Your Free White Label
-                                                Portal</a>
-                                        </td>
-                                    {% endif %}
-                                    {% if portal.paid_portal %}
-                                        <td>
-                                            <a target="_blank" class="btn btn-primary"
-                                               href="{{ portal.free_portal }}">Click Here To View Your Paid White Label
-                                                Portal</a>
-                                        </td>
-                                    {% endif %}
+                                    <td>
+                                        <a target="_blank" class="btn btn-primary"
+                                           href="{{ portal.portal_link }}">Click Here To View Your White Label
+                                            Portal</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
 
