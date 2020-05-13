@@ -335,7 +335,7 @@ inset 0 30px 0 rgba(5,248,161, 0.4), inset -30px 0 0 rgba(255,8,68, 0.4), inset 
 /* ------------------------
     Bg Animated Image
 ------------------------*/
-.info-img:before {position: absolute; left: 0; top: 0; height: 330px; width: 100%; content: ""; background-image: url(../images/pattern/07.png); z-index: -1;}
+.info-img:before {position: absolute; left: 0; top: 0; height: 330px; width: 100%; content: ""; z-index: -1;}
 .bg-effect::after {background: #fafaff; top: 0; content: ""; left: 25%; position: absolute; right: 0; z-index: -1; height: 100%; border-top-left-radius: 50%;}
 .bg-effect.right::after{left: 0; right: 25%; border-top-left-radius: 0; border-top-right-radius: 50%;}
 .bg-effect-2::before {background: #fff; top: -50px; content: ""; height: 120px; left: 0; overflow: visible; position: absolute; transform: skewY(4deg); width: 100%;}
