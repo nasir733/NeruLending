@@ -65,6 +65,7 @@ class TwelveView(View):
     def get(self, request):
         return render(request, "twelve.html")
 
+
 class ThirteenView(View):
     def get(self, request):
         return render(request, "13.html")

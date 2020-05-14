@@ -29,7 +29,7 @@ urlpatterns = [
     path('cannabis/', include('portals.cannabis.urls')),
     path('loanportal/', include('loanportal.urls')),
     path('marketingcourse/', include('marketingcourse.urls')),
-    path('businesscreditcourse', include('businesscreditcourse.urls')),
+    path('businesscreditcourse/', include('businesscreditcourse.urls')),
     path('fitness/', include('portals.fitness.urls')),
     path('insurance_agent/', include('portals.insurance_agent.urls')),
     path('musician/', include('portals.musician.urls')),
