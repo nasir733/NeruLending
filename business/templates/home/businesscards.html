@@ -205,7 +205,7 @@
                                 <th>Apply Now</th>
                             </tr>
                             </thead>
-                            </tbody>
+                            <tbody>
                             {% for cc in cc_list %}
                                 <tr>
                                     <td>{{ cc.cc_name }}</td>
@@ -215,7 +215,8 @@
                                     <td>{{ cc.bankruptcy }}</td>
                                     <td>{{ cc.credit_data }}</td>
                                     <td>{{ cc.apr }}</td>
-                                    <td>{{ cc.misc_info }}</td>
+                                    <td>{{ cc.strategy }}</td>
+                                    <td>{{ cc.max_inquiries }}</td>
                                     <td><a href="{{ cc.url }}" target="_blank">
                                         <button type="submit" class="btn btn-primary" name="signup" value="Apply Now">
                                             Apply Now
@@ -230,22 +231,6 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-
-
-        </div>
-
-
-        </form>
-        </div>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
-
-
     </section>
 
 {% endblock content %}
