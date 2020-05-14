@@ -64,7 +64,7 @@
                                     <td>{{ loan.credit_score }}</td>
                                     <td>{{ loan.emp_length }}</td>
                                     <td>{{ loan.credit_history }}</td>
-                                    <td><a href="{{ loan.url }}" target="_blank">
+                                    <td><a href="{{ loan.get_url }}" target="_blank">
                                         <button type="submit" class="btn btn-primary" name="signup" value="Apply Now">
                                             Apply Now
                                         </button>
@@ -79,20 +79,7 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
 
-
-        </div>
-
-
-        </form>
-        </div>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
 
     </section>
 {% endblock %}

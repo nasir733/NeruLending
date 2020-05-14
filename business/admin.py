@@ -51,30 +51,30 @@ class NoCreditCheckLoanAdmin(ImportExportModelAdmin):
 admin.site.register(NoCreditCheckLoans, NoCreditCheckLoanAdmin)
 
 
-class RevolvingCreditResource(resources.ModelResource):
-    class Meta:
-        model = RevolvingCredit
-        exclude = ('created_at', 'updated_at')
+# class RevolvingCreditResource(resources.ModelResource):
+#     class Meta:
+#         model = RevolvingCredit
+#         exclude = ('created_at', 'updated_at')
+#
+#
+# class RevolvingCreditAdmin(ImportExportModelAdmin):
+#     resource_class = RevolvingCreditResource
+#
+# admin.site.register(RevolvingCredit, RevolvingCreditAdmin)
 
 
-class RevolvingCreditAdmin(ImportExportModelAdmin):
-    resource_class = RevolvingCreditResource
 
-admin.site.register(RevolvingCredit, RevolvingCreditAdmin)
-
-
-
-class LenderResource(resources.ModelResource):
-    class Meta:
-        model = Lender
-        exclude = ('created_at', 'updated_at')
-
-
-class LenderAdmin(ImportExportModelAdmin):
-    resource_class = LenderResource
-
-
-admin.site.register(Lender, LenderAdmin)
+# class LenderResource(resources.ModelResource):
+#     class Meta:
+#         model = Lender
+#         exclude = ('created_at', 'updated_at')
+#
+#
+# class LenderAdmin(ImportExportModelAdmin):
+#     resource_class = LenderResource
+#
+#
+# admin.site.register(Lender, LenderAdmin)
 
 
 class ShortTermLoanResource(resources.ModelResource):

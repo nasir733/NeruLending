@@ -10,6 +10,14 @@ class ModelMixin:
         self.updated_at = timezone.now()
         return super().save(*args, **kwargs)
 
+    @property
+    def get_url(self):
+        if hasattr(self, 'url'):
+            if not self.url.startswith("http"):
+                return "http://" + self.url
+            else:
+                return self.url
+
 
 class FinancingInformation(ModelMixin, models.Model):
     class Meta:
@@ -381,9 +389,12 @@ class StarterVendorList(ModelMixin, models.Model):
     name = models.CharField(max_length=5000)
     description = models.CharField(max_length=5000)
     terms = models.CharField(max_length=5000)
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
     report_to = models.CharField(max_length=5000)
-    url = models.CharField(blank=True, max_length=5000)
+    monthly_payment = models.CharField(max_length=5000)
+    estimated_terms = models.CharField(max_length=5000)
+    estimated_amount = models.CharField(max_length=5000)
+    payment_terms = models.CharField(max_length=5000)
+
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -457,7 +468,6 @@ class BusinessCreditCard(ModelMixin, models.Model):
 
     def __str__(self):
         return self.cc_name
-
 
 class PersonalLoan(ModelMixin, models.Model):
     class Meta:

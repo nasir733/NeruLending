@@ -1048,7 +1048,7 @@ class BusinessCreditCardsView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         cc_list = BusinessCreditCard.objects.all()
-        return render(request, "home/businesscards.html", get_context_for_all(request, {"cc_list": cc_list}))
+        return render(request, "financingProducts/businessCreditCard.html", get_context_for_all(request, {"cc_list": cc_list}))
 
 
 class ShortTermLoans(View):
@@ -1058,7 +1058,7 @@ class ShortTermLoans(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         short_term_loans = ShortTermLoan.objects.all()
-        return render(request, "financingProducts/shortTerm.html",
+        return render(request, "financingProducts/shortTermLoans.html",
                       get_context_for_all(request, {'short_term_loans': short_term_loans}))
 
 

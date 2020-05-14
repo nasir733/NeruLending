@@ -48,8 +48,12 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Category</th>
-                                <th>Who The Vendor Reports Too</th>
+                                <th>Terms</th>
+                                <th>Who The Vendor Reports To</th>
+                                <th>Monthly Payment</th>
+                                <th>Estimated Terms</th>
+                                <th>Estimated Amount</th>
+                                <th>Payment Terms</th>
                                 <th>More Details & Application</th>
                             </tr>
                             </thead>
@@ -58,10 +62,13 @@
                             {% for data in starter_vendors %}
                                 <tr>
                                     <td>{{ data.name }}</td>
-                                    <td>{{ data.category }}</td>
+                                    <td>{{ data.terms }}</td>
                                     <td>{{ data.report_to }}</td>
-                                    <td><a class="btn btn-primary" href="/lender-detail/{{ data.link }}">Click Here For
-                                        More Details</a></td>
+                                    <td>{{ data.monthly_payment }}</td>
+                                    <td>{{ data.estimated_terms }}</td>
+                                    <td>{{ data.estimated_amount }}</td>
+                                    <td>{{ data.payment_terms }}</td>
+                                    <td>{{ data.description }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -70,17 +77,6 @@
                 </div>
             </div>
         </div>
-        </div>
-
-
-        </form>
-        </div>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
-
 
     </section>
 

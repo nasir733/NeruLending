@@ -47,10 +47,10 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Category</th>
-
+                                <th>Terms</th>
                                 <th>Who The Vendor Reports Too</th>
-                                <th>More Details & Application</th>
+                                <th>Estimated Amount</th>
+                                <th>More Details</th>
                             </tr>
                             </thead>
 
@@ -58,10 +58,10 @@
                             {% for vendor in store_credit_vendors %}
                                 <tr>
                                     <td>{{ vendor.name }}</td>
-                                    <td>{{ vendor.category }}</td>
-                                    <td>{{ vendor.report_to }}</td>
-                                    <td><a class="btn btn-primary" href="/lender-detail/{{ data.link }}">Click Here For
-                                        More Details</a></td>
+                                    <td>{{ vendor.terms }}</td>
+                                    <td>{{ vendor.reports_to }}</td>
+                                    <td>{{ vendor.estimated_amount }}</td>
+                                    <td>{{ vendor.description }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -69,18 +69,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        </div>
-
-
-        </form>
-        </div>
-        </div>
-        </form>
-        </div>
-        </div>
         </div>
 
     </section>
