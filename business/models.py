@@ -16,22 +16,22 @@ class FinancingInformation(ModelMixin, models.Model):
         db_table = 'financing_information'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    experian = models.CharField(max_length=500)
-    equifax = models.CharField(max_length=500)
-    transunion = models.CharField(max_length=500)
-    monthly_revenue_3 = models.CharField(max_length=500)
-    daily_balance_3 = models.CharField(max_length=500)
-    monthlty_ending_balance_3 = models.CharField(max_length=500)
-    monthly_revenue_6 = models.CharField(max_length=500)
-    daily_balance_6 = models.CharField(max_length=500)
-    monthlty_ending_balance_6 = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    nonsufficient_6 = models.CharField(max_length=500)
-    nonsufficient_12 = models.CharField(max_length=500)
-    current_liens = models.CharField(max_length=500)
-    business_account = models.CharField(max_length=500)
-    business_loan = models.CharField(max_length=500)
-    business_age = models.CharField(max_length=500)
+    experian = models.CharField(max_length=5000)
+    equifax = models.CharField(max_length=5000)
+    transunion = models.CharField(max_length=5000)
+    monthly_revenue_3 = models.CharField(max_length=5000)
+    daily_balance_3 = models.CharField(max_length=5000)
+    monthlty_ending_balance_3 = models.CharField(max_length=5000)
+    monthly_revenue_6 = models.CharField(max_length=5000)
+    daily_balance_6 = models.CharField(max_length=5000)
+    monthlty_ending_balance_6 = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    nonsufficient_6 = models.CharField(max_length=5000)
+    nonsufficient_12 = models.CharField(max_length=5000)
+    current_liens = models.CharField(max_length=5000)
+    business_account = models.CharField(max_length=5000)
+    business_loan = models.CharField(max_length=5000)
+    business_age = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -41,23 +41,23 @@ class CreditRepairInformation(ModelMixin, models.Model):
         db_table = 'credit_repair_information'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    experian_score = models.CharField(max_length=500)
-    equifax_score = models.CharField(max_length=500)
-    transunion_score = models.CharField(max_length=500)
-    experian_utilization = models.CharField(max_length=500)
-    equifax_utilization = models.CharField(max_length=500)
-    transunion_utilization = models.CharField(max_length=500)
-    current_collections = models.CharField(max_length=500)
-    bankruptcies = models.CharField(max_length=500)
-    bankruptcies_10 = models.CharField(max_length=500)
-    inquiries = models.CharField(max_length=500)
-    missed_payments = models.CharField(max_length=500)
-    current_acc_experian = models.CharField(max_length=500)
-    current_acc_equifax = models.CharField(max_length=500)
-    current_acc_transunion = models.CharField(max_length=500)
-    credit_history_experian = models.CharField(max_length=500)
-    credit_history_equifax = models.CharField(max_length=500)
-    credit_history_transunion = models.CharField(max_length=500)
+    experian_score = models.CharField(max_length=5000)
+    equifax_score = models.CharField(max_length=5000)
+    transunion_score = models.CharField(max_length=5000)
+    experian_utilization = models.CharField(max_length=5000)
+    equifax_utilization = models.CharField(max_length=5000)
+    transunion_utilization = models.CharField(max_length=5000)
+    current_collections = models.CharField(max_length=5000)
+    bankruptcies = models.CharField(max_length=5000)
+    bankruptcies_10 = models.CharField(max_length=5000)
+    inquiries = models.CharField(max_length=5000)
+    missed_payments = models.CharField(max_length=5000)
+    current_acc_experian = models.CharField(max_length=5000)
+    current_acc_equifax = models.CharField(max_length=5000)
+    current_acc_transunion = models.CharField(max_length=5000)
+    credit_history_experian = models.CharField(max_length=5000)
+    credit_history_equifax = models.CharField(max_length=5000)
+    credit_history_transunion = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -67,8 +67,8 @@ class BusinessCreditInformation(ModelMixin, models.Model):
         db_table = 'businesscredit_information'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    business_time = models.CharField(max_length=500, null=True)
-    trade_lines = models.CharField(max_length=500, null=True)
+    business_time = models.CharField(max_length=5000, null=True)
+    trade_lines = models.CharField(max_length=5000, null=True)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -78,8 +78,8 @@ class Domain(ModelMixin, models.Model):
         db_table = 'domain'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    domain_name = models.CharField(max_length=500)
-    domain_needed = models.CharField(max_length=500)
+    domain_name = models.CharField(max_length=5000)
+    domain_needed = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -88,14 +88,14 @@ class FinancingPlanRegularPerson(ModelMixin, models.Model):
     class Meta:
         db_table = 'financingplanregularperson'
 
-    name = models.CharField(max_length=500, null=True)
+    name = models.CharField(max_length=5000, null=True)
     description = models.CharField(max_length=5500, null=True)
-    report_to = models.CharField(max_length=500, null=True)
-    monthly_payment = models.CharField(max_length=500, null=True)
-    estimated_term = models.CharField(max_length=500, null=True)
-    estimated_amount = models.CharField(max_length=500, null=True)
-    payment_terms = models.CharField(max_length=500, null=True)
-    terms = models.CharField(max_length=500, null=True)
+    report_to = models.CharField(max_length=5000, null=True)
+    monthly_payment = models.CharField(max_length=5000, null=True)
+    estimated_term = models.CharField(max_length=5000, null=True)
+    estimated_amount = models.CharField(max_length=5000, null=True)
+    payment_terms = models.CharField(max_length=5000, null=True)
+    terms = models.CharField(max_length=5000, null=True)
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
 
@@ -107,13 +107,13 @@ class EquipmentFinancing(ModelMixin, models.Model):
     class Meta:
         db_table = 'equipment_financing'
 
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -126,8 +126,8 @@ class Fax(ModelMixin, models.Model):
         db_table = 'fax'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    fax_needed = models.CharField(max_length=500)
-    created_at = models.CharField(max_length=500)
+    fax_needed = models.CharField(max_length=5000)
+    created_at = models.CharField(max_length=5000)
     updated_at = models.DateTimeField(null=True, blank=True)
 
 
@@ -135,13 +135,13 @@ class InvoiceFactoring(ModelMixin, models.Model):
     class Meta:
         db_table = 'invoice_factoring'
 
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -150,13 +150,13 @@ class InvoiceFinancing(ModelMixin, models.Model):
     class Meta:
         db_table = 'invoice_financing'
 
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -168,22 +168,22 @@ class Category(models.Model):
     class Meta:
         db_table = 'category'
 
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=5000)
 
 
 class Lender(ModelMixin, models.Model):
     class Meta:
         db_table = 'lender'
 
-    name = models.CharField(max_length=500, null=True)
-    description = models.CharField(max_length=5500, null=True)
+    name = models.CharField(max_length=5000, null=True)
+    description = models.CharField(max_length=5000, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    report_to = models.CharField(max_length=500, null=True)
-    monthly_payment = models.CharField(max_length=500, null=True)
-    estimated_term = models.CharField(max_length=500, null=True)
-    estimated_amount = models.CharField(max_length=500, null=True)
-    payment_terms = models.CharField(max_length=500, null=True)
-    terms = models.CharField(max_length=500, null=True)
+    report_to = models.CharField(max_length=5000, null=True)
+    monthly_payment = models.CharField(max_length=5000, null=True)
+    estimated_term = models.CharField(max_length=5000, null=True)
+    estimated_amount = models.CharField(max_length=5000, null=True)
+    payment_terms = models.CharField(max_length=5000, null=True)
+    terms = models.CharField(max_length=5000, null=True)
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
 
@@ -195,13 +195,13 @@ class LinesOfCredit(ModelMixin, models.Model):
     class Meta:
         db_table = 'lines_of_credit'
 
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -213,11 +213,11 @@ class Nopg(ModelMixin, models.Model):
     class Meta:
         db_table = 'nopg'
 
-    name = models.CharField(max_length=500)
-    terms = models.CharField(max_length=500)
-    reports_to = models.CharField(max_length=500)
-    estimated_amount = models.CharField(max_length=500)
-    description = models.CharField(max_length=500)
+    name = models.CharField(max_length=5000)
+    terms = models.CharField(max_length=5000)
+    reports_to = models.CharField(max_length=5000)
+    estimated_amount = models.CharField(max_length=5000)
+    description = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -230,8 +230,8 @@ class ProfessionalEmailAddress(ModelMixin, models.Model):
         db_table = 'professional_email_address'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    email_address_needed = models.CharField(max_length=500)
-    domain_present = models.CharField(max_length=500)
+    email_address_needed = models.CharField(max_length=5000)
+    domain_present = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -241,15 +241,15 @@ class Progress(ModelMixin, models.Model):
         db_table = 'progress'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    website_creation = models.CharField(max_length=500)
-    dns_number = models.CharField(max_length=500)
-    virtual_number = models.CharField(max_length=500)
-    fax_number = models.CharField(max_length=500)
-    toll_free_number = models.CharField(max_length=500)
-    business_bank_account = models.CharField(max_length=500)
-    listing = models.CharField(max_length=500)
-    professional_email_address = models.CharField(max_length=500)
-    domain = models.CharField(max_length=500)
+    website_creation = models.CharField(max_length=5000)
+    dns_number = models.CharField(max_length=5000)
+    virtual_number = models.CharField(max_length=5000)
+    fax_number = models.CharField(max_length=5000)
+    toll_free_number = models.CharField(max_length=5000)
+    business_bank_account = models.CharField(max_length=5000)
+    listing = models.CharField(max_length=5000)
+    professional_email_address = models.CharField(max_length=5000)
+    domain = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -258,7 +258,7 @@ class Industry(models.Model):
     class Meta:
         db_table = 'industry'
 
-    title = models.CharField(max_length=500)
+    title = models.CharField(max_length=5000)
 
 
 class RevenueLending(ModelMixin, models.Model):
@@ -267,24 +267,24 @@ class RevenueLending(ModelMixin, models.Model):
 
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    fico_score = models.CharField(max_length=500)
-    equifax_score = models.CharField(max_length=500)
-    transunion_score = models.CharField(max_length=500)
-    avg_monthly_revenue = models.CharField(max_length=500)
-    abg_daily_balance = models.CharField(max_length=500)
-    avg_monthly_ending_balance = models.CharField(max_length=500)
-    business_debt = models.CharField(max_length=500)
-    liens = models.CharField(max_length=500)
-    business_bank_account = models.CharField(max_length=500)
+    fico_score = models.CharField(max_length=5000)
+    equifax_score = models.CharField(max_length=5000)
+    transunion_score = models.CharField(max_length=5000)
+    avg_monthly_revenue = models.CharField(max_length=5000)
+    abg_daily_balance = models.CharField(max_length=5000)
+    avg_monthly_ending_balance = models.CharField(max_length=5000)
+    business_debt = models.CharField(max_length=5000)
+    liens = models.CharField(max_length=5000)
+    business_bank_account = models.CharField(max_length=5000)
     age = models.IntegerField()
     registered_at = models.DateTimeField(null=True, blank=True)
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -293,10 +293,10 @@ class RevolvingCredit(ModelMixin, models.Model):
     class Meta:
         db_table = 'revolving_credit'
 
-    name = models.CharField(max_length=500)
-    report_to = models.CharField(max_length=500)
-    terms = models.CharField(max_length=500)
-    description = models.CharField(max_length=500)
+    name = models.CharField(max_length=5000)
+    report_to = models.CharField(max_length=5000)
+    terms = models.CharField(max_length=5000)
+    description = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -308,13 +308,13 @@ class SbaLoan(ModelMixin, models.Model):
     class Meta:
         db_table = 'sba_loan'
 
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -326,13 +326,13 @@ class ShortTermLoan(ModelMixin, models.Model):
     class Meta:
         db_table = 'short_term_loan'
 
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -344,13 +344,13 @@ class BusinessTermLoan(ModelMixin, models.Model):
     class Meta:
         db_table = 'term_loan'
 
-    lender_name = models.CharField(max_length=500)
-    personal_credit_score = models.CharField(max_length=500)
-    time_in_business = models.CharField(max_length=500)
-    business_revenue = models.CharField(max_length=500)
-    term_length = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    personal_credit_score = models.CharField(max_length=5000)
+    time_in_business = models.CharField(max_length=5000)
+    business_revenue = models.CharField(max_length=5000)
+    term_length = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -362,11 +362,11 @@ class StoreCreditVendorList(ModelMixin, models.Model):
     class Meta:
         db_table = 'store_credit_vendor_2'
 
-    name = models.CharField(max_length=500)
-    terms = models.CharField(max_length=500)
-    reports_to = models.CharField(max_length=500)
-    estimated_amount = models.CharField(max_length=500)
-    description = models.CharField(max_length=500)
+    name = models.CharField(max_length=5000)
+    terms = models.CharField(max_length=5000)
+    reports_to = models.CharField(max_length=5000)
+    estimated_amount = models.CharField(max_length=5000)
+    description = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -378,12 +378,12 @@ class StarterVendorList(ModelMixin, models.Model):
     class Meta:
         db_table = 'starter_vendor_list'
 
-    name = models.CharField(max_length=500)
-    description = models.CharField(max_length=500)
-    terms = models.CharField(max_length=500)
+    name = models.CharField(max_length=5000)
+    description = models.CharField(max_length=5000)
+    terms = models.CharField(max_length=5000)
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
-    report_to = models.CharField(max_length=500)
-    url = models.CharField(blank=True, max_length=500)
+    report_to = models.CharField(max_length=5000)
+    url = models.CharField(blank=True, max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -393,7 +393,7 @@ class TollFreeNumber(ModelMixin, models.Model):
         db_table = 'toll_free_number'
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    toll_free_number_needed = models.CharField(max_length=500)
+    toll_free_number_needed = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -402,18 +402,18 @@ class WebsiteCreation(ModelMixin, models.Model):
     class Meta:
         db_table = 'website_creation'
 
-    industry_name = models.CharField(max_length=500)
-    booking_on_page = models.CharField(max_length=500)
-    business_name = models.CharField(max_length=500)
-    chat_bot = models.CharField(max_length=500)
-    address = models.CharField(max_length=500)
-    theme = models.CharField(max_length=500)
-    pages_needed = models.CharField(max_length=500)
-    services = models.CharField(max_length=500)
-    domain = models.CharField(max_length=500)
+    industry_name = models.CharField(max_length=5000)
+    booking_on_page = models.CharField(max_length=5000)
+    business_name = models.CharField(max_length=5000)
+    chat_bot = models.CharField(max_length=5000)
+    address = models.CharField(max_length=5000)
+    theme = models.CharField(max_length=5000)
+    pages_needed = models.CharField(max_length=5000)
+    services = models.CharField(max_length=5000)
+    domain = models.CharField(max_length=5000)
     about_you = models.CharField(max_length=5500)
-    url = models.CharField(max_length=500)
-    domain_owned = models.CharField(max_length=500)
+    url = models.CharField(max_length=5000)
+    domain_owned = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -422,15 +422,15 @@ class PersonalCreditCard(ModelMixin, models.Model):
     class Meta:
         db_table = 'personal_credit_card'
 
-    cc_name = models.CharField(max_length=500)
-    min_credit_score = models.CharField(max_length=500)
-    credit_bureau = models.CharField(max_length=500)
-    debt_ratio = models.CharField(max_length=500)
-    bankruptcy = models.CharField(max_length=500)
-    credit_data = models.CharField(max_length=500)
-    apr = models.CharField(max_length=500)
-    misc_info = models.CharField(max_length=500)
-    url = models.CharField(blank=True, max_length=500)
+    cc_name = models.CharField(max_length=5000)
+    min_credit_score = models.CharField(max_length=5000)
+    credit_bureau = models.CharField(max_length=5000)
+    debt_ratio = models.CharField(max_length=5000)
+    bankruptcy = models.CharField(max_length=5000)
+    credit_data = models.CharField(max_length=5000)
+    apr = models.CharField(max_length=5000)
+    misc_info = models.CharField(max_length=5000)
+    url = models.CharField(blank=True, max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -442,16 +442,16 @@ class BusinessCreditCard(ModelMixin, models.Model):
     class Meta:
         db_table = 'business_credit_card'
 
-    cc_name = models.CharField(null=True, max_length=500)
-    min_credit_score = models.CharField(null=True, max_length=500)
-    credit_bureau = models.CharField(null=True, max_length=500)
-    debt_ratio = models.CharField(null=True, max_length=500)
-    bankruptcy = models.CharField(null=True, max_length=500)
-    credit_data = models.CharField(null=True, max_length=500)
-    apr = models.CharField(null=True, max_length=500)
-    strategy = models.CharField(null=True, max_length=500)
-    max_inquiries = models.CharField(null=True, max_length=500)
-    url = models.CharField(blank=True, max_length=500)
+    cc_name = models.CharField(null=True, max_length=5000)
+    min_credit_score = models.CharField(null=True, max_length=5000)
+    credit_bureau = models.CharField(null=True, max_length=5000)
+    debt_ratio = models.CharField(null=True, max_length=5000)
+    bankruptcy = models.CharField(null=True, max_length=5000)
+    credit_data = models.CharField(null=True, max_length=5000)
+    apr = models.CharField(null=True, max_length=5000)
+    strategy = models.CharField(null=True, max_length=5000)
+    max_inquiries = models.CharField(null=True, max_length=5000)
+    url = models.CharField(blank=True, max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -463,15 +463,15 @@ class PersonalLoan(ModelMixin, models.Model):
     class Meta:
         db_table = 'personal_loan'
 
-    lender_name = models.CharField(max_length=500)
-    terms = models.CharField(max_length=500)
-    inquiries = models.CharField(max_length=500)
-    credit_bureau = models.CharField(max_length=500)
-    states = models.CharField(max_length=500)
-    credit_score = models.CharField(max_length=500)
-    emp_length = models.CharField(max_length=500)
-    credit_history = models.CharField(max_length=500)
-    url = models.CharField(blank=True, max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    terms = models.CharField(max_length=5000)
+    inquiries = models.CharField(max_length=5000)
+    credit_bureau = models.CharField(max_length=5000)
+    states = models.CharField(max_length=5000)
+    credit_score = models.CharField(max_length=5000)
+    emp_length = models.CharField(max_length=5000)
+    credit_history = models.CharField(max_length=5000)
+    url = models.CharField(blank=True, max_length=5000)
 
     def __str__(self):
         return self.lender_name
@@ -481,12 +481,12 @@ class RevolvingBusinessCreditVendor(ModelMixin, models.Model):
     class Meta:
         db_table = 'revolving_business_credit'
 
-    name = models.CharField(max_length=500)
-    description = models.CharField(max_length=500)
-    terms = models.CharField(max_length=500)
+    name = models.CharField(max_length=5000)
+    description = models.CharField(max_length=5000)
+    terms = models.CharField(max_length=5000)
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
-    report_to = models.CharField(max_length=500)
-    url = models.CharField(blank=True, max_length=500)
+    report_to = models.CharField(max_length=5000)
+    url = models.CharField(blank=True, max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -498,9 +498,9 @@ class NoCreditCheckLoans(ModelMixin, models.Model):
     class Meta:
         db_table = 'nocreditcheck_loans'
 
-    lender_name = models.CharField(null=True, max_length=500)
-    estimated_terms = models.CharField(null=True, max_length=500)
-    url = models.CharField(null=True, max_length=500)
+    lender_name = models.CharField(null=True, max_length=5000)
+    estimated_terms = models.CharField(null=True, max_length=5000)
+    url = models.CharField(null=True, max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
@@ -512,10 +512,10 @@ class PersonalCreditTradeLine(ModelMixin, models.Model):
     class Meta:
         db_table = 'personal_credit_tradeline'
 
-    lender_name = models.CharField(max_length=500)
-    hard_check = models.CharField(max_length=500)
-    description = models.CharField(max_length=500)
-    strategy = models.CharField(max_length=500)
-    url = models.CharField(max_length=500)
+    lender_name = models.CharField(max_length=5000)
+    hard_check = models.CharField(max_length=5000)
+    description = models.CharField(max_length=5000)
+    strategy = models.CharField(max_length=5000)
+    url = models.CharField(max_length=5000)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
