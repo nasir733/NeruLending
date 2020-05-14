@@ -14,14 +14,15 @@ class ModelMixin:
 class BusinessCreditCourse(ModelMixin, models.Model):
     class Meta:
         db_table = 'businesscreditcourse'
-    name = models.CharField(max_length=50, null=True)
+
+    name = models.CharField(max_length=500, null=True)
     description = models.CharField(max_length=500, null=True)
-    report_to = models.CharField(max_length=50, null=True)
-    monthly_payment = models.CharField(max_length=15, null=True)
-    estimated_term = models.CharField(max_length=50, null=True)
-    estimated_amount = models.CharField(max_length=5, null=True)
-    payment_terms = models.CharField(max_length=50, null=True)
-    terms = models.CharField(max_length=50, null=True)
+    report_to = models.CharField(max_length=500, null=True)
+    monthly_payment = models.CharField(max_length=500, null=True)
+    estimated_term = models.CharField(max_length=500, null=True)
+    estimated_amount = models.CharField(max_length=500, null=True)
+    payment_terms = models.CharField(max_length=500, null=True)
+    terms = models.CharField(max_length=500, null=True)
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
 

@@ -16,8 +16,9 @@ class ModelMixin:
 class Residual(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_residual'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
-    amountofresiduals = models.CharField(max_length=50, null=True)
+    amountofresiduals = models.CharField(max_length=500, null=True)
     product = models.CharField(max_length=500, null=True)
     payout_date = models.DateTimeField(null=True)
     created_at = models.DateTimeField(null=True)
@@ -30,10 +31,11 @@ class Residual(ModelMixin, models.Model):
 class ShareLinks(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_sharelink'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
-    facebook_link = models.CharField(max_length=50, null=True)
+    facebook_link = models.CharField(max_length=500, null=True)
     text_link = models.CharField(max_length=500, null=True)
-    email_link = models.CharField(max_length=50, null=True)
+    email_link = models.CharField(max_length=500, null=True)
     twitter = models.CharField(max_length=500, null=True)
     instagram = models.CharField(max_length=500, null=True)
     created_at = models.DateTimeField(null=True)
@@ -46,8 +48,9 @@ class ShareLinks(ModelMixin, models.Model):
 class Sale(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_sale'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
-    sales = models.CharField(max_length=50, null=True)
+    sales = models.CharField(max_length=500, null=True)
     product = models.CharField(max_length=500, null=True)
     payout_date = models.DateTimeField(null=True)
     created_at = models.DateTimeField(null=True)
@@ -60,6 +63,7 @@ class Sale(ModelMixin, models.Model):
 class Lead(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_lead'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
@@ -75,6 +79,7 @@ class Lead(ModelMixin, models.Model):
 class AffiliateAgents(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_affiliate_agents'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
     full_name = models.CharField(max_length=100, null=True)
     phone_number = models.CharField(max_length=100, null=True)
@@ -88,6 +93,7 @@ class AffiliateAgents(ModelMixin, models.Model):
 class BankPaymentInformation(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_bank_payment_information'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
     routing_number = models.CharField(max_length=500, null=True)
     name_of_bank = models.CharField(max_length=500, null=True)
@@ -104,6 +110,7 @@ class BankPaymentInformation(ModelMixin, models.Model):
 class PaypalInformation(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_paypal_information'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
     paypal_email = models.CharField(max_length=500, null=True)
     created_at = models.DateTimeField(null=True)
@@ -116,6 +123,7 @@ class PaypalInformation(ModelMixin, models.Model):
 class Webinar(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_webinars'
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
     link = models.CharField(max_length=500, null=True)
     created_at = models.DateTimeField(null=True)
