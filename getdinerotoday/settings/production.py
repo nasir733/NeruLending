@@ -21,8 +21,8 @@ EMAIL_HOST_USER = 'apikey'
 # EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_PASSWORD')
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
-SERVER_EMAIL = EMAIL_HOST_USER
+# DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
+# SERVER_EMAIL = EMAIL_HOST_USER
 
 # SECURITY WARNING: update this when you have the production host
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com', 'test-dinero-today.herokuapp.com']
