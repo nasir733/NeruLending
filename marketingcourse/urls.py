@@ -26,4 +26,6 @@ urlpatterns = [
         name='seo'),
     url('googleads', login_required(GoogleadsView.as_view(), login_url='/user/login'),
         name='googleads'),
+    url('coupons', login_required(CouponsView.as_view(), login_url='/user/login'),
+        name='coupons'),    
 ]

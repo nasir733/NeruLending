@@ -49,3 +49,7 @@ class YoutubeView(View):
 class FacebookrView(View):
     def get(self, request):
         return render(request, "facebookr.html")
+
+class CouponsView(View):
+    def get(self, request):
+        return render(request, "coupons.html")
