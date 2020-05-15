@@ -140,17 +140,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'mail.veebimajutus.ee'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'getdinerotoday@vash.ee'
-EMAIL_HOST_PASSWORD = 'epJ,o0p754'
-
-DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
-SERVER_EMAIL = EMAIL_HOST_USER
-
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'

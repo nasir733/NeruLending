@@ -26,7 +26,7 @@ class GDTLoginView(LoginView):
         user = form.get_user()
         auth_login(self.request, user)
         if user.profile.portal_goals.all().count() == 0:
-            return HttpResponseRedirect("/business/create-my-specific-portal/")
+            return HttpResponseRedirect("/dashboard")
         else:
             return HttpResponseRedirect(user.profile.portal_goals.first().get_absolute_url())
 
