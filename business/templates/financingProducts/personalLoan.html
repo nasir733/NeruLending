@@ -38,43 +38,45 @@
                         Lenders
                     </div>
                     <div class="card-body">
-                        <table id="datatable" class="table table-striped dt-responsive nowrap">
-                            <tbody>
-                            <thead>
-                            <tr>
-                                <th>Lender Name</th>
-                                <th>Terms</th>
-                                <th>Inquiries</th>
-                                <th>Credit Bureau</th>
-                                <th>States Available</th>
-                                <th>Min Credit Score</th>
-                                <th>Min Employment Length Needed</th>
-                                <th>Min Credit History</th>
-                                <th>Apply Now</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for loan in personal_loans %}
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-striped dt-responsive nowrap">
+                                <tbody>
+                                <thead>
                                 <tr>
-                                    <td>{{ loan.lender_name }}</td>
-                                    <td>{{ loan.terms }}</td>
-                                    <td>{{ loan.inquiries }}</td>
-                                    <td>{{ loan.credit_bureau }}</td>
-                                    <td>{{ loan.states }}</td>
-                                    <td>{{ loan.credit_score }}</td>
-                                    <td>{{ loan.emp_length }}</td>
-                                    <td>{{ loan.credit_history }}</td>
-                                    <td><a href="{{ loan.get_url }}" target="_blank">
-                                        <button type="submit" class="btn btn-primary" name="signup" value="Apply Now">
-                                            Apply Now
-                                        </button>
-                                    </a></td>
-                                    </td>
+                                    <th>Lender Name</th>
+                                    <th>Terms</th>
+                                    <th>Inquiries</th>
+                                    <th>Credit Bureau</th>
+                                    <th>States Available</th>
+                                    <th>Min Credit Score</th>
+                                    <th>Min Employment Length Needed</th>
+                                    <th>Min Credit History</th>
+                                    <th>Apply Now</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-
+                                </thead>
+                                <tbody>
+                                {% for loan in personal_loans %}
+                                    <tr>
+                                        <td>{{ loan.lender_name }}</td>
+                                        <td>{{ loan.terms }}</td>
+                                        <td>{{ loan.inquiries }}</td>
+                                        <td>{{ loan.credit_bureau }}</td>
+                                        <td>{{ loan.states }}</td>
+                                        <td>{{ loan.credit_score }}</td>
+                                        <td>{{ loan.emp_length }}</td>
+                                        <td>{{ loan.credit_history }}</td>
+                                        <td><a href="{{ loan.get_url }}" target="_blank">
+                                            <button type="submit" class="btn btn-primary" name="signup"
+                                                    value="Apply Now">
+                                                Apply Now
+                                            </button>
+                                        </a></td>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

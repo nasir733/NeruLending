@@ -196,44 +196,47 @@
                         Business Credit Cards
                     </div>
                     <div class="card-body">
-                        <table id="datatable" class="table table-striped dt-responsive nowrap">
-                            <tbody>
-                            <thead>
-                            <tr>
-                                <th>Credit Card Name</th>
-                                <th>Credit Bureau They Pull From</th>
-                                <th>Min Credit Score Needed</th>
-                                <th>Debt Ratio Needed</th>
-                                <th>Bankruptcy</th>
-                                <th>Derogatory Credit Data</th>
-                                <th>APR</th>
-                                <th>Strategy</th>
-                                <th>Max Inquiries You Can Have</th>
-                                <th>Apply Now</th>
-                            </tr>
-                            </thead>
-                            </tbody>
-                            <tbody>
-                            {% for cc in cc_list %}
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-striped dt-responsive nowrap">
+                                <tbody>
+                                <thead>
                                 <tr>
-                                    <td>{{ cc.cc_name }}</td>
-                                    <td>{{ cc.min_credit_score }}</td>
-                                    <td>{{ cc.credit_bureau }}</td>
-                                    <td>{{ cc.debt_ratio }}</td>
-                                    <td>{{ cc.bankruptcy }}</td>
-                                    <td>{{ cc.credit_data }}</td>
-                                    <td>{{ cc.apr }}</td>
-                                    <td>{{ cc.misc_info }}</td>
-                                    <td><a href="{{ cc.url }}" target="_blank">
-                                        <button type="submit" class="btn btn-primary" name="signup" value="Apply Now">
-                                            Apply Now
-                                        </button>
-                                    </a></td>
+                                    <th>Credit Card Name</th>
+                                    <th>Credit Bureau They Pull From</th>
+                                    <th>Min Credit Score Needed</th>
+                                    <th>Debt Ratio Needed</th>
+                                    <th>Bankruptcy</th>
+                                    <th>Derogatory Credit Data</th>
+                                    <th>APR</th>
+                                    <th>Strategy</th>
+                                    <th>Max Inquiries You Can Have</th>
+                                    <th>Apply Now</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-
+                                </thead>
+                                </tbody>
+                                <tbody>
+                                {% for cc in cc_list %}
+                                    <tr>
+                                        <td>{{ cc.cc_name }}</td>
+                                        <td>{{ cc.min_credit_score }}</td>
+                                        <td>{{ cc.credit_bureau }}</td>
+                                        <td>{{ cc.debt_ratio }}</td>
+                                        <td>{{ cc.bankruptcy }}</td>
+                                        <td>{{ cc.credit_data }}</td>
+                                        <td>{{ cc.apr }}</td>
+                                        <td>{{ cc.strategy }}</td>
+                                        <td>{{ cc.max_inquiries }}</td>
+                                        <td><a href="{{ cc.get_url }}" target="_blank">
+                                            <button type="submit" class="btn btn-primary" name="signup"
+                                                    value="Apply Now">
+                                                Apply Now
+                                            </button>
+                                        </a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

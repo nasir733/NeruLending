@@ -27,28 +27,29 @@
                         Lenders You Qualify For
                     </div>
                     <div class="card-body">
-                        <table id="datatable" class="table table-striped dt-responsive nowrap">
-                            <thead>
-                            <tr>
-                                <th>Lender Name</th>
-                                <th>Estimated Terms</th>
-                                <th>Apply Now</th>
-                            </tr>
-                            </thead>
-
-
-                            <tbody>
-                            {% for data in loans %}
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-striped dt-responsive nowrap">
+                                <thead>
                                 <tr>
-                                    <td>{{ data.lender_name }}</td>
-                                    <td>{{ data.estimated_terms }}</td>
-                                    <td><a class="btn btn-primary" href="{{ data.url }}">Click Here For
-                                        More Details</a></td>
+                                    <th>Lender Name</th>
+                                    <th>Estimated Terms</th>
+                                    <th>Apply Now</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
 
+
+                                <tbody>
+                                {% for data in loans %}
+                                    <tr>
+                                        <td>{{ data.lender_name }}</td>
+                                        <td>{{ data.estimated_terms }}</td>
+                                        <td><a class="btn btn-primary" href="{{ data.url }}">Click Here For
+                                            More Details</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

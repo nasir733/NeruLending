@@ -44,28 +44,29 @@
 
 
                     <div class="card-body">
-                        <table id="datatable2" class="table table-striped dt-responsive nowrap">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Who The Vendor Reports Too</th>
-                                <th>More Details & Application</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            {% for vendor in vendor_list %}
+                        <div class="table-responsive">
+                            <table id="datatable2" class="table table-striped dt-responsive nowrap">
+                                <thead>
                                 <tr>
-                                    <td>{{ vendor.name }}</td>
-                                    <td>{{ vendor.category }}</td>
-                                    <td>{{ vendor.report_to }}</td>
-                                    <td>{{ vendor.description }}</td>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Who The Vendor Reports Too</th>
+                                    <th>More Details & Application</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
 
+                                <tbody>
+                                {% for vendor in vendor_list %}
+                                    <tr>
+                                        <td>{{ vendor.name }}</td>
+                                        <td>{{ vendor.category }}</td>
+                                        <td>{{ vendor.report_to }}</td>
+                                        <td>{{ vendor.description }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

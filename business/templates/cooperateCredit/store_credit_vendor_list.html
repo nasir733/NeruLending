@@ -43,29 +43,31 @@
                     </div>
 
                     <div class="card-body">
-                        <table id="datatable2" class="table table-striped dt-responsive nowrap">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Terms</th>
-                                <th>Who The Vendor Reports Too</th>
-                                <th>Estimated Amount</th>
-                                <th>More Details</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            {% for vendor in store_credit_vendors %}
+                        <div class="table-responsive">
+                            <table id="datatable2" class="table table-striped dt-responsive nowrap">
+                                <thead>
                                 <tr>
-                                    <td>{{ vendor.name }}</td>
-                                    <td>{{ vendor.terms }}</td>
-                                    <td>{{ vendor.reports_to }}</td>
-                                    <td>{{ vendor.estimated_amount }}</td>
-                                    <td>{{ vendor.description }}</td>
+                                    <th>Name</th>
+                                    <th>Terms</th>
+                                    <th>Who The Vendor Reports Too</th>
+                                    <th>Estimated Amount</th>
+                                    <th>More Details</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                {% for vendor in store_credit_vendors %}
+                                    <tr>
+                                        <td>{{ vendor.name }}</td>
+                                        <td>{{ vendor.terms }}</td>
+                                        <td>{{ vendor.reports_to }}</td>
+                                        <td>{{ vendor.estimated_amount }}</td>
+                                        <td>{{ vendor.description }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

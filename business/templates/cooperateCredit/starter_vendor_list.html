@@ -44,35 +44,37 @@
 
 
                     <div class="card-body">
-                        <table id="datatable2" class="table table-striped dt-responsive nowrap">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Terms</th>
-                                <th>Who The Vendor Reports To</th>
-                                <th>Monthly Payment</th>
-                                <th>Estimated Terms</th>
-                                <th>Estimated Amount</th>
-                                <th>Payment Terms</th>
-                                <th>More Details & Application</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            {% for data in starter_vendors %}
+                        <div class="table-responsive">
+                            <table id="datatable2" class="table table-striped dt-responsive nowrap">
+                                <thead>
                                 <tr>
-                                    <td>{{ data.name }}</td>
-                                    <td>{{ data.terms }}</td>
-                                    <td>{{ data.report_to }}</td>
-                                    <td>{{ data.monthly_payment }}</td>
-                                    <td>{{ data.estimated_terms }}</td>
-                                    <td>{{ data.estimated_amount }}</td>
-                                    <td>{{ data.payment_terms }}</td>
-                                    <td>{{ data.description }}</td>
+                                    <th>Name</th>
+                                    <th>Terms</th>
+                                    <th>Who The Vendor Reports To</th>
+                                    <th>Monthly Payment</th>
+                                    <th>Estimated Terms</th>
+                                    <th>Estimated Amount</th>
+                                    <th>Payment Terms</th>
+                                    <th>More Details & Application</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                {% for data in starter_vendors %}
+                                    <tr>
+                                        <td>{{ data.name }}</td>
+                                        <td>{{ data.terms }}</td>
+                                        <td>{{ data.report_to }}</td>
+                                        <td>{{ data.monthly_payment }}</td>
+                                        <td>{{ data.estimated_terms }}</td>
+                                        <td>{{ data.estimated_amount }}</td>
+                                        <td>{{ data.payment_terms }}</td>
+                                        <td>{{ data.description }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
