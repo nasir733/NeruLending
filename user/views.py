@@ -16,7 +16,7 @@ from user.models import Portal, PortalGoal
 
 from .decorators import unauthenticated_user
 from .models import Profile
-
+from django.contrib.auth.forms import AuthenticationForm
 
 class GDTLoginView(LoginView):
     template_name = 'login.html'
@@ -75,7 +75,8 @@ class PasswordResetDoneView(auth_views.PasswordResetDoneView):
 
 class PasswordChangeDoneView(View):
     def get(self, request):
-        return render(request, 'login.html', {"password_change_msg": "Successfully changed password"})
+        form = AuthenticationForm()
+        return render(request, 'login.html', {"password_change_msg": "Successfully changed password", "form": form})
 
 
 class MyProgressView(View):
