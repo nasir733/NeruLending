@@ -20,8 +20,8 @@ class YourPlanView(View):
             "fundboxpay": FundBoxPay,
             "invoicefactoringpayment": InvoiceFactoringPayment,
             "stripe": Stripe,
-
         }
+
         data = {}
         total_owe = 0
         financed_so_far = 0

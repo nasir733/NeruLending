@@ -75,6 +75,16 @@
                     </div>
                 </div>
                 <div class="col-md-8 col-xs-12">
+                    {% if on_payment_plan %}
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Your Payment Plan Portal</p>
+                                <a class="btn btn-primary" href="{% url 'yourplan:yourplan' %}"
+                                   target="_blank">Click
+                                    Here To Go To  <br> Your Payment Plan Portal</a>
+                            </div>
+                        </div>
+                    {% endif %}
                     <div class="card">
                         <div class="card-body">
                             <p>Apply For Loans</p>
@@ -94,7 +104,7 @@
                         <div class="card-body">
                             <p>Choose Your Goal With This Platform</p>
                             <a class="btn btn-primary" href="{% url 'marketingcourse:mainfile' %}" target="_blank">
-                                Click Here To Choose  <br>Your Goal With This Platform
+                                Click Here To Choose <br>Your Goal With This Platform
                             </a>
                         </div>
                     </div>
