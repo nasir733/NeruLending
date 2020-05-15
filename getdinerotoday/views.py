@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
+from django.urls import reverse
 
 
 class HomePage(View):
@@ -11,6 +12,8 @@ class HomePage(View):
 
 class IndexView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse("homepage"))
         return render(request, 'landingpages/index.html')
 
 
