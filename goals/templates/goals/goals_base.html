@@ -15,7 +15,7 @@
                 <ul class="metisMenu nav flex-column" id="menu">
 
                     <li class="nav-item">
-                        <a href="/" class="nav-link"><span class="toggle-none">Go Back To Main Portal</span></a>
+                        <a href="{% url 'homepage' %}" class="nav-link"><span class="toggle-none">Go Back To Main Portal</span></a>
                     </li>
 
                     {% if request.user.profile.virtual_access_card_paid %}
