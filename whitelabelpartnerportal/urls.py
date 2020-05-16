@@ -79,4 +79,6 @@ urlpatterns = [
         name='tollfree'),
     url('professionalemail', login_required(ProfessionalEmailView.as_view(), login_url='/user/login'),
         name='professionalemail'),
+    url('partnercommisssions', login_required(PartnerCommissionView.as_view(), login_url='/user/login'),
+        name='partnercommisssions'),
 ]

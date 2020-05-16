@@ -32,4 +32,6 @@ urlpatterns = [
         name='addpaypalinfo_form'),
     url('addpaypalinfo', login_required(AddPaypalInfoView.as_view(), login_url='/user/login'),
         name='addpaypalinfo'),
+    url('commission', login_required(CommissionView.as_view(), login_url='/user/login'),
+            name='commission'),
 ]

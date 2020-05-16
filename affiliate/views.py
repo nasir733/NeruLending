@@ -12,6 +12,10 @@ class HomeAffiliateView(View):
     def get(self, request):
         return render(request, "home-affiliate.html")
 
+class CommissionView(View):
+    def get(self, request):
+        return render(request, "affiliate-commission.html")
+
 
 class ShareLinksView(View):
     def get(self, request):

@@ -12,6 +12,10 @@ class HomeWhiteLabelView(View):
     def get(self, request):
         return render(request, "home-whitelabel.html")
 
+class PartnerCommissionView(View):
+    def get(self, request):
+        return render(request, "partner-commissions.html")
+
 
 class BecomingAPartnerForm(ModelForm):
     class Meta:
