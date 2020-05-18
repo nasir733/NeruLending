@@ -28,6 +28,7 @@ portal_list = {
     "trucking": "trucking",
     "wedding_planner": "wedding planner",
     "goals": "Goals",
+    "chromeextention": "chromeextention",
     "user": "User",
     "user:business": "User"
 }
@@ -63,6 +64,9 @@ def get_context_for_all(request, context=None):
         context['portal_goal'] = obj
         print()
         context['portal_number'] = slug
+
+    if request.resolver_match.app_name == 'chromeextention':
+        request.resolver_match.page_template = 'base-chromeextention.html'
 
     return context
 
@@ -787,13 +791,19 @@ class TollFreeNumberOptionsView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
+
         profile = Profile.objects.filter(user=request.user)
         toll_free_number_paid = False
         if profile:
             toll_free_number_paid = profile[0].toll_free_number_paid
         if toll_free_number_paid:
-            return redirect(reverse(f"{request.resolver_match.app_name}:toll-free-paid"))
-        return redirect(reverse(f"{request.resolver_match.app_name}:toll-free"))
+            return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html',
+                          context=get_context_for_all(request))
+            # return redirect(reverse(f"{request.resolver_match.app_name}:toll-free-paid"))
+
+        return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
+        # return redirect(reverse(f"{request.resolver_match.app_name}:toll-free"))
+
         # return render(request, 'businessCreditBuilding/tollFreeNumberOptions.html', {'toll_free_number_paid':
         # toll_free_number_paid})
 

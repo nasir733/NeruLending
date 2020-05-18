@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'storages',
     'goals',
     'products',
-    'onlinetools'
+    'onlinetools',
+    'chromeextention'
 ]
 
 MIDDLEWARE = [
@@ -139,17 +140,21 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# SENDGRID_API_KEY = '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'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.secureserver.net'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'info@getdinerotoday.com'
-EMAIL_HOST_PASSWORD = 'Northface14!'
+# SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 465 # 587 #25 or 465
+# EMAIL_HOST_USER = 'apikey'
+# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+# EMAIL_USE_SSL = True
+# DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
+# SERVER_EMAIL = EMAIL_HOST_USER
+
 
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
