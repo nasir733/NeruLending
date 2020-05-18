@@ -14,6 +14,7 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'getdinerotoday@vash.ee'
 EMAIL_HOST_PASSWORD = 'epJ,o0p754'
+DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
 
 # SECURITY WARNING: update this when you have the production host
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com']

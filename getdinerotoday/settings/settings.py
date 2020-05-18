@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'storages',
     'goals',
     'products',
-    'onlinetools'
+    'onlinetools',
+    'chromeextention'
 ]
 
 MIDDLEWARE = [
