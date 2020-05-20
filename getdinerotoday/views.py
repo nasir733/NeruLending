@@ -56,6 +56,10 @@ class AffiliatelView(View):
     def get(self, request):
         return render(request, 'landingpages/affiliate.html')
 
+class WebinarView(View):
+    def get(self, request):
+        return render(request, 'landingpages/webinar.html')
+
 
 class FAQView(View):
     def get(self, request):
@@ -65,4 +69,3 @@ class FAQView(View):
 class TestimonialsView(View):
     def get(self, request):
         return render(request, 'landingpages/testimonial.html')
-

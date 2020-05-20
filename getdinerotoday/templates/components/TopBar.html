@@ -66,6 +66,10 @@
                                     <li class="dropdown-divider"></li>
                                 {% endif %}
                                 <li>
+                                    <a href="{% url 'chromeextention:chromeextentionindex' %}"><i class="icon-list"></i> Extension</a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li>
                                     <a href="{% url 'user:logout' %}"><i class="icon-logout"></i> Logout</a>
                                 </li>
                             {% else %}

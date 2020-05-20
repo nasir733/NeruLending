@@ -62,7 +62,7 @@ urlpatterns = [
     url('pricing/', PricingView.as_view(), name='pricing'),
     url('services/', ServicesView.as_view(), name='services'),
     url('financing/', FinancingView.as_view(), name='financing'),
-
+    url('webinar/', WebinarView.as_view(), name='webinar'),
     url('partner/', PartnerView.as_view(), name='partner'),
     url('contact/', ContactView.as_view(), name='contact'),
     url('whitelabel/', WhiteLabelView.as_view(), name='whitelabel'),

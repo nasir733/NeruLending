@@ -11,4 +11,3 @@ urlpatterns = [
     url('^$', login_required(ChromeExtentionIndexView.as_view(), login_url='/user/login'),
         name='chromeextentionindex'),
 ] + business_urls[:-1]
-
