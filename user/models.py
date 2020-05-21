@@ -74,3 +74,52 @@ class PortalGoal(models.Model):
         if not self.slug:
             self.save()
         return reverse("user:portal_goals", kwargs={"slug": self.slug})
+
+
+class UserData(models.Model):
+
+    class Meta:
+        verbose_name = "5. Personal Information"
+        verbose_name_plural = "5. Personal Information"
+
+    # user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE)
+
+    duns = models.CharField("DUNS Number", null=True, blank=True,  max_length=255)
+    ein = models.CharField("EIN number", null=True, blank=True,  max_length=255)
+
+    first_name = models.CharField("First Name", null=True, blank=True,  max_length=255)
+    last_name = models.CharField("Last Name", null=True, blank=True,  max_length=255)
+
+    personal_street_address_1 = models.CharField("Personal Address Line 1", null=True, blank=True,  max_length=255)
+    personal_street_address_2 = models.CharField("Personal Address Line 2", null=True, blank=True,  max_length=255)
+    personal_zip_code = models.CharField("Personal Zip Code", null=True, blank=True,  max_length=255)
+    personal_city = models.CharField("Personal City", null=True, blank=True,  max_length=255)
+    personal_state = models.CharField("Personal State", null=True, blank=True,  max_length=255)
+    personal_country = models.CharField("Personal Country", null=True, blank=True,  max_length=255)
+
+    billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, blank=True,  max_length=255)
+    billing_street_address_2 = models.CharField("Billing Address Line 2", null=True, blank=True,  max_length=255)
+    billing_zip_code = models.CharField("Billing Zip Code", null=True, blank=True,  max_length=255)
+    billing_city = models.CharField("Billing City", null=True, blank=True,  max_length=255)
+    billing_state = models.CharField("Billing State", null=True, blank=True,  max_length=255)
+    billing_country = models.CharField("Billing Country", null=True, blank=True,  max_length=255)
+
+    business_name = models.CharField("Business Name", null=True, blank=True, max_length=255)
+
+    business_street_address_1 = models.CharField("Business Address Line 1", null=True, blank=True,  max_length=255)
+    business_street_address_2 = models.CharField("Business Address Line 2", null=True, blank=True,  max_length=255)
+    business_zip_code = models.CharField("Business Zip Code", null=True, blank=True,  max_length=255)
+    business_city = models.CharField("Business City", null=True, blank=True,  max_length=255)
+    business_state = models.CharField("Business State", null=True, blank=True,  max_length=255)
+    business_country = models.CharField("Business Country", null=True, blank=True,  max_length=255)
+
+    def save(self, *args, **kwargs):
+        if self.first_name == "":
+            self.first_name = self.user.user.first_name
+        if self.last_name == "":
+            self.last_name = self.user.user.last_name
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.user.user.first_name} {self.user.user.last_name} personal details"

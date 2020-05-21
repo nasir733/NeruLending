@@ -20,9 +20,13 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import include, path
 
+
+
 from .views import *
 
 urlpatterns = [
+    path('api/', include('restapi.urls')),
+
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('business/', include('business.urls')),

@@ -1,10 +1,11 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from django.views import View
 from django.views.generic.base import ContextMixin
 
-from user.models import PortalGoal
+from user.forms import UserDataForm
+from user.models import PortalGoal, UserData
 from .models import *
 
 portal_list = {
@@ -75,6 +76,36 @@ class BusinessHomePage(View):
     def get(self, request):
         return render(request, f"index-{request.resolver_match.app_name}.html",
                       context=get_context_for_all(request, get_business_plan_context()))
+
+
+class UserDataView(View):
+    def get(self, request):
+
+        data = UserData.objects.filter(user=Profile.objects.get(user=request.user))
+        if len(data) > 0:
+            data = data[0]
+            form = UserDataForm(None, instance=data)
+        else:
+            form = UserDataForm()
+        return render(request, "userData/userData.html", context=get_context_for_all(request, {"form": form}))
+
+    def post(self, request):
+        data = UserData.objects.filter(user=Profile.objects.get(user=request.user))
+        if len(data) > 0:
+            data = data[0]
+            form = UserDataForm(request.POST, instance=data)
+            new_data = form.save(commit=False)
+            new_data.user = Profile.objects.get(user=request.user)
+            new_data.save()
+        else:
+            form = UserDataForm(request.POST)
+            new_data = form.save(commit=False)
+            new_data.user = Profile.objects.get(user=request.user)
+            new_data.save()
+
+        data = UserData.objects.filter(user=Profile.objects.get(user=request.user))
+        form = UserDataForm(None, instance=data[0])
+        return render(request, "userData/userData.html", context=get_context_for_all(request, {"form": form}))
 
 
 class BusinessPlan1View(View):
