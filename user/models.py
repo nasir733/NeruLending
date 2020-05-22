@@ -97,6 +97,7 @@ class UserData(models.Model):
     personal_city = models.CharField("Personal City", null=True, blank=True,  max_length=255)
     personal_state = models.CharField("Personal State", null=True, blank=True,  max_length=255)
     personal_country = models.CharField("Personal Country", null=True, blank=True,  max_length=255)
+    personal_phone = models.CharField("Personal Phone", null=True, blank=True,  max_length=255)
 
     billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, blank=True,  max_length=255)
     billing_street_address_2 = models.CharField("Billing Address Line 2", null=True, blank=True,  max_length=255)
@@ -104,6 +105,7 @@ class UserData(models.Model):
     billing_city = models.CharField("Billing City", null=True, blank=True,  max_length=255)
     billing_state = models.CharField("Billing State", null=True, blank=True,  max_length=255)
     billing_country = models.CharField("Billing Country", null=True, blank=True,  max_length=255)
+    billing_phone = models.CharField("Billing Phone", null=True, blank=True,  max_length=255)
 
     business_name = models.CharField("Business Name", null=True, blank=True, max_length=255)
 
@@ -113,6 +115,7 @@ class UserData(models.Model):
     business_city = models.CharField("Business City", null=True, blank=True,  max_length=255)
     business_state = models.CharField("Business State", null=True, blank=True,  max_length=255)
     business_country = models.CharField("Business Country", null=True, blank=True,  max_length=255)
+    business_phone = models.CharField("Business Phone", null=True, blank=True,  max_length=255)
 
     def save(self, *args, **kwargs):
         if self.first_name == "":
