@@ -1,7 +1,7 @@
 import dj_database_url
 from getdinerotoday.settings.settings import *
 
-DEBUG = True  # Should be false But using True to render static images from local in heroku
+DEBUG = False  # Should be false But using True to render static images from local in heroku
 
 # SECRET_KEY = '!nz#yq7*eo@3d*1(=z=f0jd-&uq!2j#ivns(shit7*b0d_h%ki'
 SECRET_KEY = os.environ.get('SECRET_KEY', '!nz#yq7*eo@3d*1(=z=f0jd-&uq!2j#ivns(shit7*b0d_h%ki')
@@ -34,7 +34,7 @@ EMAIL_HOST_PASSWORD = 'epJ,o0p754'
 DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
 
 # SECURITY WARNING: update this when you have the production host
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com', 'test-dinero-today.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com', 'test-dinero-today.herokuapp.com', 'www.getdinerotoday.com', 'getdinerotoday.com']
 
 
 SESSION_COOKIE_SECURE = True
