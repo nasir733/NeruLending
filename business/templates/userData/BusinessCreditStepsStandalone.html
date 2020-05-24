@@ -1,0 +1,81 @@
+<div class="row page-header">
+    <div class="col-lg-6 align-self-center ">
+        <h2>Business Credit Building Steps You Need Done For You</h2>
+    </div>
+</div>
+<section class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+            <iframe width="100%" height="355" src="https://www.youtube.com/embed/u4GqnIkb4cY" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            <h3> Watch The Introduction Video To Understand How To Use The Extension</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">{% csrf_token %}
+                <div class="row mb-2">
+                    <div class="col-6">
+                        {{ form.first_name.label_tag }}{{ form.first_name }}
+                    </div>
+                    <div class="col-6">
+                        {{ form.last_name.label_tag }}{{ form.last_name }}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        {{ form.email.label_tag }}{{ form.email }}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        {{ form.phone.label_tag }}{{ form.phone }}
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12 font-weight-bold">
+                        Check Off On All The Business Credit Building Steps You Need Done
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        {{ form.website }} Website ($19.99 Per Month)
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        {{ form.fax }} Fax( $9.99 Per Month)
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        {{ form.toll_free_number }} Toll Free Number ($21.99 Per Month)
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        {{ form.domain }} Domain ($13.99)
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        {{ form.pro_email_address }} Professional Email Address ($2.49 Per Month)
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12 font-weight-bold">
+                        Your Industry For Website *If You Chose The Website Option*<br>
+                        {{ form.website_inndustry }}
+                    </div>
+                </div>
+
+
+                <div class="btn-toolbar">
+                    <input type="submit" value="Submit" class="btn btn-primary mr-1"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>

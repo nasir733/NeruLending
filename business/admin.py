@@ -8,21 +8,35 @@ from .models import *
 app = apps.get_app_config('business')
 
 
+class BusinessCreditStepsAdmin(admin.ModelAdmin):
+    list_display = ("user", )
+    list_filter = ('user',)
+
+
+admin.site.register(BusinessCreditSteps, BusinessCreditStepsAdmin)
+
+
 class FinancingInformationAdmin(admin.ModelAdmin):
     list_display = ("user", 'created_at', 'updated_at')
     list_filter = ('user',)
+
+
 admin.site.register(FinancingInformation, FinancingInformationAdmin)
 
 
 class CreditRepairInformationAdmin(admin.ModelAdmin):
     list_display = ("user", 'created_at', 'updated_at')
     list_filter = ('user',)
+
+
 admin.site.register(CreditRepairInformation, CreditRepairInformationAdmin)
 
 
 class BusinessCreditInformationAdmin(admin.ModelAdmin):
     list_display = ("user", 'created_at', 'updated_at')
     list_filter = ('user',)
+
+
 admin.site.register(BusinessCreditInformation, BusinessCreditInformationAdmin)
 
 
@@ -35,8 +49,8 @@ class DomainResource(resources.ModelResource):
 class DomainAdmin(ImportExportModelAdmin):
     resource_class = DomainResource
 
-admin.site.register(Domain, DomainAdmin)
 
+admin.site.register(Domain, DomainAdmin)
 
 
 class NoCreditCheckLoanResource(resources.ModelResource):
@@ -48,6 +62,8 @@ class NoCreditCheckLoanResource(resources.ModelResource):
 class NoCreditCheckLoanAdmin(ImportExportModelAdmin):
     resource_class = NoCreditCheckLoanResource
     list_display = ('lender_name', 'created_at', 'updated_at')
+
+
 admin.site.register(NoCreditCheckLoans, NoCreditCheckLoanAdmin)
 
 
@@ -61,7 +77,6 @@ admin.site.register(NoCreditCheckLoans, NoCreditCheckLoanAdmin)
 #     resource_class = RevolvingCreditResource
 #
 # admin.site.register(RevolvingCredit, RevolvingCreditAdmin)
-
 
 
 # class LenderResource(resources.ModelResource):

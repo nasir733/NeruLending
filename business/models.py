@@ -19,6 +19,48 @@ class ModelMixin:
                 return self.url
 
 
+class BusinessCreditSteps(ModelMixin, models.Model):
+    class Meta:
+        verbose_name = "Business Credit steps"
+        verbose_name_plural = "Business Credit steps"
+
+    choices = (
+        ("1", "Dentist"),
+        ("2", "Real Estate"),
+        ("3", "Restaurant"),
+        ("4", "Auto Repair"),
+        ("5", "Trucking"),
+        ("6", "Hair Salon"),
+        ("7", "Transportation Services"),
+        ("8", "Electrician"),
+        ("9", "Lawyer"),
+        ("10", "Photography"),
+        ("11", "Landscaping"),
+        ("12", "Musician"),
+        ("13", "Ecommece"),
+        ("14", "Insurance Agent"),
+        ("15", "Accountant"),
+        ("16", "Carpet & Flooring"),
+        ("17", "Barber"),
+        ("18", "Spa"),
+        ("19", "Wedding Planner"),
+    )
+
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=5000, null=True)
+    last_name = models.CharField(max_length=5000, null=True)
+    email = models.CharField(max_length=5000, null=True)
+    phone = models.CharField(max_length=5000, null=True)
+
+    website = models.BooleanField(default=False)
+    fax = models.BooleanField(default=False)
+    toll_free_number = models.BooleanField(default=False)
+    domain = models.BooleanField(default=False)
+    pro_email_address = models.BooleanField(default=False)
+
+    website_inndustry = models.CharField(max_length=5000, null=True, blank=True, choices=choices)
+
+
 class FinancingInformation(ModelMixin, models.Model):
     class Meta:
         db_table = 'financing_information'
@@ -468,6 +510,7 @@ class BusinessCreditCard(ModelMixin, models.Model):
 
     def __str__(self):
         return self.cc_name
+
 
 class PersonalLoan(ModelMixin, models.Model):
     class Meta:

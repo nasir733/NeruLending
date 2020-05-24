@@ -6,6 +6,7 @@ from django.views.generic.base import ContextMixin
 
 from user.forms import UserDataForm
 from user.models import PortalGoal, UserData
+from .forms import BusinessCreditStepsForm
 from .models import *
 
 portal_list = {
@@ -76,6 +77,27 @@ class BusinessHomePage(View):
     def get(self, request):
         return render(request, f"index-{request.resolver_match.app_name}.html",
                       context=get_context_for_all(request, get_business_plan_context()))
+
+
+class BusinessCreditStepsView(View):
+    def get(self, request):
+        template = "userData/BusinessCreditSteps.html"
+        if "standalone" in request.path:
+            template = "userData/BusinessCreditStepsStandalone.html"
+
+        form = BusinessCreditStepsForm()
+        return render(request, template, context=get_context_for_all(request, {"form": form}))
+
+    def post(self, request):
+        template = "userData/BusinessCreditSteps.html"
+        if "standalone" in request.path:
+            template = "userData/BusinessCreditStepsStandalone.html"
+        form = BusinessCreditStepsForm(request.POST)
+        new_data = form.save(commit=False)
+        new_data.user = Profile.objects.get(user=request.user)
+        new_data.save()
+        form = BusinessCreditStepsForm()
+        return render(request, template, context=get_context_for_all(request, {"form": form}))
 
 
 class UserDataView(View):
@@ -171,12 +193,12 @@ class BusinessCreditBuildingPlanView(View):
 
         information = BusinessCreditInformation(user=Profile.objects.get(user=request.user), **dic)
         information.save()
-        path = '/'.join(request.path.split("/")[:-3])+"/"
+        path = '/'.join(request.path.split("/")[:-3]) + "/"
 
         if business_time == 1:
             if trade_lines == 1:
                 # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_1"))
-                return HttpResponseRedirect(path+'business-plan-1')
+                return HttpResponseRedirect(path + 'business-plan-1')
             elif trade_lines == 2:
                 # return HttpResponseRedirect(reverse(f"{request.resolver_match.app_name}:business_plan_2"))
                 return HttpResponseRedirect(path + 'business-plan-2')
@@ -308,7 +330,7 @@ class FinancingView(View):
 
         information = FinancingInformation(user=Profile.objects.get(user=request.user), **dic)
         information.save()
-        path = '/'.join(request.path.split("/")[:-2])+"/"
+        path = '/'.join(request.path.split("/")[:-2]) + "/"
 
         # if experian == 1:
         #     if monthly_revenue_3 == 1:
@@ -338,7 +360,7 @@ class FinancingView(View):
 
         if experian == 1:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(path+"financing-plan-8")
+                return HttpResponseRedirect(path + "financing-plan-8")
             else:
                 if business_age == 5:
                     return HttpResponseRedirect(path + "financing-plan-12")
@@ -346,16 +368,16 @@ class FinancingView(View):
                     return HttpResponseRedirect(path + "financing-plan-1")
         if experian == 2:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(path+"financing-plan-7")
+                return HttpResponseRedirect(path + "financing-plan-7")
             elif monthly_revenue_3 == 2:
                 if business_age == 5:
                     return HttpResponseRedirect(path + "financing-plan-15")
             else:
-                return HttpResponseRedirect(path+"financing-plan-2")
+                return HttpResponseRedirect(path + "financing-plan-2")
 
         if experian == 3:
             if monthly_revenue_3 == 1:
-                return HttpResponseRedirect(path+"financing-plan-6")
+                return HttpResponseRedirect(path + "financing-plan-6")
             else:
                 if business_age <= 4:
                     return HttpResponseRedirect(path + "financing-plan-3")
@@ -613,7 +635,7 @@ class CreditSituationView(View):
 
         new_info = CreditRepairInformation(user=Profile.objects.get(user=request.user), **data_dict)
         new_info.save()
-        path = '/'.join(request.path.split("/")[:-2])+"/"
+        path = '/'.join(request.path.split("/")[:-2]) + "/"
 
         # if experian_score == 1:
         #     if bankruptcies_10 == 1:
@@ -656,32 +678,32 @@ class CreditSituationView(View):
         if experian_score == 1:
             if bankruptcies_10 == 1:
                 if credit_history_experian == 1:
-                    return HttpResponseRedirect(path+"credit-repair-1")
+                    return HttpResponseRedirect(path + "credit-repair-1")
                 else:
                     # a tie btn 4 and 7
-                    return HttpResponseRedirect(path+"credit-repair-7")
+                    return HttpResponseRedirect(path + "credit-repair-7")
             if inquiries == 2:
-                return HttpResponseRedirect(path+"credit-repair-14")
+                return HttpResponseRedirect(path + "credit-repair-14")
             else:
                 if missed_payments == 1:
-                    return HttpResponseRedirect(path+"credit-repair-8")
+                    return HttpResponseRedirect(path + "credit-repair-8")
                 else:
-                    return HttpResponseRedirect(path+"credit-repair-11")
+                    return HttpResponseRedirect(path + "credit-repair-11")
         elif experian_score == 2:
             if bankruptcies_10 == 1:
                 return HttpResponseRedirect(path + "credit-repair-5")
             if inquiries == 2:
                 return HttpResponseRedirect(path + "credit-repair-15")
             if missed_payments == 1:
-                return HttpResponseRedirect(path+"credit-repair-9")
+                return HttpResponseRedirect(path + "credit-repair-9")
             if missed_payments == 2:
-                return HttpResponseRedirect(path+"credit-repair-12")
+                return HttpResponseRedirect(path + "credit-repair-12")
             else:
-                return HttpResponseRedirect(path+"credit-repair-17")
+                return HttpResponseRedirect(path + "credit-repair-17")
 
         else:
             if bankruptcies_10 == 1:
-                return HttpResponseRedirect(path+"credit-repair-6")
+                return HttpResponseRedirect(path + "credit-repair-6")
             if inquiries == 2:
                 return HttpResponseRedirect(path + "credit-repair-16")
             if missed_payments == 1:
@@ -1018,7 +1040,8 @@ class RevolvingBusinessCreditVendorList(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         vendor_list = RevolvingBusinessCreditVendor.objects.all()
-        return render(request, 'cooperateCredit/revolving.html', get_context_for_all(request, {"vendor_list": vendor_list}))
+        return render(request, 'cooperateCredit/revolving.html',
+                      get_context_for_all(request, {"vendor_list": vendor_list}))
 
 
 class RevolvingDetailsView(View):
@@ -1089,7 +1112,8 @@ class BusinessCreditCardsView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         cc_list = BusinessCreditCard.objects.all()
-        return render(request, "financingProducts/businessCreditCard.html", get_context_for_all(request, {"cc_list": cc_list}))
+        return render(request, "financingProducts/businessCreditCard.html",
+                      get_context_for_all(request, {"cc_list": cc_list}))
 
 
 class ShortTermLoans(View):
@@ -1154,7 +1178,8 @@ class NoCreditCheckFinancing(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         loans = NoCreditCheckLoans.objects.all()
-        return render(request, "financingProducts/noCreditCheckFinancing.html", context=get_context_for_all(request, {"loans":loans}))
+        return render(request, "financingProducts/noCreditCheckFinancing.html",
+                      context=get_context_for_all(request, {"loans": loans}))
 
 
 class InvoiceFactoringView(View):
@@ -1165,7 +1190,8 @@ class InvoiceFactoringView(View):
             request.resolver_match.page_template = 'pages/base-business.html'
         data_list = InvoiceFactoring.objects.all()
 
-        return render(request, "financingProducts/invoiceFactoring.html", context=get_context_for_all(request, {"data_list": data_list}))
+        return render(request, "financingProducts/invoiceFactoring.html",
+                      context=get_context_for_all(request, {"data_list": data_list}))
 
 
 class InvoiceFinancingView(View):
@@ -1175,7 +1201,8 @@ class InvoiceFinancingView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         data_list = InvoiceFinancing.objects.all()
-        return render(request, "financingProducts/invoiceFinancing.html", context=get_context_for_all(request, {"data_list": data_list}))
+        return render(request, "financingProducts/invoiceFinancing.html",
+                      context=get_context_for_all(request, {"data_list": data_list}))
 
 
 class EquipmentFinancingView(View):

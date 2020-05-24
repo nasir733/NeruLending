@@ -75,6 +75,12 @@ urlpatterns = [
         name='business-in-good-standing'),
     url('business-credit-step/', login_required(BusinessCreditStep.as_view(), login_url='/user/login'),
         name='business-credit-step'),
+
+    url('business-credit-steps/', login_required(BusinessCreditStepsView.as_view(), login_url='/user/login'),
+        name='business-credit-steps'),
+    url('business-credit-steps-standalone/', login_required(BusinessCreditStepsView.as_view(), login_url='/user/login'),
+        name='business-credit-steps-standalone'),
+
     url('experian/', login_required(ExperianView.as_view(), login_url='/user/login'),
         name='experian'),
     url('dunn-brad/', login_required(DunnAndBradView.as_view(), login_url='/user/login'),
