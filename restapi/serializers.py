@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from user.models import UserData
 
 
 class TokenObtainPairPatchedSerializer(TokenObtainPairSerializer):
@@ -14,19 +14,15 @@ class TokenObtainPairPatchedSerializer(TokenObtainPairSerializer):
         return r
 
 
-class UserSerializer(serializers.BaseSerializer):
-    def to_representation(self, instance):
-        user = {
-            'first_name': '',
-            'last_name': '',
-            'email': '',
-        }
-        request = self.context.get("request")
-        if request and hasattr(request, "user"):
-            user = request.user
+class NewUserSerializer(serializers.Serializer):
+    email = serializers.CharField(allow_blank=False)
+    password = serializers.CharField(allow_blank=False)
+    first_name = serializers.CharField(allow_blank=False)
+    last_name = serializers.CharField(allow_blank=False)
+    phone_number = serializers.CharField(allow_blank=False)
 
-        return {
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'email': user.email,
-        }
+
+class UserDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserData
+        exclude = ['user', ]
