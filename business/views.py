@@ -1281,6 +1281,10 @@ class InsuranceProduct(View):
     def get(self, request):
         return render(request, 'insuranceProduct.html', context=get_context_for_all(request))
 
+class MoneyForBusinessCredit(View):
+    def get(self, request):
+        return render(request, 'moneyforbusinesscredit.html', context=get_context_for_all(request))
+
 
 class CreditRepairPlan1View(ContextMixin, View):
     def get(self, request):
