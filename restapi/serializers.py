@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from user.models import UserData
 
+from business import models as businessmodels
 
 class TokenObtainPairPatchedSerializer(TokenObtainPairSerializer):
     def validate(self, instance):
@@ -26,3 +27,93 @@ class UserDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserData
         exclude = ['user', ]
+
+
+class StarterVendorListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.StarterVendorList
+        exclude = []
+
+
+class StoreCreditVendorListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.StoreCreditVendorList
+        exclude = []
+
+
+class RevolvingBusinessCreditVendorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.RevolvingBusinessCreditVendor
+        exclude = []
+
+
+class NOPGSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.Nopg
+        exclude = []
+
+
+class PersonalCreditCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.PersonalCreditCard
+        exclude = []
+
+
+class BusinessCreditCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.BusinessCreditCard
+        exclude = []
+
+
+class ShortTermLoanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.ShortTermLoan
+        exclude = []
+
+
+class BusinessTermLoanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.BusinessTermLoan
+        exclude = []
+
+
+class SBALoanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.SbaLoan
+        exclude = []
+
+
+class PersonalLoanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.PersonalLoan
+        exclude = []
+
+
+class BusinessLinesOfCreditSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.LinesOfCredit
+        exclude = []
+
+
+class NoCreditCheckLoansSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.NoCreditCheckLoans
+        exclude = []
+
+
+class InvoiceFactoringSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.InvoiceFactoring
+        exclude = []
+
+
+class InvoiceFinancingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.InvoiceFinancing
+        exclude = []
+
+
+class EquipmentFinancingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = businessmodels.EquipmentFinancing
+        exclude = []
