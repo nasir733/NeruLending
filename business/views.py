@@ -1545,3 +1545,8 @@ class VirtualCardView(View):
     def get(self, request):
         card = request.user.virtual_card
         return render(request, "home/virtualcard.html", get_context_for_all(request, {"virtual_card": card}))
+
+
+class BusinessStepsMobile(View):
+    def get(self, request):
+        return render(request, "userData/BusinessCreditSteps_mobile.html")

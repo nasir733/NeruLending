@@ -28,6 +28,4 @@ urlpatterns = [
     path('business/invoice_financing/', InvoiceFinancingAPI.as_view({'get': 'list'}), name='invoice_financing'),
     path('business/equipment_financing/', EquipmentFinancingAPI.as_view({'get': 'list'}), name='equipment_financing'),
 
-
-
 ]
