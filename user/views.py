@@ -148,3 +148,8 @@ class PortalGoalsDetailView(LoginRequiredMixin, DetailView):
         if 'slug' in self.kwargs:
             context['portal_number'] = self.kwargs['slug']
         return context
+
+
+class TermsView(View):
+    def get(self, request):
+        return render(request, 'terms.html')

@@ -5,13 +5,14 @@ from django.urls import include, path
 from .views import (GDTLoginView, LogoutView, MyProgressView,
                     PasswordChangeDoneView, PasswordResetConfirmView,
                     PasswordResetDoneView, PasswordResetView,
-                    PortalGoalsDetailView, SignUpView, delete_portal_goal)
+                    PortalGoalsDetailView, SignUpView, delete_portal_goal, TermsView)
 
 app_name = 'user'
 urlpatterns = [
     url('login/', GDTLoginView.as_view(), name='login'),
     url('logout/', LogoutView.as_view(), name='logout'),
     url('signup/', SignUpView.as_view(), name='signup'),
+    url('terms/', TermsView.as_view(), name='terms'),
     url(r'forgot-password/', PasswordResetView.as_view(email_template_name='email_templates''/reset_password_email.html'), name="password_change"),
     url(r'forgot-password-done/', PasswordResetDoneView.as_view(), name="password_reset_done"),
     url(r'password-change-done/', PasswordChangeDoneView.as_view(), name="password_change_done"),
