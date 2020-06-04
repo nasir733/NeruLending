@@ -30,7 +30,7 @@ portal_list = {
     "trucking": "trucking",
     "wedding_planner": "wedding planner",
     "goals": "Goals",
-    "chromeextention": "chromeextention",
+    "chromeextension": "chromeextension",
     "user": "User",
     "user:business": "User"
 }
@@ -67,8 +67,8 @@ def get_context_for_all(request, context=None):
         print()
         context['portal_number'] = slug
 
-    if request.resolver_match.app_name == 'chromeextention':
-        request.resolver_match.page_template = 'base-chromeextention.html'
+    if request.resolver_match.app_name == 'chromeextension':
+        request.resolver_match.page_template = 'base-chromeextension.html'
 
     return context
 

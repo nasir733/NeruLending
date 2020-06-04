@@ -59,7 +59,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('onlinetools/', include('onlinetools.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
-    path('chromeextention/', include('chromeextention.urls')),
+    path('chromeextension/', include('chromeextension.urls')),
 
     url('dashboard/', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
     url('about-us/', AboutUsView.as_view(), name='about-us'),
