@@ -132,7 +132,7 @@ class BusinessCreditStepsView(View):
         new_steps = UserSteps(
             first_name=request.POST['first_name'],
             last_name=request.POST['last_name'],
-            email=request.POST['last_name'],
+            email=request.POST['email'],
             phone=request.POST['phone'],
             **services
         )
