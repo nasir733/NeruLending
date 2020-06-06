@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from user.models import UserData
+from user.models import UserData, UserSteps
 
 from business import models as businessmodels
 
@@ -21,6 +21,12 @@ class NewUserSerializer(serializers.Serializer):
     first_name = serializers.CharField(allow_blank=False)
     last_name = serializers.CharField(allow_blank=False)
     phone_number = serializers.CharField(allow_blank=False)
+
+
+class UserStepsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserSteps
+        exclude = []
 
 
 class UserDataSerializer(serializers.ModelSerializer):

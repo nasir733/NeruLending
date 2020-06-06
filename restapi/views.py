@@ -5,7 +5,6 @@ from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-
 from . import serializers as apiserializers
 from business import models as businessmodels
 from user import models as usermodels
@@ -53,10 +52,10 @@ class RegisterNewUserAPI(generics.GenericAPIView):
             userr = self.get_serializer(data=request.data)
             if userr.is_valid():
                 usermodels.Profile.objects.create_user(request.data['email'],
-                                            request.data['password'],
-                                            request.data['first_name'],
-                                            request.data['last_name'],
-                                            request.data['phone_number'])
+                                                       request.data['password'],
+                                                       request.data['first_name'],
+                                                       request.data['last_name'],
+                                                       request.data['phone_number'])
                 return Response({'message': 'success'}, status=200)
             else:
                 raise Exception("Form is not valid.")
@@ -154,3 +153,23 @@ class EquipmentFinancingAPI(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
 
+class GetUserStepsAPI(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        try:
+            steps = usermodels.UserSteps.objects.get(email=request.user.email)
+            steps_serialized = apiserializers.UserStepsSerializer().to_representation(steps)
+            return Response(steps_serialized, status=200)
+
+        except usermodels.UserSteps.DoesNotExist:
+            return Response({
+                'website': 1,
+                'toll_free': 1,
+                'fax_number': 1,
+                'domain': 1,
+                'professional_email': 1,
+            })
+
+        except Exception as e:
+            return Response({'message': f'{e}'}, status=403)

@@ -167,6 +167,20 @@ USE_TZ = True
 
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+# if True:
+#     STRIPE_PUBLISHABLE_KEY = ''
+#     STRIPE_SECRET_KEY = ''
+# else:
+
+# STRIPE_PUBLISHABLE_KEY = 'pk_live_WdBBxb5xLQfPv4DCkjFiZLyh008ifSciL4'
+# STRIPE_SECRET_KEY = 'sk_live_lQ8z3GZD05P6mW2MHEU7cf8o00Kph0qFvZ'
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_k8aDNdIlHgXwyIJIf1tswxny00h0Xyel4S'
+STRIPE_SECRET_KEY = 'sk_test_ZZa6QOdZS7mz9Xo17MxQHRgM00ozbxBI5g'
+
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

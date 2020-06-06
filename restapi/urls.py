@@ -10,6 +10,7 @@ urlpatterns = [
     path('user/get_user_info/', GetUserByToken.as_view(), name='get_user_info'),
     path('user/fetch_personal_data/', FetchPersonalData.as_view(), name='fetch_personal_data'),
     path('user/register/', RegisterNewUserAPI.as_view(), name='register_new_user'),
+    path('user/credit_steps/', GetUserStepsAPI.as_view(), name='fetch_steps_data'),
 
     path('business/sarter_vendor_list/', StarterVendorListAPI.as_view({'get': 'list'}), name='sarter_vendor_list'),
     path('business/store_credit_vendor_list/', StoreCreditVendorListAPI.as_view({'get': 'list'}), name='store_credit_vendor_list'),

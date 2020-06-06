@@ -170,6 +170,6 @@ urlpatterns = [
     url('credit-repair-17/', login_required(CreditRepairPlan17View.as_view(), login_url='/user/login'), name='credit_repair_17'),
 
     url('business-steps-mobile/', BusinessStepsMobile.as_view(), name='business_steps_mobile'),
-
+    path('charge/', charge, name='charge'),
     url('create-my-specific-portal/', login_required(CreateSpecificPortal.as_view(), login_url='/user/login'), name='create_specific_portal'),
 ]

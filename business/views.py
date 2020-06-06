@@ -3,11 +3,16 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from django.views import View
 from django.views.generic.base import ContextMixin
+from django.conf import settings
 
 from user.forms import UserDataForm
-from user.models import PortalGoal, UserData
+from user.models import PortalGoal, UserData, UserSteps
 from .forms import BusinessCreditStepsForm
 from .models import *
+
+import stripe
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 portal_list = {
     "business": "",
@@ -52,9 +57,13 @@ def get_business_plan_context():
 
 
 def get_context_for_all(request, context=None):
+
     app_name = request.resolver_match.app_name
     if not context:
         context = {}
+
+    context["stripe_key"] = settings.STRIPE_PUBLISHABLE_KEY
+
     context["verbose_portal_name"] = portal_list[app_name]
     if not hasattr(request.resolver_match, 'page_template'):
         request.resolver_match.page_template = 'pages/base-business.html'
@@ -89,15 +98,55 @@ class BusinessCreditStepsView(View):
         return render(request, template, context=get_context_for_all(request, {"form": form}))
 
     def post(self, request):
+        # try:
+        print(request.POST)
+        services = {}
+        total_payment = 0
+        if 'website' in request.POST and request.POST['website'] == 'on':
+            services['website'] = 2
+            total_payment += 19.99
+        if 'toll_free' in request.POST and request.POST['toll_free'] == 'on':
+            services['toll_free'] = 2
+            total_payment += 29.99
+        if 'fax_number' in request.POST and request.POST['fax_number'] == 'on':
+            services['fax_number'] = 2
+            total_payment += 19.99
+        if 'domain' in request.POST and request.POST['domain'] == 'on':
+            services['domain'] = 2
+            total_payment += 13.99
+        if 'professional_email' in request.POST and request.POST['professional_email'] == 'on':
+            services['professional_email'] = 2
+            total_payment += 2.49
+
+        stripe.Charge.create(
+            amount=int(total_payment*100),
+            currency='usd',
+            description='Business Credit Building',
+            source=request.POST['stripeToken']
+        )
+
         template = "userData/BusinessCreditSteps.html"
         if "standalone" in request.path:
             template = "userData/BusinessCreditStepsStandalone.html"
-        form = BusinessCreditStepsForm(request.POST)
-        new_data = form.save(commit=False)
-        new_data.user = Profile.objects.get(user=request.user)
-        new_data.save()
+
+        new_steps = UserSteps(
+            first_name=request.POST['first_name'],
+            last_name=request.POST['last_name'],
+            email=request.POST['last_name'],
+            phone=request.POST['phone'],
+            **services
+        )
+        new_steps.save()
+
         form = BusinessCreditStepsForm()
+
         return render(request, template, context=get_context_for_all(request, {"form": form}))
+        # except Exception as e:
+        #     template = "userData/BusinessCreditSteps.html"
+        #     if "standalone" in request.path:
+        #         template = "userData/BusinessCreditStepsStandalone.html"
+        #
+        #     return render(request, template, context=get_context_for_all(request, {}))
 
 
 class UserDataView(View):
@@ -1550,3 +1599,14 @@ class VirtualCardView(View):
 class BusinessStepsMobile(View):
     def get(self, request):
         return render(request, "userData/BusinessCreditSteps_mobile.html")
+
+
+def charge(request):
+    if request.method == 'POST':
+        charge = stripe.Charge.create(
+            amount=request.POST['amount'],
+            currency='usd',
+            description='Get Dinero Today Service Charge',
+            source=request.POST['stripeToken']
+        )
+        return render(request, 'userData/checkout.html', {'amount':request.POST['amount']})
