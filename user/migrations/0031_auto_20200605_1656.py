@@ -13,26 +13,26 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='usersteps',
             name='domain',
-            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), null=True, verbose_name='Domain'),
+            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, null=True, verbose_name='Domain'),
         ),
         migrations.AlterField(
             model_name='usersteps',
             name='fax_number',
-            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), null=True, verbose_name='Fax numberx'),
+            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, null=True, verbose_name='Fax numberx'),
         ),
         migrations.AlterField(
             model_name='usersteps',
             name='professional_email',
-            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), null=True, verbose_name='Professional email'),
+            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, null=True, verbose_name='Professional email'),
         ),
         migrations.AlterField(
             model_name='usersteps',
             name='toll_free',
-            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), null=True, verbose_name='Toll free number'),
+            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, null=True, verbose_name='Toll free number'),
         ),
         migrations.AlterField(
             model_name='usersteps',
             name='website',
-            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), null=True, verbose_name='Website'),
+            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, null=True, verbose_name='Website'),
         ),
     ]
