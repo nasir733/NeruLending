@@ -8,6 +8,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from . import serializers as apiserializers
 from business import models as businessmodels
 from user import models as usermodels
+from yourplan import models as yourplanModels
+from loanportal import models as loanModels
 
 
 class TokenObtainPairPatchedView(TokenObtainPairView):
@@ -19,10 +21,61 @@ class GetUserByToken(APIView):
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
+
+        user = usermodels.Profile.objects.get(user=request.user)
+        plans = {
+            "sezzle": yourplanModels.Sezzle,
+            "klarna": yourplanModels.Klarna,
+            "viabill": yourplanModels.Viabill,
+            "regularpayment": yourplanModels.RegularPayment,
+            "paypal": yourplanModels.Paypal,
+            "quadpay": yourplanModels.Quadpay,
+            "affirm": yourplanModels.Affirm,
+            "behalf": yourplanModels.Behalf,
+            "fundboxpay": yourplanModels.FundBoxPay,
+            "invoicefactoringpayment": yourplanModels.InvoiceFactoringPayment,
+            "stripe": yourplanModels.Stripe,
+        }
+
+        active_plans = []
+        total_owe = 0
+        financed_so_far = 0
+
+        for i, k in plans.items():
+            filter = k.objects.filter(user=user)
+            if len(filter) > 0:
+                plan = {
+                    "name": i,
+                    "how_much_owed": filter[0].how_much_owed,
+                    "financed_so_far": filter[0].financed_so_far,
+                }
+                try:
+                    total_owe += float(filter[0].how_much_owed)
+                    financed_so_far += float(filter[0].financed_so_far)
+                    active_plans.append(plan)
+                except Exception as e:
+                    print(e)
+                    pass
+
+        loans = loanModels.Loan.objects.filter(user=usermodels.Profile.objects.get(user=request.user))
+
+        active_loans = []
+        if len(loans) > 0:
+            for loan in loans:
+                active_loans.append({
+                    'company_name': loan.company_name,
+                    'interest_rate': loan.interest_rate,
+                    'term_length': loan.term_length,
+                })
+
         return Response({
             'first_name': request.user.first_name,
             'last_name': request.user.last_name,
             'email': request.user.email,
+            'total_owe': total_owe,
+            'financed_so_far': financed_so_far,
+            'active_plans': active_plans,
+            'active_loans': active_loans,
         })
 
 
