@@ -36,39 +36,91 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-12 font-weight-bold">
-                            Choose The Business Credit Building Steps From The Dropdown That You Need
+                            Choose The Business Credit Building Steps From The List That You Need
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-12 d-flex flex-column">
+                        <div class="col-6 d-flex flex-column">
+                            <div class="text-center mb-2 font-weight-bold">
+                                Monthly Options
+                            </div>
                             <div>
                                 <input type="checkbox" name="website" id="website">
-                                <label for="website">Website: $19.99 USD - monthly</label>
+                                <label for="website">Website: $50 USD - monthly</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="toll_free" id="toll_free">
-                                <label for="toll_free">Toll Free Number: $29.99 USD - monthly</label>
+                                <label for="toll_free">Toll Free Number: $40 USD - monthly</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="fax_number" id="fax_number">
-                                <label for="fax_number">Fax Number: $19.99 USD - monthly</label>
+                                <label for="fax_number">Fax Number: $40 USD - monthly</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="domain" id="domain">
-                                <label for="domain">Domain: $13.99 USD - monthly</label>
+                                <label for="domain">Domain: $13.99 USD</label>
+
                             </div>
                             <div>
                                 <input type="checkbox" name="professional_email" id="professional_email">
-                                <label for="professional_email">Professional Email Address: $2.49 USD - monthly</label>
+                                <label for="professional_email">Professional Email Address: $7.99 USD - monthly</label>
                             </div>
                             <div>
+                                <label for="domain_name">Domain name:</label>
                                 <input type="text" name="domain_name" id="domain_name">
-                                <label for="domain_name">Domain name</label>
                             </div>
+                            <div style="height: 1px; background-color: black" class="mt-3"></div>
+                            <div class="text-center mb-2 font-weight-bold">
+                                Need All The Steps? Get 13% Off The Monthly Package With Our Business Builder Program
+                            </div>
+                            <div class="text-center ">
+                                <div class="btn btn-primary">
+                                    Business Builder Monthly Program
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex flex-column">
+                            <div class="text-center mb-2 font-weight-bold">
+                                Yearly Options
+                            </div>
+                            <div>
+                                <input type="checkbox" name="website_year" id="website_year">
+                                <label for="website_year">Website: $300 USD - yearly</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="toll_free_year" id="toll_free_year">
+                                <label for="toll_free_year">Toll Free Number: $420 USD - yearly</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="fax_number_year" id="fax_number_year">
+                                <label for="fax_number_year">Fax Number: $240 USD - yearly</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="domain_year" id="domain_year">
+                                <label for="domain_year">Domain: $13.99 USD</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="professional_email_year" id="professional_email_year">
+                                <label for="professional_email_year">Professional Email Address: $42 USD - yearly</label>
+                            </div>
+                            <div>
+                                <label for="domain_name_year">Domain name:</label>
+                                <input type="text" name="domain_name_year" id="domain_name_year">
+                            </div>
+                            <div style="height: 1px; background-color: black" class="mt-3"></div>
+                            <div class="text-center mb-2 font-weight-bold">
+                                Need All The Steps? Get The Business Builder Annual Program for $999 and save $50
+                            </div>
+                            <div class="text-center ">
+                                <div class="btn btn-primary">
+                                    Business Builder Annual Program
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12" id="stripe-form">
+                        <div class="col-md-12 text-center mt-4" id="stripe-form">
                             <div>Total: $<span id="total_amount">0</span></div>
                             <script src="https://checkout.stripe.com/checkout.js"
                                     class="stripe-button"
@@ -97,12 +149,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-    
+
     function round(amount) {
-        var rounded = Math.round(amount*100)/100
+        var rounded = Math.round(amount * 100) / 100
         return rounded
     }
-    
+
     function changeAmount(checked, price) {
         var amount = Number($("#total_amount").html());
         if (checked) {
@@ -113,21 +165,35 @@
     }
 
     $("#website").change(function () {
-        changeAmount(this.checked, 19.99)
+        changeAmount(this.checked, 50)
     });
     $("#toll_free").change(function () {
-        changeAmount(this.checked, 29.99)
+        changeAmount(this.checked, 40)
     });
     $("#fax_number").change(function () {
-        changeAmount(this.checked, 19.99)
+        changeAmount(this.checked, 40)
     });
     $("#domain").change(function () {
         changeAmount(this.checked, 13.99)
     });
     $("#professional_email").change(function () {
-        changeAmount(this.checked, 2.49)
-
+        changeAmount(this.checked, 7.99)
     });
 
+    $("#website_year").change(function () {
+        changeAmount(this.checked, 300)
+    });
+    $("#toll_free_year").change(function () {
+        changeAmount(this.checked, 420)
+    });
+    $("#fax_number_year").change(function () {
+        changeAmount(this.checked, 240)
+    });
+    $("#domain_year").change(function () {
+        changeAmount(this.checked, 13.99)
+    });
+    $("#professional_email_year").change(function () {
+        changeAmount(this.checked, 42)
+    });
 
 </script>

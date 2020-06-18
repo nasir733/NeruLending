@@ -18,6 +18,9 @@ from .decorators import unauthenticated_user
 from .models import Profile
 from django.contrib.auth.forms import AuthenticationForm
 
+
+
+
 class GDTLoginView(LoginView):
     template_name = 'login.html'
 

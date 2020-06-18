@@ -94,6 +94,8 @@ class BusinessCreditStepsView(View):
         if "standalone" in request.path:
             template = "userData/BusinessCreditStepsStandalone.html"
 
+        prices = stripe.Price.list()
+
         form = BusinessCreditStepsForm()
         return render(request, template, context=get_context_for_all(request, {"form": form}))
 
@@ -104,19 +106,35 @@ class BusinessCreditStepsView(View):
         total_payment = 0
         if 'website' in request.POST and request.POST['website'] == 'on':
             services['website'] = 2
-            total_payment += 19.99
+            total_payment += 50
         if 'toll_free' in request.POST and request.POST['toll_free'] == 'on':
             services['toll_free'] = 2
-            total_payment += 29.99
+            total_payment += 40
         if 'fax_number' in request.POST and request.POST['fax_number'] == 'on':
             services['fax_number'] = 2
-            total_payment += 19.99
+            total_payment += 40
         if 'domain' in request.POST and request.POST['domain'] == 'on':
             services['domain'] = 2
             total_payment += 13.99
         if 'professional_email' in request.POST and request.POST['professional_email'] == 'on':
             services['professional_email'] = 2
-            total_payment += 2.49
+            total_payment += 7.99
+
+        if 'website_year' in request.POST and request.POST['website_year'] == 'on':
+            services['website'] = 2
+            total_payment += 300
+        if 'toll_free_year_year' in request.POST and request.POST['toll_free_year'] == 'on':
+            services['toll_free'] = 2
+            total_payment += 420
+        if 'fax_number_year_year' in request.POST and request.POST['fax_number_year'] == 'on':
+            services['fax_number'] = 2
+            total_payment += 240
+        if 'domain_year' in request.POST and request.POST['domain_year'] == 'on':
+            services['domain'] = 2
+            total_payment += 13.99
+        if 'professional_email_year' in request.POST and request.POST['professional_email_year'] == 'on':
+            services['professional_email'] = 2
+            total_payment += 42
 
         stripe.Charge.create(
             amount=int(total_payment*100),

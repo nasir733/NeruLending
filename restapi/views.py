@@ -226,3 +226,16 @@ class GetUserStepsAPI(APIView):
 
         except Exception as e:
             return Response({'message': f'{e}'}, status=403)
+
+
+class uploadLoanDocument(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+
+
+
+
+        return Response({
+            'message':'good'
+        })

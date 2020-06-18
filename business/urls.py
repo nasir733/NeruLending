@@ -73,7 +73,9 @@ urlpatterns = [
         name='business-good-standing'),
     url('business-in-good-standing/', login_required(BusinessBackInGoodStandingView.as_view(), login_url='/user/login'),
         name='business-in-good-standing'),
-    url('business-credit-step/', login_required(BusinessCreditStep.as_view(), login_url='/user/login'),
+    # url('business-credit-step/', login_required(BusinessCreditStep.as_view(), login_url='/user/login'),
+    #     name='business-credit-step'),
+    url('business-credit-step/', login_required(BusinessCreditStepsView.as_view(), login_url='/user/login'),
         name='business-credit-step'),
 
     url('business-credit-steps/', login_required(BusinessCreditStepsView.as_view(), login_url='/user/login'),

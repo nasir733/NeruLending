@@ -2,13 +2,20 @@ from autoslug import AutoSlugField
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-
+from django.conf import settings
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class ProfileUserManager(models.Manager):
     def create_user(self, email, password, first_name, last_name, phone_number):
+        stripe_user = stripe.Customer.create(
+            name=f"{first_name} {last_name}",
+            email=email
+        )
+
         user = User.objects.create_user(email=email, username=email, password=password, first_name=first_name,
                                         last_name=last_name)
-        profile = Profile(user=user, phone_number=phone_number)
+        profile = Profile(user=user, phone_number=phone_number, stripe_id=stripe_user['id'])
         profile.save()
         return profile
 
@@ -20,6 +27,7 @@ class Profile(models.Model):
     toll_free_number_paid = models.BooleanField(default=False)
     website_creation_paid = models.BooleanField(default=False)
     virtual_access_card_paid = models.BooleanField(default=False)
+    stripe_id = models.CharField(max_length=200, null=True)
     objects = ProfileUserManager()
 
     def __str__(self):

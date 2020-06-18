@@ -23,7 +23,8 @@ DATABASES['default']['CONN_MAX_AGE'] = 500
 # EMAIL_USE_TLS = True
 # # DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
 # # SERVER_EMAIL = EMAIL_HOST_USER
-
+STRIPE_PUBLISHABLE_KEY = 'pk_live_WdBBxb5xLQfPv4DCkjFiZLyh008ifSciL4'
+STRIPE_SECRET_KEY = 'sk_live_lQ8z3GZD05P6mW2MHEU7cf8o00Kph0qFvZ'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.veebimajutus.ee'
