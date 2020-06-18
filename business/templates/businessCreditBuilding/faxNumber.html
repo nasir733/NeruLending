@@ -32,102 +32,102 @@
                         allowfullscreen></iframe>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-4 shadow-sm">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/LINe6YHwCOw" frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    <div class="card-body">
-                        <h3>Fax Number Standard Plan</h3>
-                        <ul>
-                            <li>Send 150 pages/mo</li>
-                            <li>Receive 150 pages/mo</li>
-                        </ul>
-                        <br>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <form action="{% url 'business:charge' %}" method="post">{% csrf_token %}
-                                <input type="hidden" name="cmd" value="_s-xclick">
-                                <input type="hidden" name="hosted_button_id" value="PE7HKSCE2WLKG">
-                                <table>
-                                    <tr>
-                                        <td><input type="hidden" name="on0"
-                                                   value="Fax Numbers To Choose From (7 Day Free Trial)">Fax Numbers To
-                                            Choose From (7 Day Free Trial)
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><select name="os0">
-                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
-                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
-                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
-                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
-                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
-                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
-                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
-                                        </select></td>
-                                    </tr>
-                                </table>
-                                {#                                <input type="image"#}
-                                {#                                       src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0"#}
-                                {#                                       name="submit" alt="PayPal - The safer, easier way to pay online!">#}
-                                {#                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"#}
-                                {#                                     width="1" height="1">#}
-                                <input type="hidden" id="amount" name="amount" value="1999">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ stripe_key }}"
-                                        data-description="A Django Charge"
-                                        data-amount="1999"
-                                        data-locale="auto"></script>
-                            </form>
-
-
-                            </form>
-                        </div>
-                        <br>
-                            <form action="{% url 'business:charge' %}" method="post">{% csrf_token %}
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="S5THWXPLFHJTC">
-                            <table>
-                                <tr>
-                                    <td><input type="hidden" name="on0" value="Fax Numbers To Choose From">Fax Numbers
-                                        To Choose From
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><select name="os0">
-                                        <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
-                                        <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
-                                        <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
-                                        <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
-                                        <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
-                                        <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
-                                        <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
-                                    </select></td>
-                                </tr>
-                            </table>
-                                <input type="hidden" id="amount" name="amount" value="1999">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ stripe_key }}"
-                                        data-description="A Django Charge"
-                                        data-amount="1999"
-                                        data-locale="auto"></script>
-                        </form>
-                        <br> <a target="_blank" class="btn btn-primary"
-                                href="https://millennialsbuildinggreatness.com/products/fax-number-standard-package-annual-program-50-off-3-monthly-payments-with-viabill-0-interest">Click
-                        Here To Get 50% Off Yearly Package</a>
-                        <br><br>
-                        <a target="_blank" class="btn btn-primary"
-                           href="https://millennialsbuildinggreatness.com/products/fax-number-standard-package-annual-program-50-off-3-monthly-payments-with-viabill-0-interest">Yearly
-                            Package 3 Month Payment Option</a>
-                        <br><br>
-                        <a target="_blank" class="btn btn-primary" href="https://millennialbusinessbuilders.com/voip">See
-                            Full Fax Free Number Website</a>
-
-                    </div>
-
-                </div>
-            </div>
+        <div class="row justify-content-center">
+            {#            <div class="col-md-6">#}
+            {#                <div class="card mb-4 shadow-sm">#}
+            {#                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/LINe6YHwCOw" frameborder="0"#}
+            {#                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"#}
+            {#                            allowfullscreen></iframe>#}
+            {#                    <div class="card-body">#}
+            {#                        <h3>Fax Number Standard Plan</h3>#}
+            {#                        <ul>#}
+            {#                            <li>Send 150 pages/mo</li>#}
+            {#                            <li>Receive 150 pages/mo</li>#}
+            {#                        </ul>#}
+            {#                        <br>#}
+            {#                        <div class="d-flex justify-content-between align-items-center">#}
+            {#                            <form action="{% url 'business:charge' %}" method="post">{% csrf_token %}#}
+            {#                                <input type="hidden" name="cmd" value="_s-xclick">#}
+            {#                                <input type="hidden" name="hosted_button_id" value="PE7HKSCE2WLKG">#}
+            {#                                <table>#}
+            {#                                    <tr>#}
+            {#                                        <td><input type="hidden" name="on0"#}
+            {#                                                   value="Fax Numbers To Choose From (7 Day Free Trial)">Fax Numbers To#}
+            {#                                            Choose From (7 Day Free Trial)#}
+            {#                                        </td>#}
+            {#                                    </tr>#}
+            {#                                    <tr>#}
+            {#                                        <td><select name="os0">#}
+            {#                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>#}
+            {#                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>#}
+            {#                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>#}
+            {#                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>#}
+            {#                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>#}
+            {#                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>#}
+            {#                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>#}
+            {#                                        </select></td>#}
+            {#                                    </tr>#}
+            {#                                </table>#}
+            {#                                <input type="image"#}
+            {#                                       src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0"#}
+            {#                                       name="submit" alt="PayPal - The safer, easier way to pay online!">#}
+            {#                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"#}
+            {#                                     width="1" height="1">#}
+            {#                                <input type="hidden" id="amount" name="amount" value="1999">#}
+            {#                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"#}
+            {#                                        data-key="{{ stripe_key }}"#}
+            {#                                        data-description="A Django Charge"#}
+            {#                                        data-amount="1999"#}
+            {#                                        data-locale="auto"></script>#}
+            {#                            </form>#}
+            {##}
+            {##}
+            {#                            </form>#}
+            {#                        </div>#}
+            {#                        <br>#}
+            {#                            <form action="{% url 'business:charge' %}" method="post">{% csrf_token %}#}
+            {#                            <input type="hidden" name="cmd" value="_s-xclick">#}
+            {#                            <input type="hidden" name="hosted_button_id" value="S5THWXPLFHJTC">#}
+            {#                            <table>#}
+            {#                                <tr>#}
+            {#                                    <td><input type="hidden" name="on0" value="Fax Numbers To Choose From">Fax Numbers#}
+            {#                                        To Choose From#}
+            {#                                    </td>#}
+            {#                                </tr>#}
+            {#                                <tr>#}
+            {#                                    <td><select name="os0">#}
+            {#                                        <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>#}
+            {#                                        <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>#}
+            {#                                        <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>#}
+            {#                                        <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>#}
+            {#                                        <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>#}
+            {#                                        <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>#}
+            {#                                        <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>#}
+            {#                                    </select></td>#}
+            {#                                </tr>#}
+            {#                            </table>#}
+            {#                                <input type="hidden" id="amount" name="amount" value="1999">#}
+            {#                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"#}
+            {#                                        data-key="{{ stripe_key }}"#}
+            {#                                        data-description="A Django Charge"#}
+            {#                                        data-amount="1999"#}
+            {#                                        data-locale="auto"></script>#}
+            {#                        </form>#}
+            {#                        <br> <a target="_blank" class="btn btn-primary"#}
+            {#                                href="https://millennialsbuildinggreatness.com/products/fax-number-standard-package-annual-program-50-off-3-monthly-payments-with-viabill-0-interest">Click#}
+            {#                        Here To Get 50% Off Yearly Package</a>#}
+            {#                        <br><br>#}
+            {#                        <a target="_blank" class="btn btn-primary"#}
+            {#                           href="https://millennialsbuildinggreatness.com/products/fax-number-standard-package-annual-program-50-off-3-monthly-payments-with-viabill-0-interest">Yearly#}
+            {#                            Package 3 Month Payment Option</a>#}
+            {#                        <br><br>#}
+            {#                        <a target="_blank" class="btn btn-primary" href="https://millennialbusinessbuilders.com/voip">See#}
+            {#                            Full Fax Free Number Website</a>#}
+            {##}
+            {#                    </div>#}
+            {##}
+            {#                </div>#}
+            {#            </div>#}
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/0f64iYQQvhs" frameborder="0"
@@ -135,82 +135,42 @@
                             allowfullscreen></iframe>
                     <div class="card-body">
                         <h3>Fax Number Premium Plan</h3>
-                        <ul>
-                            <li>Send 250 pages/mo</li>
-                            <li>Receive 250 pages/mo</li>
-                        </ul>
-                        <br>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <form action="{% url 'business:charge' %}" method="post">{% csrf_token %}
-                                <input type="hidden" name="cmd" value="_s-xclick">
-                                <input type="hidden" name="hosted_button_id" value="DGGRGAKE5NAU4">
-                                <table>
-                                    <tr>
-                                        <td><input type="hidden" name="on0"
-                                                   value="Fax Numbers To Choose From (7 Day Free Trial)">Fax Numbers To
-                                            Choose From (7 Day Free Trial)
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><select name="os0">
-                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
-                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
-                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
-                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
-                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
-                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
-                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
-                                        </select></td>
-                                    </tr>
-                                </table>
-                                <input type="hidden" id="amount" name="amount" value="1999">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ stripe_key }}"
-                                        data-description="A Django Charge"
-                                        data-amount="1999"
-                                        data-locale="auto"></script>
-                            </form>
-                        </div>
-                        <br>
-                            <form action="{% url 'business:charge' %}" method="post">{% csrf_token %}
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="396AUBB5YPWS8">
-                            <table>
-                                <tr>
-                                    <td><input type="hidden" name="on0" value="Fax Numbers To Choose From">Fax Numbers
-                                        To Choose From
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><select name="os0">
-                                        <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
-                                        <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
-                                        <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
-                                        <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
-                                        <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
-                                        <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
-                                        <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
-                                    </select></td>
-                                </tr>
-                            </table>
-                                <input type="hidden" id="amount" name="amount" value="1999">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ stripe_key }}"
-                                        data-description="A Django Charge"
-                                        data-amount="1999"
-                                        data-locale="auto"></script>
-                        </form>
 
-                        <br> <a target="_blank" class="btn btn-primary"
-                                href="https://millennialsbuildinggreatness.com/products/fax-number-premium-package-annual-program-50-off-3-monthly-payments-with-viabill-0-interest">Click
-                        Here To Get 50% Off Yearly Package</a>
-                        <br><br>
-                        <a target="_blank" class="btn btn-primary"
-                           href="https://millennialsbuildinggreatness.com/products/fax-number-premium-package-annual-program-50-off-3-monthly-payments-with-viabill-0-interest">Yearly
-                            Package 3 Month Payment Option</a>
-                        <br><br>
-                        <a target="_blank" class="btn btn-primary" href="https://millennialbusinessbuilders.com/voip">See
-                            Full Fax Free Number Website</a>
+                        <li>Send 250 pages/mo</li>
+                        <li>Receive 250 pages/mo</li>
+
+                        <br>
+                        <form action="{% url 'business:charge' %}" method="post">{% csrf_token %}
+                            <div class="text-center">
+                                Fax Numbers To Choose From<br>
+                                <select class="custom-select mb-2">
+                                    <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
+                                    <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
+                                    <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
+                                    <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
+                                    <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
+                                    <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
+                                    <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
+                                </select><br>
+                                 Monthly option - $40 USD:<br>
+                                    <input type="hidden" id="amount" name="amount" value="4000">
+                                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                            data-key="{{ stripe_key }}"
+                                            data-description="A Django Charge"
+                                            data-amount="4000"
+                                            data-locale="auto"></script><br><br>
+                                Save 50% with annual option - $240 USD:<br>
+                                    <input type="hidden" id="amount" name="amount" value="24000">
+                                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                            data-key="{{ stripe_key }}"
+                                            data-description="A Django Charge"
+                                            data-amount="24000"
+                                            data-locale="auto"></script>
+                            </div>
+
+
+
+                        </form>
                     </div>
                 </div>
             </div>

@@ -1641,4 +1641,4 @@ def charge(request):
             description='Get Dinero Today Service Charge',
             source=request.POST['stripeToken']
         )
-        return render(request, 'userData/checkout.html', {'amount':request.POST['amount']})
+        return render(request, 'userData/checkout.html', {'amount': request.POST['amount']})
