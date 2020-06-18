@@ -155,6 +155,9 @@ class UserSteps(models.Model):
     domain = models.IntegerField("Domain", choices=_choices, null=True, default=1)
     professional_email = models.IntegerField("Professional email", choices=_choices, null=True, default=1)
     domain_name = models.CharField("Domain name", null=True, default='', blank=True, max_length=500)
+    industry_name = models.CharField("Industry name", null=True, default='', blank=True, max_length=500)
+
+
 
     class Meta:
         verbose_name = "6. User Steps"

@@ -123,10 +123,10 @@ class BusinessCreditStepsView(View):
         if 'website_year' in request.POST and request.POST['website_year'] == 'on':
             services['website'] = 2
             total_payment += 300
-        if 'toll_free_year_year' in request.POST and request.POST['toll_free_year'] == 'on':
+        if 'toll_free_year' in request.POST and request.POST['toll_free_year'] == 'on':
             services['toll_free'] = 2
             total_payment += 420
-        if 'fax_number_year_year' in request.POST and request.POST['fax_number_year'] == 'on':
+        if 'fax_number_year' in request.POST and request.POST['fax_number_year'] == 'on':
             services['fax_number'] = 2
             total_payment += 240
         if 'domain_year' in request.POST and request.POST['domain_year'] == 'on':
@@ -135,6 +135,18 @@ class BusinessCreditStepsView(View):
         if 'professional_email_year' in request.POST and request.POST['professional_email_year'] == 'on':
             services['professional_email'] = 2
             total_payment += 42
+
+        domain_name = ''
+        if 'domain_name_year' in request.POST and request.POST['domain_name_year']:
+            domain_name = request.POST['domain_name_year']
+        if 'domain_name' in request.POST and request.POST['domain_name']:
+            domain_name = request.POST['domain_name_year']
+
+        industry_name = ''
+        if 'industry_year' in request.POST and request.POST['industry_year']:
+            industry_name = request.POST['industry_year']
+        if 'industry' in request.POST and request.POST['industry']:
+            industry_name = request.POST['industry']
 
         stripe.Charge.create(
             amount=int(total_payment*100),
@@ -152,6 +164,8 @@ class BusinessCreditStepsView(View):
             last_name=request.POST['last_name'],
             email=request.POST['email'],
             phone=request.POST['phone'],
+            domain_name=domain_name,
+            industry_name=industry_name,
             **services
         )
         new_steps.save()
