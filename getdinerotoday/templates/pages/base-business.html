@@ -1,6 +1,7 @@
 {% extends "layout/BaseLayout.html" %}
 {% load static %}
 {% block navigation %}
+<div class="full-menu">
 <div class="main-sidebar-nav dark-navigation">
     <div class="nano">
         <div class="nano-content sidebar-nav">
@@ -37,7 +38,7 @@
                         with No Money Down</a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://www.youtube.com/watch?v=5n2s3fpZC9U&t=2s" target="_blank"
+                    <a href="https://www.youtube.com/watch?v=tD1H2-1xihA" target="_blank"
                        class="nav-link"> Watch Webinar On Building Business Credit </a>
                 </li>
                 <li class="nav-item">
@@ -203,11 +204,19 @@
                     <a href="{% url 'onlinetools:onlinetoolshome' %}" target="_blank" class="nav-link"> See Online Tools That Help Grow Your Business</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/{{ request.resolver_match.app_name }}/insurance-products" class="nav-link"> Insurance Products </a> <br>
+                    <a href="/{{ request.resolver_match.app_name }}/insurance-products" class="nav-link"> Insurance Products </a>
                 </li>
+                <li class="nav-item">
+                    <a href="https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday" target="_blank" class="nav-link"> Download Our Android App </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://chrome.google.com/webstore/detail/get-dinero-today/nopllamladnpdgmgcfbnhdfpllpgpcgk?hl=en" target="_blank" class="nav-link"> Download Our Google Chrome Extension </a>
+                </li>
+                <br><br><br>
             </ul>
         </div>
     </div>
+</div>
 </div>
 {% endblock navigation %}
 {% block content %}
