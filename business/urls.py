@@ -4,6 +4,7 @@ from django.urls import path
 from user.views import CreateSpecificPortal
 
 from .views import *
+from .paymentviews.stripe import StripeCheckout, subscription
 
 app_name = 'business'
 urlpatterns = [
@@ -173,5 +174,7 @@ urlpatterns = [
 
     url('business-steps-mobile/', BusinessStepsMobile.as_view(), name='business_steps_mobile'),
     path('charge/', charge, name='charge'),
+    path('testStripe/', StripeCheckout.as_view(), name='test_stripe'),
+    path('subscribe/', subscription, name='subscription_stripe'),
     url('create-my-specific-portal/', login_required(CreateSpecificPortal.as_view(), login_url='/user/login'), name='create_specific_portal'),
 ]
