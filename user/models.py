@@ -150,10 +150,10 @@ class UserSteps(models.Model):
     phone = models.CharField("Phone Number", max_length=500, null=True)
 
     website = models.IntegerField("Website", choices=_choices, null=True, default=1)
-    toll_free = models.IntegerField("Toll free number", choices=_choices, null=True, default=1)
+    toll_free_number = models.IntegerField("Toll free number", choices=_choices, null=True, default=1)
     fax_number = models.IntegerField("Fax numberx", choices=_choices, null=True, default=1)
     domain = models.IntegerField("Domain", choices=_choices, null=True, default=1)
-    professional_email = models.IntegerField("Professional email", choices=_choices, null=True, default=1)
+    professional_email_address = models.IntegerField("Professional email", choices=_choices, null=True, default=1)
     domain_name = models.CharField("Domain name", null=True, default='', blank=True, max_length=500)
     industry_name = models.CharField("Industry name", null=True, default='', blank=True, max_length=500)
 

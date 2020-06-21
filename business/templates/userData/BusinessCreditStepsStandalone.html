@@ -47,26 +47,26 @@
                                 <label for="website">Website: $50 USD - monthly</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="toll_free" id="toll_free">
+                                <input type="checkbox" name="toll_free_number" id="toll_free">
                                 <label for="toll_free">Toll Free Number: $40 USD - monthly</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="fax_number" id="fax_number">
                                 <label for="fax_number">Fax Number: $40 USD - monthly</label>
                             </div>
+                            {#                            <div style="height: 32px">#}
+                            {#                                <input type="checkbox" name="domain" id="domain">#}
+                            {#                                <label for="domain">Domain: $13.99 USD</label>#}
+                            {##}
+                            {#                            </div>#}
                             <div>
-                                <input type="checkbox" name="domain" id="domain">
-                                <label for="domain">Domain: $13.99 USD</label>
-
-                            </div>
-                            <div>
-                                <input type="checkbox" name="professional_email" id="professional_email">
+                                <input type="checkbox" name="professional_email_address" id="professional_email">
                                 <label for="professional_email">Professional Email Address: $7.99 USD - monthly</label>
                             </div>
-                            <div>
-                                <label for="domain_name">Domain name:</label>
-                                <input type="text" name="domain_name" id="domain_name">
-                            </div>
+                            {#                            <div>#}
+                            {#                                <label for="domain_name">Domain name:</label>#}
+                            {#                                <input type="text" name="domain_name" id="domain_name">#}
+                            {#                            </div>#}
                             <div>
                                 <label for="industry">Select Industry:</label><br>
                                 <select name="industry" id="industry" class="custom-select w-100">
@@ -124,26 +124,30 @@
                                 <label for="website_year">Website: $300 USD - yearly</label>
                             </div>
                             <div>
-                                <input type="checkbox" name="toll_free_year" id="toll_free_year">
+                                <input type="checkbox" name="toll_free_number_year" id="toll_free_year">
                                 <label for="toll_free_year">Toll Free Number: $420 USD - yearly</label>
                             </div>
                             <div>
                                 <input type="checkbox" name="fax_number_year" id="fax_number_year">
                                 <label for="fax_number_year">Fax Number: $240 USD - yearly</label>
                             </div>
+
+
                             <div>
-                                <input type="checkbox" name="domain_year" id="domain_year">
-                                <label for="domain_year">Domain: $13.99 USD</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" name="professional_email_year" id="professional_email_year">
+                                <input type="checkbox" name="professional_email_address_year"
+                                       id="professional_email_year">
                                 <label for="professional_email_year">Professional Email Address: $42 USD -
                                     yearly</label>
                             </div>
                             <div>
+                                <input type="checkbox" name="domain_year" id="domain_year">
+                                <label for="domain_year">Domain: $13.99 USD</label>
+                            </div>
+                            <div style="display: none" id="domain-year-field">
                                 <label for="domain_name_year">Domain name:</label>
                                 <input type="text" name="domain_name_year" id="domain_name_year">
                             </div>
+
                             <div>
                                 <label for="industry_year">Select Industry:</label><br>
                                 <select name="industry_year" id="industry_year" class="custom-select w-100">
@@ -198,13 +202,14 @@
                     <div class="row">
                         <div class="col-md-12 text-center mt-4" id="stripe-form">
                             <div>Total: $<span id="total_amount">0</span></div>
-                            <script src="https://checkout.stripe.com/checkout.js"
-                                    class="stripe-button"
-                                    data-key="{{ stripe_key }}"
-                                    data-description="Business Credit Building Steps"
-                                    data-amount=""
-                                    data-locale="auto">
-                            </script>
+                            {#                            <script src="https://checkout.stripe.com/checkout.js"#}
+                            {#                                    class="stripe-button"#}
+                            {#                                    data-key="{{ stripe_key }}"#}
+                            {#                                    data-description="Business Credit Building Steps"#}
+                            {#                                    data-amount=""#}
+                            {#                                    data-locale="auto">#}
+                            {#                            </script>#}
+                            <button type="submit" class="btn btn-primary">Proceed to checkout</button>
                         </div>
                     </div>
 
@@ -265,11 +270,21 @@
     $("#fax_number_year").change(function () {
         changeAmount(this.checked, 240)
     });
-    $("#domain_year").change(function () {
-        changeAmount(this.checked, 13.99)
-    });
+
     $("#professional_email_year").change(function () {
         changeAmount(this.checked, 42)
+    });
+
+    $("#domain_year").on('change', (event) => {
+        var field = document.getElementById('domain-year-field')
+        if (event.target.checked) {
+            changeAmount(event.target.checked, 13.99)
+            field.style.display = 'block'
+        } else {
+            changeAmount(event.target.checked, 13.99)
+            field.style.display = 'none'
+
+        }
     });
 
 </script>

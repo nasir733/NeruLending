@@ -89,52 +89,68 @@ class BusinessHomePage(View):
 
 
 class BusinessCreditStepsView(View):
+
+    @staticmethod
+    def get_products():
+        products = ['Website_monthly', 'Website_yearly',
+                    'Toll Free Number_monthly', 'Toll Free Number_yearly',
+                    "Fax Number_monthly", 'Fax Number_yearly',
+                    'Domain_yearly', 'Professional Email Address_monthly',
+                    'Professional Email Address_yearly']
+        prices = stripe.Price.list(
+            lookup_keys=products,
+        )
+        return prices
+
+    @staticmethod
+    def get_specific_product(products, name):
+        for i in products:
+            if name.lower() in i['lookup_key'].lower():
+                return i
+
     def get(self, request):
         template = "userData/BusinessCreditSteps.html"
         if "standalone" in request.path:
             template = "userData/BusinessCreditStepsStandalone.html"
 
-        prices = stripe.Price.list()
+        # prices = stripe.Price.list()
+        # request.session['checkout'] = 'bljadtskoe bljas '
 
         form = BusinessCreditStepsForm()
         return render(request, template, context=get_context_for_all(request, {"form": form}))
 
     def post(self, request):
-        # try:
-        print(request.POST)
+        # print(request.POST)
+        avail_products = self.get_products()['data']
+        ordering_products = []
         services = {}
         total_payment = 0
-        if 'website' in request.POST and request.POST['website'] == 'on':
-            services['website'] = 2
-            total_payment += 50
-        if 'toll_free' in request.POST and request.POST['toll_free'] == 'on':
-            services['toll_free'] = 2
-            total_payment += 40
-        if 'fax_number' in request.POST and request.POST['fax_number'] == 'on':
-            services['fax_number'] = 2
-            total_payment += 40
-        if 'domain' in request.POST and request.POST['domain'] == 'on':
-            services['domain'] = 2
-            total_payment += 13.99
-        if 'professional_email' in request.POST and request.POST['professional_email'] == 'on':
-            services['professional_email'] = 2
-            total_payment += 7.99
 
-        if 'website_year' in request.POST and request.POST['website_year'] == 'on':
-            services['website'] = 2
-            total_payment += 300
-        if 'toll_free_year' in request.POST and request.POST['toll_free_year'] == 'on':
-            services['toll_free'] = 2
-            total_payment += 420
-        if 'fax_number_year' in request.POST and request.POST['fax_number_year'] == 'on':
-            services['fax_number'] = 2
-            total_payment += 240
-        if 'domain_year' in request.POST and request.POST['domain_year'] == 'on':
-            services['domain'] = 2
-            total_payment += 13.99
-        if 'professional_email_year' in request.POST and request.POST['professional_email_year'] == 'on':
-            services['professional_email'] = 2
-            total_payment += 42
+        products_to_check = ['website', 'toll_free_number', 'fax_number', 'domain',
+                             'professional_email_address', 'website_year', 'toll_free_number_year',
+                             'fax_number_year', 'domain_year', 'professional_email_address_year']
+
+        for i in products_to_check:
+            if i in request.POST and request.POST[i] == 'on':
+                print(i)
+                if i.endswith("_year"):
+                    service_in_model = i.replace("_year", "")
+                    productname = service_in_model.replace("_", " ") + "_yearly"
+                else:
+                    service_in_model = i
+                    productname = service_in_model.replace("_", " ") + "_monthly"
+
+                print(productname)
+                product = self.get_specific_product(avail_products, productname)
+                ordering_products.append({
+                    'name': product['lookup_key'],
+                    'price': product['id'],
+                    'quantity': 1,
+                    'price_amount': product['unit_amount']/100,
+                    'object': product
+                })
+                services[service_in_model] = 2
+                total_payment += product['unit_amount']/100
 
         domain_name = ''
         if 'domain_name_year' in request.POST and request.POST['domain_name_year']:
@@ -148,17 +164,6 @@ class BusinessCreditStepsView(View):
         if 'industry' in request.POST and request.POST['industry']:
             industry_name = request.POST['industry']
 
-        stripe.Charge.create(
-            amount=int(total_payment*100),
-            currency='usd',
-            description='Business Credit Building',
-            source=request.POST['stripeToken']
-        )
-
-        template = "userData/BusinessCreditSteps.html"
-        if "standalone" in request.path:
-            template = "userData/BusinessCreditStepsStandalone.html"
-
         new_steps = UserSteps(
             first_name=request.POST['first_name'],
             last_name=request.POST['last_name'],
@@ -170,9 +175,12 @@ class BusinessCreditStepsView(View):
         )
         new_steps.save()
 
-        form = BusinessCreditStepsForm()
+        request.session['ordering_products'] = ordering_products
+        request.session['ordering_price'] = total_payment
+        # form = BusinessCreditStepsForm()
 
-        return render(request, template, context=get_context_for_all(request, {"form": form}))
+        # return render(request, template, context=get_context_for_all(request, {"form": form}))
+        return redirect("business:test_stripe")
         # except Exception as e:
         #     template = "userData/BusinessCreditSteps.html"
         #     if "standalone" in request.path:
