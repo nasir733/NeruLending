@@ -1,6 +1,6 @@
 import stripe
-from payments.stripe.config import STRIPE_CONFIG
-stripe.api_key = STRIPE_CONFIG.get("STRIPE_SECRET_KEY_TEST")
+import payments.stripe.config as config
+config.run_production(stripe)
 
 
 def create_customer():

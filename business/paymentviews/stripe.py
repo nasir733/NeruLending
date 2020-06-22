@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.views import View
 from django.conf import settings
 from ..models import *
+from user.models import UserSteps
 
 import stripe
 
@@ -35,8 +36,8 @@ class StripeCheckout(View):
                         def_card['card_last4'] = i['last4']
                         break
 
-        amount = request.session.get('ordering_price')
         products = request.session.get('ordering_products')
+        amount = sum([i['price_amount'] for i in products])
         return render(request,
                       "checkout/stripeCheckout.html",
                       context=get_common_context(request,
@@ -51,6 +52,8 @@ class StripeCheckout(View):
 def subscription(request):
     if request.method == 'POST':
         data = request.POST
+
+        # Create new stripe customer or add payment method to existing customer.
         profile = Profile.objects.get(user=request.user)
         stripe_id = profile.stripe_id
         if not stripe_id:
@@ -66,28 +69,59 @@ def subscription(request):
             stripe_user = stripe.Customer.retrieve(stripe_id)
             if not stripe_user['default_source']:
                 stripe.Customer.modify(stripe_id, source=data['stripeToken'])
-        items_month = []
-        items_year = []
-        for i in request.session['ordering_products']:
-            if i['object']['recurring'] and i['object']['recurring']['interval'] == 'year':
-                items_year.append({
-                    'price': i['price'],
-                    'quantity': i['quantity']
-                })
-            if i['object']['recurring'] and i['object']['recurring']['interval'] == 'month':
-                items_month.append({
-                    'price': i['price'],
-                    'quantity': i['quantity']
-                })
-        if len(items_month) > 0:
-            stripe.Subscription.create(
-                customer=stripe_id,
-                items=items_month
+
+        # Generate new subscriptions to products from session['ordering_products']
+        products = request.session.get('ordering_products')
+        items = {
+            'year': [],
+            'month': []
+        }
+        for i in products:
+            for key in items:
+                if i['object']['recurring'] and i['object']['recurring']['interval'] == key:
+                    items[key].append({
+                        'price': i['price'],
+                        'quantity': i['quantity']
+                    })
+        for i, k in items.items():
+            if len(k) > 0:
+                stripe.Subscription.create(
+                    customer=stripe_id,
+                    items=k
+                )
+
+        # Add UserSteps if there is in session
+        user_steps_data = request.session.get('user_steps_data')
+        if user_steps_data:
+            new_steps = UserSteps(
+                **user_steps_data
             )
-        if len(items_year) > 0:
-            stripe.Subscription.create(
-                customer=stripe_id,
-                items=items_year
-            )
-        amount = request.session.get('ordering_price')
-        return render(request, 'userData/checkout.html', {'amount': amount})
+            new_steps.save()
+        amount = sum([i['price_amount'] for i in products])
+
+        request.session.pop('user_steps_data')
+        request.session.pop('ordering_products')
+        return render(request, 'checkout/checkout.html', {'amount': amount})
+
+
+def remove(request):
+    if request.method == 'POST':
+        data = request.POST
+        if 'delete_item' in data and data['delete_item']:
+            items = request.session.get('ordering_products')
+            for i in items.copy():
+                if i['price'] == data['delete_item']:
+                    items.remove(i)
+            request.session['ordering_products'] = items
+        return redirect("business:stripe_checkout")
+
+
+def charge(request):
+    if request.method == 'POST':
+        charge = stripe.Charge.create(
+            amount=request.POST['amount'],
+            currency='usd',
+            description='Get Dinero Today Service Charge',
+            source=request.POST['stripeToken']
+        )
+        return render(request, 'checkout/checkout.html', {'amount': request.POST['amount']})

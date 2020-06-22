@@ -1,7 +1,21 @@
-STRIPE_CONFIG = {
-    "STRIPE_PUBLISHABLE_KEY_TEST": 'pk_test_k8aDNdIlHgXwyIJIf1tswxny00h0Xyel4S',
-    "STRIPE_SECRET_KEY_TEST": 'sk_test_ZZa6QOdZS7mz9Xo17MxQHRgM00ozbxBI5g',
+import getdinerotoday.settings.production as production
+import getdinerotoday.settings.development as development
 
-    "STRIPE_PUBLISHABLE_KEY_PROD": 'pk_live_WdBBxb5xLQfPv4DCkjFiZLyh008ifSciL4',
-    "STRIPE_SECRET_KEY_PROD": 'sk_live_lQ8z3GZD05P6mW2MHEU7cf8o00Kph0qFvZ'
+STRIPE_CONFIG = {
+    "STRIPE_PUBLISHABLE_KEY_TEST": development.STRIPE_PUBLISHABLE_KEY,
+    "STRIPE_SECRET_KEY_TEST": development.STRIPE_SECRET_KEY,
+    "STRIPE_PUBLISHABLE_KEY_PROD": production.STRIPE_PUBLISHABLE_KEY,
+    "STRIPE_SECRET_KEY_PROD": production.STRIPE_SECRET_KEY
 }
+
+
+def run_production(stripe):
+    if stripe:
+        print("Stripe is set to PRODUCTION")
+        stripe.api_key = STRIPE_CONFIG.get('STRIPE_SECRET_KEY_PROD')
+
+
+def run_development(stripe):
+    if stripe:
+        print("Stripe is set to DEVELOPMENT")
+        stripe.api_key = STRIPE_CONFIG.get('STRIPE_SECRET_KEY_TEST')

@@ -57,7 +57,6 @@ def get_business_plan_context():
 
 
 def get_context_for_all(request, context=None):
-
     app_name = request.resolver_match.app_name
     if not context:
         context = {}
@@ -112,81 +111,56 @@ class BusinessCreditStepsView(View):
         template = "userData/BusinessCreditSteps.html"
         if "standalone" in request.path:
             template = "userData/BusinessCreditStepsStandalone.html"
-
-        # prices = stripe.Price.list()
-        # request.session['checkout'] = 'bljadtskoe bljas '
-
         form = BusinessCreditStepsForm()
         return render(request, template, context=get_context_for_all(request, {"form": form}))
 
     def post(self, request):
-        # print(request.POST)
         avail_products = self.get_products()['data']
         ordering_products = []
         services = {}
         total_payment = 0
-
         products_to_check = ['website', 'toll_free_number', 'fax_number', 'domain',
                              'professional_email_address', 'website_year', 'toll_free_number_year',
                              'fax_number_year', 'domain_year', 'professional_email_address_year']
-
         for i in products_to_check:
             if i in request.POST and request.POST[i] == 'on':
-                print(i)
                 if i.endswith("_year"):
                     service_in_model = i.replace("_year", "")
                     productname = service_in_model.replace("_", " ") + "_yearly"
                 else:
                     service_in_model = i
                     productname = service_in_model.replace("_", " ") + "_monthly"
-
-                print(productname)
                 product = self.get_specific_product(avail_products, productname)
                 ordering_products.append({
-                    'name': product['lookup_key'],
+                    'name': product['lookup_key'].replace("_", ", "),
                     'price': product['id'],
                     'quantity': 1,
-                    'price_amount': product['unit_amount']/100,
+                    'price_amount': product['unit_amount'] / 100,
                     'object': product
                 })
                 services[service_in_model] = 2
-                total_payment += product['unit_amount']/100
-
+                total_payment += product['unit_amount'] / 100
         domain_name = ''
         if 'domain_name_year' in request.POST and request.POST['domain_name_year']:
             domain_name = request.POST['domain_name_year']
         if 'domain_name' in request.POST and request.POST['domain_name']:
             domain_name = request.POST['domain_name_year']
-
         industry_name = ''
         if 'industry_year' in request.POST and request.POST['industry_year']:
             industry_name = request.POST['industry_year']
         if 'industry' in request.POST and request.POST['industry']:
             industry_name = request.POST['industry']
-
-        new_steps = UserSteps(
-            first_name=request.POST['first_name'],
-            last_name=request.POST['last_name'],
-            email=request.POST['email'],
-            phone=request.POST['phone'],
-            domain_name=domain_name,
-            industry_name=industry_name,
+        request.session['user_steps_data'] = {
+            'first_name': request.POST['first_name'],
+            'last_name': request.POST['last_name'],
+            'email': request.POST['email'],
+            'phone': request.POST['phone'],
+            'domain_name': domain_name,
+            'industry_name': industry_name,
             **services
-        )
-        new_steps.save()
-
+        }
         request.session['ordering_products'] = ordering_products
-        request.session['ordering_price'] = total_payment
-        # form = BusinessCreditStepsForm()
-
-        # return render(request, template, context=get_context_for_all(request, {"form": form}))
-        return redirect("business:test_stripe")
-        # except Exception as e:
-        #     template = "userData/BusinessCreditSteps.html"
-        #     if "standalone" in request.path:
-        #         template = "userData/BusinessCreditStepsStandalone.html"
-        #
-        #     return render(request, template, context=get_context_for_all(request, {}))
+        return redirect("business:stripe_checkout")
 
 
 class UserDataView(View):
@@ -1370,6 +1344,7 @@ class InsuranceProduct(View):
     def get(self, request):
         return render(request, 'insuranceProduct.html', context=get_context_for_all(request))
 
+
 class MoneyForBusinessCredit(View):
     def get(self, request):
         return render(request, 'moneyforbusinesscredit.html', context=get_context_for_all(request))
@@ -1639,14 +1614,3 @@ class VirtualCardView(View):
 class BusinessStepsMobile(View):
     def get(self, request):
         return render(request, "userData/BusinessCreditSteps_mobile.html")
-
-
-def charge(request):
-    if request.method == 'POST':
-        charge = stripe.Charge.create(
-            amount=request.POST['amount'],
-            currency='usd',
-            description='Get Dinero Today Service Charge',
-            source=request.POST['stripeToken']
-        )
-        return render(request, 'userData/checkout.html', {'amount': request.POST['amount']})

@@ -1,8 +1,8 @@
 import stripe
 from payments.stripe.config import STRIPE_CONFIG
-from payments.product_list import products
+from .product_list import products
 
-stripe.api_key = STRIPE_CONFIG.get("STRIPE_SECRET_KEY_TEST")
+stripe.api_key = STRIPE_CONFIG.get("STRIPE_SECRET_KEY_PROD")
 
 
 def create_product(product):
@@ -19,7 +19,6 @@ def create_product(product):
         print(f"Created product {product['name']}")
 
     prices = stripe.Price.list(product=product_id)['data']
-    prices = stripe.Price.list()['data']
 
     if len(prices) > 0:
         for price in prices:
