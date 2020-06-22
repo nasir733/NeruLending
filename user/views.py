@@ -17,8 +17,11 @@ from user.models import Portal, PortalGoal
 from .decorators import unauthenticated_user
 from .models import Profile
 from django.contrib.auth.forms import AuthenticationForm
+from django.conf import settings
 
+import stripe
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 class GDTLoginView(LoginView):
@@ -84,20 +87,89 @@ class PasswordChangeDoneView(View):
 
 class MyProgressView(View):
     def get(self, request):
-
         request.resolver_match.app_name = 'business'
-        return render(request, "my_progress.html")
+        context = {
+            'source_cards': [],
+            'subscriptions': []
+        }
+        profile = Profile.objects.get(user=request.user)
+        stripe_id = profile.stripe_id
+        if not stripe_id:
+            stripe_user = stripe.Customer.create(
+                name=f"{request.user.first_name} {request.user.last_name}",
+                email=request.user.email,
+            )
+            profile.stripe_id = stripe_user['id']
+            profile.save()
+        else:
+            stripe_user = stripe.Customer.retrieve(stripe_id)
+
+        default_source = stripe_user['default_source']
+        context['stripe_user'] = stripe_user
+        for i in stripe_user['sources']['data']:
+            if i['id'] == default_source:
+                i['is_default'] = True
+            context['source_cards'].append(i)
+
+        if len(stripe_user['subscriptions']['data']) > 0:
+            for i in stripe_user['subscriptions']['data']:
+                names = []
+                interval = ''
+                total = 0
+
+                for kk in i['items']['data']:
+                    names.append(kk['price']['lookup_key'].split("_")[0])
+                    interval = kk['plan']['interval']
+                    total = kk['price']['unit_amount']/100
+
+                sub = {
+                    'name': ', '.join(names),
+                    'total': total,
+                    'interval': interval,
+                    'subscription_id': i['id']
+                }
+                context['subscriptions'].append(sub)
+
+
+
+
+        return render(request, "my_progress.html", context=context)
 
     def post(self, request):
         data = request.POST
-        user = request.user
-        email_changed = data['email'] != user.email
-        user.email = data['email']
-        user.profile.phone_number = data['phone']
-        user.save()
-        user.profile.save()
-        if email_changed:
-            update_session_auth_hash(request, user)
+        profile = Profile.objects.get(user=request.user)
+        if 'commit' in data and data['commit'] == "Save":
+            user = request.user
+            email_changed = data['email'] != user.email
+            user.email = data['email']
+            user.profile.phone_number = data['phone']
+            user.save()
+            user.profile.save()
+            if email_changed:
+                update_session_auth_hash(request, user)
+
+        if 'delete_card' in data and data['delete_card'] == "Delete":
+            if 'card' in data and data['card']:
+                stripe.Customer.delete_source(
+                    profile.stripe_id,
+                    data['card'],
+                )
+
+        if 'create_card' in data and data['create_card'] == "Add":
+            token = stripe.Token.create(
+                card={
+                    "number": data['cc_number'],
+                    "exp_month": data['exp_month'],
+                    "exp_year": data['exp_year'],
+                    "cvc": data['cvc'],
+                },
+            )
+            stripe.Customer.modify(profile.stripe_id, source=token)
+
+        if 'cancel_subscription' in data and data['cancel_subscription'] == 'Unsubscribe':
+            if 'subscription_id' in data and data['subscription_id']:
+                stripe.Subscription.delete(data['subscription_id'])
+
         return HttpResponseRedirect(reverse('user:myprogress'))
 
 

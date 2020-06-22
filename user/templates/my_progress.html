@@ -1,6 +1,7 @@
 {% extends "pages/base-business.html" %}
 {#{% extends request.resolver_match.page_template %}#}
 {% load static %}
+{% load mathfilters %}
 {% block title %}
 
 {% endblock title %}
@@ -12,20 +13,22 @@
         }
     </style>
     <script>
+
         var showForm = function () {
             $("#user_info").hide()
             $("#user_edit").show();
+        };
+
+        var addCard = function () {
+            $("#list-of-cards").toggle()
+            $("#add_new_card").toggle();
         };
     </script>
 {% endblock extrastyle %}
 
 {% block content %}
-    <div class="row page-header">
-        <div class="col-lg-6 align-self-center ">
-        </div>
-    </div>
     <section class="main-content">
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-md-4">
                 <div class="widget white-bg">
                     <div class="padding-20 text-center">
@@ -36,6 +39,8 @@
                     </div>
                 </div>
                 <div class='widget white-bg friends-group clearfix' id="user_info" style="display:block;">
+                    <div class="widget-title"><p>My Details</p></div>
+
                     <small class="text-muted">Email address </small>
                     <p>{{ request.user.email }}</p>
                     <small class="text-muted">Phone</small>
@@ -45,6 +50,8 @@
                     </p>
                 </div>
                 <div class="widget white-bg friends-group clearfix" id="user_edit" style="display:none;">
+                    <div class="widget-title">My Details</div>
+
                     <form action="{% url 'user:myprogress' %}" accept-charset="UTF-8" method="post">
                         {% csrf_token %}
                         <div class="form-group">
@@ -66,6 +73,109 @@
                         <input type="submit" name="commit" value="Save" class="btn btn-block btn-primary"
                                data-disable-with="Save">
                     </form>
+                </div>
+                <div class='widget white-bg friends-group clearfix' id="credit-cards">
+                    <div class="widget-title mb-2"><p>My Subscriptions</p></div>
+                    <div class="widget-content">
+                        <ul class="list-group">
+                            {% for subscription in subscriptions %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>{{ subscription.name }}</span>
+                                    <span>{{ subscription.total }}/{{ subscription.interval }}</span>
+                                    <form method="post">{% csrf_token %}<input class="btn btn-link" type="submit"
+                                            name="cancel_subscription" value="Unsubscribe">
+                                        <input type="hidden" name="subscription_id" value="{{ subscription.subscription_id }}"></form>
+                                </div>
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class='widget white-bg friends-group clearfix' id="credit-cards">
+                    <div class="widget-title mb-2">My Credit Cards</div>
+                    <div class="widget-content" id="list-of-cards">
+
+                        <ul class="list-group">
+                            {% for card in source_cards %}
+                                <li class="list-group-item d-flex align-items-center justify-content-between">
+                                    <strong>XXXX-XXXX-XXXX-{{ card.last4 }} {{ card.brand }}</strong>
+                                    {% if card.is_default %}<small class="text-muted">Default</small>{% endif %}
+                                    <form style="float: right" method="post">{% csrf_token %}<input
+                                            class="btn btn-sm btn-primary" type="submit"
+                                            name="delete_card" value="Delete">
+                                        <input type="hidden" name="card" value="{{ card.id }}"></form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <span class="btn btn-link" onclick="addCard()">Add</span>
+                    </div>
+
+
+                    <div class="widget-content" id="add_new_card" style="display: none">
+                        <form method="post">{% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="ccnumber">Credit Card Number</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="0000 0000 0000 0000" name="cc_number">
+                                            <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-credit-card"></i>
+                                        </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label for="ccmonth">Month</label>
+                                    <select class="form-control" id="ccmonth" name="exp_month">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label for="ccyear">Year</label>
+                                    <select class="form-control" id="ccyear" name="exp_year">
+                                        <option>2020</option>
+                                        <option>2021</option>
+                                        <option>2022</option>
+                                        <option>2023</option>
+                                        <option>2024</option>
+                                        <option>2025</option>
+                                        <option>2026</option>
+                                        <option>2027</option>
+                                        <option>2028</option>
+                                        <option>2029</option>
+                                        <option>2030</option>
+                                        <option>2031</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label for="cvv">CVV/CVC</label>
+                                        <input class="form-control" id="cvv" type="text" placeholder="123" name="cvc">
+                                    </div>
+                                </div>
+                            </div>
+                            <input class="btn btn-sm btn-primary" type="submit" name="create_card" value="Add">
+                            <span class="btn btn-link" onclick="addCard()">Cancel</span>
+
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="col-md-8 col-xs-12">
@@ -96,7 +206,8 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Google Chrome Extension Portal</p>
-                            <a class="btn btn-primary" href="{% url 'chromeextension:chromeextensionindex' %}" target="_blank">Click
+                            <a class="btn btn-primary" href="{% url 'chromeextension:chromeextensionindex' %}"
+                               target="_blank">Click
                                 Here To Go To The <br>Google Chrome Extension Portal</a>
                         </div>
                     </div>
@@ -104,7 +215,8 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Create Your Specific Portal / <br> View Saved Portals</p>
-                            <a class="btn btn-primary" href="{% url 'business:create_specific_portal' %}" target="_blank">
+                            <a class="btn btn-primary" href="{% url 'business:create_specific_portal' %}"
+                               target="_blank">
                                 Click Here To Create Your Specific <br>Portal & View Your Saved Portals
                             </a>
                         </div>

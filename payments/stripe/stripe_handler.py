@@ -1,6 +1,8 @@
 import stripe
 import payments.stripe.config as config
-config.run_production(stripe)
+# config.run_production(stripe)
+config.run_development(stripe)
+
 
 
 def create_customer():

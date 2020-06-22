@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'products',
     'onlinetools',
     'chromeextension',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
