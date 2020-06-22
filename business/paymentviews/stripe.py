@@ -7,7 +7,7 @@ from user.models import UserSteps
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
-
+from uuid import uuid4
 
 def get_common_context(request, context=None):
     if not context:
@@ -40,6 +40,9 @@ class StripeCheckout(View):
         products = request.session.get('ordering_products')
         if products:
             amount = sum([i['price_amount'] for i in products])
+
+        cart_uuid = uuid4()
+        request.session['cart_uuid'] = str(cart_uuid)
         return render(request,
                       "checkout/stripeCheckout.html",
                       context=get_common_context(request,
@@ -52,9 +55,11 @@ class StripeCheckout(View):
 
 
 def subscription(request):
+    if not request.session.get('cart_uuid'):
+        return redirect("homepage")
     if request.method == 'POST':
+        request.session.pop('cart_uuid')
         data = request.POST
-
         # Create new stripe customer or add payment method to existing customer.
         profile = Profile.objects.get(user=request.user)
         stripe_id = profile.stripe_id
@@ -103,6 +108,7 @@ def subscription(request):
 
         amount = sum([i['price_amount'] for i in products])
         request.session.pop('ordering_products')
+
         return render(request, 'checkout/checkout.html', {'amount': amount})
 
 
