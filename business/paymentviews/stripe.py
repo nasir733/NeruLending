@@ -21,6 +21,7 @@ class StripeCheckout(View):
         profile = Profile.objects.get(user=request.user)
         stripe_id = profile.stripe_id
         add_new_payment_method = True
+        amount = 0
         def_card = {
             'card_brand': '',
             'card_last4': ''
@@ -37,7 +38,8 @@ class StripeCheckout(View):
                         break
 
         products = request.session.get('ordering_products')
-        amount = sum([i['price_amount'] for i in products])
+        if products:
+            amount = sum([i['price_amount'] for i in products])
         return render(request,
                       "checkout/stripeCheckout.html",
                       context=get_common_context(request,

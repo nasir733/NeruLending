@@ -838,6 +838,25 @@ class WebsiteCreationView(View):
             request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/websiteCreation.html', context=get_context_for_all(request))
 
+    def post(self, request):
+        data = request.POST
+        if 'variant' in data and data['variant']:
+            product = None
+            if data['variant'] == 'monthly':
+                product = stripe.Price.list(lookup_keys=['Website_monthly'])['data'][0]
+            elif data['variant'] == 'yearly':
+                product = stripe.Price.list(lookup_keys=['Website_yearly'])['data'][0]
+            if product:
+                print(product)
+                request.session['ordering_products'] = [{
+                    'name': product['lookup_key'].replace("_", ", "),
+                    'price': product['id'],
+                    'quantity': 1,
+                    'price_amount': product['unit_amount'] / 100,
+                    'object': product
+                }]
+            return redirect("business:stripe_checkout")
+
 
 class FaxNumberOptionsView(View):
     def get(self, request):
@@ -872,6 +891,24 @@ class FaxNumberView(View):
             request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/faxNumber.html', context=get_context_for_all(request))
 
+    def post(self, request):
+        data = request.POST
+        if 'variant' in data and data['variant']:
+            product = None
+            if data['variant'] == 'monthly':
+                product = stripe.Price.list(lookup_keys=['Fax Number_monthly'])['data'][0]
+            elif data['variant'] == 'yearly':
+                product = stripe.Price.list(lookup_keys=['Fax Number_yearly'])['data'][0]
+            if product:
+                print(product)
+                request.session['ordering_products'] = [{
+                    'name': product['lookup_key'].replace("_", ", "),
+                    'price': product['id'],
+                    'quantity': 1,
+                    'price_amount': product['unit_amount'] / 100,
+                    'object': product
+                }]
+            return redirect("business:stripe_checkout")
 
 class FourElevenListingView(View):
     def get(self, request):
@@ -923,6 +960,25 @@ class TollFreeNumberOptionsView(View):
         # return render(request, 'businessCreditBuilding/tollFreeNumberOptions.html', {'toll_free_number_paid':
         # toll_free_number_paid})
 
+    def post(self, request):
+        data = request.POST
+        if 'variant' in data and data['variant']:
+            product = None
+            if data['variant'] == 'monthly':
+                product = stripe.Price.list(lookup_keys=['Toll Free Number_monthly'])['data'][0]
+            elif data['variant'] == 'yearly':
+                product = stripe.Price.list(lookup_keys=['Toll Free Number_yearly'])['data'][0]
+            if product:
+                print(product)
+                request.session['ordering_products'] = [{
+                    'name': product['lookup_key'].replace("_", ", "),
+                    'price': product['id'],
+                    'quantity': 1,
+                    'price_amount': product['unit_amount'] / 100,
+                    'object': product
+                }]
+            return redirect("business:stripe_checkout")
+
 
 class TollFreeNumberPaidView(View):
     def get(self, request):
@@ -940,6 +996,7 @@ class TollFreeNumberView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
+
 
 
 class VirtualAddressView(View):

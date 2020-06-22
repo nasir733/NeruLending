@@ -127,29 +127,19 @@
                         <br>
                         <div class="text-center">
                             Monthly option - $40 USD:<br>
-                            <form action="{% url 'business:charge' %}" method="post">
+                            <form method="post">
                                 {% csrf_token %}
-                                <input type="hidden" id="amount" name="amount" value="4000">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ stripe_key }}"
-                                        data-description="A Django Charge"
-                                        data-amount="4000"
-                                        data-locale="auto">
-                                </script>
+                                <input type="hidden" class="btn btn-primary" value="monthly" name="variant">
+                                <button type="submit" class="btn btn-primary">Order now</button>
                             </form>
                         </div>
                         <br>
                         <div class="text-center">
                             Save 50% with annual option - $420 USD:<br>
-                            <form action="{% url 'business:charge' %}" method="post">
+                                                        <form method="post">
                                 {% csrf_token %}
-                                <input type="hidden" id="amount" name="amount" value="42000">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ stripe_key }}"
-                                        data-description="A Django Charge"
-                                        data-amount="42000"
-                                        data-locale="auto">
-                                </script>
+                                <input type="hidden" class="btn btn-primary" value="yearly" name="variant">
+                                <button type="submit" class="btn btn-primary">Order now</button>
                             </form>
                         </div>
 
