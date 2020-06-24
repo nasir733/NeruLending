@@ -19,7 +19,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <form method="post">{% csrf_token %}
+                    <form method="post" id="steps-form">{% csrf_token %}
                         <div class="row mb-2">
                             <div class="col-6">
                                 {{ form.first_name.label_tag }}{{ form.first_name }}
@@ -153,7 +153,14 @@
                                 </div>
                                 <div style="display: none" id="domain-year-field">
                                     <label for="domain_name_year">Domain name:</label>
-                                    <input type="text" name="domain_name_year" id="domain_name_year">
+                                    <div style="display: flex">
+                                        <input type="text" name="domain_name_year" id="domain_name_year">
+                                        <div>
+                                            <a class="btn btn-primary" onclick="checkDomain()">Check</a>
+                                        </div>
+
+                                    </div>
+                                    <div id="domain-status"></div>
                                 </div>
 
                                 <div>
@@ -239,59 +246,69 @@
 
     <script>
 
+        document.getElementById('steps-form').addEventListener('change', calculateAmount)
+
+        $('#steps-form').submit(async function (evt) {
+            evt.preventDefault();
+            if (document.getElementById('domain_year').checked && await checkDomain()) {
+                 this.submit();
+            }
+        });
+
+        async function checkDomain() {
+            var formData = new FormData();
+            formData.append('domain', document.getElementById('domain_name_year').value)
+            var response = await fetch('{% url "check_domain" %}', {
+                method: 'POST',
+
+                body: formData
+            })
+            var data = await response.json()
+
+            if (data.status === 'true') {
+                document.getElementById('domain-status').innerHTML = document.getElementById('domain_name_year').value + " is available."
+                document.getElementById('domain-status').style.color = 'inherit'
+                return  true
+            } else {
+                document.getElementById('domain-status').innerHTML = data.error
+                document.getElementById('domain-status').style.color = 'red'
+                return  false
+            }
+        }
+
+        function calculateAmount() {
+            var prices = {
+                'website': 50,
+                'toll_free': 40,
+                'fax_number': 40,
+                'domain_year': 13.99,
+                'professional_email': 7.99,
+                'website_year': 300,
+                'toll_free_year': 420,
+                'fax_number_year': 240,
+                'professional_email_year': 42
+            }
+            var total = 0
+            for (let [key, value] of Object.entries(prices)) {
+                var el = document.getElementById(key);
+                if (el.checked) {
+                    total += value
+                }
+            }
+            $("#total_amount").html(round(total))
+        }
+
         function round(amount) {
             var rounded = Math.round(amount * 100) / 100
             return rounded
         }
 
-        function changeAmount(checked, price) {
-            var amount = Number($("#total_amount").html());
-            if (checked) {
-                $("#total_amount").html(round(amount + price))
-            } else {
-                $("#total_amount").html(round(amount - price))
-            }
-        }
-
-        $("#website").change(function () {
-            changeAmount(this.checked, 50)
-        });
-        $("#toll_free").change(function () {
-            changeAmount(this.checked, 40)
-        });
-        $("#fax_number").change(function () {
-            changeAmount(this.checked, 40)
-        });
-        $("#domain").change(function () {
-            changeAmount(this.checked, 13.99)
-        });
-        $("#professional_email").change(function () {
-            changeAmount(this.checked, 7.99)
-        });
-
-        $("#website_year").change(function () {
-            changeAmount(this.checked, 300)
-        });
-        $("#toll_free_year").change(function () {
-            changeAmount(this.checked, 420)
-        });
-        $("#fax_number_year").change(function () {
-            changeAmount(this.checked, 240)
-        });
-
-        $("#professional_email_year").change(function () {
-            changeAmount(this.checked, 42)
-        });
-
         $("#domain_year").on('change', (event) => {
             var field = document.getElementById('domain-year-field')
             if (event.target.checked) {
-                changeAmount(event.target.checked, 13.99)
                 field.style.display = 'block'
             } else {
-                changeAmount(event.target.checked, 13.99)
                 field.style.display = 'none'
-
             }
         });
 

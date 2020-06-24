@@ -11,6 +11,7 @@ from user import models as usermodels
 from yourplan import models as yourplanModels
 from loanportal import models as loanModels
 
+import whois
 
 class TokenObtainPairPatchedView(TokenObtainPairView):
     serializer_class = apiserializers.TokenObtainPairPatchedSerializer
@@ -232,10 +233,35 @@ class uploadLoanDocument(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-
-
-
-
         return Response({
             'message':'good'
         })
+
+
+class checkDomainApi(APIView):
+    def post(self, request):
+        try:
+            print(request.POST)
+            domain = request.POST['domain']
+            domain = domain.replace("www.", "").replace("http://", "").replace("https://", "")
+            if not len(domain) > 0:
+                raise ValueError('Domain can not be empty')
+            if '.' not in domain:
+                raise ValueError('Wrong domain format')
+
+            domainData = whois.query(domain)
+            if not domainData:
+                return Response({
+                    'status': 'true'
+                }, 200)
+            else:
+                return Response({
+                    'status': 'false',
+                    'error': f"domain {domain} is already taken."
+                }, 200)
+
+        except Exception as e:
+            return Response({
+                'status': 'false',
+                'error': str(e)
+            }, 200)

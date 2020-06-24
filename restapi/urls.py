@@ -32,6 +32,7 @@ urlpatterns = [
 
 
     path('loans/upload-document/', uploadLoanDocument.as_view(), name='upload-document'),
+    path('domain/check', checkDomainApi.as_view(), name='check_domain'),
 
 
 ]
