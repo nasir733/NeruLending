@@ -248,8 +248,11 @@ class checkDomainApi(APIView):
                 raise ValueError('Domain can not be empty')
             if '.' not in domain:
                 raise ValueError('Wrong domain format')
+            try:
+                domainData = whois.whois(domain)
+            except whois.parser.PywhoisError:
+                domainData = None
 
-            domainData = whois.query(domain)
             if not domainData:
                 return Response({
                     'status': 'true'

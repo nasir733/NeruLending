@@ -25,4 +25,4 @@ djangorestframework_simplejwt
 djangorestframework
 django-cors-headers
 stripe
-whois
+python-whois
