@@ -3,6 +3,8 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from business.urls import urlpatterns as business_urls
 
+from business.urls import urlpatterns as business_urls
+
 app_name = 'fitness'
 
 urlpatterns = [
