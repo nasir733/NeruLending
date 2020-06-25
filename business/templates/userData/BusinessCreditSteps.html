@@ -250,9 +250,14 @@
 
         $('#steps-form').submit(async function (evt) {
             evt.preventDefault();
-            if (document.getElementById('domain_year').checked && await checkDomain()) {
-                 this.submit();
+            if (!document.getElementById('domain_year').checked) {
+                this.submit();
+            } else {
+                if (await checkDomain()) {
+                    this.submit();
+                }
             }
+
         });
 
         async function checkDomain() {
@@ -268,11 +273,11 @@
             if (data.status === 'true') {
                 document.getElementById('domain-status').innerHTML = document.getElementById('domain_name_year').value + " is available."
                 document.getElementById('domain-status').style.color = 'inherit'
-                return  true
+                return true
             } else {
                 document.getElementById('domain-status').innerHTML = data.error
                 document.getElementById('domain-status').style.color = 'red'
-                return  false
+                return false
             }
         }
 
@@ -311,7 +316,7 @@
                 field.style.display = 'none'
             }
         });
-
+        calculateAmount()
     </script>
 
 {% endblock %}

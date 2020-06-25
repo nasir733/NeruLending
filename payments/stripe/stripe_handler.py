@@ -12,7 +12,7 @@ def create_customer():
 
 
 def lsit_customers():
-    return stripe.Customer.list(limit=3)
+    return stripe.Customer.list(limit=3)['data'][0]
 
 a = stripe.Customer.list(limit=2)['data'][1]
 

@@ -87,8 +87,25 @@
             font-weight: 500;
             font-size: 13px;
         }
-    </style>
 
+        .button-link {
+            background: none !important;
+            border: none;
+            padding: 0 !important;
+            color: #4b71fa;
+            cursor: pointer;
+        }
+
+        .button-link:hover {
+            color: #0056b3;
+        }
+    </style>
+    <script>
+        function changePaymentMethod() {
+
+            $("#add_change_payment_method").toggle()
+        }
+    </script>
 {% endblock extrastyle %}
 {% block content %}
 
@@ -131,9 +148,16 @@
                             </tr>
                         </table>
                         {% if add_card %}
-                            <form action="{% url "business:subscription_stripe" %}" method="post" id="stripe_form">{% csrf_token %}
+                            Add card:
+                            {% if cards_available %}
+                                <form action="{% url "business:stripe_checkout" %}" method="post">{% csrf_token %}
+                                    <input type="submit" name="back_to_checkout_cards" value="Back" class="button-link">
+                                </form>
+                            {% endif %}
+                            <form action="{% url "business:subscription_stripe" %}" method="post"
+                                  id="stripe_form">{% csrf_token %}
                                 <div>
-                                    Add card:
+
                                     <div class="group">
                                         <label>
                                             <span>Name</span>
@@ -148,7 +172,6 @@
                                     </div>
                                     <input id="stripeToken" name="stripeToken" type="hidden"/>
                                 </div>
-
                                 <button type="submit" class="btn btn-primary btn-block">Pay ${{ amount }}</button>
                                 <div class="outcome">
                                     <div class="error" role="alert"></div>
@@ -158,8 +181,22 @@
                                 </div>
                             </form>
                         {% else %}
+                            Selected card: {{ def_card.card_brand }} {{ def_card.card_last4 }}<br>
+                            <a href="#" onclick="changePaymentMethod()">Change</a><br><br>
+                            <div style="display: none" id="add_change_payment_method">
+                                {% for card in sources_available %}
+                                    <form action="{% url "business:stripe_checkout" %}" method="post">{% csrf_token %}
+                                        {{ def_card.card_brand }} {{ card.last4 }}
+                                        <input type="hidden" name="source_id" value="{{ card.id }}">
+                                        <button class="button-link">Select</button>
+                                    </form>
+                                {% endfor %}
+                                <form action="{% url "business:stripe_checkout" %}" method="post">{% csrf_token %}
+                                    <input type="submit" name="add_new_card" class="button-link" value="Add New Card">
+                                </form>
+                            </div>
+                            <br>
                             <form action="{% url "business:subscription_stripe" %}" method="post">{% csrf_token %}
-                                Selected card: {{ def_card.card_brand }} {{ def_card.card_last4 }}<br><br>
                                 <input id="stripeToken" name="stripeToken" type="hidden"/>
                                 <button type="submit" class="btn btn-primary btn-block">Pay ${{ amount }}</button>
                             </form>
@@ -204,8 +241,6 @@
                 errorElement.classList.remove('visible');
 
                 if (result.token) {
-                    // Use the token to create a charge or a customer
-                    // https://stripe.com/docs/charges
                     document.getElementById('stripeToken').value = result.token.id;
                     successElement.querySelector('.token').textContent = result.token.id;
                     successElement.classList.add('visible');

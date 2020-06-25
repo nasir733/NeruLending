@@ -9,6 +9,7 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from uuid import uuid4
 
+
 def get_common_context(request, context=None):
     if not context:
         context = {}
@@ -21,21 +22,38 @@ class StripeCheckout(View):
         profile = Profile.objects.get(user=request.user)
         stripe_id = profile.stripe_id
         add_new_payment_method = True
+        cards_available = False
         amount = 0
         def_card = {
             'card_brand': '',
             'card_last4': ''
         }
+        sources_available = []
         if stripe_id:
             stripe_user = stripe.Customer.retrieve(stripe_id)
+            sources_available = stripe_user['sources']['data']
             if stripe_user['default_source']:
                 add_new_payment_method = False
+                cards_available = True
                 card_id = stripe_user['default_source']
                 for i in stripe_user['sources']['data']:
                     if i['id'] == card_id:
                         def_card['card_brand'] = i['brand']
                         def_card['card_last4'] = i['last4']
                         break
+
+        if request.session.get('add_new_card'):
+            add_new_payment_method = True
+            request.session.pop('add_new_card')
+
+        source_id = request.session.get('use_source_id')
+
+        if source_id:
+            for i in sources_available:
+                if i['id'] == source_id:
+                    def_card['card_brand'] = i['brand']
+                    def_card['card_last4'] = i['last4']
+                    break
 
         products = request.session.get('ordering_products')
         if products:
@@ -50,8 +68,23 @@ class StripeCheckout(View):
                                                      "add_card": add_new_payment_method,
                                                      "def_card": def_card,
                                                      "amount": amount,
-                                                     "products": products
+                                                     "products": products,
+                                                     "cards_available": cards_available,
+                                                     "sources_available": sources_available
                                                  }))
+
+    def post(self, request):
+        data = request.POST
+        if 'add_new_card' in data and data['add_new_card'] == 'Add New Card':
+            request.session['add_new_card'] = True
+
+        if 'back_to_checkout_cards' in data and data['back_to_checkout_cards'] == 'Back':
+            request.session['back_to_checkout_cards'] = True
+
+        if 'source_id' in data and data['source_id']:
+            request.session['use_source_id'] = data['source_id']
+
+        return redirect('business:stripe_checkout')
 
 
 def subscription(request):
@@ -83,6 +116,9 @@ def subscription(request):
             'year': [],
             'month': []
         }
+
+        source_id = request.session.get('use_source_id')
+
         for i in products:
             for key in items:
                 if i['object']['recurring'] and i['object']['recurring']['interval'] == key:
@@ -92,11 +128,20 @@ def subscription(request):
                     })
         for i, k in items.items():
             if len(k) > 0:
-                stripe.Subscription.create(
-                    customer=stripe_id,
-                    items=k
-                )
+                if source_id:
+                    stripe.Subscription.create(
+                        customer=stripe_id,
+                        items=k,
+                        default_source=source_id
+                    )
+                else:
+                    stripe.Subscription.create(
+                        customer=stripe_id,
+                        items=k
+                    )
 
+        if source_id:
+            request.session.pop('use_source_id')
         # Add UserSteps if there is in session
         user_steps_data = request.session.get('user_steps_data')
         if user_steps_data:
