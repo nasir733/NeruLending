@@ -83,8 +83,10 @@
                                     <span>{{ subscription.name }}</span>
                                     <span>{{ subscription.total }}/{{ subscription.interval }}</span>
                                     <form method="post">{% csrf_token %}<input class="btn btn-link" type="submit"
-                                            name="cancel_subscription" value="Unsubscribe">
-                                        <input type="hidden" name="subscription_id" value="{{ subscription.subscription_id }}"></form>
+                                                                               name="cancel_subscription"
+                                                                               value="Unsubscribe">
+                                        <input type="hidden" name="subscription_id"
+                                               value="{{ subscription.subscription_id }}"></form>
                                 </div>
                             {% endfor %}
 
@@ -119,7 +121,8 @@
                                     <div class="form-group">
                                         <label for="ccnumber">Credit Card Number</label>
                                         <div class="input-group">
-                                            <input class="form-control" type="text" placeholder="0000 0000 0000 0000" name="cc_number">
+                                            <input class="form-control" type="text" placeholder="0000 0000 0000 0000"
+                                                   name="cc_number">
                                             <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="mdi mdi-credit-card"></i>
@@ -177,6 +180,33 @@
                         </form>
                     </div>
                 </div>
+
+
+                <div class='widget white-bg friends-group clearfix' id="user_info" style="display:block;">
+                    <div class="widget-title"><p>My Ordered Services</p></div>
+                    <div class="widget-content">
+
+                    <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th style="width: 1%;">Product</th>
+                            </tr>
+                            </thead>
+                            {% for service in services %}
+                                <tr class="bg-white">
+                                    <td>{{ service.name }}</td>
+                                    <td>{{ service.status }}</td>
+                                    <td>{{ service.product }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+
+
+                    </div>
+                </div>
+
             </div>
             <div class="col-md-8 col-xs-12">
                 <div class="card">
@@ -189,7 +219,7 @@
                         <div class="card mx-2 text-center" style="width: 21rem;">
                             <div class="card-body">
                                 <p>Your Payment Plan Portal</p>
-                                <a class="btn btn-primary" href="{% url 'yourplan:yourplan' %}" >Click
+                                <a class="btn btn-primary" href="{% url 'yourplan:yourplan' %}">Click
                                     Here To Go To <br> Your Payment Plan Portal</a>
                             </div>
                         </div>
@@ -197,7 +227,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Apply For Loans</p>
-                            <a class="btn btn-primary" href="{% url 'loanportal:loanapplication' %}" >Click
+                            <a class="btn btn-primary" href="{% url 'loanportal:loanapplication' %}">Click
                                 Here To Login To Your <br> Portal To Apply For Loans</a>
                         </div>
                     </div>
@@ -206,7 +236,7 @@
                         <div class="card-body">
                             <p>Google Chrome Extension Portal</p>
                             <a class="btn btn-primary" href="{% url 'chromeextension:chromeextensionindex' %}"
-                               >Click
+                            >Click
                                 Here To Go To The <br>Google Chrome Extension Portal</a>
                         </div>
                     </div>
@@ -215,7 +245,7 @@
                         <div class="card-body">
                             <p>Create Your Specific Portal / <br> View Saved Portals</p>
                             <a class="btn btn-primary" href="{% url 'business:create_specific_portal' %}"
-                               >
+                            >
                                 Click Here To Create Your Specific <br>Portal & View Your Saved Portals
                             </a>
                         </div>
@@ -223,7 +253,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Choose Your Goal With This Platform</p>
-                            <a class="btn btn-primary" href="{% url 'business:goals' %}" >
+                            <a class="btn btn-primary" href="{% url 'business:goals' %}">
                                 Click Here To Choose <br>Your Goal With This Platform
                             </a>
                         </div>
@@ -231,7 +261,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Go To Affiliate Agent Portal</p>
-                            <a class="btn btn-primary" href="https://getdinerotoday.tapfiliate.com/" target="_blank" >
+                            <a class="btn btn-primary" href="https://getdinerotoday.tapfiliate.com/" target="_blank">
                                 Click Here To Go To The <br> Affiliate Agent Portal
                             </a>
                         </div>
@@ -247,7 +277,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Get The Online Tools To Grow Your Business</p>
-                            <a class="btn btn-primary" href="{% url 'onlinetools:onlinetoolshome' %}" >
+                            <a class="btn btn-primary" href="{% url 'onlinetools:onlinetoolshome' %}">
                                 Click Here To Go To <br>The Online Tools Portal
                             </a>
                         </div>
@@ -255,7 +285,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Go To Marketing Couse</p>
-                            <a class="btn btn-primary" href="{% url 'marketingcourse:mainfile' %}" >
+                            <a class="btn btn-primary" href="{% url 'marketingcourse:mainfile' %}">
                                 Click Here To Go To Marketing Course
                             </a>
                         </div>
@@ -263,7 +293,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Go To Business Credit Building Course</p>
-                            <a class="btn btn-primary" href="{% url 'businesscreditcourse:home' %}" >
+                            <a class="btn btn-primary" href="{% url 'businesscreditcourse:home' %}">
                                 Click Here To Go To The Business <br> Credit Building Course
                             </a>
                         </div>

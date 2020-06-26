@@ -130,6 +130,8 @@ class BusinessCreditStepsView(View):
                 else:
                     service_in_model = i
                     productname = service_in_model.replace("_", " ") + "_monthly"
+                    if i == 'domain':
+                        productname = 'domain_yearly'
                 product = self.get_specific_product(avail_products, productname)
                 ordering_products.append({
                     'name': product['lookup_key'].replace("_", ", "),

@@ -17,218 +17,242 @@
                     <h3> Watch The Introduction Video To Understand How To Use The Extension</h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <form method="post" id="steps-form">{% csrf_token %}
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                {{ form.first_name.label_tag }}{{ form.first_name }}
-                            </div>
-                            <div class="col-6">
-                                {{ form.last_name.label_tag }}{{ form.last_name }}
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                {{ form.email.label_tag }}{{ form.email }}
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                {{ form.phone.label_tag }}{{ form.phone }}
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-12 font-weight-bold">
-                                Choose The Business Credit Building Steps From The List That You Need
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-6 d-flex flex-column">
-                                <div class="text-center mb-2 font-weight-bold">
-                                    Monthly Options
+            <div class="row justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" id="steps-form">{% csrf_token %}
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    {{ form.first_name.label_tag }}{{ form.first_name }}
                                 </div>
-                                <div>
-                                    <input type="checkbox" name="website" id="website">
-                                    <label for="website">Website: $50 USD - monthly</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="toll_free_number" id="toll_free">
-                                    <label for="toll_free">Toll Free Number: $40 USD - monthly</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="fax_number" id="fax_number">
-                                    <label for="fax_number">Fax Number: $40 USD - monthly</label>
-                                </div>
-                                {#                            <div style="height: 32px">#}
-                                {#                                <input type="checkbox" name="domain" id="domain">#}
-                                {#                                <label for="domain">Domain: $13.99 USD</label>#}
-                                {##}
-                                {#                            </div>#}
-                                <div>
-                                    <input type="checkbox" name="professional_email_address" id="professional_email">
-                                    <label for="professional_email">Professional Email Address: $7.99 USD -
-                                        monthly</label>
-                                </div>
-                                {#                            <div>#}
-                                {#                                <label for="domain_name">Domain name:</label>#}
-                                {#                                <input type="text" name="domain_name" id="domain_name">#}
-                                {#                            </div>#}
-                                <div>
-                                    <label for="industry">Select Industry:</label><br>
-                                    <select name="industry" id="industry" class="custom-select w-100">
-                                        <option>Electrician</option>
-                                        <option>Garderner</option>
-                                        <option>Tattoo Artist</option>
-                                        <option>Photography</option>
-                                        <option>Limo Service</option>
-                                        <option>Nutrition Advisor</option>
-                                        <option>Life Coach</option>
-                                        <option>Vetirinary clinic</option>
-                                        <option>Laundromat</option>
-                                        <option>Fitness Club</option>
-                                        <option>Dentist</option>
-                                        <option>Consulting</option>
-                                        <option>Auto Repair</option>
-                                        <option>Tutor</option>
-                                        <option>Bakery</option>
-                                        <option>Financial Advisor</option>
-                                        <option>Lawyer</option>
-                                        <option>Marketing Agency</option>
-                                        <option>Trucking</option>
-                                        <option>Locksmith</option>
-                                        <option>Medical Clinic</option>
-                                        <option>Dance Studio</option>
-                                        <option>Carpenter</option>
-                                        <option>Moving Company</option>
-                                        <option>Hair Salon</option>
-                                        <option>Cleaning Service</option>
-                                        <option>Car Dealer</option>
-                                        <option>Portfolio</option>
-                                        <option>Real Estate</option>
-                                        <option>Preschool</option>
-                                        <option>Spa Services</option>
-                                        <option>Physical Therapist</option>
-                                    </select>
-                                </div>
-
-                                <div style="height: 1px; background-color: black" class="mt-3"></div>
-                                <div class="text-center mb-2 font-weight-bold">
-                                    Need All The Steps? Get 13% Off The Monthly Package With Our Business Builder
-                                    Program
-                                </div>
-                                <div class="text-center ">
-                                    <div class="btn btn-primary">
-                                        Business Builder Monthly Program
-                                    </div>
+                                <div class="col-6">
+                                    {{ form.last_name.label_tag }}{{ form.last_name }}
                                 </div>
                             </div>
-                            <div class="col-6 d-flex flex-column">
-                                <div class="text-center mb-2 font-weight-bold">
-                                    Yearly Options
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    {{ form.email.label_tag }}{{ form.email }}
                                 </div>
-                                <div>
-                                    <input type="checkbox" name="website_year" id="website_year">
-                                    <label for="website_year">Website: $300 USD - yearly</label>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    {{ form.phone.label_tag }}{{ form.phone }}
                                 </div>
-                                <div>
-                                    <input type="checkbox" name="toll_free_number_year" id="toll_free_year">
-                                    <label for="toll_free_year">Toll Free Number: $420 USD - yearly</label>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12 font-weight-bold">
+                                    Choose The Business Credit Building Steps From The List That You Need
                                 </div>
-                                <div>
-                                    <input type="checkbox" name="fax_number_year" id="fax_number_year">
-                                    <label for="fax_number_year">Fax Number: $240 USD - yearly</label>
-                                </div>
-
-
-                                <div>
-                                    <input type="checkbox" name="professional_email_address_year"
-                                           id="professional_email_year">
-                                    <label for="professional_email_year">Professional Email Address: $42 USD -
-                                        yearly</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="domain_year" id="domain_year">
-                                    <label for="domain_year">Domain: $13.99 USD</label>
-                                </div>
-                                <div style="display: none" id="domain-year-field">
-                                    <label for="domain_name_year">Domain name:</label>
-                                    <div style="display: flex">
-                                        <input type="text" name="domain_name_year" id="domain_name_year">
+                            </div>
+                            <div class="row mb-2 justify-content-center">
+                                <div class="card bg-gray m-2 " style="width: 30rem;">
+                                    <div class="card-body">
+                                        <div class="text-center mb-2 font-weight-bold">
+                                            Monthly Options
+                                        </div>
                                         <div>
-                                            <a class="btn btn-primary" onclick="checkDomain()">Check</a>
+                                            <input type="checkbox" name="website" id="website">
+                                            <label for="website">Website: $50 USD - monthly</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="toll_free_number" id="toll_free">
+                                            <label for="toll_free">Toll Free Number: $40 USD - monthly</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="fax_number" id="fax_number">
+                                            <label for="fax_number">Fax Number: $40 USD - monthly</label>
+                                        </div>
+
+                                        <div>
+                                            <input type="checkbox" name="professional_email_address"
+                                                   id="professional_email">
+                                            <label for="professional_email">Professional Email Address: $7.99 USD -
+                                                monthly</label>
+                                        </div>
+
+                                        <div>
+                                            <input type="checkbox" name="domain" id="domain">
+                                            <label for="domain">Domain: $13.99 USD</label>
+                                        </div>
+
+                                        <div style="display: none" id="domain-field">
+                                            <label for="domain_name_year">Domain name:</label>
+                                            <div style="display: flex">
+                                                <input type="text" name="domain_name" id="domain_name">
+                                                <div>
+                                                    <a class="btn btn-primary"
+                                                       onclick="checkDomain('domain_name')">Check</a>
+                                                </div>
+
+                                            </div>
+                                            <div id="domain-statusdomain_name"></div>
+                                        </div>
+
+                                        <div>
+                                            <label for="industry">Select Industry:</label><br>
+                                            <select name="industry" id="industry" class="custom-select w-100">
+                                                <option>Electrician</option>
+                                                <option>Garderner</option>
+                                                <option>Tattoo Artist</option>
+                                                <option>Photography</option>
+                                                <option>Limo Service</option>
+                                                <option>Nutrition Advisor</option>
+                                                <option>Life Coach</option>
+                                                <option>Vetirinary clinic</option>
+                                                <option>Laundromat</option>
+                                                <option>Fitness Club</option>
+                                                <option>Dentist</option>
+                                                <option>Consulting</option>
+                                                <option>Auto Repair</option>
+                                                <option>Tutor</option>
+                                                <option>Bakery</option>
+                                                <option>Financial Advisor</option>
+                                                <option>Lawyer</option>
+                                                <option>Marketing Agency</option>
+                                                <option>Trucking</option>
+                                                <option>Locksmith</option>
+                                                <option>Medical Clinic</option>
+                                                <option>Dance Studio</option>
+                                                <option>Carpenter</option>
+                                                <option>Moving Company</option>
+                                                <option>Hair Salon</option>
+                                                <option>Cleaning Service</option>
+                                                <option>Car Dealer</option>
+                                                <option>Portfolio</option>
+                                                <option>Real Estate</option>
+                                                <option>Preschool</option>
+                                                <option>Spa Services</option>
+                                                <option>Physical Therapist</option>
+                                            </select>
+                                        </div>
+
+                                        <div style="height: 1px; background-color: black" class="mt-3"></div>
+                                        <div class="text-center mb-2 font-weight-bold">
+                                            Need All The Steps? Get 13% Off The Monthly Package With Our Business
+                                            Builder
+                                            Program
+                                        </div>
+                                        <div class="text-center ">
+                                            <div class="btn btn-primary">
+                                                Business Builder Monthly Program
+                                            </div>
                                         </div>
 
                                     </div>
-                                    <div id="domain-status"></div>
                                 </div>
-
-                                <div>
-                                    <label for="industry_year">Select Industry:</label><br>
-                                    <select name="industry_year" id="industry_year" class="custom-select w-100">
-                                        <option>Electrician</option>
-                                        <option>Garderner</option>
-                                        <option>Tattoo Artist</option>
-                                        <option>Photography</option>
-                                        <option>Limo Service</option>
-                                        <option>Nutrition Advisor</option>
-                                        <option>Life Coach</option>
-                                        <option>Vetirinary clinic</option>
-                                        <option>Laundromat</option>
-                                        <option>Fitness Club</option>
-                                        <option>Dentist</option>
-                                        <option>Consulting</option>
-                                        <option>Auto Repair</option>
-                                        <option>Tutor</option>
-                                        <option>Bakery</option>
-                                        <option>Financial Advisor</option>
-                                        <option>Lawyer</option>
-                                        <option>Marketing Agency</option>
-                                        <option>Trucking</option>
-                                        <option>Locksmith</option>
-                                        <option>Medical Clinic</option>
-                                        <option>Dance Studio</option>
-                                        <option>Carpenter</option>
-                                        <option>Moving Company</option>
-                                        <option>Hair Salon</option>
-                                        <option>Cleaning Service</option>
-                                        <option>Car Dealer</option>
-                                        <option>Portfolio</option>
-                                        <option>Real Estate</option>
-                                        <option>Preschool</option>
-                                        <option>Spa Services</option>
-                                        <option>Physical Therapist</option>
-                                    </select>
-                                </div>
+                                <div class="card bg-gray m-2" style="width: 30rem;">
+                                    <div class="card-body ">
+                                        <div class="text-center mb-2 font-weight-bold">
+                                            Yearly Options
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="website_year" id="website_year">
+                                            <label for="website_year">Website: $300 USD - yearly</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="toll_free_number_year" id="toll_free_year">
+                                            <label for="toll_free_year">Toll Free Number: $420 USD - yearly</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="fax_number_year" id="fax_number_year">
+                                            <label for="fax_number_year">Fax Number: $240 USD - yearly</label>
+                                        </div>
 
 
-                                <div style="height: 1px; background-color: black" class="mt-3"></div>
-                                <div class="text-center mb-2 font-weight-bold">
-                                    Need All The Steps? Get The Business Builder Annual Program for $999 and save $50
-                                </div>
-                                <div class="text-center ">
-                                    <div class="btn btn-primary">
-                                        Business Builder Annual Program
+                                        <div>
+                                            <input type="checkbox" name="professional_email_address_year"
+                                                   id="professional_email_year">
+                                            <label for="professional_email_year">Professional Email Address: $42 USD -
+                                                yearly</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="domain_year" id="domain_year">
+                                            <label for="domain_year">Domain: $13.99 USD</label>
+                                        </div>
+                                        <div style="display: none" id="domain-year-field">
+                                            <label for="domain_name_year">Domain name:</label>
+                                            <div style="display: flex">
+                                                <input type="text" name="domain_name_year" id="domain_name_year">
+                                                <div>
+                                                    <a class="btn btn-primary"
+                                                       onclick="checkDomain('domain_name_year')">Check</a>
+                                                </div>
+
+                                            </div>
+                                            <div id="domain-statusdomain_name_year"></div>
+                                        </div>
+
+                                        <div>
+                                            <label for="industry_year">Select Industry:</label><br>
+                                            <select name="industry_year" id="industry_year" class="custom-select w-100">
+                                                <option>Electrician</option>
+                                                <option>Garderner</option>
+                                                <option>Tattoo Artist</option>
+                                                <option>Photography</option>
+                                                <option>Limo Service</option>
+                                                <option>Nutrition Advisor</option>
+                                                <option>Life Coach</option>
+                                                <option>Vetirinary clinic</option>
+                                                <option>Laundromat</option>
+                                                <option>Fitness Club</option>
+                                                <option>Dentist</option>
+                                                <option>Consulting</option>
+                                                <option>Auto Repair</option>
+                                                <option>Tutor</option>
+                                                <option>Bakery</option>
+                                                <option>Financial Advisor</option>
+                                                <option>Lawyer</option>
+                                                <option>Marketing Agency</option>
+                                                <option>Trucking</option>
+                                                <option>Locksmith</option>
+                                                <option>Medical Clinic</option>
+                                                <option>Dance Studio</option>
+                                                <option>Carpenter</option>
+                                                <option>Moving Company</option>
+                                                <option>Hair Salon</option>
+                                                <option>Cleaning Service</option>
+                                                <option>Car Dealer</option>
+                                                <option>Portfolio</option>
+                                                <option>Real Estate</option>
+                                                <option>Preschool</option>
+                                                <option>Spa Services</option>
+                                                <option>Physical Therapist</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div style="height: 1px; background-color: black" class="mt-3"></div>
+                                        <div class="text-center mb-2 font-weight-bold">
+                                            Need All The Steps? Get The Business Builder Annual Program for $999 and
+                                            save
+                                            $50
+                                        </div>
+                                        <div class="text-center ">
+                                            <div class="btn btn-primary">
+                                                Business Builder Annual Program
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col text-center mt-4" id="stripe-form">
+                                    <div>Total: $<span id="total_amount">0</span></div>
+                                    {#                            <script src="https://checkout.stripe.com/checkout.js"#}
+                                    {#                                    class="stripe-button"#}
+                                    {#                                    data-key="{{ stripe_key }}"#}
+                                    {#                                    data-description="Business Credit Building Steps"#}
+                                    {#                                    data-amount=""#}
+                                    {#                                    data-locale="auto">#}
+                                    {#                            </script>#}
+                                    <button type="submit" class="btn btn-primary">Proceed to checkout</button>
+                                </div>
 
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center mt-4" id="stripe-form">
-                                <div>Total: $<span id="total_amount">0</span></div>
-                                {#                            <script src="https://checkout.stripe.com/checkout.js"#}
-                                {#                                    class="stripe-button"#}
-                                {#                                    data-key="{{ stripe_key }}"#}
-                                {#                                    data-description="Business Credit Building Steps"#}
-                                {#                                    data-amount=""#}
-                                {#                                    data-locale="auto">#}
-                                {#                            </script>#}
-                                <button type="submit" class="btn btn-primary">Proceed to checkout</button>
-                            </div>
-                        </div>
 
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -250,33 +274,32 @@
 
         $('#steps-form').submit(async function (evt) {
             evt.preventDefault();
-            if (!document.getElementById('domain_year').checked) {
-                this.submit();
-            } else {
-                if (await checkDomain()) {
-                    this.submit();
-                }
-            }
 
+            if (document.getElementById('domain_year').checked && await checkDomain('domain_name_year')) {
+                this.submit();
+            } else if (document.getElementById('domain').checked && await checkDomain('domain_name')) {
+                this.submit();
+            } else if (!document.getElementById('domain_year').checked && !document.getElementById('domain').checked) {
+                this.submit();
+            }
         });
 
-        async function checkDomain() {
+        async function checkDomain(form_id) {
             var formData = new FormData();
-            formData.append('domain', document.getElementById('domain_name_year').value)
+            formData.append('domain', document.getElementById(form_id).value)
             var response = await fetch('{% url "check_domain" %}', {
                 method: 'POST',
-
                 body: formData
             })
             var data = await response.json()
 
             if (data.status === 'true') {
-                document.getElementById('domain-status').innerHTML = document.getElementById('domain_name_year').value + " is available."
-                document.getElementById('domain-status').style.color = 'inherit'
+                document.getElementById('domain-status' + form_id).innerHTML = document.getElementById(form_id).value + " is available."
+                document.getElementById('domain-status' + form_id).style.color = 'inherit'
                 return true
             } else {
-                document.getElementById('domain-status').innerHTML = data.error
-                document.getElementById('domain-status').style.color = 'red'
+                document.getElementById('domain-status' + form_id).innerHTML = data.error
+                document.getElementById('domain-status' + form_id).style.color = 'red'
                 return false
             }
         }
@@ -316,6 +339,16 @@
                 field.style.display = 'none'
             }
         });
+
+        $("#domain").on('change', (event) => {
+            var field = document.getElementById('domain-field')
+            if (event.target.checked) {
+                field.style.display = 'block'
+            } else {
+                field.style.display = 'none'
+            }
+        });
+
         calculateAmount()
     </script>
 

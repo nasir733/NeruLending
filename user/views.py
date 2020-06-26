@@ -15,7 +15,7 @@ from django.views.generic import DetailView, TemplateView
 from user.models import Portal, PortalGoal
 
 from .decorators import unauthenticated_user
-from .models import Profile
+from .models import Profile, UserSteps
 from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
 
@@ -120,7 +120,7 @@ class MyProgressView(View):
                 for kk in i['items']['data']:
                     names.append(kk['price']['lookup_key'].split("_")[0])
                     interval = kk['plan']['interval']
-                    total = kk['price']['unit_amount']/100
+                    total = kk['price']['unit_amount'] / 100
 
                 sub = {
                     'name': ', '.join(names),
@@ -130,9 +130,31 @@ class MyProgressView(View):
                 }
                 context['subscriptions'].append(sub)
 
+        user_steps = UserSteps.objects.filter(user=profile)
+        services = []
 
+        for i in user_steps:
 
-
+            for k in ['website', 'toll_free_number',
+                      'fax_number',
+                      'domain',
+                      'professional_email_address']:
+                if getattr(i, k) == 2:
+                    serv = {
+                        'name': k,
+                        'status': 'In progress',
+                        'product': '',
+                    }
+                    services.append(serv)
+                elif getattr(i, k) == 3:
+                    serv = {
+                        'name': k,
+                        'status': 'Done',
+                        'product': k+'_act',
+                    }
+                    services.append(serv)
+        print(services)
+        context['services'] = services
         return render(request, "my_progress.html", context=context)
 
     def post(self, request):
