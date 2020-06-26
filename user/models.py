@@ -143,7 +143,7 @@ class UserSteps(models.Model):
         (2, "In progress"),
         (3, "Done"),
     )
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, default='')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     email = models.CharField("User Email", max_length=500, null=False)
     first_name = models.CharField("First Name", max_length=500, null=True)
     last_name = models.CharField("Last Name", max_length=500, null=True)
