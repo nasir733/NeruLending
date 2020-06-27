@@ -43,13 +43,15 @@
                             <th>Name</th>
                             <th>Status</th>
                             <th>Link</th>
+                            <th>Dashboard</th>
                         </tr>
                         </thead>
                         {% for service in services %}
                             <tr class="bg-white">
                                 <td>{{ service.name }}</td>
                                 <td>{{ service.status }}</td>
-                                <td>{% if service.product != '' %} <a href="{{ service.product }}" class="btn btn-primary">Link</a> {% else %} - {% endif %}</td>
+                                <td>{% if service.product %} <a href="{{ service.product }}">{{ service.product }}</a>{% endif %}</td>
+                                <td>{% if service.dashboard %} <a href="{{ service.dashboard }}" class="btn btn-primary">Go To Dashboard</a>{% endif %}</td>
                             </tr>
                         {% endfor %}
                     </table>

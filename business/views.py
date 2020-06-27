@@ -916,7 +916,7 @@ class FaxNumberPaidView(View):
                     serv = {
                         'name': k.replace('_', " "),
                         'status': 'In progress',
-                        'product': 'In progress',
+                        'product': '',
                     }
                     services.append(serv)
                 elif getattr(i, k) == 3:
@@ -987,6 +987,7 @@ class ProfessionalEmailAddress(View):
                         'name': k.replace('_', " "),
                         'status': 'In progress',
                         'product': '',
+                        'provider': ''
                     }
                     services.append(serv)
                 elif getattr(i, k) == 3:
@@ -994,6 +995,7 @@ class ProfessionalEmailAddress(View):
                         'name': k.replace('_', " "),
                         'status': 'Done',
                         'product': getattr(i, k + '_act'),
+                        'provider': getattr(i, 'email_provider')
                     }
                     services.append(serv)
         context = get_context_for_all(request)
@@ -1019,6 +1021,7 @@ class DomainView(View):
                         'name': k.replace('_', " ") + " " + getattr(i, 'domain_name'),
                         'status': 'In progress',
                         'product': '',
+                        'dashboard': '',
                     }
                     services.append(serv)
                 elif getattr(i, k) == 3:
@@ -1026,6 +1029,7 @@ class DomainView(View):
                         'name': k.replace('_', " ") + " " + getattr(i, 'domain_name'),
                         'status': 'Done',
                         'product': getattr(i, k + '_act'),
+                        'dashboard': getattr(i, k + '_dashboard'),
                     }
                     services.append(serv)
         context = get_context_for_all(request)

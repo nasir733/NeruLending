@@ -46,6 +46,7 @@
                             <th>Name</th>
                             <th>Status</th>
                             <th>Email</th>
+                            <th>Dashboard</th>
                         </tr>
                         </thead>
                         {% for service in services %}
@@ -53,6 +54,7 @@
                                 <td>{{ service.name }}</td>
                                 <td>{{ service.status }}</td>
                                 <td>{{ service.product }}</td>
+                                <td>{% if service.provider %} <a href="{{ service.provider }}" class="btn btn-primary">Go To Dashboard</a>{% endif %}</td>
                             </tr>
                         {% endfor %}
                     </table>

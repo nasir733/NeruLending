@@ -32,25 +32,26 @@
                         allowfullscreen></iframe>
             </div>
         </div>
-                {% if services %}
+        {% if services %}
             <div class="row">
                 <div class="col-md-12">
                     <br>
 
-                    <br><br>
+                    <br>
+                    <h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>
                     <table class="table">
                         <thead class="thead-light">
                         <tr>
                             <th>Name</th>
                             <th>Status</th>
-                            <th>URL</th>
+                            <th>Go To Website</th>
                         </tr>
                         </thead>
                         {% for service in services %}
                             <tr class="bg-white">
                                 <td>{{ service.name }}</td>
                                 <td>{{ service.status }}</td>
-                                <td>{{ service.product }}</td>
+                                <td><a class="btn btn-primary" target="_blank" href="https://www.websitebuilder.ai">Go To Website</a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -66,14 +67,14 @@
              <iframe src="https://www.websitebuilder.ai/" width="90%" height="750px"></iframe>
            </div>
          </div> -->
-        <div class="row">
-            <div class="col-md-12">
-                <br>
-                <center><h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>
-                    <center><br>
-                        <iframe src="https://www.websitebuilder.ai" width="95%" height="800px"></iframe>
-            </div>
-        </div>
+        {#        <div class="row">#}
+        {#            <div class="col-md-12">#}
+        {#                <br>#}
+        {#                <center><h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>#}
+        {#                    <center><br>#}
+        {#                        <iframe src="https://www.websitebuilder.ai" width="95%" height="800px"></iframe>#}
+        {#            </div>#}
+        {#        </div>#}
 
     </section>
 

@@ -164,8 +164,8 @@ class UserSteps(models.Model):
     website_act = models.CharField("Actual website link", null=True, default='', blank=True, max_length=500)
     domain_act = models.CharField("Actual domain name", null=True, default='', blank=True, max_length=500)
 
-
-
+    domain_dashboard = models.CharField("Domain name dashboard", null=True, default='', blank=True, max_length=500)
+    email_provider = models.CharField("Email provider", null=True, default='', blank=True, max_length=500)
 
 
     class Meta:

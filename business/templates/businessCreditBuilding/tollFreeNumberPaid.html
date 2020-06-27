@@ -37,13 +37,14 @@
                 <div class="col-md-12">
                     <br>
 
-                    <br><br>
+                    <br><h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>
                     <table class="table">
                         <thead class="thead-light">
                         <tr>
                             <th>Name</th>
                             <th>Status</th>
                             <th>Number</th>
+                            <th>Go To Dashboard</th>
                         </tr>
                         </thead>
                         {% for service in services %}
@@ -51,6 +52,8 @@
                                 <td>{{ service.name }}</td>
                                 <td>{{ service.status }}</td>
                                 <td>{{ service.product }}</td>
+                            <td><a class="btn btn-primary" target="_blank" href="https://voip.millennialbusinessbuilders.com/login">Go
+                                    To Dashboard</a></td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -59,14 +62,14 @@
             </div>
         {% endif %}
         <br> <br>
-        <div class="row">
-            <div class="col-md-12  text-center"><br>
-                <h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>
-                <br>
-                <iframe src="https://voip.millennialbusinessbuilders.com/login" width="95%"
-                        height="800px"></iframe>
-            </div>
-        </div>
+{#        <div class="row">#}
+{#            <div class="col-md-12  text-center"><br>#}
+{#                <h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>#}
+{#                <br>#}
+{#                <iframe src="https://voip.millennialbusinessbuilders.com/login" width="95%"#}
+{#                        height="800px"></iframe>#}
+{#            </div>#}
+{#        </div>#}
     </section>
 
     <!--Start of Tawk.to Script-->
