@@ -44,14 +44,16 @@
                         <tr>
                             <th>Name</th>
                             <th>Status</th>
-                            <th>Go To Website</th>
+                            <th>Link</th>
+                            <th>Go To Dashboard</th>
                         </tr>
                         </thead>
                         {% for service in services %}
                             <tr class="bg-white">
                                 <td>{{ service.name }}</td>
                                 <td>{{ service.status }}</td>
-                                <td><a class="btn btn-primary" target="_blank" href="https://www.websitebuilder.ai">Go To Website</a></td>
+                                <td>{{ service.product }}</td>
+                                <td><a class="btn btn-primary" target="_blank" href="https://www.websitebuilder.ai">Go To Dashboard</a></td>
                             </tr>
                         {% endfor %}
                     </table>

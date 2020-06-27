@@ -1,7 +1,6 @@
 {% extends "pages/base-business.html" %}
 {#{% extends request.resolver_match.page_template %}#}
 {% load static %}
-{% load mathfilters %}
 {% block title %}
 
 {% endblock title %}
@@ -10,6 +9,9 @@
     <style>
         body {
             background-image: -webkit-linear-gradient(-30deg, #052157 0%, #91039f 100%) !important;
+        }
+        a {
+
         }
     </style>
     <script>
@@ -183,7 +185,7 @@
             </div>
             <div class="col-lg-8" >
 
-                <div class='widget white-bg friends-group clearfix' id="user_info" style="display:block;">
+                <div class='widget white-bg clearfix' id="user_info" style="display:block;">
                     <div class="widget-title"><p>My Ordered Services</p></div>
                     <div class="widget-content">
 
@@ -192,7 +194,8 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Status</th>
-                                <th style="width: 1%;">Product</th>
+                                <th>Product</th>
+                                <th style="width: 1%">Dashboard</th>
                             </tr>
                             </thead>
                             {% for service in services %}
@@ -200,6 +203,7 @@
                                     <td>{{ service.name }}</td>
                                     <td>{{ service.status }}</td>
                                     <td>{{ service.product }}</td>
+                                    <td>{% if service.dashboard %} <a class="btn btn-primary" href="{{ service.dashboard }}">Go To Dashboard</a>{% endif %}</td>
                                 </tr>
                             {% endfor %}
                         </table>

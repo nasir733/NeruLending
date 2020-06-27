@@ -143,13 +143,24 @@ class MyProgressView(View):
                         'name': k.replace('_', " "),
                         'status': 'In progress',
                         'product': '',
+                        'dashboard': ''
                     }
                     services.append(serv)
                 elif getattr(i, k) == 3:
+                    dash = ''
+                    if k == 'website':
+                        dash = "https://www.websitebuilder.ai"
+                    elif k == 'toll_free_number' or k == 'fax_number':
+                        dash = "https://voip.millennialbusinessbuilders.com/login"
+                    elif k == 'domain':
+                        dash = getattr(i, 'domain_dashboard')
+                    elif k == 'professional_email_address':
+                        dash = getattr(i, 'email_provider')
                     serv = {
                         'name': k.replace('_', " "),
                         'status': 'Done',
                         'product': getattr(i, k + '_act'),
+                        'dashboard': dash
                     }
                     services.append(serv)
         print(services)
