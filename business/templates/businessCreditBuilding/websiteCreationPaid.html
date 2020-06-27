@@ -32,6 +32,32 @@
                         allowfullscreen></iframe>
             </div>
         </div>
+                {% if services %}
+            <div class="row">
+                <div class="col-md-12">
+                    <br>
+
+                    <br><br>
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>URL</th>
+                        </tr>
+                        </thead>
+                        {% for service in services %}
+                            <tr class="bg-white">
+                                <td>{{ service.name }}</td>
+                                <td>{{ service.status }}</td>
+                                <td>{{ service.product }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
         <br><br>
         <!-- <div class="row">
            <div class="col-md-12">

@@ -32,14 +32,40 @@
                         allowfullscreen></iframe>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
+        {% if services %}
+            <div class="row">
+                <div class="col-md-12">
+                    <br>
+
+                    <br><br>
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Number</th>
+                        </tr>
+                        </thead>
+                        {% for service in services %}
+                            <tr class="bg-white">
+                                <td>{{ service.name }}</td>
+                                <td>{{ service.status }}</td>
+                                <td>{{ service.product }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="ro ">
+            <div class="col-md-12 text-center">
                 <br>
-                <center><h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>
-                    <center><br>
-                        <iframe src="https://voip.millennialbusinessbuilders.com/login" width="95%"
-                                height="800px"></iframe>
-                        /
+                <h3>Use Your Email You Have Used To Login To This Account & The Password: Northface14 </h3>
+                <br>
+                <iframe src="https://voip.millennialbusinessbuilders.com/login" width="95%"
+                        height="800px"></iframe>
+
             </div>
         </div>
     </section>

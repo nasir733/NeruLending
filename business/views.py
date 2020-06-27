@@ -819,8 +819,6 @@ class WebsiteCreationOptionsView(View):
         if website_creation_paid:
             return redirect(reverse(f"{request.resolver_match.app_name}:website-creation-paid"))
         return redirect(reverse(f"{request.resolver_match.app_name}:website-creation"))
-        # return render(request, 'businessCreditBuilding/websiteCreationOptions.html', {'website_creation_paid': website
-        # _creation_paid})
 
 
 class WebsiteCreationPaidView(View):
@@ -829,7 +827,31 @@ class WebsiteCreationPaidView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, 'businessCreditBuilding/websiteCreationPaid.html', context=get_context_for_all(request))
+
+        profile = Profile.objects.get(user=request.user)
+        user_steps = UserSteps.objects.filter(user=profile)
+        services = []
+
+        for i in user_steps:
+            for k in ['website']:
+                if getattr(i, k) == 2:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'In progress',
+                        'product': '',
+                    }
+                    services.append(serv)
+                elif getattr(i, k) == 3:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'Done',
+                        'product': getattr(i, k + '_act'),
+                    }
+                    services.append(serv)
+        context = get_context_for_all(request)
+        context['services'] = services
+
+        return render(request, 'businessCreditBuilding/websiteCreationPaid.html', context=context)
 
 
 class WebsiteCreationView(View):
@@ -871,6 +893,7 @@ class FaxNumberOptionsView(View):
         if profile:
             fax_number_paid = profile[0].fax_number_paid
         if fax_number_paid:
+
             return redirect(reverse(f"{request.resolver_match.app_name}:fax-number-paid"))
         return redirect(reverse(f"{request.resolver_match.app_name}:fax-number"))
         # return render(request, 'businessCreditBuilding/fa_xNumberOptionsgetcontext_for_all(html', {'fax_number_paid': fax_number_paid}))
@@ -882,7 +905,32 @@ class FaxNumberPaidView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, 'businessCreditBuilding/faxNumberPaid.html', context=get_context_for_all(request))
+
+        profile = Profile.objects.get(user=request.user)
+        user_steps = UserSteps.objects.filter(user=profile)
+        services = []
+
+        for i in user_steps:
+            for k in ['fax_number']:
+                if getattr(i, k) == 2:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'In progress',
+                        'product': 'In progress',
+                    }
+                    services.append(serv)
+                elif getattr(i, k) == 3:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'Done',
+                        'product': getattr(i, k + '_act'),
+                    }
+                    services.append(serv)
+        context = get_context_for_all(request)
+        context['services'] = services
+
+
+        return render(request, 'businessCreditBuilding/faxNumberPaid.html', context=context)
 
 
 class FaxNumberView(View):
@@ -927,8 +975,30 @@ class ProfessionalEmailAddress(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, 'businessCreditBuilding/professionalEmailAddress.html',
-                      context=get_context_for_all(request))
+
+        profile = Profile.objects.get(user=request.user)
+        user_steps = UserSteps.objects.filter(user=profile)
+        services = []
+
+        for i in user_steps:
+            for k in ['professional_email_address']:
+                if getattr(i, k) == 2:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'In progress',
+                        'product': '',
+                    }
+                    services.append(serv)
+                elif getattr(i, k) == 3:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'Done',
+                        'product': getattr(i, k + '_act'),
+                    }
+                    services.append(serv)
+        context = get_context_for_all(request)
+        context['services'] = services
+        return render(request, 'businessCreditBuilding/professionalEmailAddress.html', context=context)
 
 
 class DomainView(View):
@@ -937,7 +1007,30 @@ class DomainView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, 'businessCreditBuilding/domain.html', context=get_context_for_all(request))
+
+        profile = Profile.objects.get(user=request.user)
+        user_steps = UserSteps.objects.filter(user=profile)
+        services = []
+
+        for i in user_steps:
+            for k in ['domain']:
+                if getattr(i, k) == 2:
+                    serv = {
+                        'name': k.replace('_', " ") + " " + getattr(i, 'domain_name'),
+                        'status': 'In progress',
+                        'product': '',
+                    }
+                    services.append(serv)
+                elif getattr(i, k) == 3:
+                    serv = {
+                        'name': k.replace('_', " ") + " " + getattr(i, 'domain_name'),
+                        'status': 'Done',
+                        'product': getattr(i, k + '_act'),
+                    }
+                    services.append(serv)
+        context = get_context_for_all(request)
+        context['services'] = services
+        return render(request, 'businessCreditBuilding/domain.html', context=context)
 
 
 class TollFreeNumberOptionsView(View):
@@ -952,8 +1045,32 @@ class TollFreeNumberOptionsView(View):
         if profile:
             toll_free_number_paid = profile[0].toll_free_number_paid
         if toll_free_number_paid:
+
+            profile = Profile.objects.get(user=request.user)
+            user_steps = UserSteps.objects.filter(user=profile)
+            services = []
+
+            for i in user_steps:
+                for k in ['toll_free_number']:
+                    if getattr(i, k) == 2:
+                        serv = {
+                            'name': k.replace('_', " "),
+                            'status': 'In progress',
+                            'product': 'In progress',
+                        }
+                        services.append(serv)
+                    elif getattr(i, k) == 3:
+                        serv = {
+                            'name': k.replace('_', " "),
+                            'status': 'Done',
+                            'product': getattr(i, k + '_act'),
+                        }
+                        services.append(serv)
+            context = get_context_for_all(request)
+            context['services'] = services
+
             return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html',
-                          context=get_context_for_all(request))
+                          context=context)
             # return redirect(reverse(f"{request.resolver_match.app_name}:toll-free-paid"))
 
         return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
@@ -988,7 +1105,31 @@ class TollFreeNumberPaidView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html', context=get_context_for_all(request))
+
+        profile = Profile.objects.get(user=request.user)
+        user_steps = UserSteps.objects.filter(user=profile)
+        services = []
+
+        for i in user_steps:
+            for k in ['toll_free_number']:
+                if getattr(i, k) == 2:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'In progress',
+                        'product': 'In progress',
+                    }
+                    services.append(serv)
+                elif getattr(i, k) == 3:
+                    serv = {
+                        'name': k.replace('_', " "),
+                        'status': 'Done',
+                        'product': getattr(i, k + '_act'),
+                    }
+                    services.append(serv)
+        context = get_context_for_all(request)
+        context['services'] = services
+
+        return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html', context=context)
 
 
 class TollFreeNumberView(View):

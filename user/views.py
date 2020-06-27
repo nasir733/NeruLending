@@ -129,7 +129,6 @@ class MyProgressView(View):
                     'subscription_id': i['id']
                 }
                 context['subscriptions'].append(sub)
-
         user_steps = UserSteps.objects.filter(user=profile)
         services = []
 
@@ -141,16 +140,16 @@ class MyProgressView(View):
                       'professional_email_address']:
                 if getattr(i, k) == 2:
                     serv = {
-                        'name': k,
+                        'name': k.replace('_', " "),
                         'status': 'In progress',
                         'product': '',
                     }
                     services.append(serv)
                 elif getattr(i, k) == 3:
                     serv = {
-                        'name': k,
+                        'name': k.replace('_', " "),
                         'status': 'Done',
-                        'product': k+'_act',
+                        'product': getattr(i, k + '_act'),
                     }
                     services.append(serv)
         print(services)
