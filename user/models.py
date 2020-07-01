@@ -125,6 +125,11 @@ class UserData(models.Model):
     business_country = models.CharField("Business Country", null=True, blank=True,  max_length=255)
     business_phone = models.CharField("Business Phone", null=True, blank=True,  max_length=255)
 
+    email = models.CharField("Email Address", null=True, blank=True,  max_length=255)
+    website = models.CharField("Website", null=True, blank=True,  max_length=255)
+    toll_free_number = models.CharField("Toll Free Number", null=True, blank=True,  max_length=255)
+    fax_number = models.CharField("Fax Number", null=True, blank=True,  max_length=255)
+
     def save(self, *args, **kwargs):
         if self.first_name == "":
             self.first_name = self.user.user.first_name

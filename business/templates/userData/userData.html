@@ -123,11 +123,29 @@
                         </div>
                     </div>
 
-
-{#                        {{ form }}#}
-                        <div class="btn-toolbar">
-                            <input type="submit" value="Submit" class="btn btn-primary mr-1"/>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            {{ form.email.label_tag }}{{ form.email }}
                         </div>
+                        <div class="col-6">
+                            {{ form.website.label_tag }}{{ form.website }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            {{ form.toll_free_number.label_tag }}{{ form.toll_free_number }}
+                        </div>
+                        <div class="col-6">
+                            {{ form.fax_number.label_tag }}{{ form.fax_number }}
+                        </div>
+                    </div>
+
+
+                    {#                        {{ form }}#}
+                    <div class="btn-toolbar">
+                        <input type="submit" value="Submit" class="btn btn-primary mr-1"/>
+                    </div>
                 </form>
             </div>
         </div>
