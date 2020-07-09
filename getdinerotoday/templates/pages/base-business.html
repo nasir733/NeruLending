@@ -32,7 +32,11 @@
                         <a href="/{{ request.resolver_match.app_name }}/virtual-card" class="nav-link"><span class="toggle-none">Virtual Card Access</span></a>
                     </li>
                 {% endif %}
-
+                <li class="nav-item">
+                    <a href="{% url 'business:create_specific_portal' %}" class="nav-link"> Create My Specific Portal </a>
+                </li>
+                <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/goals" class="nav-link">My Goals With The
+                    Platform</a></li>
                 <li class="nav-item">
                     <a href="/{{ request.resolver_match.app_name }}/upgrade" class="nav-link">Upgrade to Full Business Builder Program
                         with No Money Down</a>
@@ -51,10 +55,6 @@
                 <li class="nav-item">
                     <a href="/{{ request.resolver_match.app_name }}/credit-situation" class="nav-link"> Create My Credit Repair Plan </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'business:create_specific_portal' %}" class="nav-link"> Create My Specific Portal </a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="javascript: void(0);" aria-expanded="false"><span class="toggle-none">Business Credit Building <span
                             class="fa arrow"></span></span></a>
@@ -90,8 +90,6 @@
                             To Get Your Business Back In Good Standing</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/goals" class="nav-link">My Goals With The
-                    Platform</a></li>
                 <li class="nav-item">
                     <a href="/{{ request.resolver_match.app_name }}/business-credit-step" class="nav-link"> Choose Business Credit
                         Building Steps You Need Done For You </a>
