@@ -5,11 +5,13 @@ from django.urls import include, path
 from .views import (GDTLoginView, LogoutView, MyProgressView,
                     PasswordChangeDoneView, PasswordResetConfirmView,
                     PasswordResetDoneView, PasswordResetView,
-                    PortalGoalsDetailView, SignUpView, delete_portal_goal, TermsView)
+                    PortalGoalsDetailView, SignUpView, delete_portal_goal, TermsView,
+                    APIloginView)
 
 app_name = 'user'
 urlpatterns = [
     url('login/', GDTLoginView.as_view(), name='login'),
+    url('login_api/', APIloginView.as_view(), name='login'),
     url('logout/', LogoutView.as_view(), name='logout'),
     url('signup/', SignUpView.as_view(), name='signup'),
     url('terms/', TermsView.as_view(), name='terms'),

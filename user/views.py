@@ -1,11 +1,11 @@
 import json
-
+from django.contrib.auth import authenticate, login
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -35,6 +35,21 @@ class GDTLoginView(LoginView):
             return HttpResponseRedirect("/dashboard")
         else:
             return HttpResponseRedirect(user.profile.portal_goals.first().get_absolute_url())
+
+
+class APIloginView(View):
+    def get(self, request):
+        data = request.GET
+        if 'user' in data and 'pass' in data and 'redirect' in data:
+            username = data['user']
+            password = data['pass']
+            redirect = data['redirect']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(redirect)
+
+        return HttpResponseRedirect("/user/login")
 
 
 @method_decorator(unauthenticated_user, name='dispatch')
