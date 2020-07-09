@@ -9,6 +9,10 @@ class CarDealOneView(View):
     def get(self, request):
         return render(request, "carloanone.html")
 
+class CreditRepairDoneView(View):
+    def get(self, request):
+        return render(request, "creditrepairdoneforyou.html")        
+
 class MainFileView(View):
     def get(self, request):
         return render(request, "maincreditfile.html")

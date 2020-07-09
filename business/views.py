@@ -1543,6 +1543,10 @@ class MoneyReferringFriends(View):
     def get(self, request):
         return render(request, 'MoneyReferringFriends.html', context=get_context_for_all(request))
 
+class CreditAffiliate(View):
+    def get(self, request):
+        return render(request, 'creditrepairaffiliate.html', context=get_context_for_all(request))
+
 
 class InsuranceProduct(View):
     def get(self, request):
