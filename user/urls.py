@@ -10,8 +10,8 @@ from .views import (GDTLoginView, LogoutView, MyProgressView,
 
 app_name = 'user'
 urlpatterns = [
-    url('login/', GDTLoginView.as_view(), name='login'),
-    url('login_api/', APIloginView.as_view(), name='login'),
+    url(r'^login/$', GDTLoginView.as_view(), name='login'),
+    url(r'^login_api/$', APIloginView.as_view(), name='login_api'),
     url('logout/', LogoutView.as_view(), name='logout'),
     url('signup/', SignUpView.as_view(), name='signup'),
     url('terms/', TermsView.as_view(), name='terms'),
