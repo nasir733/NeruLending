@@ -59,22 +59,107 @@
                         <li>Automated Shipping & Tax Calculator</li>
                         <br>
                         <div class="text-center">
-                            Monthly option - $50 USD:<br>
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" class="btn btn-primary" value="monthly" name="variant">
-                                <button type="submit" class="btn btn-primary">Order now</button>
-                            </form>
+                            Websites We Have Built:<br>
+                            <a href="http://rochellehardymd.com/">http://rochellehardymd.com/</a><br>
+                            <a href="https://www.livingwatersministry.org/">https://www.livingwatersministry.org/</a><br>
+                            <a href="https://tappandentistry.com/">https://tappandentistry.com/</a><br><br>
                         </div>
-                        <br>
-                        <div class="text-center">
-                            Save 50% with annual option - $300 USD:<br>
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" class="btn btn-primary" value="yearly" name="variant">
-                                <button type="submit" class="btn btn-primary">Order now</button>
-                            </form>
+
+
+                        <div class="row">
+                            <div class="col-sm my-2">
+                                <div class="text-center">
+                                    Monthly option - $50 USD:<br>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <label for="industry_year">Select Industry:</label>
+                                        <select name="industry" id="industry" class="custom-select">
+                                            <option>Electrician</option>
+                                            <option>Garderner</option>
+                                            <option>Tattoo Artist</option>
+                                            <option>Photography</option>
+                                            <option>Limo Service</option>
+                                            <option>Nutrition Advisor</option>
+                                            <option>Life Coach</option>
+                                            <option>Vetirinary clinic</option>
+                                            <option>Laundromat</option>
+                                            <option>Fitness Club</option>
+                                            <option>Dentist</option>
+                                            <option>Consulting</option>
+                                            <option>Auto Repair</option>
+                                            <option>Tutor</option>
+                                            <option>Bakery</option>
+                                            <option>Financial Advisor</option>
+                                            <option>Lawyer</option>
+                                            <option>Marketing Agency</option>
+                                            <option>Trucking</option>
+                                            <option>Locksmith</option>
+                                            <option>Medical Clinic</option>
+                                            <option>Dance Studio</option>
+                                            <option>Carpenter</option>
+                                            <option>Moving Company</option>
+                                            <option>Hair Salon</option>
+                                            <option>Cleaning Service</option>
+                                            <option>Car Dealer</option>
+                                            <option>Portfolio</option>
+                                            <option>Real Estate</option>
+                                            <option>Preschool</option>
+                                            <option>Spa Services</option>
+                                            <option>Physical Therapist</option>
+                                        </select><br><br>
+                                        <input type="hidden" class="btn btn-primary" value="monthly" name="variant">
+                                        <button type="submit" class="btn btn-primary">Order now</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-sm my-2">
+                                <div class="text-center">
+                                    Save 50% with annual option - $300 USD:<br>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <label for="industry_year">Select Industry:</label>
+                                        <select name="industry" id="industry" class="custom-select">
+                                            <option>Electrician</option>
+                                            <option>Garderner</option>
+                                            <option>Tattoo Artist</option>
+                                            <option>Photography</option>
+                                            <option>Limo Service</option>
+                                            <option>Nutrition Advisor</option>
+                                            <option>Life Coach</option>
+                                            <option>Vetirinary clinic</option>
+                                            <option>Laundromat</option>
+                                            <option>Fitness Club</option>
+                                            <option>Dentist</option>
+                                            <option>Consulting</option>
+                                            <option>Auto Repair</option>
+                                            <option>Tutor</option>
+                                            <option>Bakery</option>
+                                            <option>Financial Advisor</option>
+                                            <option>Lawyer</option>
+                                            <option>Marketing Agency</option>
+                                            <option>Trucking</option>
+                                            <option>Locksmith</option>
+                                            <option>Medical Clinic</option>
+                                            <option>Dance Studio</option>
+                                            <option>Carpenter</option>
+                                            <option>Moving Company</option>
+                                            <option>Hair Salon</option>
+                                            <option>Cleaning Service</option>
+                                            <option>Car Dealer</option>
+                                            <option>Portfolio</option>
+                                            <option>Real Estate</option>
+                                            <option>Preschool</option>
+                                            <option>Spa Services</option>
+                                            <option>Physical Therapist</option>
+                                        </select><br><br>
+                                        <input type="hidden" class="btn btn-primary" value="yearly" name="variant">
+                                        <button type="submit" class="btn btn-primary">Order now</button>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
 
                 </div>

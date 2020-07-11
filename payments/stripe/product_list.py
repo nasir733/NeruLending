@@ -14,7 +14,7 @@ products = [
     {
         "name": "Fax Number",
         "description": "Fax Number",
-        "price_monthly": 40,
+        "price_monthly": 20,
         "price_yearly": 240,
     },
     {

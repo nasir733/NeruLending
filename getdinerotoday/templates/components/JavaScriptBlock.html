@@ -78,13 +78,59 @@
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
+
 <script>
   window.intercomSettings = {
-    app_id: "s1nwi3kp"
+    app_id: "as9lv2pj"
   };
 </script>
 
 <script>
-// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/s1nwi3kp'
-(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/s1nwi3kp';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/as9lv2pj'
+(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/as9lv2pj';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
 </script>
+
+
+<script src='{% static "smartbanner/jquery.smartbanner.js" %}'></script>
+<script type="text/javascript">
+  $(function() { $.smartbanner() } )
+</script>
+
+
+<!--
+
+<script>
+    $.smartbanner({
+  title: "hrlloooo", // What the title of the app should be in the banner (defaults to <title>)
+  author: null, // What the author of the app should be in the banner (defaults to <meta name="author"> or hostname)
+  price: 'FREE', // Price of the app
+  appStoreLanguage: 'us', // Language code for App Store
+  inAppStore: 'On the App Store', // Text of price for iOS
+  inGooglePlay: 'In Google Play', // Text of price for Android
+  inAmazonAppStore: 'In the Amazon Appstore',
+  inWindowsStore: 'In the Windows Store', // Text of price for Windows
+  GooglePlayParams: null, // Aditional parameters for the market
+  icon: null, // The URL of the icon (defaults to <meta name="apple-touch-icon">)
+  iconGloss: null, // Force gloss effect for iOS even for precomposed
+  url: null, // The URL for the button. Keep null if you want the button to link to the app store.
+  button: 'VIEW', // Text for the install button
+  scale: 'auto', // Scale based on viewport size (set to 1 to disable)
+  speedIn: 300, // Show animation speed of the banner
+  speedOut: 400, // Close animation speed of the banner
+  daysHidden: 15, // Duration to hide the banner after being closed (0 = always show banner)
+  daysReminder: 90, // Duration to hide the banner after "VIEW" is clicked *separate from when the close button is clicked* (0 = always show banner)
+  force: null, // Choose 'ios', 'android' or 'windows'. Don't do a browser check, just always show this banner
+  hideOnInstall: true, // Hide the banner after "VIEW" is clicked.
+  layer: false, // Display as overlay layer or slide down the page
+  iOSUniversalApp: true, // If the iOS App is a universal app for both iPad and iPhone, display Smart Banner to iPad users, too.
+  appendToSelector: 'body', //Append the banner to a specific selector
+  onInstall: function() {
+    // alert('Click install');
+  },
+  onClose: function() {
+    // alert('Click close');
+  }
+})
+</script>
+
+-->

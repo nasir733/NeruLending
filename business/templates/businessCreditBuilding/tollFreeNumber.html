@@ -13,6 +13,11 @@
             version: '7.23'
         });
     </script>
+    <style>
+        .quantity_input {
+            width: 40px;
+        }
+    </style>
 {% endblock extrastyle %}
 <!-- ============================================================== -->
 <!--            Content Start             -->
@@ -29,86 +34,13 @@
 
         <div class="row">
             <div class="col-md-12">
-                <iframe width="100%" height="515" src="https://www.youtube.com/embed/A3x1cEKKwLs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="515" src="https://www.youtube.com/embed/A3x1cEKKwLs" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
             </div>
         </div>
         <br> <br>
         <div class="row justify-content-center">
-            {#            <div class="col-md-4">#}
-            {#                <div class="card mb-4 shadow-sm">#}
-            {#                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/JGqFJVfQKOU" frameborder="0"#}
-            {#                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"#}
-            {#                            allowfullscreen></iframe>#}
-            {#                    <div class="card-body">#}
-            {#                        <h3>Office Standard Program</h3>#}
-            {#                        <ul>#}
-            {#                            <li>Unlimited calls within the US/CA**</li>#}
-            {#                            <li>Team messaging and collaboration</li>#}
-            {#                            <li>Unlimited audio meetings</li>#}
-            {#                            <li>Unlimited video conferencing (up to 4 people per meeting)</li>#}
-            {#                            <li>Toll-free or local number</li>#}
-            {#                            <li>1,000 toll-free minutes/month</li>#}
-            {#                            <li>Voicemail-to-text</li>#}
-            {#                            <li> Unlimited internet fax</li>#}
-            {#                        </ul>#}
-            {#                        <br>#}
-            {#                        <div class="d-flex justify-content-between align-items-center">#}
-            {#                        </div>#}
-            {#                        <br> <a target="_blank" class="btn btn-primary"#}
-            {#                                href="https://store22617285.ecwid.com/Toll-Free-Number-Standard-Package-p168074371">Get#}
-            {#                        Monthly Package</a>#}
-            {#                        <br><br> <a target="_blank" class="btn btn-primary"#}
-            {#                                    href="https://millennialsbuildinggreatness.com/products/toll-free-office-standard-yearly-package-3-monthly-payment-option-with-via-bill-0-interest">Click#}
-            {#                        Here To Get 50% Off Yearly Package</a>#}
-            {#                        <br><br>#}
-            {#                        <a target="_blank" class="btn btn-primary"#}
-            {#                           href="https://millennialsbuildinggreatness.com/products/toll-free-office-standard-yearly-package-3-monthly-payment-option-with-via-bill-0-interest">Yearly#}
-            {#                            Package 3 Month Payment Option</a>#}
-            {#                        <br><br>#}
-            {#                        <a target="_blank" class="btn btn-primary" href="https://millennialbusinessbuilders.com/voip">See#}
-            {#                            Full Toll Free Number Website</a>#}
-            {##}
-            {#                    </div>#}
-            {##}
-            {#                </div>#}
-            {#            </div>#}
-            {#            <div class="col-md-4">#}
-            {#                <div class="card mb-4 shadow-sm">#}
-            {#                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/Y6sSg7FkO-I" frameborder="0"#}
-            {#                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"#}
-            {#                            allowfullscreen></iframe>#}
-            {#                    <div class="card-body">#}
-            {#                        <h3>Office Premium Program</h3>#}
-            {#                        <ul>#}
-            {#                            <li>Unlimited calls within the US/CA**</li>#}
-            {#                            <li>Team messaging and collaboration</li>#}
-            {#                            <li>Unlimited audio meetings</li>#}
-            {#                            <li>Unlimited video conferencing (up to 4 people per meeting)</li>#}
-            {#                            <li>Toll-free or local number</li>#}
-            {#                            <li>2,500 toll-free minutes/month</li>#}
-            {#                            <li>Voicemail-to-text</li>#}
-            {#                            <li> Unlimited internet fax</li>#}
-            {#                            <li>Automatic call recording</li>#}
-            {#                        </ul>#}
-            {#                        <br>#}
-            {#                        <div class="d-flex justify-content-between align-items-center">#}
-            {#                        </div>#}
-            {#                        <br> <a target="_blank" class="btn btn-primary"#}
-            {#                                href="https://store22617285.ecwid.com/Toll-Free-Number-Premium-Package-p168074394">Get#}
-            {#                        Monthly Package</a>#}
-            {#                        <br><br><a target="_blank" class="btn btn-primary"#}
-            {#                                   href="https://millennialsbuildinggreatness.com/products/toll-free-office-premium-yearly-package-3-monthly-payment-option-with-via-bill-0-interest">Click#}
-            {#                        Here To Get 50% Off Yearly Package</a>#}
-            {#                        <br><br>#}
-            {#                        <a target="_blank" class="btn btn-primary"#}
-            {#                           href="https://millennialsbuildinggreatness.com/products/toll-free-office-premium-yearly-package-3-monthly-payment-option-with-via-bill-0-interest">Yearly#}
-            {#                            Package 3 Month Payment Option</a>#}
-            {#                        <br> <br>#}
-            {#                        <a target="_blank" class="btn btn-primary" href="https://millennialbusinessbuilders.com/voip">See#}
-            {#                            Full Toll Free Number Website</a>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
@@ -125,22 +57,49 @@
                         <li>Automatic call recording</li>
 
                         <br>
-                        <div class="text-center">
-                            Monthly option - $40 USD:<br>
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" class="btn btn-primary" value="monthly" name="variant">
-                                <button type="submit" class="btn btn-primary">Order now</button>
-                            </form>
-                        </div>
-                        <br>
-                        <div class="text-center">
-                            Save 50% with annual option - $420 USD:<br>
-                                                        <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" class="btn btn-primary" value="yearly" name="variant">
-                                <button type="submit" class="btn btn-primary">Order now</button>
-                            </form>
+                        <div class="row">
+                            <div class="col-md my-2">
+                                <div class="text-center">
+                                    Monthly option - $40 USD:<br>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        Fax Numbers To Choose From<br>
+                                        <select class="custom-select mb-2">
+                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
+                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
+                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
+                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
+                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
+                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
+                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
+                                        </select><br>
+                                        Quantity: <input class="quantity_input" value="1" type="number" name="quantity"><br><br>
+                                        <input type="hidden" value="monthly" name="variant">
+                                        <button type="submit" class="btn btn-primary">Order now</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md my-2">
+                                <div class="text-center">
+                                    Save 50% with annual option - $420 USD:<br>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        Fax Numbers To Choose From<br>
+                                        <select class="custom-select mb-2">
+                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
+                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
+                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
+                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
+                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
+                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
+                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
+                                        </select><br>
+                                        Quantity: <input class="quantity_input" value="1" type="number" name="quantity"><br><br>
+                                        <input type="hidden" value="yearly" name="variant">
+                                        <button type="submit" class="btn btn-primary">Order now</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
 
                     </div>

@@ -57,7 +57,7 @@ class StripeCheckout(View):
 
         products = request.session.get('ordering_products')
         if products:
-            amount = sum([i['price_amount'] for i in products])
+            amount = sum([i['price_amount'] * i['quantity'] for i in products])
 
         cart_uuid = uuid4()
         request.session['cart_uuid'] = str(cart_uuid)

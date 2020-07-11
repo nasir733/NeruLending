@@ -1,16 +1,15 @@
+import stripe
+from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
 from django.views.generic.base import ContextMixin
-from django.conf import settings
 
 from user.forms import UserDataForm
 from user.models import PortalGoal, UserData, UserSteps
 from .forms import BusinessCreditStepsForm
 from .models import *
-
-import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -929,7 +928,6 @@ class FaxNumberPaidView(View):
         context = get_context_for_all(request)
         context['services'] = services
 
-
         return render(request, 'businessCreditBuilding/faxNumberPaid.html', context=context)
 
 
@@ -943,7 +941,7 @@ class FaxNumberView(View):
 
     def post(self, request):
         data = request.POST
-        if 'variant' in data and data['variant']:
+        if 'variant' in data and data['variant'] and 'quantity' in data and int(data['quantity']) > 0:
             product = None
             if data['variant'] == 'monthly':
                 product = stripe.Price.list(lookup_keys=['Fax Number_monthly'])['data'][0]
@@ -954,11 +952,12 @@ class FaxNumberView(View):
                 request.session['ordering_products'] = [{
                     'name': product['lookup_key'].replace("_", ", "),
                     'price': product['id'],
-                    'quantity': 1,
+                    'quantity': int(data['quantity']),
                     'price_amount': product['unit_amount'] / 100,
                     'object': product
                 }]
             return redirect("business:stripe_checkout")
+
 
 class FourElevenListingView(View):
     def get(self, request):
@@ -1085,7 +1084,7 @@ class TollFreeNumberOptionsView(View):
 
     def post(self, request):
         data = request.POST
-        if 'variant' in data and data['variant']:
+        if 'variant' in data and data['variant'] and 'quantity' in data and int(data['quantity']) > 0:
             product = None
             if data['variant'] == 'monthly':
                 product = stripe.Price.list(lookup_keys=['Toll Free Number_monthly'])['data'][0]
@@ -1096,7 +1095,7 @@ class TollFreeNumberOptionsView(View):
                 request.session['ordering_products'] = [{
                     'name': product['lookup_key'].replace("_", ", "),
                     'price': product['id'],
-                    'quantity': 1,
+                    'quantity': int(data['quantity']),
                     'price_amount': product['unit_amount'] / 100,
                     'object': product
                 }]
