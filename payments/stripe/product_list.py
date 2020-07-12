@@ -29,4 +29,10 @@ products = [
         "price_monthly": 7.99,
         "price_yearly": 42,
     },
+    {
+        "name": "Business Builder Program",
+        "description": "Business Builder Program",
+        "price_monthly": 109.99,
+        "price_yearly": 999,
+    },
 ]

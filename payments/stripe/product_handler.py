@@ -1,9 +1,9 @@
 import stripe
 
 from payments.stripe.config import STRIPE_CONFIG
-from .product_list import products
+from payments.stripe.product_list import products
 
-stripe.api_key = STRIPE_CONFIG.get("STRIPE_SECRET_KEY_TEST")
+stripe.api_key = STRIPE_CONFIG.get("STRIPE_SECRET_KEY_PROD")
 
 
 def create_product(product):
@@ -73,10 +73,3 @@ def generate_products(prods):
 
 
 generate_products(products)
-
-create_product({
-    "name": "Fax Number",
-    "description": "Fax Number",
-    "price_monthly": 20,
-    "price_yearly": 240,
-})

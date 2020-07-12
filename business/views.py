@@ -93,7 +93,7 @@ class BusinessCreditStepsView(View):
         products = ['Website_monthly', 'Website_yearly',
                     'Toll Free Number_monthly', 'Toll Free Number_yearly',
                     "Fax Number_monthly", 'Fax Number_yearly',
-                    'Domain_yearly', 'Professional Email Address_monthly',
+                    'Domain_yearly', 'Professional Email Address_monthly', 'Business Builder Program_monthly', 'Business Builder Program_yearlyg',
                     'Professional Email Address_yearly']
         prices = stripe.Price.list(
             lookup_keys=products,
@@ -120,7 +120,7 @@ class BusinessCreditStepsView(View):
         total_payment = 0
         products_to_check = ['website', 'toll_free_number', 'fax_number', 'domain',
                              'professional_email_address', 'website_year', 'toll_free_number_year',
-                             'fax_number_year', 'domain_year', 'professional_email_address_year']
+                             'fax_number_year', 'domain_year', 'professional_email_address_year', 'business_builder_program']
         for i in products_to_check:
             if i in request.POST and request.POST[i] == 'on':
                 if i.endswith("_year"):

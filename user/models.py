@@ -159,13 +159,14 @@ class UserSteps(models.Model):
     fax_number = models.IntegerField("Fax numberx", choices=_choices, null=True, default=1)
     domain = models.IntegerField("Domain", choices=_choices, null=True, default=1)
     professional_email_address = models.IntegerField("Professional email", choices=_choices, null=True, default=1)
+    business_builder_program = models.IntegerField("Business Builder Program", choices=_choices, null=True, default=1)
 
     domain_name = models.CharField("Domain name", null=True, default='', blank=True, max_length=500)
     industry_name = models.CharField("Industry name", null=True, default='', blank=True, max_length=500)
 
     fax_number_act = models.CharField("Actual fax number", null=True, default='', blank=True, max_length=500)
     toll_free_number_act = models.CharField("Actual toll free number", null=True, default='', blank=True, max_length=500)
-    professional_email_address_act = models.CharField("Actual professinoal email address", null=True, default='', blank=True, max_length=500)
+    professional_email_address_act = models.CharField("Actual professional email address", null=True, default='', blank=True, max_length=500)
     website_act = models.CharField("Actual website link", null=True, default='', blank=True, max_length=500)
     domain_act = models.CharField("Actual domain name", null=True, default='', blank=True, max_length=500)
 
