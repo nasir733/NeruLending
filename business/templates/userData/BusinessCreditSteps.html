@@ -91,13 +91,13 @@
                                             <label for="industry">Select Industry:</label><br>
                                             <select name="industry" id="industry" class="custom-select w-100">
                                                 <option>Electrician</option>
-                                                <option>Garderner</option>
+                                                <option>Gardener</option>
                                                 <option>Tattoo Artist</option>
                                                 <option>Photography</option>
                                                 <option>Limo Service</option>
                                                 <option>Nutrition Advisor</option>
                                                 <option>Life Coach</option>
-                                                <option>Vetirinary clinic</option>
+                                                <option>Veterinary clinic</option>
                                                 <option>Laundromat</option>
                                                 <option>Fitness Club</option>
                                                 <option>Dentist</option>
@@ -141,14 +141,14 @@
                                         <div class="text-center mb-2 font-weight-bold">
                                             Need All The Steps? Get The Business Builder Monthly Program for $109.99
                                         </div>
-                                        <form method="post">
-                                            <div class="text-center">
-                                                <input type="hidden" value="on" name="business_builder_program">
-                                            <button class="btn btn-primary">
-                                                Get Business Builder Monthly Program
-                                            </button>
-                                        </div>
-                                        </form>
+{#                                        <form method="post">#}
+{#                                            <div class="text-center">#}
+{#                                                <input type="hidden" value="on" name="business_builder_program">#}
+{#                                                <button class="btn btn-primary">#}
+{#                                                    Get Business Builder Monthly Program#}
+{#                                                </button>#}
+{#                                            </div>#}
+{#                                        </form>#}
 
                                     </div>
                                 </div>
@@ -196,13 +196,13 @@
                                             <label for="industry_year">Select Industry:</label><br>
                                             <select name="industry_year" id="industry_year" class="custom-select w-100">
                                                 <option>Electrician</option>
-                                                <option>Garderner</option>
+                                                <option>Gardener</option>
                                                 <option>Tattoo Artist</option>
                                                 <option>Photography</option>
                                                 <option>Limo Service</option>
                                                 <option>Nutrition Advisor</option>
                                                 <option>Life Coach</option>
-                                                <option>Vetirinary clinic</option>
+                                                <option>Veterinary clinic</option>
                                                 <option>Laundromat</option>
                                                 <option>Fitness Club</option>
                                                 <option>Dentist</option>
@@ -304,7 +304,7 @@
 
         $('#steps-form').submit(async function (evt) {
             evt.preventDefault();
-
+            console.log("hehehe")
             if (document.getElementById('domain_year').checked && await checkDomain('domain_name_year')) {
                 this.submit();
             } else if (document.getElementById('domain').checked && await checkDomain('domain_name')) {

@@ -1,10 +1,12 @@
+import stripe
 from autoslug import AutoSlugField
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from django.conf import settings
-import stripe
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 class ProfileUserManager(models.Manager):
     def create_user(self, email, password, first_name, last_name, phone_number):
@@ -85,7 +87,6 @@ class PortalGoal(models.Model):
 
 
 class UserData(models.Model):
-
     class Meta:
         verbose_name = "5. Personal Information"
         verbose_name_plural = "5. Personal Information"
@@ -93,42 +94,42 @@ class UserData(models.Model):
     # user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     user = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
-    duns = models.CharField("DUNS Number", null=True, blank=True,  max_length=255)
-    ein = models.CharField("EIN number", null=True, blank=True,  max_length=255)
+    duns = models.CharField("DUNS Number", null=True, blank=True, max_length=255)
+    ein = models.CharField("EIN number", null=True, blank=True, max_length=255)
 
-    first_name = models.CharField("First Name", null=True, blank=True,  max_length=255)
-    last_name = models.CharField("Last Name", null=True, blank=True,  max_length=255)
+    first_name = models.CharField("First Name", null=True, blank=True, max_length=255)
+    last_name = models.CharField("Last Name", null=True, blank=True, max_length=255)
 
-    personal_street_address_1 = models.CharField("Personal Address Line 1", null=True, blank=True,  max_length=255)
-    personal_street_address_2 = models.CharField("Personal Address Line 2", null=True, blank=True,  max_length=255)
-    personal_zip_code = models.CharField("Personal Zip Code", null=True, blank=True,  max_length=255)
-    personal_city = models.CharField("Personal City", null=True, blank=True,  max_length=255)
-    personal_state = models.CharField("Personal State", null=True, blank=True,  max_length=255)
-    personal_country = models.CharField("Personal Country", null=True, blank=True,  max_length=255)
-    personal_phone = models.CharField("Personal Phone", null=True, blank=True,  max_length=255)
+    personal_street_address_1 = models.CharField("Personal Address Line 1", null=True, blank=True, max_length=255)
+    personal_street_address_2 = models.CharField("Personal Address Line 2", null=True, blank=True, max_length=255)
+    personal_zip_code = models.CharField("Personal Zip Code", null=True, blank=True, max_length=255)
+    personal_city = models.CharField("Personal City", null=True, blank=True, max_length=255)
+    personal_state = models.CharField("Personal State", null=True, blank=True, max_length=255)
+    personal_country = models.CharField("Personal Country", null=True, blank=True, max_length=255)
+    personal_phone = models.CharField("Personal Phone", null=True, blank=True, max_length=255)
 
-    billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, blank=True,  max_length=255)
-    billing_street_address_2 = models.CharField("Billing Address Line 2", null=True, blank=True,  max_length=255)
-    billing_zip_code = models.CharField("Billing Zip Code", null=True, blank=True,  max_length=255)
-    billing_city = models.CharField("Billing City", null=True, blank=True,  max_length=255)
-    billing_state = models.CharField("Billing State", null=True, blank=True,  max_length=255)
-    billing_country = models.CharField("Billing Country", null=True, blank=True,  max_length=255)
-    billing_phone = models.CharField("Billing Phone", null=True, blank=True,  max_length=255)
+    billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, blank=True, max_length=255)
+    billing_street_address_2 = models.CharField("Billing Address Line 2", null=True, blank=True, max_length=255)
+    billing_zip_code = models.CharField("Billing Zip Code", null=True, blank=True, max_length=255)
+    billing_city = models.CharField("Billing City", null=True, blank=True, max_length=255)
+    billing_state = models.CharField("Billing State", null=True, blank=True, max_length=255)
+    billing_country = models.CharField("Billing Country", null=True, blank=True, max_length=255)
+    billing_phone = models.CharField("Billing Phone", null=True, blank=True, max_length=255)
 
     business_name = models.CharField("Business Name", null=True, blank=True, max_length=255)
 
-    business_street_address_1 = models.CharField("Business Address Line 1", null=True, blank=True,  max_length=255)
-    business_street_address_2 = models.CharField("Business Address Line 2", null=True, blank=True,  max_length=255)
-    business_zip_code = models.CharField("Business Zip Code", null=True, blank=True,  max_length=255)
-    business_city = models.CharField("Business City", null=True, blank=True,  max_length=255)
-    business_state = models.CharField("Business State", null=True, blank=True,  max_length=255)
-    business_country = models.CharField("Business Country", null=True, blank=True,  max_length=255)
-    business_phone = models.CharField("Business Phone", null=True, blank=True,  max_length=255)
+    business_street_address_1 = models.CharField("Business Address Line 1", null=True, blank=True, max_length=255)
+    business_street_address_2 = models.CharField("Business Address Line 2", null=True, blank=True, max_length=255)
+    business_zip_code = models.CharField("Business Zip Code", null=True, blank=True, max_length=255)
+    business_city = models.CharField("Business City", null=True, blank=True, max_length=255)
+    business_state = models.CharField("Business State", null=True, blank=True, max_length=255)
+    business_country = models.CharField("Business Country", null=True, blank=True, max_length=255)
+    business_phone = models.CharField("Business Phone", null=True, blank=True, max_length=255)
 
-    email = models.CharField("Email Address", null=True, blank=True,  max_length=255)
-    website = models.CharField("Website", null=True, blank=True,  max_length=255)
-    toll_free_number = models.CharField("Toll Free Number", null=True, blank=True,  max_length=255)
-    fax_number = models.CharField("Fax Number", null=True, blank=True,  max_length=255)
+    email = models.CharField("Email Address", null=True, blank=True, max_length=255)
+    website = models.CharField("Website", null=True, blank=True, max_length=255)
+    toll_free_number = models.CharField("Toll Free Number", null=True, blank=True, max_length=255)
+    fax_number = models.CharField("Fax Number", null=True, blank=True, max_length=255)
 
     def save(self, *args, **kwargs):
         if self.first_name == "":
@@ -142,12 +143,47 @@ class UserData(models.Model):
 
 
 class UserSteps(models.Model):
-
     _choices = (
         (1, "Not ordered"),
         (2, "In progress"),
         (3, "Done"),
     )
+
+    _industry_choices = (
+        (1, "Electrician"),
+        (2, "Gardener"),
+        (3, "Tattoo Artist"),
+        (4, "Photography"),
+        (5, "Limo Service"),
+        (6, "Nutrition Advisor"),
+        (7, "Life Coach"),
+        (8, "Veterinary clinic"),
+        (9, "Laundromat"),
+        (10, "Fitness Club"),
+        (11, "Dentist"),
+        (12, "Consulting"),
+        (13, "Auto Repair"),
+        (14, "Tutor"),
+        (15, "Bakery"),
+        (16, "Financial Advisor"),
+        (17, "Lawyer"),
+        (18, "Marketing Agency"),
+        (19, "Trucking"),
+        (20, "Locksmith"),
+        (21, "Medical Clinic"),
+        (22, "Dance Studio"),
+        (23, "Carpenter"),
+        (24, "Moving Company"),
+        (25, "Hair Salon"),
+        (26, "Cleaning Service"),
+        (27, "Car Dealer"),
+        (28, "Portfolio"),
+        (29, "Real Estate"),
+        (30, "Preschool"),
+        (31, "Spa Service"),
+        (32, "Physical Therapist"),
+    )
+
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     email = models.CharField("User Email", max_length=500, null=False)
     first_name = models.CharField("First Name", max_length=500, null=True)
@@ -155,6 +191,8 @@ class UserSteps(models.Model):
     phone = models.CharField("Phone Number", max_length=500, null=True)
 
     website = models.IntegerField("Website", choices=_choices, null=True, default=1)
+    industry_name = models.IntegerField("Industry", choices=_industry_choices, null=True, default=1)
+
     toll_free_number = models.IntegerField("Toll free number", choices=_choices, null=True, default=1)
     fax_number = models.IntegerField("Fax numberx", choices=_choices, null=True, default=1)
     domain = models.IntegerField("Domain", choices=_choices, null=True, default=1)
@@ -162,17 +200,17 @@ class UserSteps(models.Model):
     business_builder_program = models.IntegerField("Business Builder Program", choices=_choices, null=True, default=1)
 
     domain_name = models.CharField("Domain name", null=True, default='', blank=True, max_length=500)
-    industry_name = models.CharField("Industry name", null=True, default='', blank=True, max_length=500)
 
     fax_number_act = models.CharField("Actual fax number", null=True, default='', blank=True, max_length=500)
-    toll_free_number_act = models.CharField("Actual toll free number", null=True, default='', blank=True, max_length=500)
-    professional_email_address_act = models.CharField("Actual professional email address", null=True, default='', blank=True, max_length=500)
+    toll_free_number_act = models.CharField("Actual toll free number", null=True, default='', blank=True,
+                                            max_length=500)
+    professional_email_address_act = models.CharField("Actual professional email address", null=True, default='',
+                                                      blank=True, max_length=500)
     website_act = models.CharField("Actual website link", null=True, default='', blank=True, max_length=500)
     domain_act = models.CharField("Actual domain name", null=True, default='', blank=True, max_length=500)
 
     domain_dashboard = models.CharField("Domain name dashboard", null=True, default='', blank=True, max_length=500)
     email_provider = models.CharField("Email provider", null=True, default='', blank=True, max_length=500)
-
 
     class Meta:
         verbose_name = "6. User Steps"

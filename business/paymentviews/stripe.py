@@ -145,6 +145,7 @@ def subscription(request):
         # Add UserSteps if there is in session
         user_steps_data = request.session.get('user_steps_data')
 
+
         print("DATA:", user_steps_data)
         if user_steps_data:
             new_steps = UserSteps(
