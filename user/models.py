@@ -199,11 +199,14 @@ class UserSteps(models.Model):
     professional_email_address = models.IntegerField("Professional email", choices=_choices, null=True, default=1)
     business_builder_program = models.IntegerField("Business Builder Program", choices=_choices, null=True, default=1)
 
+    base_professional_mailing_address = models.CharField("Base professional mailing address", null=True, default='', blank=True, max_length=500)
+
     domain_name = models.CharField("Domain name", null=True, default='', blank=True, max_length=500)
 
     fax_number_act = models.CharField("Actual fax number", null=True, default='', blank=True, max_length=500)
     toll_free_number_act = models.CharField("Actual toll free number", null=True, default='', blank=True,
                                             max_length=500)
+
     professional_email_address_act = models.CharField("Actual professional email address", null=True, default='',
                                                       blank=True, max_length=500)
     website_act = models.CharField("Actual website link", null=True, default='', blank=True, max_length=500)
@@ -211,6 +214,18 @@ class UserSteps(models.Model):
 
     domain_dashboard = models.CharField("Domain name dashboard", null=True, default='', blank=True, max_length=500)
     email_provider = models.CharField("Email provider", null=True, default='', blank=True, max_length=500)
+
+    toll_free_username = models.CharField("Toll Free Number username", null=True, default='', blank=True, max_length=500)
+    toll_free_password = models.CharField("Toll Free Number password", null=True, default='', blank=True, max_length=500)
+
+    website_username = models.CharField("Website username", null=True, default='', blank=True, max_length=500)
+    website_password = models.CharField("Website password", null=True, default='', blank=True, max_length=500)
+
+    domain_username = models.CharField("Domain username", null=True, default='', blank=True, max_length=500)
+    domain_password = models.CharField("Domain password", null=True, default='', blank=True, max_length=500)
+
+    email_username = models.CharField("Email username", null=True, default='', blank=True, max_length=500)
+    email_password = models.CharField("Email password", null=True, default='', blank=True, max_length=500)
 
     class Meta:
         verbose_name = "6. User Steps"

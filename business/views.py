@@ -120,9 +120,21 @@ class BusinessCreditStepsView(View):
         total_payment = 0
         products_to_check = ['website', 'toll_free_number', 'fax_number', 'domain',
                              'professional_email_address', 'website_year', 'toll_free_number_year',
-                             'fax_number_year', 'domain_year', 'professional_email_address_year', 'business_builder_program']
+                             'fax_number_year', 'domain_year', 'professional_email_address_year', "business_builder_program"]
+        # if 'business_builder_program' in request.POST and request.POST['business_builder_program'] == :
+        #     print(request.POST)
+        #     product = stripe.Price.list(lookup_keys='Business Builder Program_monthly')
+        #     ordering_products.append({
+        #         'name': product['lookup_key'].replace("_", ", "),
+        #         'price': product['id'],
+        #         'quantity': 1,
+        #         'price_amount': product['unit_amount'] / 100,
+        #         'object': product
+        #     })
+        # else:
         for i in products_to_check:
             if i in request.POST and request.POST[i] == 'on':
+                print(i)
                 if i.endswith("_year"):
                     service_in_model = i.replace("_year", "")
                     productname = service_in_model.replace("_", " ") + "_yearly"
@@ -141,18 +153,17 @@ class BusinessCreditStepsView(View):
                 })
                 services[service_in_model] = 2
                 total_payment += product['unit_amount'] / 100
-        domain_name = ''
+            domain_name = ''
         if 'domain_name_year' in request.POST and request.POST['domain_name_year']:
             domain_name = request.POST['domain_name_year']
         if 'domain_name' in request.POST and request.POST['domain_name']:
             domain_name = request.POST['domain_name_year']
         industry_name = ''
 
-
         if 'industry_year' in request.POST and request.POST['industry_year']:
-            industry_year = request.POST['industry_year']
+            industry_name = request.POST['industry_year']
         if 'industry' in request.POST and request.POST['industry']:
-            industry_month = request.POST['industry']
+            industry_name = request.POST['industry']
 
         industry_choices = (
             (1, "Electrician"),
