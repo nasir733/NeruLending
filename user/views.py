@@ -153,20 +153,14 @@ class MyProgressView(View):
                       'fax_number',
                       'domain',
                       'professional_email_address']:
-                if getattr(i, k) == 2:
-                    serv = {
-                        'name': k.replace('_', " "),
-                        'status': 'In progress',
-                        'product': '',
-                        'dashboard': ''
-                    }
-                    services.append(serv)
-                elif getattr(i, k) == 3:
+                if getattr(i, k) == 2 or getattr(i, k) == 3:
                     dash = ''
                     if k == 'website':
-                        dash = "https://www.websitebuilder.ai"
-                    elif k == 'toll_free_number' or k == 'fax_number':
-                        dash = "https://voip.millennialbusinessbuilders.com/login"
+                        dash = "/business/website-creation-paid"
+                    elif k == 'toll_free_number':
+                        dash = '/business/toll-free-options/'
+                    elif k == 'fax_number':
+                        dash = "/business/fax-number-paid"
                     elif k == 'domain':
                         dash = getattr(i, 'domain_dashboard')
                     elif k == 'professional_email_address':
