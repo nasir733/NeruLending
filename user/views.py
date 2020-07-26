@@ -31,10 +31,7 @@ class GDTLoginView(LoginView):
         """Security check complete. Log the user in."""
         user = form.get_user()
         auth_login(self.request, user)
-        if user.profile.portal_goals.all().count() == 0:
-            return HttpResponseRedirect("/dashboard")
-        else:
-            return HttpResponseRedirect(user.profile.portal_goals.first().get_absolute_url())
+        return HttpResponseRedirect(self.get_redirect_url() or '/dashboard')
 
 
 class APIloginView(View):

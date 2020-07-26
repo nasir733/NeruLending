@@ -64,16 +64,17 @@
                                         </div>
 
                                         <div>
+                                            <input type="checkbox" name="domain" id="domain">
+                                            <label for="domain">Domain: $13.99 USD</label>
+                                        </div>
+
+                                        <div>
                                             <input type="checkbox" name="professional_email_address"
-                                                   id="professional_email">
+                                                   id="professional_email" disabled>
                                             <label for="professional_email">Professional Email Address: $7.99 USD -
                                                 monthly</label>
                                         </div>
 
-                                        <div>
-                                            <input type="checkbox" name="domain" id="domain">
-                                            <label for="domain">Domain: $13.99 USD</label>
-                                        </div>
 
                                         <div style="display: none" id="domain-field">
                                             <label for="domain_name_year">Domain name:</label>
@@ -143,8 +144,11 @@
                                             Need All The Steps? Get The Business Builder Monthly Program for $109.99
                                         </div>
                                         <div class="text-center">
-                                            <input type="hidden" value="" name="business_builder_program" id="business_builder_program">
-                                            <button class="btn btn-primary" form="business-programm">Get Business Builder Monthly Program</button>
+                                            <input type="hidden" value="" name="business_builder_program"
+                                                   id="business_builder_program">
+                                            <button class="btn btn-primary" form="business-programm">Get Business
+                                                Builder Monthly Program
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -166,15 +170,16 @@
                                             <label for="fax_number_year">Fax Number: $240 USD - yearly</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox" name="professional_email_address_year"
+                                            <input type="checkbox" name="domain_year" id="domain_year">
+                                            <label for="domain_year">Domain: $13.99 USD</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" disabled name="professional_email_address_year"
                                                    id="professional_email_year">
                                             <label for="professional_email_year">Professional Email Address: $42 USD -
                                                 yearly</label>
                                         </div>
-                                        <div>
-                                            <input type="checkbox" name="domain_year" id="domain_year">
-                                            <label for="domain_year">Domain: $13.99 USD</label>
-                                        </div>
+
                                         <div style="display: none" id="domain-year-field">
                                             <label for="domain_name_year">Domain name:</label>
                                             <div style="display: flex">
@@ -367,8 +372,11 @@
             var field = document.getElementById('domain-year-field')
             if (event.target.checked) {
                 field.style.display = 'block'
+                document.getElementById('professional_email_year').disabled = false
             } else {
                 field.style.display = 'none'
+                document.getElementById('professional_email_year').disabled = true
+                document.getElementById('professional_email_year').checked = false
             }
         });
 
@@ -376,8 +384,11 @@
             var field = document.getElementById('domain-field')
             if (event.target.checked) {
                 field.style.display = 'block'
+                document.getElementById('professional_email').disabled = false
             } else {
                 field.style.display = 'none'
+                document.getElementById('professional_email').disabled = true
+                document.getElementById('professional_email').checked = false
             }
         });
 
