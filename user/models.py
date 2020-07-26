@@ -217,6 +217,10 @@ class UserSteps(models.Model):
 
     toll_free_username = models.CharField("Toll Free Number username", null=True, default='', blank=True, max_length=500)
     toll_free_password = models.CharField("Toll Free Number password", null=True, default='', blank=True, max_length=500)
+    toll_free_prefix = models.CharField("Toll Free prefix", null=True, default='', blank=True, max_length=500)
+    toll_free_amount = models.CharField("Toll Free amount", null=True, default='', blank=True, max_length=500)
+    fax_number_prefix = models.CharField("Fax number prefix", null=True, default='', blank=True, max_length=500)
+    fax_number_amount = models.CharField("Fax amount amount", null=True, default='', blank=True, max_length=500)
 
     website_username = models.CharField("Website username", null=True, default='', blank=True, max_length=500)
     website_password = models.CharField("Website password", null=True, default='', blank=True, max_length=500)

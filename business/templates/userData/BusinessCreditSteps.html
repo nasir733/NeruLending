@@ -20,6 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form method="post" id="business-programm">{% csrf_token %}</form>
+                        <form method="post" id="business_builder_program_year_form">{% csrf_token %}</form>
                         <form method="post" id="steps-form">{% csrf_token %}
                             <div class="row mb-2">
                                 <div class="col-6">
@@ -253,11 +254,10 @@
                                             save $50
                                         </div>
                                         <div class="text-center ">
-
-                                            <a class="btn btn-primary"
-                                               href="https://millennialsbuildinggreatness.com/products/business-builders-annual-package">
+                                            <input type="hidden" value="" name="business_builder_program_year" id="business_builder_program_year">
+                                            <button class="btn btn-primary" form="business_builder_program_year_form">
                                                 Get Business Builder Annual Program
-                                            </a>
+                                            </button>
                                         </div>
                                         <div class="text-center ">
                                             <br>
@@ -317,6 +317,12 @@
         $('#business-programm').submit(async function (evt) {
             evt.preventDefault();
             document.getElementById('business_builder_program').value = "on";
+            $('#steps-form').submit()
+        });
+
+        $('#business_builder_program_year_form').submit(async function (evt) {
+            evt.preventDefault();
+            document.getElementById('business_builder_program_year').value = "on";
             $('#steps-form').submit()
         });
 

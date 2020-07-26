@@ -97,13 +97,14 @@ class BusinessCreditStepsView(View):
         prices = stripe.Price.list(
             lookup_keys=products,
         )
-        prices["data"].append(stripe.Price.list(lookup_keys=['Business Builder Program_yearly'])["data"])
+        prices["data"].append(stripe.Price.list(lookup_keys=['Business Builder Program_yearly'])["data"][0])
 
         return prices
 
     @staticmethod
     def get_specific_product(products, name):
         for i in products:
+            print(i)
             if name.lower() in i['lookup_key'].lower():
                 return i
 
@@ -122,7 +123,7 @@ class BusinessCreditStepsView(View):
         products_to_check = ['website', 'toll_free_number', 'fax_number', 'domain',
                              'professional_email_address', 'website_year', 'toll_free_number_year',
                              'fax_number_year', 'domain_year', 'professional_email_address_year',
-                             "business_builder_program"]
+                             "business_builder_program", "business_builder_program_year"]
         # if 'business_builder_program' in request.POST and request.POST['business_builder_program'] == :
         #     print(request.POST)
         #     product = stripe.Price.list(lookup_keys='Business Builder Program_monthly')
@@ -134,6 +135,7 @@ class BusinessCreditStepsView(View):
         #         'object': product
         #     })
         # else:
+        print(request.POST)
         for i in products_to_check:
             if i in request.POST and request.POST[i] == 'on':
 
@@ -1066,6 +1068,8 @@ class FaxNumberView(View):
                     'email': request.user.email,
                     'phone': Profile.objects.get(user=request.user).phone_number,
                     'fax_number': 2,
+                    'fax_number_prefix': data.get('prefix'),
+                    'fax_number_amount': data.get('quantity'),
                 }
             return redirect("business:stripe_checkout")
 
@@ -1219,6 +1223,9 @@ class TollFreeNumberOptionsView(View):
                     'email': request.user.email,
                     'phone': Profile.objects.get(user=request.user).phone_number,
                     'toll_free_number': 2,
+                    'toll_free_prefix': data.get('prefix'),
+                    'toll_free_amount': data.get('quantity'),
+
                 }
             return redirect("business:stripe_checkout")
 
