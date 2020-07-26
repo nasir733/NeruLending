@@ -155,13 +155,11 @@ class BusinessCreditStepsView(View):
                     'price_amount': product['unit_amount'] / 100,
                     'object': product
                 })
-                if i in ['toll_free_number', 'fax_number_year', 'toll_free_number_year', 'fax_number_year']:
+                if i in ['toll_free_number', 'fax_number', 'toll_free_number_year', 'fax_number_year']:
                     services[i.replace("_year", "").replace("toll_free_number",
                                                             "toll_free") + "_quantity"] = request.POST.get(
                         i + "_quantity")
-                    services[i.replace("_year", "").replace("toll_free_number",
-                                                            "toll_free") + "_prefix"] = request.POST.get(
-                        i + "_prefix")
+                    services[i.replace("_year", "") + "_prefix"] = request.POST.get(i + "_prefix")
                 services[service_in_model] = 2
                 total_payment += product['unit_amount'] / 100
         domain_name = ''
