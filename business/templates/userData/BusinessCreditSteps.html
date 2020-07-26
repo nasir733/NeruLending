@@ -1,6 +1,11 @@
 {% extends request.resolver_match.page_template %}
 {% load static %}
 {% block content %}
+    <style>
+        .quantity_input {
+            width: 40px;
+        }
+    </style>
     <div class="row page-header">
         <div class="col-lg-6 align-self-center ">
             <h2>Business Credit Building Steps You Need Done For You</h2>
@@ -59,11 +64,40 @@
                                             <input type="checkbox" name="toll_free_number" id="toll_free">
                                             <label for="toll_free">Toll Free Number: $40 USD - monthly</label>
                                         </div>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div>
+                                                Quantity: <input class="quantity_input" value="1" type="number" min="1"
+                                                                 name="toll_free_number_quantity" id="toll_free_number_quantity">
+                                            </div>
+                                            <select class="custom-select mb-2" name="toll_free_number_prefix">
+                                                <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
+                                                <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
+                                                <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
+                                                <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
+                                                <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
+                                                <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
+                                                <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
+                                            </select>
+                                        </div>
                                         <div>
                                             <input type="checkbox" name="fax_number" id="fax_number">
                                             <label for="fax_number">Fax Number: $20 USD - monthly</label>
                                         </div>
-
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div>
+                                                Quantity: <input class="quantity_input" value="1" type="number" min="1"
+                                                                 name="fax_number_quantity" id="fax_number_quantity" >
+                                            </div>
+                                            <select class="custom-select mb-2" name="fax_number_prefix">
+                                                <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
+                                                <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
+                                                <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
+                                                <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
+                                                <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
+                                                <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
+                                                <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
+                                            </select>
+                                        </div>
                                         <div>
                                             <input type="checkbox" name="domain" id="domain">
                                             <label for="domain">Domain: $13.99 USD</label>
@@ -166,9 +200,41 @@
                                             <input type="checkbox" name="toll_free_number_year" id="toll_free_year">
                                             <label for="toll_free_year">Toll Free Number: $420 USD - yearly</label>
                                         </div>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div>
+                                                Quantity: <input class="quantity_input" value="1" type="number" min="1"
+                                                                 name="toll_free_number_year_quantity" id="toll_free_number_year_quantity">
+                                            </div>
+                                            <select class="custom-select mb-2" name="toll_free__number_year_prefix">
+                                                <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
+                                                <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
+                                                <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
+                                                <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
+                                                <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
+                                                <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
+                                                <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
+                                            </select>
+                                        </div>
+
+
                                         <div>
                                             <input type="checkbox" name="fax_number_year" id="fax_number_year">
                                             <label for="fax_number_year">Fax Number: $240 USD - yearly</label>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div>
+                                                Quantity: <input class="quantity_input" value="1" type="number" min="1"
+                                                                 name="fax_number_year_quantity" id="fax_number_year_quantity">
+                                            </div>
+                                            <select class="custom-select mb-2" name="fax_number_year_prefix">
+                                                <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
+                                                <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
+                                                <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
+                                                <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
+                                                <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
+                                                <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
+                                                <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
+                                            </select>
                                         </div>
                                         <div>
                                             <input type="checkbox" name="domain_year" id="domain_year">
@@ -254,7 +320,8 @@
                                             save $50
                                         </div>
                                         <div class="text-center ">
-                                            <input type="hidden" value="" name="business_builder_program_year" id="business_builder_program_year">
+                                            <input type="hidden" value="" name="business_builder_program_year"
+                                                   id="business_builder_program_year">
                                             <button class="btn btn-primary" form="business_builder_program_year_form">
                                                 Get Business Builder Annual Program
                                             </button>
@@ -363,7 +430,22 @@
             for (let [key, value] of Object.entries(prices)) {
                 var el = document.getElementById(key);
                 if (el.checked) {
-                    total += value
+
+                    if (key === "toll_free") {
+                        total += value * Number(document.getElementById('toll_free_number_quantity').value)
+                    } if (key === "toll_free_year") {
+                        total += value * Number(document.getElementById('toll_free_number_year_quantity').value)
+                    } if (key === "fax_number") {
+                        total += value * Number(document.getElementById('fax_number_quantity').value)
+                    }if (key === "fax_number_year") {
+                        total += value * Number(document.getElementById('fax_number_year_quantity').value)
+                    }
+                    else {
+                        total += value
+                    }
+
+
+
                 }
             }
             $("#total_amount").html(round(total))

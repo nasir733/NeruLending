@@ -155,7 +155,7 @@ def subscription(request):
             new_steps.save()
             request.session.pop('user_steps_data')
 
-        amount = sum([i['price_amount'] for i in products])
+        amount = sum([i['price_amount']*i['quantity'] for i in products])
         request.session.pop('ordering_products')
 
         return render(request, 'checkout/checkout.html', {'amount': amount})

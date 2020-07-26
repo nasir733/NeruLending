@@ -151,10 +151,17 @@ class BusinessCreditStepsView(View):
                 ordering_products.append({
                     'name': product['lookup_key'].replace("_", ", "),
                     'price': product['id'],
-                    'quantity': 1,
+                    'quantity': int(request.POST.get(i + "_quantity", 1)),
                     'price_amount': product['unit_amount'] / 100,
                     'object': product
                 })
+                if i in ['toll_free_number', 'fax_number_year', 'toll_free_number_year', 'fax_number_year']:
+                    services[i.replace("_year", "").replace("toll_free_number",
+                                                            "toll_free") + "_quantity"] = request.POST.get(
+                        i + "_quantity")
+                    services[i.replace("_year", "").replace("toll_free_number",
+                                                            "toll_free") + "_prefix"] = request.POST.get(
+                        i + "_prefix")
                 services[service_in_model] = 2
                 total_payment += product['unit_amount'] / 100
         domain_name = ''
@@ -1069,7 +1076,7 @@ class FaxNumberView(View):
                     'phone': Profile.objects.get(user=request.user).phone_number,
                     'fax_number': 2,
                     'fax_number_prefix': data.get('prefix'),
-                    'fax_number_amount': data.get('quantity'),
+                    'fax_number_quantity': data.get('quantity'),
                 }
             return redirect("business:stripe_checkout")
 
@@ -1224,7 +1231,7 @@ class TollFreeNumberOptionsView(View):
                     'phone': Profile.objects.get(user=request.user).phone_number,
                     'toll_free_number': 2,
                     'toll_free_prefix': data.get('prefix'),
-                    'toll_free_amount': data.get('quantity'),
+                    'toll_free_quantity': data.get('quantity'),
 
                 }
             return redirect("business:stripe_checkout")
