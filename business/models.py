@@ -47,7 +47,7 @@ class BusinessCreditSteps(ModelMixin, models.Model):
     )
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=5000, null=True)
+    first_name = models.CharField(max_length=5000, null=True,)
     last_name = models.CharField(max_length=5000, null=True)
     email = models.CharField(max_length=5000, null=True)
     phone = models.CharField(max_length=5000, null=True)

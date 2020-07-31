@@ -109,9 +109,12 @@ class BusinessCreditStepsView(View):
                 return i
 
     def get(self, request):
-        template = "userData/BusinessCreditSteps.html"
+        template = "businessCreditBuilding/BusinessCreditSteps.html"
         if "standalone" in request.path:
-            template = "userData/BusinessCreditStepsStandalone.html"
+            template = "businessCreditBuilding/BusinessCreditStepsStandalone.html"
+        elif "onlyprograms" in request.path:
+            template = "businessCreditBuilding/BusinessCreditStepsOnlyPrograms.html"
+
         form = BusinessCreditStepsForm()
         return render(request, template, context=get_context_for_all(request, {"form": form}))
 
@@ -217,7 +220,7 @@ class BusinessCreditStepsView(View):
             'email': request.POST['email'],
             'phone': request.POST['phone'],
             'domain_name': domain_name,
-            'industry_name': industry_choices_dict[industry_name],
+            'industry_name': industry_choices_dict.get(industry_name, 1),
             **services
         }
 
@@ -1950,7 +1953,3 @@ class VirtualCardView(View):
         card = request.user.virtual_card
         return render(request, "home/virtualcard.html", get_context_for_all(request, {"virtual_card": card}))
 
-
-class BusinessStepsMobile(View):
-    def get(self, request):
-        return render(request, "userData/BusinessCreditSteps_mobile.html")

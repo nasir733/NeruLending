@@ -3,12 +3,20 @@ from django.views import View
 from django.conf import settings
 from ..models import *
 from user.models import UserSteps
-
+import random
+import string
+from user.models import NewUserCredentials
 import stripe
+from django.contrib.auth.models import User
+from django.contrib.auth import login as auth_login
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from uuid import uuid4
 
+def get_random_string(length):
+    letters = string.ascii_lowercase
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    return result_str
 
 def get_common_context(request, context=None):
     if not context:
@@ -19,6 +27,20 @@ def get_common_context(request, context=None):
 
 class StripeCheckout(View):
     def get(self, request):
+
+        if request.user.is_anonymous:
+
+            usersteps = request.session.get('user_steps_data')
+            passw = get_random_string(8)
+            Profile.objects.create_user(usersteps['email'],
+                                        passw,
+                                        usersteps['first_name'],
+                                        usersteps['last_name'],
+                                        usersteps['phone'])
+            newcreds = NewUserCredentials(email=usersteps['email'], password=passw)
+            newcreds.save()
+            request.user = User.objects.get(email=usersteps['email'])
+            auth_login(self.request, request.user)
         profile = Profile.objects.get(user=request.user)
         stripe_id = profile.stripe_id
         add_new_payment_method = True

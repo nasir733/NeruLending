@@ -199,7 +199,8 @@ class UserSteps(models.Model):
     professional_email_address = models.IntegerField("Professional email", choices=_choices, null=True, default=1)
     business_builder_program = models.IntegerField("Business Builder Program", choices=_choices, null=True, default=1)
 
-    base_professional_mailing_address = models.CharField("Base professional mailing address", null=True, default='', blank=True, max_length=500)
+    base_professional_mailing_address = models.CharField("Base professional mailing address", null=True, default='',
+                                                         blank=True, max_length=500)
 
     domain_name = models.CharField("Domain name", null=True, default='', blank=True, max_length=500)
 
@@ -215,8 +216,10 @@ class UserSteps(models.Model):
     domain_dashboard = models.CharField("Domain name dashboard", null=True, default='', blank=True, max_length=500)
     email_provider = models.CharField("Email provider", null=True, default='', blank=True, max_length=500)
 
-    toll_free_username = models.CharField("Toll Free Number username", null=True, default='', blank=True, max_length=500)
-    toll_free_password = models.CharField("Toll Free Number password", null=True, default='', blank=True, max_length=500)
+    toll_free_username = models.CharField("Toll Free Number username", null=True, default='', blank=True,
+                                          max_length=500)
+    toll_free_password = models.CharField("Toll Free Number password", null=True, default='', blank=True,
+                                          max_length=500)
     toll_free_number_prefix = models.CharField("Toll Free prefix", null=True, default='', blank=True, max_length=500)
     toll_free_quantity = models.CharField("Toll Free amount", null=True, default='', blank=True, max_length=500)
     fax_number_prefix = models.CharField("Fax number prefix", null=True, default='', blank=True, max_length=500)
@@ -237,3 +240,15 @@ class UserSteps(models.Model):
 
     def __str__(self):
         return f"{self.email} steps"
+
+
+class NewUserCredentials(models.Model):
+    email = models.CharField("email", max_length=100, null=True)
+    password = models.CharField("Password", max_length=100, null=True)
+
+    class Meta:
+        verbose_name = "7. New Users"
+        verbose_name_plural = "7. New Users"
+
+    def __str__(self):
+        return self.email
