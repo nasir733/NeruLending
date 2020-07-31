@@ -138,7 +138,7 @@ class BusinessCreditStepsView(View):
         #         'object': product
         #     })
         # else:
-        print(request.POST)
+        print("DASFEFWEFWEFE",request.POST)
         for i in products_to_check:
             if i in request.POST and request.POST[i] == 'on':
 

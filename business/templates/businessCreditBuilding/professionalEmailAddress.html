@@ -54,7 +54,9 @@
                                 <td>{{ service.name }}</td>
                                 <td>{{ service.status }}</td>
                                 <td>{{ service.product }}</td>
-                                <td>{% if service.provider %} <a href="{{ service.provider }}" class="btn btn-primary">Go To Dashboard</a>{% endif %}</td>
+                                <td>{% if service.provider %}
+                                    <a href="{{ service.provider }}" class="btn btn-primary">Go To
+                                        Dashboard</a>{% endif %}</td>
                             </tr>
                         {% endfor %}
                     </table>
@@ -84,9 +86,12 @@
                                 Personal
                                 Credit. </h5>
                             <div class="btn-group">
-                                <a target="_blank" class="btn btn-primary"
-                                   href="https://www.millennialbusinessbuildersllc.com/products/email">Click Here To Get
-                                    Your <br>Professional Email Address</a>
+{#                                <a target="_blank" class="btn btn-primary"#}
+{#                                   href="https://www.millennialbusinessbuildersllc.com/products/email">Click Here To Get#}
+{#                                    Your <br>Professional Email Address</a>#}
+                                <a href="{% url "business:business-credit-steps-onlyprograms" %}"
+                                   class="btn btn-primary">Order
+                                    now</a>
                             </div>
                         </div>
                     </div>

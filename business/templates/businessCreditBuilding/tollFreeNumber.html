@@ -57,52 +57,56 @@
                         <li>Automatic call recording</li>
 
                         <br>
-                        <div class="row">
-                            <div class="col-md my-2">
-                                <div class="text-center">
-                                    Monthly option - $40 USD:<br>
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        Fax Numbers To Choose From<br>
-                                        <select class="custom-select mb-2" name="prefix">
-                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
-                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
-                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
-                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
-                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
-                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
-                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
-                                        </select><br>
-                                        Quantity: <input class="quantity_input" value="1" type="number" name="quantity"><br><br>
-                                        <input type="hidden" value="monthly" name="variant">
-                                        <button type="submit" class="btn btn-primary">Order now</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md my-2">
-                                <div class="text-center">
-                                    Save 50% with annual option - $420 USD:<br>
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        Fax Numbers To Choose From<br>
-                                        <select class="custom-select mb-2" name="prefix_year">
-                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>
-                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>
-                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>
-                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>
-                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>
-                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>
-                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>
-                                        </select><br>
-                                        Quantity: <input class="quantity_input" value="1" type="number" name="quantity"><br><br>
-                                        <input type="hidden" value="yearly" name="variant">
-                                        <button type="submit" class="btn btn-primary">Order now</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        {#                        <div class="row">#}
+                        {#                            <div class="col-md my-2">#}
+                        {#                                <div class="text-center">#}
+                        {#                                    Monthly option - $40 USD:<br>#}
+                        {#                                    <form method="post">#}
+                        {#                                        {% csrf_token %}#}
+                        {#                                        Fax Numbers To Choose From<br>#}
+                        {#                                        <select class="custom-select mb-2" name="prefix">#}
+                        {#                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>#}
+                        {#                                        </select><br>#}
+                        {#                                        Quantity: <input class="quantity_input" value="1" type="number" name="quantity"><br><br>#}
+                        {#                                        <input type="hidden" value="monthly" name="variant">#}
+                        {#                                        <button type="submit" class="btn btn-primary">Order now</button>#}
+                        {#                                    </form>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        {#                            <div class="col-md my-2">#}
+                        {#                                <div class="text-center">#}
+                        {#                                    Save 50% with annual option - $420 USD:<br>#}
+                        {#                                    <form method="post">#}
+                        {#                                        {% csrf_token %}#}
+                        {#                                        Fax Numbers To Choose From<br>#}
+                        {#                                        <select class="custom-select mb-2" name="prefix_year">#}
+                        {#                                            <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)</option>#}
+                        {#                                            <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)</option>#}
+                        {#                                        </select><br>#}
+                        {#                                        Quantity: <input class="quantity_input" value="1" type="number" name="quantity"><br><br>#}
+                        {#                                        <input type="hidden" value="yearly" name="variant">#}
+                        {#                                        <button type="submit" class="btn btn-primary">Order now</button>#}
+                        {#                                    </form>#}
+                        {#                                </div>#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                        {#                    </div>#}
 
-                    </div>
+                        <div class="row justify-content-center">
+                            <a href="{% url "business:business-credit-steps-onlyprograms" %}" class="btn btn-primary">Order
+                                now</a>
+                        </div>
 
                 </div>
             </div>
