@@ -2,13 +2,13 @@
 
 {% block content %}
     {% if error %}
-        
+
     {% endif %}
     {% if form.errors %}
         <p class="text-center"><font size="3" color="red">
             Your username and password didn't match. Please try again.
         </font></p>
-    {% endif %}    
+    {% endif %}
     {% if password_change_msg %}
         <p class="text-center"><font size="3" color="green">{{ password_change_msg }}</font></p>
     {% endif %}
@@ -51,4 +51,3 @@
         }
     </style>
 {% endblock %}
-        
