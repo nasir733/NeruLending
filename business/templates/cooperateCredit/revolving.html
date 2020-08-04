@@ -49,7 +49,6 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Category</th>
                                     <th>Who The Vendor Reports Too</th>
                                     <th>More Details & Application</th>
                                 </tr>
@@ -59,7 +58,6 @@
                                 {% for vendor in vendor_list %}
                                     <tr>
                                         <td>{{ vendor.name }}</td>
-                                        <td>{{ vendor.category }}</td>
                                         <td>{{ vendor.report_to }}</td>
                                         <td>{{ vendor.description }}</td>
                                     </tr>
