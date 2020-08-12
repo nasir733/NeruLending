@@ -262,7 +262,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Go To Affiliate Agent Portal</p>
-                            <a class="btn btn-primary" href="https://getdinerotodayaffiliateprogram.tapfiliate.com/" target="_blank">
+                            <a class="btn btn-primary" href="{% url 'affiliate:home-affiliate' %}" class="nav-link">
                                 Click Here To Go To The <br> Affiliate Agent Portal
                             </a>
                         </div>
@@ -296,6 +296,14 @@
                             <p>Go To Business Credit Building Course</p>
                             <a class="btn btn-primary" href="{% url 'businesscreditcourse:home' %}">
                                 Click Here To Go To The Business <br> Credit Building Course
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card mx-2 text-center" style="width: 21rem;">
+                        <div class="card-body">
+                            <p>Go To White Label Partner Portal</p>
+                            <a class="btn btn-primary" href="{% url 'whitelabelpartnerportal:home-whitelabel' %}">
+                                Click Here To Go To The White <br> Label Partner Portal
                             </a>
                         </div>
                     </div>
