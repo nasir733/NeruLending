@@ -54,19 +54,19 @@
                                 <input type="checkbox" name="fax_number" id="fax_number">
                                 <label for="fax_number">Fax Number: $40 USD - monthly</label>
                             </div>
-                            {#                            <div style="height: 32px">#}
-                            {#                                <input type="checkbox" name="domain" id="domain">#}
-                            {#                                <label for="domain">Domain: $13.99 USD</label>#}
-                            {##}
-                            {#                            </div>#}
+                                                        <div style="height: 32px">
+                                                            <input type="checkbox" name="domain" id="domain">
+                                                            <label for="domain">Domain: $13.99 USD</label>
+
+                                                        </div>
                             <div>
                                 <input type="checkbox" name="professional_email_address" id="professional_email">
                                 <label for="professional_email">Professional Email Address: $7.99 USD - monthly</label>
                             </div>
-                            {#                            <div>#}
-                            {#                                <label for="domain_name">Domain name:</label>#}
-                            {#                                <input type="text" name="domain_name" id="domain_name">#}
-                            {#                            </div>#}
+                                                        <div>
+                                                            <label for="domain_name">Domain name:</label>
+                                                            <input type="text" name="domain_name" id="domain_name">
+                                                        </div>
                             <div>
                                 <label for="industry">Select Industry:</label><br>
                                 <select name="industry" id="industry" class="custom-select w-100">
@@ -202,13 +202,13 @@
                     <div class="row">
                         <div class="col-md-12 text-center mt-4" id="stripe-form">
                             <div>Total: $<span id="total_amount">0</span></div>
-                            {#                            <script src="https://checkout.stripe.com/checkout.js"#}
-                            {#                                    class="stripe-button"#}
-                            {#                                    data-key="{{ stripe_key }}"#}
-                            {#                                    data-description="Business Credit Building Steps"#}
-                            {#                                    data-amount=""#}
-                            {#                                    data-locale="auto">#}
-                            {#                            </script>#}
+                                                        <script src="https://checkout.stripe.com/checkout.js"
+                                                                class="stripe-button"
+                                                                data-key="{{ stripe_key }}"
+                                                                data-description="Business Credit Building Steps"
+                                                                data-amount=""
+                                                                data-locale="auto">
+                                                        </script>
                             <button type="submit" class="btn btn-primary">Proceed to checkout</button>
                         </div>
                     </div>
