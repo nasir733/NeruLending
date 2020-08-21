@@ -35,7 +35,7 @@ EMAIL_HOST_PASSWORD = 'epJ,o0p754'
 DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
 
 # SECURITY WARNING: update this when you have the production host
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com', 'test-dinero-today.herokuapp.com', 'www.getdinerotoday.com', 'getdinerotoday.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com', 'test-dinero-today.herokuapp.com', 'www.getdinerotoday.com', 'getdinerotoday.com', '*']
 
 
 SESSION_COOKIE_SECURE = True

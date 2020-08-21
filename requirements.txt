@@ -26,3 +26,4 @@ djangorestframework
 django-cors-headers
 stripe
 python-whois
+django-hosts

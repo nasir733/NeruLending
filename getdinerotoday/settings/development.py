@@ -20,4 +20,4 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_k8aDNdIlHgXwyIJIf1tswxny00h0Xyel4S'
 STRIPE_SECRET_KEY = 'sk_test_ZZa6QOdZS7mz9Xo17MxQHRgM00ozbxBI5g'
 
 # SECURITY WARNING: update this when you have the production host
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'getdinerotoday.herokuapp.com', '*']

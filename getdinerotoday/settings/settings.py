@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Application definition
 
 INSTALLED_APPS = [
+    'django_hosts',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,6 +69,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,11 +79,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware'
 ]
+
+ROOT_HOSTCONF = 'getdinerotoday.hosts'
+DEFAULT_HOST = 'www'
 
 ROOT_URLCONF = 'getdinerotoday.urls'
 LOGIN_URL = '/user/login'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
+# SUBDOMAIN_URLCONFS = {
+#     # None: 'getdinerotoday',  # no subdomain, e.g. ``example.com``
+#     # 'www': 'getdinerotoday.urls',
+#     # 'test': 'myproject.urls.api',
+# }
 
 TEMPLATES = [
     {
