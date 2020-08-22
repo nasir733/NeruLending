@@ -25,3 +25,13 @@ def ProfileProcessor(request):
     except Exception as e:
         pass
     return {}
+
+
+def whitelabel_processor(request):
+    whitelabel = request.host.name
+
+    if whitelabel == "www":
+        return {'wl_logo': '/static/images/logo.png',
+                'is_main_site': True}
+    elif whitelabel == "friendlyfacesbusinessbuilders":
+        return {'wl_logo': '/static/whitelabel_data/friendlyfacesbusinessbuilders.png'}

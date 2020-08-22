@@ -79,8 +79,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_hosts.middleware.HostsResponseMiddleware'
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
+
 
 ROOT_HOSTCONF = 'getdinerotoday.hosts'
 DEFAULT_HOST = 'www'
@@ -106,7 +107,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'getdinerotoday.contexts.ProfileProcessor'
+                'getdinerotoday.contexts.ProfileProcessor',
+                'getdinerotoday.contexts.whitelabel_processor',
+
             ],
         },
     },

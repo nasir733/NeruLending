@@ -12,6 +12,8 @@ class HomePage(View):
 
 class IndexView(View):
     def get(self, request):
+        print(request.host.name)
+
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse("homepage"))
         return render(request, 'landingpages/index.html')
