@@ -30,8 +30,20 @@ def ProfileProcessor(request):
 def whitelabel_processor(request):
     whitelabel = request.host.name
 
-    if whitelabel == "www":
-        return {'wl_logo': '/static/images/logo.png',
-                'is_main_site': True}
-    elif whitelabel == "friendlyfacesbusinessbuilders":
-        return {'wl_logo': '/static/whitelabel_data/friendlyfacesbusinessbuilders.png'}
+    if whitelabel == "friendlyfacesbusinessbuilders":
+        return {
+            'wl_logo': '/static/whitelabel_data/friendlyfacesbusinessbuilders.png',
+            'phone_number': "324354656"
+        }
+
+    elif whitelabel == "example":
+        return {
+            'wl_logo': '/static/whitelabel_data/friendlyfacesbusinessbuilders.png',
+            'phone_number': "example"
+        }
+
+    return {
+        'wl_logo': '/static/images/logo.png',
+        'phone_number': "877-726-2604",
+        'is_main_site': True
+    }
