@@ -1,5 +1,5 @@
-from yourplan.models import *
 from dynamic.models import *
+from yourplan.models import *
 
 
 def ProfileProcessor(request):
@@ -33,18 +33,19 @@ def whitelabel_processor(request):
 
     sub_domain = request.host.name
 
+    # shouldnt it be .get().sub_name ?
     if sub_domain == ob.filter(sub_name=sub_domain):
         return {
             'wl_logo': '/static/whitelabel_data/logotrans.png',
             'phone_number': "324354656",
-            'dynamic':ob.filter(sub_name=sub_domain),
+            'LOGIN_BG_COLOR_CSS': "white",
+            'dynamic': ob.filter(sub_name=sub_domain),
         }
-
 
     return {
         'wl_logo': '/static/images/logo.png',
         'phone_number': "877-726-2604",
         'is_main_site': True,
-        'dynamic':ob.filter(sub_name='localhost'),
-        
+        'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
+        'dynamic': ob.filter(sub_name='localhost'),
     }
