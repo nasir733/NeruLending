@@ -135,7 +135,9 @@
                             {% if dynamic.iphoneApp %}
                                 <a href={{ dynamic.iphoneApp }} target="_blank" class="btn btn-theme btn-circle">Click
                                     Here To Download On Iphone Store</a> <br> <br>
-                                <a href="https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday"
+                                {% endif %}
+                            {% if dynamic.androidApp %}
+                                <a href={{ dynamic.androidApp }}
                                    target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Google
                                     Play Store</a>
                             {% endif %}
