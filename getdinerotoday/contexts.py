@@ -33,7 +33,6 @@ def whitelabel_processor(request):
 
     sub_domain = request.host.name
 
-    # shouldnt it be .get().sub_name ?
     if sub_domain == ob.filter(sub_name=sub_domain):
         return {
             'wl_logo': '/static/whitelabel_data/logotrans.png',
