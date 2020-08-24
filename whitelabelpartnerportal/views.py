@@ -49,17 +49,19 @@ class BecomingAPartnerView(View):
                 return redirect('whitelabelpartnerportal:becomingapartner')
 
         else:
-            data = {
-                'business_name': request.POST['business_name'],
-                'business_number': request.POST['business_number'],
-            }
-            if 'logo' in request.FILES:
-                data['logo'] = request.FILES['logo']
+            try:
+                data = {
+                    'business_name': request.POST['business_name'],
+                    'business_number': request.POST['business_number'],
+                }
+                if 'logo' in request.FILES:
+                    data['logo'] = request.FILES['logo']
 
-            new_lead = BecomingAPartner(user=Profile.objects.get(user=request.user), **data)
-            new_lead.save()
+                new_lead = BecomingAPartner(user=Profile.objects.get(user=request.user), **data)
+                new_lead.save()
+            except Exception as e:
+                print(e)
             return redirect('whitelabelpartnerportal:becomingapartner')
-
 
 class WhiteLabelTrainingView(View):
     def get(self, request):
