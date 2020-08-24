@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="HTML5 Template"/>
+    <meta name="description" content="HTML5 Template"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+    <title>Get Dinero Today </title>
+    {% include "landingpages/components/StylesBlock.html" %}
+    {% block extrastyle %}
+    {% endblock extrastyle %}
+
+</head>
+<body class="home-4">
+
+{% include "landingpages/components/Loader.html" %}
+{% include "landingpages/components/Header.html" %}
+
+
+{% block content %}
+{% endblock content %}
+
+
+{% include "landingpages/components/Footer.html" %}
+{% include "landingpages/components/JavaScripts.html" %}
+{% block javascriptblock %}
+{% endblock javascriptblock %}
+</body>
+</html>
+
+

@@ -1,0 +1,249 @@
+{% extends "pages/base-loanportal.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    <script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous"
+            data-cfasync="false">
+    </script>
+    <script>
+        var chatPal = new ChatPal({
+            embedId: 'DfT7BnTm5dGn',
+            remoteBaseUrl: 'https://chatterpal.me/',
+            version: '7.23'
+        });
+    </script>
+{% endblock extrastyle %}
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% block content %}
+
+    <div class="row page-header">
+        <div class="col-lg-6 align-self-center ">
+            <h2>Upload Your Documents</h2></div>
+    </div>
+
+    <section class="main-content">
+
+        <div class="row">
+            <div class="col-md-12">
+                <iframe width="100%" height="515" src="https://www.youtube.com/embed/yQq9ZsT3yv0" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+        <br>
+        <center><h2>Upload Your Documents Below</h2></center>
+        <br>
+
+        <div class="row" style="justify-content: space-around">
+            <div class="col-md-5">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/drivers.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center">
+                        <h5 class="card-title">Upload Your Drivers License Or Government-Issued Photo ID</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Driver License / Photo Id"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/socialcard.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center"><h5 class="card-title">Upload Your Social Security Card</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Social Security Card"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/3month.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center"><h5 class="card-title">Upload Your Last 3 Months Of Bank
+                        Statements Click To Call Loan
+                        Support</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Last 3 Months Of Bank Statement"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/6month.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center"><h5 class="card-title">Upload Your Last 6 Months Of Bank
+                        Statements Click To Call Loan
+                        Support</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Last 6 Months Of Bank Statement"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/1yearbt.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center"><h5 class="card-title">Upload Your Last Year Of Business Tax
+                        Returns Click To Call Loan
+                        Support</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Last Year Of Business Tax Returns"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/2yearbt.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center"><h5 class="card-title">Upload Your Last 2 Years Of Business
+                        Tax Returns Click To Call Loan
+                        Support</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Last 2 Years Of Business Tax Returns"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/1yearpt.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center"><h5 class="card-title">Upload Your Last Year Of Personal Tax
+                        Returns Click To Call Loan
+                        Support</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Last Year Of Personal Tax Returns"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://www.getdinerotoday.com/static/images/2yearspt.png" class="card-img-top"
+                         width="100%" height="250px">
+                    <div class="card-body" align="center"><h5 class="card-title">Upload Your Last Two Years Of Personal
+                        Tax Returns Click To Call Loan
+                        Support</h5>
+                        <form action="/loanportal/loanapplication" accept-charset="UTF-8"
+                              method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <br>
+                            <h4>Upload Your Loan Documents Here</h4>
+                            <input type="file" name="document" id="document"/>
+                            <input type="text" name="document_type" id="document_type" hidden
+                                   value="Last Two Years Of Personal Tax Returns"/>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="display: flex; justify-content: space-around">
+                                <button type="submit" name="commit" class="btn btn-primary">Submit</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

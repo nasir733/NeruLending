@@ -1,0 +1,132 @@
+<header id="site-header" class="header header-3">
+    <div class="container">
+        <div id="header-wrap">
+            <div class="row">
+                <div class="col-lg-12">
+                    <style media="screen">
+                        .navbar-toggler {
+                            background-color: #115d22;
+                            color: #115d22;
+                        }
+
+                        .my-ifram-in-mobile {
+                            display: none;
+                        }
+
+                        .my-btn-in-desktop {
+
+                        }
+
+                        @media screen and (max-width: 767px) {
+                            .my-ifram-in-mobile {
+                                display: block;
+                            }
+
+                            .my-btn-in-desktop {
+                                display: none;
+                            }
+                        }
+
+                        .spinner-eff-mobile {
+
+                        }
+
+                        .spinner-eff-mobile {
+                            position: absolute;
+                            width: 200px;
+                            height: 200px;
+                            bottom: 0;
+                        }
+
+                        .spinner-eff-mobile .circle-2 {
+                            width: 66.6%;
+                            height: 66.6%;
+                            background-color: #0cca4a;
+                            top: 0;
+                            animation: pulse-2 1.6s linear 0s infinite;
+                        }
+
+                        .spinner-eff-mobile .spinner-circle {
+                            border-radius: 100px;
+                            position: absolute;
+                            left: 97px;
+                            right: 0;
+                            margin: auto;
+                            transform: scale(1);
+                            transform-origin: center center;
+                        }
+                    </style>
+                    <!-- Navbar -->
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand logo" href="/">
+                            <img id="logo-white-img" class="img-center" src="{{ wl_logo }}"
+                                 height="180px" alt="">
+                            <img id="logo-img" class="img-center sticky-logo" src="{{ wl_logo }}"
+                                 height="180px" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <!-- Left nav -->
+                            <ul id="main-menu" class="nav navbar-nav ml-auto mr-auto">
+                                <li class="nav-item"><a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="/about-us">About Us</a><br>
+                                    <ul>
+                                      <!--  <li class="nav-item"><a class="nav-link" href="/faq">Faq</a>
+                                        </li>
+                                        <br> -->
+                                        <li><a class="nav-link" href="/about-us">Our Story</a>
+                                        </li>
+                                        <br>
+                                        <li><a class="nav-link" href="/testimonial">Testimonials</a>
+                                        </li>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+                                <li class="nav-item"><a class="nav-link" href="/pricing">Pricing</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" class="nav-link" href="/services">Services</a>
+                                </li>
+
+                              <!--  <li class="nav-item"><a class="nav-link" class="nav-link"
+                                                        href="/financing">Financing</a>
+                                    <ul><br>
+                                        <li><a class="nav-link" href="/financing">Financing Offers</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+                                <li><a class="nav-link" href="https://getdinerotodayaffiliateprogram.tapfiliate.com/" target="_blank">Affiliate Program</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a>
+                                </li>
+                                <div class="client-loginshow">
+                                    <li class="nav-item"><a class="nav-link" href="/dashboard" target="_blank">Client
+                                        Login</a>
+                                    </li>
+                                </div>
+
+                                <style media="screen">
+                                    @media screen and (min-width: 576px) {
+                                        .client-loginshow li {
+                                            display: none;
+                                        }
+                                    }
+                                </style>
+                            </ul>
+                        </div>
+                        <a class="btn btn-white btn-sm" href="/dashboard" target="_blank"
+                           data-text="Client Login"> <span>Client<span></span> <span></span><span></span>  <span></span><span></span> <span></span> <span>Login</span><span></span><span></span><span></span><span></span></span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
