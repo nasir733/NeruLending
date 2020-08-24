@@ -29,22 +29,22 @@ def ProfileProcessor(request):
 
 
 def whitelabel_processor(request):
-    ob = subdomain.objects.all()
-
     sub_domain = request.host.name
+    obj = subdomain.objects.filter(sub_name=sub_domain).first()
 
-    if sub_domain == ob.filter(sub_name=sub_domain):
-        return {
-            'wl_logo': '/static/whitelabel_data/logotrans.png',
-            'phone_number': "324354656",
-            'LOGIN_BG_COLOR_CSS': "white",
-            'dynamic': ob.filter(sub_name=sub_domain),
-        }
+    if obj:
+        if sub_domain == 'businesscreditbuilders':
+            return {
+                'wl_logo': '/static/whitelabel_data/logotrans.png',
+                'phone_number': "324354656",
+                'LOGIN_BG_COLOR_CSS': "white",
+                'dynamic': obj,
+            }
 
     return {
         'wl_logo': '/static/images/logo.png',
         'phone_number': "877-726-2604",
         'is_main_site': True,
         'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
-        'dynamic': ob.filter(sub_name='localhost'),
+        'dynamic': subdomain.objects.get(sub_name='localhost'),
     }
