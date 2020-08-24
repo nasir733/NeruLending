@@ -128,9 +128,11 @@ display: none;
                             <i class="la la-info"></i>
                         </div>
                         <h4>Download Our Free Iphone & Android App</h4>
-                        <a href="https://apps.apple.com/us/app/get-dinero-today/id1520722061" target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Iphone Store</a> <br> <br>
+                        {% for link in dynamic %}
+                        <a href={{link.iphoneApp}} target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Iphone Store</a> <br> <br>
                             <a href="https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday" target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Google Play Store</a>
-                    </div>
+                        {% endfor %}
+                        </div>
                 </div>
             </div>
         </div>

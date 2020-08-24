@@ -18,6 +18,7 @@ from .decorators import unauthenticated_user
 from .models import Profile, UserSteps
 from django.contrib.auth.forms import AuthenticationForm
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 import stripe
 
@@ -53,7 +54,7 @@ class APIloginView(View):
 class SignUpView(View):
     def get(self, request):
         return render(request, 'registration.html')
-
+    @csrf_exempt
     def post(self, request):
         data = request.POST
         try:

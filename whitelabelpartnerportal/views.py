@@ -69,6 +69,7 @@ class BecomingAPartnerView(View):
                 new_lead.save()
             return redirect('whitelabelpartnerportal:becomingapartner')
 
+
 class WhiteLabelTrainingView(View):
     def get(self, request):
         return render(request, "whitelabeltraining.html")

@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'goals',
     'products',
     'onlinetools',
+    'dynamic',
     'chromeextension',
     'corsheaders',
 ]
