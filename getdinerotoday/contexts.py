@@ -33,12 +33,13 @@ def whitelabel_processor(request):
     if whitelabel == "businesscreditbuilders":
         return {
             'wl_logo': '/static/whitelabel_data/logotrans.png',
-            'phone_number': "324354656"
+            'phone_number': "324354656",
+            'LOGIN_BG_COLOR_CSS': "white",
         }
-
 
     return {
         'wl_logo': '/static/images/logo.png',
         'phone_number': "877-726-2604",
+        'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
         'is_main_site': True
     }
