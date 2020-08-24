@@ -61,6 +61,12 @@ class BecomingAPartnerView(View):
                 new_lead.save()
             except Exception as e:
                 print(e)
+                data = {
+                    'business_name': request.POST['business_name'],
+                    'business_number': request.POST['business_number'],
+                }
+                new_lead = BecomingAPartner(user=Profile.objects.get(user=request.user), **data)
+                new_lead.save()
             return redirect('whitelabelpartnerportal:becomingapartner')
 
 class WhiteLabelTrainingView(View):
