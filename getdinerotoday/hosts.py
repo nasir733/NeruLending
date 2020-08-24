@@ -7,6 +7,5 @@ host_patterns = patterns(
     '',
     host(r'www', 'getdinerotoday.urls', name='www'),
     host(r'test', 'getdinerotoday.urls', name='test'),
-    host(r'friendlyfacesbusinessbuilders', 'getdinerotoday.urls', name='friendlyfacesbusinessbuilders'),
-    host(r'example', 'getdinerotoday.urls', name='example')
+    host(r'businesscreditbuilders', 'getdinerotoday.urls', name='businesscreditbuilders'),
 )
