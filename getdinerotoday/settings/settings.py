@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'goals',
     'products',
     'onlinetools',
+    'dynamic',
     'chromeextension',
     'corsheaders',
 ]
@@ -194,9 +195,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
 
 # Configure AWS S3 here
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-
+AWS_ACCESS_KEY_ID = 'AKIA4JHKKGCWEHWUWPGE'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'getdinerotodaybucket'
 AWS_S3_REGION_NAME = 'us-east-1'
 

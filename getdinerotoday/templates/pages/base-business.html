@@ -214,10 +214,14 @@
                     <a href="{% url 'chromeextension:chromeextensionindex' %}" class="nav-link"> Go To Chrome Extension Portal </a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://apps.apple.com/us/app/get-dinero-today/id1520722061" target="_blank" class="nav-link"> Download Our Iphone App </a>
+                    {% for link in dynamic %}
+                    <a href={{link.iphoneApp}} target="_blank" class="nav-link"> Download Our Iphone App </a>
+                    {% endfor %}
                 </li>
                 <li class="nav-item">
-                    <a href="https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday" target="_blank" class="nav-link"> Download Our Android App </a>
+                    {% for link in dynamic %}
+                    <a href={{link.androidApp}} target="_blank" class="nav-link"> Download Our Android App </a>
+                    {% endfor %}
                 </li>
                 <li class="nav-item">
                     <a href="https://chrome.google.com/webstore/detail/get-dinero-today/nopllamladnpdgmgcfbnhdfpllpgpcgk?hl=en" target="_blank" class="nav-link"> Download Our Google Chrome Extension </a>
