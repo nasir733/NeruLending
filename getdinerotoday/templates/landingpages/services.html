@@ -81,10 +81,12 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-10 col-md-12 ml-auto mr-auto">
-                                <h3 class="text-black font-weight-normal line-h-2">Get Dinero Today Is <span
+                                {% for item in dynamic %}
+                                <h3 class="text-black font-weight-normal line-h-2">{{item.title}} Is <span
                                         class="text-theme">Built </span>For Businesses Like Yours. See All The
                                     Features
                                     We Do For You Below.</h3>
+                                    {% endfor %}
                             </div>
                         </div>
                         <div class="row mt-5">
@@ -813,8 +815,10 @@
                                             </ul>
                                             <br>
                                             <div class="col-md-12 mt-2">
-                                                <a href="https://www.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
+                                                {% for item in dynamic %}
+                                                <a href="https://www.{{item.sub_name}}.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
                                                     Package</a>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>

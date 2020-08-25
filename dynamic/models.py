@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 app_name= 'dynamic'
@@ -10,6 +11,12 @@ class subdomain(models.Model):
     androidApp= models.URLField(max_length=300)
     chromeExt= models.URLField(max_length=300)
     homeVideo= models.URLField(max_length=300)
+    email= models.CharField(max_length=200)
+    title= models.CharField(max_length=200)
+    address= models.CharField(max_length=200)
+    phno= PhoneNumberField(blank=True)
+    fav_icon= models.ImageField(upload_to='media', blank=True)
+
 
     def __str__(self):
         return self.sub_name

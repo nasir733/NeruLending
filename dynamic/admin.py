@@ -7,7 +7,7 @@ from .models import *
 app = apps.get_app_config('dynamic')
 
 class Subdomain(admin.ModelAdmin):
-	list_display = ('sub_name','webinar','iphoneApp','androidApp','chromeExt','homeVideo')
+	list_display = ('sub_name','webinar','iphoneApp','androidApp','chromeExt','homeVideo','email','title','address','phno','fav_icon')
 
 
 for model in app.get_models():

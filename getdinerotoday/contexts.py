@@ -30,21 +30,25 @@ def ProfileProcessor(request):
 
 def whitelabel_processor(request):
     sub_domain = request.host.name
-    obj = subdomain.objects.filter(sub_name=sub_domain).first()
+    obj = subdomain.objects.filter(sub_name__icontains=sub_domain).values()
+    # print(obj.values('sub_name')) 
+    # print(sub_domain)
+    print(obj)
+    domain= obj.values('sub_name')
+    sub=domain[0]['sub_name']
 
-    if obj:
-        if sub_domain == 'businesscreditbuilders':
-            return {
-                'wl_logo': '/static/whitelabel_data/logotrans.png',
-                'phone_number': "324354656",
-                'LOGIN_BG_COLOR_CSS': "white",
-                'dynamic': obj,
-            }
-
-    return {
-        'wl_logo': '/static/images/logo.png',
-        'phone_number': "877-726-2604",
-        'is_main_site': True,
-        'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
-        'dynamic': subdomain.objects.get(sub_name='localhost'),
-    }
+    if sub_domain ==  sub:
+        return {
+           'wl_logo': '/static/whitelabel_data/logotrans.png',
+            'phone_number': "324354656",
+            'LOGIN_BG_COLOR_CSS': "white",
+            'dynamic': obj,
+        }
+    # else:
+    #     return {
+    #         'wl_logo': '/static/images/logo.png',
+    #         'phone_number': "877-726-2604",
+    #         'is_main_site': True,
+    #         'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
+    #         'dynamic': subdomain.objects.filter(sub_name='www').values,
+    #     }

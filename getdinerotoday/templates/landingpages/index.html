@@ -36,10 +36,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-12 md-mt-5 ml-auto">
+                    {% for item in dynamic %}
                     <h1 class="mb-4 font-weight-normal wow fadeInUp" data-wow-duration="1.5s"
-                        style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInUp;">Get Dinero<span
-                            class="font-weight-bold text-uppercase"><br>Today</span></h1>
-
+                        style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInUp;">{{item.title}}</h1>
+                    {% endfor %}
                     <p class="lead mb-4 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.3s"
                        style="visibility: visible; animation-duration: 2s; animation-delay: 0.3s; animation-name: fadeInUp;">
                         We Help Businesses Acquire Business Credit With Our Free Software, Mobile App, & Google Chrome Extension. Also,
@@ -807,8 +807,10 @@ display: none;
                                 </ul>
                                 <br>
                                 <div class="col-md-12 mt-2">
-                                    <a href="https://www.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
+                                    {% for item in dynamic %}
+                                    <a href="https://www.{{item.sub_name}}.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
                                         Package</a>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
