@@ -39,11 +39,6 @@
                     {% if dynamic %}                    
                     <h1 class="mb-4 font-weight-normal wow fadeInUp" data-wow-duration="1.5s"                        
                         style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInUp;">{{dynamic.title}}</h1>
-                    {% else %}
-                    <h1 class="mb-4 font-weight-normal wow fadeInUp" data-wow-duration="1.5s"
-                    style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInUp;">Get
-                    Dinero<span
-                            class="font-weight-bold text-uppercase"><br>Today</span></h1>
                     {% endif %}
                     <p class="lead mb-4 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.3s"
                        style="visibility: visible; animation-duration: 2s; animation-delay: 0.3s; animation-name: fadeInUp;">
@@ -135,11 +130,7 @@ display: none;
                         <h4>Download Our Free Iphone & Android App</h4>
                         {% if dynamic %}
                         <a href={{dynamic.iphoneApp}} target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Iphone Store</a> <br> <br>
-                            <a href="https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday" target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Google Play Store</a>
-                        {% else %}
-                        <a href="https://apps.apple.com/us/app/get-dinero-today/id1520722061" target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Iphone Store</a> <br> <br>
-                        <a href="https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday" target="_blank" class="btn btn-theme btn-circle">Click Here To Download On Google Play Store</a>
-                        {% endif %}
+                       {% endif %}
                         </div>
                 </div>
             </div>
@@ -815,7 +806,7 @@ display: none;
                                 </ul>
                                 <br>
                                 <div class="col-md-12 mt-2">
-                                    {% if dynamic %}
+                                    {% if dynamic.sub_name != "" %}
                                     <a href="https://www.{{dynamic.sub_name}}.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
                                         Package</a>
                                     {% else %}

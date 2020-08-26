@@ -45,9 +45,13 @@ def whitelabel_processor(request):
             'phone_number': "877-726-2604",
             'is_main_site': True,
             'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
-            # 'androidApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday"
-            # 'iphoneApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday"
-            # 'email':"info@getdianotoday.com"
-            # 'phno':"+1111222333"
-            # 'address':"xyz abc"
+            'dynamic':{
+            'title': 'Get Dinero Today',
+            'androidApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
+            'iphoneApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
+            'email':" info@getdinerotoday.com",
+            'phno':" 877-726-2604",
+            'address':"1629 K St NW Suite 300, Washington, DC 20006",
+            'sub_name':"",
+            }
         }
