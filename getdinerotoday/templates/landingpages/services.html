@@ -70,6 +70,7 @@
                                 <h2>We're Helping Clients Build Business Credits</h2>
                             </div>
                             <p class="lead">Click The Play Button To The Left To See Our Software Demo</p>
+                            
                             <a class="btn btn-theme btn-circle" href="/pricing" data-text="">Sign Up Today
                             </a>
                         </div>
@@ -81,10 +82,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-10 col-md-12 ml-auto mr-auto">
-                                <h3 class="text-black font-weight-normal line-h-2">Get Dinero Today Is <span
+                                {% if dynamic %}
+                                <h3 class="text-black font-weight-normal line-h-2">{{dynamic.title}} Is <span
                                         class="text-theme">Built </span>For Businesses Like Yours. See All The
                                     Features
                                     We Do For You Below.</h3>
+                               
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row mt-5">
@@ -813,8 +817,15 @@
                                             </ul>
                                             <br>
                                             <div class="col-md-12 mt-2">
-                                                <a href="https://www.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
-                                                    Package</a>
+                                             
+                                                    {% if dynamic.sub_name != "" %}
+                                                    <a href="https://www.{{dynamic.sub_name}}.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
+                                                        Package</a>
+                                                    {% else %}
+                                                    <a href="https://www.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
+                                                        Package</a>
+                                                    {% endif %}
+                                               
                                             </div>
                                         </div>
                                     </div>
