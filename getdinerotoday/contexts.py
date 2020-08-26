@@ -30,25 +30,24 @@ def ProfileProcessor(request):
 
 def whitelabel_processor(request):
     sub_domain = request.host.name
-    obj = subdomain.objects.filter(sub_name__icontains=sub_domain).values()
-    # print(obj.values('sub_name')) 
-    # print(sub_domain)
-    print(obj)
-    domain= obj.values('sub_name')
-    sub=domain[0]['sub_name']
-
-    if sub_domain ==  sub:
+    obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
+    
+    if obj:
         return {
            'wl_logo': '/static/whitelabel_data/logotrans.png',
             'phone_number': "324354656",
             'LOGIN_BG_COLOR_CSS': "white",
-            'dynamic': obj,
+            'dynamic':obj,
         }
-    # else:
-    #     return {
-    #         'wl_logo': '/static/images/logo.png',
-    #         'phone_number': "877-726-2604",
-    #         'is_main_site': True,
-    #         'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
-    #         'dynamic': subdomain.objects.filter(sub_name='www').values,
-    #     }
+    else:
+        return {
+            'wl_logo': '/static/images/logo.png',
+            'phone_number': "877-726-2604",
+            'is_main_site': True,
+            'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
+            # 'androidApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday"
+            # 'iphoneApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday"
+            # 'email':"info@getdianotoday.com"
+            # 'phno':"+1111222333"
+            # 'address':"xyz abc"
+        }

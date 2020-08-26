@@ -14,19 +14,30 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 md-mt-5">
           <h4>Contact Us</h4>
-          {% for item in dynamic %}
+         {% if dynamic %}
           <ul class="media-icon list-unstyled">
             <li>
               
-              <p class="mb-0">Address: <b>{{item.address}}</b>
+              <p class="mb-0">Address: <b>{{dynamic.address}}</b>
               </p>
             </li>
-            <li>Email: <a href="mailto:{{item.email}}"><b>{{item.email}}</b></a>
+            <li>Email: <a href="mailto:{{dynamic.email}}"><b>{{dynamic.email}}</b></a>
             </li>
-            <li>Phone: <a href="tel:{{item.phno}}"><b>{{item.phno}}</b></a>
+            <li>Phone: <a href="tel:{{dynamic.phno}}"><b>{{dynamic.phno}}</b></a>
             </li>
           </ul>
-          {% endfor %}
+          {% else %}
+          <ul class="media-icon list-unstyled">
+            <li>
+              <p class="mb-0">Address: <b>1629 K St NW Suite 300, Washington, DC 20006</b>
+              </p>
+            </li>
+            <li>Email: <a href="mailto:info@getdinerotoday.com"><b>info@getdinerotoday.com</b></a>
+            </li>
+            <li>Phone: <a href="tel:8777262604"><b>877-726-2604</b></a>
+            </li>
+          </ul>
+         {% endif %}
         </div>
       </div>
     </div>
@@ -35,9 +46,11 @@
     <div class="container-fluid">
       <div class="copyright">
         <div class="row align-items-center">
-          {% for item in dynamic %}
-          <div class="col-lg-6 col-md-12"> <span>Copyright 2020 {{item.title}}  | All Rights Reserved</span>
-          {% endfor %}
+          {% if dynamic %}
+          <div class="col-lg-6 col-md-12"> <span>Copyright 2020 {{dynamic.title}}  | All Rights Reserved</span>
+          {% else %}
+            <div class="col-lg-6 col-md-12"> <span>Copyright 2020 Get Dinero Today  | All Rights Reserved</span>
+          {% endif %}
           </div>
         </div>
       </div>

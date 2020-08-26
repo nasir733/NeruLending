@@ -9,9 +9,9 @@
     <meta name="description" content="HTML5 Template"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    {% for item in dynamic %}
-    <title>{{item.title}}</title>
-    {% endfor %}
+    {% if dynamic %}
+    <title>{{dynamic.title}}</title>
+    {% endif %}
     {% include "landingpages/components/StylesBlock.html" %}
     {% block extrastyle %}
     {% endblock extrastyle %}
