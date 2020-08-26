@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.utils.timezone
-import phonenumber_field.modelfields
+# import phonenumber_field.modelfields
 
 
 class Migration(migrations.Migration):
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='subdomain',
             name='phno',
-            field=phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, region=None),
+            field=models.CharField(default=django.utils.timezone.now, max_length=200),
         ),
         migrations.AddField(
             model_name='subdomain',
