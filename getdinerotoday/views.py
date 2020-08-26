@@ -2,21 +2,40 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from django.urls import reverse
+from dynamic.models import subdomain
 
 
 class HomePage(View):
     def get(self, request):
         request.resolver_match.app_name = 'business'
-        return render(request, 'homepage.html')
+        sub_domain = request.host.name
+        obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
+        if obj:
+            if obj.is_payment_done == True:
+                if request.user.is_authenticated:
+                    return render(request, 'homepage.html')
+            else:
+                return HttpResponseRedirect("/user/login")
+        else:
+            return render(request, 'homepage.html')
+        
 
 
 class IndexView(View):
     def get(self, request):
-        print(request.host.name)
-
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(reverse("homepage"))
-        return render(request, 'landingpages/index.html')
+        sub_domain = request.host.name
+        obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
+        if obj:
+            if obj.is_payment_done == True:
+                if request.user.is_authenticated:
+                    return HttpResponseRedirect(reverse("homepage"))
+                return render(request, 'landingpages/index.html')
+            else:
+                return HttpResponseRedirect("/user/login")
+        else:
+            if request.user.is_authenticated:
+                    return HttpResponseRedirect(reverse("homepage"))
+            return render(request, 'landingpages/index.html')
 
 
 class AboutUsView(View):

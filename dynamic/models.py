@@ -5,6 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 app_name= 'dynamic'
 
 class subdomain(models.Model):
+    is_payment_done = models.BooleanField(default=False)
     sub_name=models.CharField(max_length=300)
     webinar= models.URLField(max_length=300)
     iphoneApp= models.URLField(max_length=300)
