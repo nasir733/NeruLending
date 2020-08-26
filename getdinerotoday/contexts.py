@@ -30,21 +30,29 @@ def ProfileProcessor(request):
 
 def whitelabel_processor(request):
     sub_domain = request.host.name
-    obj = subdomain.objects.filter(sub_name=sub_domain).first()
+    obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
 
     if obj:
-        if sub_domain == 'businesscreditbuilders':
-            return {
-                'wl_logo': '/static/whitelabel_data/logotrans.png',
-                'phone_number': "324354656",
-                'LOGIN_BG_COLOR_CSS': "white",
-                'dynamic': obj,
+        return {
+            'wl_logo': '/static/whitelabel_data/logotrans.png',
+            'phone_number': "324354656",
+            'LOGIN_BG_COLOR_CSS': "white",
+            'dynamic': obj,
+        }
+    else:
+        return {
+            'wl_logo': '/static/images/logo.png',
+            'phone_number': "877-726-2604",
+            'is_main_site': True,
+            'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
+            'dynamic': {
+                'title': 'Get Dinero Today',
+                'androidApp': "https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
+                'iphoneApp': "https://apps.apple.com/us/app/get-dinero-today/id1520722061",
+                'chromeExt': "https://chrome.google.com/webstore/detail/get-dinero-today/nopllamladnpdgmgcfbnhdfpllpgpcgk",
+                'email': " info@getdinerotoday.com",
+                'phno': " 877-726-2604",
+                'address': "1629 K St NW Suite 300, Washington, DC 20006",
+                'sub_name': "",
             }
-
-    return {
-        'wl_logo': '/static/images/logo.png',
-        'phone_number': "877-726-2604",
-        'is_main_site': True,
-        'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
-        'dynamic': subdomain.objects.get(sub_name='localhost'),
-    }
+        }
