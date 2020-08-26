@@ -16,7 +16,7 @@ class subdomain(models.Model):
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     phno = models.CharField(max_length=200, blank=True)
-    fav_icon = models.ImageField(upload_to='media', blank=True)
+    # fav_icon = models.ImageField(upload_to='media', blank=True)
 
     def __str__(self):
         return self.sub_name
