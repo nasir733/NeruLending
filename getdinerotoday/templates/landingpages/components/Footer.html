@@ -8,52 +8,104 @@
 // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/as9lv2pj'
 (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/as9lv2pj';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
 </script>
-<footer class="footer pt-8 " data-bg-img="/static/images/pattern/03.png">
+
+
+
+<!--Start of Tawk.to Script-->
+
+<script type="text/javascript">
+
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  
+  (function(){
+  
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  
+  s1.async=true;
+  
+  s1.src='https://embed.tawk.to/5f4648b31e7ade5df4441865/default';
+  
+  s1.charset='UTF-8';
+  
+  s1.setAttribute('crossorigin','*');
+  
+  s0.parentNode.insertBefore(s1,s0);
+  
+  })();
+  
+  </script>
+  
+  <!--End of Tawk.to Script-->
+
+
+
+<footer class="container-fluid pt-3 pl-5 pr-5" data-bg-img="/static/images/pattern/03.png">
   <div class="primary-footer">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12 col-md-12 md-mt-5">
-          <h4>Contact Us</h4>
+        <div class="col-lg-6 col-md-6 col-sm-12 md-m2-5">
+          {% if dynamic %}                    
+                    <h3 class="mb-2 wow fadeInUp" data-wow-duration="1.5s"                        
+                        style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInUp;">{{dynamic.title}}</h3>
+          {% endif %}
+          
+            <p class=" mb-1 wow fadeInUp font-small pr-lg-2" data-wow-duration="2s" data-wow-delay="0.3s"
+                       style="visibility: visible; animation-duration: 2s; animation-delay: 0.3s; animation-name: fadeInUp;">
+                        We Help Businesses Acquire Business Credit With Our Free Software, Mobile App, & Google Chrome Extension. Also,
+                      We Have A Free Personal Credit, Marketing, & Business Credit Course In Our Software As Well.  </p>
+          
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 md-m2-5">
+          <h4 class="wow fadeInUp" data-wow-duration="1.5s"                        
+          style="visibility: visible; animation-duration: 1.5s; animation-name: fadeInUp;">Contact Us</h4>
          {% if dynamic %}
-          <ul class="media-icon list-unstyled">
+          <ul class="media-icon list-unstyled mb-1 wow fadeInUp font-small pr-md-2" data-wow-duration="2s" data-wow-delay="0.3s"
+          style="visibility: visible; animation-duration: 2s; animation-delay: 0.3s; animation-name: fadeInUp;">
             <li>
               
-              <p class="mb-0">Address: <b>{{dynamic.address}}</b>
+              <p class="mb-0"><i class="fa fa-home" aria-hidden="true"></i> Address: <b>{{dynamic.address}}</b>
               </p>
             </li>
-            <li>Email: <a href="mailto:{{dynamic.email}}"><b>{{dynamic.email}}</b></a>
+            <li><i class="fa fa-envelope" aria-hidden="true"></i> Email: <a href="mailto:{{dynamic.email}}"><b>{{dynamic.email}}</b></a>
             </li>
-            <li>Phone: <a href="tel:{{dynamic.phno}}"><b>{{dynamic.phno}}</b></a>
-            </li>
-          </ul>
-          {% else %}
-          <ul class="media-icon list-unstyled">
-            <li>
-              <p class="mb-0">Address: <b>1629 K St NW Suite 300, Washington, DC 20006</b>
-              </p>
-            </li>
-            <li>Email: <a href="mailto:info@getdinerotoday.com"><b>info@getdinerotoday.com</b></a>
-            </li>
-            <li>Phone: <a href="tel:8777262604"><b>877-726-2604</b></a>
+            <li><i class="fa fa-phone" aria-hidden="true"></i> Phone: <a href="tel:{{dynamic.phno}}"><b>{{dynamic.phno}}</b></a>
             </li>
           </ul>
          {% endif %}
         </div>
       </div>
     </div>
-  </div>
-  <div class="secondary-footer">
+  </div> 
+  <!-- <div class="secondary-footer mb-2 ">
     <div class="container-fluid">
-      <div class="copyright">
-        <div class="row align-items-center">
+      <div class="copyright text-center">
+        <div class="row align-items-center" style="
+        color: rgb(41, 21, 21);
+    ">
           {% if dynamic %}
-          <div class="col-lg-6 col-md-12"> <span>Copyright 2020 {{dynamic.title}}  | All Rights Reserved</span>
+          <div class="col-lg-12 col-md-12"> <span>&copy; {{dynamic.title}} 2020 | All Rights Reserved</span>
           {% else %}
-            <div class="col-lg-6 col-md-12"> <span>Copyright 2020 Get Dinero Today  | All Rights Reserved</span>
+            <div class="col-lg-12 col-md-12"> <span>&copy; Get Dinero Today 2020 | All Rights Reserved</span>
           {% endif %}
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </footer>
+<div class="secondary-footer bg-dark">
+  <div class="container-fluid">
+    <div class="copyright text-center">
+      <div class="row align-items-center pa-3" style="
+      color: white;
+  ">
+        {% if dynamic %}
+        <div class="col-lg-12 col-md-12 col-sm-12"> <span>&copy; {{dynamic.title}} 2020 | All Rights Reserved</span>
+        {% else %}
+          <div class="col-lg-12 col-md-12 col-sm-12"> <span>&copy; Get Dinero Today 2020 | All Rights Reserved</span>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

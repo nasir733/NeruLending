@@ -27,3 +27,6 @@ django-cors-headers
 stripe
 python-whois
 django-hosts
+pillow
+django-phonenumber-field==5.0.0
+phonenumbers==8.12.8

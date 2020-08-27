@@ -30,7 +30,7 @@ def ProfileProcessor(request):
 
 def whitelabel_processor(request):
     sub_domain = request.host.name
-    obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
+    obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
 
     if obj:
         return {
