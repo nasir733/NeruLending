@@ -2,14 +2,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from django.urls import reverse
-from dynamic.models import subdomain
+from dynamic.models import Subdomain
 
 
 class HomePage(View):
     def get(self, request):
         request.resolver_match.app_name = 'business'
         sub_domain = request.host.name
-        obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
+        obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
         if obj:
             if obj.is_payment_done == True:
                 if request.user.is_authenticated:
@@ -24,7 +24,7 @@ class HomePage(View):
 class IndexView(View):
     def get(self, request):
         sub_domain = request.host.name
-        obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
+        obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
         if obj:
             if obj.is_payment_done == True:
                 if request.user.is_authenticated:

@@ -92,7 +92,7 @@ LOGIN_URL = '/user/login'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
 # SUBDOMAIN_URLCONFS = {
-#     # None: 'getdinerotoday',  # no subdomain, e.g. ``example.com``
+#     # None: 'getdinerotoday',  # no Subdomain, e.g. ``example.com``
 #     # 'www': 'getdinerotoday.urls',
 #     # 'test': 'myproject.urls.api',
 # }
