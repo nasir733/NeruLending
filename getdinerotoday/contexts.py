@@ -33,12 +33,27 @@ def whitelabel_processor(request):
     obj = subdomain.objects.filter(sub_name__exact=sub_domain).first()
     
     if obj:
-        return {
-           'wl_logo': '/static/whitelabel_data/logotrans.png',
-            'phone_number': "324354656",
-            'LOGIN_BG_COLOR_CSS': "white",
-            'dynamic':obj,
-        }
+        if obj.sub_name == "businesscreditbuilders":
+            return {
+            'wl_logo': '/static/whitelabel_data/logotrans.png',
+                'phone_number': "324354656",
+                'LOGIN_BG_COLOR_CSS': "#f2f2f2",
+                'dynamic':obj,
+                'why_buy_link': "https://www.youtube.com/embed/bM8A5BDZglk",
+                'iphoneApp': " https://apps.apple.com/us/app/the-business-credit-builders/id1528895728",
+                'androidApp': "https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.businesscreditbuilders",
+            }
+        else:
+            return {
+            'wl_logo': '/static/whitelabel_data/logotrans.png',
+                'phone_number': "324354656",
+                'LOGIN_BG_COLOR_CSS': "#f2f2f2",
+                'dynamic':obj,
+                'why_buy_link': "https://www.youtube.com/embed/bM8A5BDZglk",
+                'iphoneApp': obj.iphoneApp ,
+                'androidApp': obj.androidApp,
+            }
+
     else:
         return {
             'wl_logo': '/static/images/logo.png',
@@ -47,11 +62,13 @@ def whitelabel_processor(request):
             'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
             'dynamic':{
             'title': 'Get Dinero Today',
-            'androidApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
-            'iphoneApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
             'email':" info@getdinerotoday.com",
             'phno':" 877-726-2604",
             'address':"1629 K St NW Suite 300, Washington, DC 20006",
-            'sub_name':"",
-            }
+            'sub_name':""
+            },
+            'why_buy_link': "https://www.youtube.com/embed/VaGu7EyHaVk",
+            'androidApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
+            'iphoneApp':"https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
+            
         }
