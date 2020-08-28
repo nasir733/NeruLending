@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'products',
     'onlinetools',
     'dynamic',
+    'orders',
     'chromeextension',
     'corsheaders',
 ]

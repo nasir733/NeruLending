@@ -13,10 +13,10 @@ class ProfileAdmin(admin.ModelAdmin):
         Admin View for Profile
     '''
     list_display = ("user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
-                    "virtual_access_card_paid",)
+                    "virtual_access_card_paid",'whitelabel_portal')
     filds = [
         "user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
-        "virtual_access_card_paid",
+        "virtual_access_card_paid","whitelabel_portal",
     ]
     list_filter = ("fax_number_paid", "toll_free_number_paid", "website_creation_paid", "virtual_access_card_paid",)
     search_fields = ('user__first_name', "user__last_name")

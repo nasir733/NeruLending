@@ -10,7 +10,7 @@ class Subdomain(admin.ModelAdmin):
     list_display = ('sub_name', 'is_payment_done', 'webinar',
                     'iphoneApp', 'androidApp', 'chromeExt',
                     'homeVideo', 'email', 'title', 'address',
-                    'phno', )
+                    'phno', 'why_buy_link','appImage')
 
 
 for model in app.get_models():

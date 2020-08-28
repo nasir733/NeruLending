@@ -10,6 +10,7 @@ from user.forms import UserDataForm
 from user.models import PortalGoal, UserData, UserSteps
 from .forms import BusinessCreditStepsForm
 from .models import *
+from products.models import *
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -1573,14 +1574,16 @@ class BusinessLineOfCredit(View):
 
 
 class NoCreditCheckFinancing(View):
+    
     def get(self, request):
         if request.resolver_match.app_name == 'goals':
             request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         loans = NoCreditCheckLoans.objects.all()
+        trades = tradelines.objects.all()
         return render(request, "financingProducts/noCreditCheckFinancing.html",
-                      context=get_context_for_all(request, {"loans": loans}))
+                      context=get_context_for_all(request, {"loans": loans,"tradelines":trades}))
 
 
 class InvoiceFactoringView(View):
