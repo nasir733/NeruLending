@@ -55,7 +55,7 @@
                             transform: scale(1);
                             transform-origin: center center;
                         }
-                        
+
                     </style>
                     <!-- Navbar -->
                     <nav class="navbar navbar-expand-lg">
@@ -65,7 +65,7 @@
                             <img id="logo-img" class="img-center sticky-logo" src="{{ wl_logo }}"
                                  height="180px" alt="">
                         </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                                 data-target="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span></span>
                             <span></span>
@@ -78,9 +78,9 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="/about-us">About Us</a><br>
                                     <ul>
-                                      <!--  <li class="nav-item"><a class="nav-link" href="/faq">Faq</a>
-                                        </li>
-                                        <br> -->
+                                        <!--  <li class="nav-item"><a class="nav-link" href="/faq">Faq</a>
+                                          </li>
+                                          <br> -->
                                         <li><a class="nav-link" href="/about-us">Our Story</a>
                                         </li>
                                         <br>
@@ -95,19 +95,14 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" class="nav-link" href="/services">Services</a>
                                 </li>
-
-                              <!--  <li class="nav-item"><a class="nav-link" class="nav-link"
-                                                        href="/financing">Financing</a>
-                                    <ul><br>
-                                        <li><a class="nav-link" href="/financing">Financing Offers</a>
-                                        </li>
-                                    </ul>
-                                </li> -->
-                                <!-- <li><a class="nav-link" href="https://getdinerotodayaffiliateprogram.tapfiliate.com/" target="_blank">Affiliate Program</a>
-                                </li> -->
+                                {% if dynamic.sub_name == "" %}
+                                    <li class="nav-item"><a class="nav-link" href="/whitelabel">White Label Program</a>
+                                    </li>
+                                {% endif %}
                                 <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a>
                                 </li>
                                 <div class="client-loginshow">
+
                                     <li class="nav-item"><a class="nav-link" href="/dashboard" target="_blank">Client
                                         Login</a>
                                     </li>
@@ -123,7 +118,8 @@
                             </ul>
                         </div>
                         <a class="btn btn-white btn-sm" href="/dashboard" target="_blank"
-                           data-text="Client Login"> <span>Client<span></span> <span></span><span></span>  <span></span><span></span> <span></span> <span>Login</span><span></span><span></span><span></span><span></span></span>
+                           data-text="Client Login">
+                        <span>Client<span></span> <span></span><span></span>  <span></span><span></span> <span></span> <span>Login</span><span></span><span></span><span></span><span></span></span>
                         </a>
                     </nav>
                 </div>

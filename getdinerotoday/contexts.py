@@ -36,7 +36,7 @@ def whitelabel_processor(request):
         return {
             'wl_logo': '/static/whitelabel_data/logotrans.png',
             'phone_number': "324354656",
-            'LOGIN_BG_COLOR_CSS': "white",
+            'LOGIN_BG_COLOR_CSS': "#f2f2f2",
             'dynamic': obj,
         }
     else:
