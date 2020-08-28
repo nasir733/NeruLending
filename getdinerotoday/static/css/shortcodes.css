@@ -545,10 +545,10 @@
 .btn-simple:hover{color: #005bea; box-shadow: none; background: none;}
 .theme-bg .btn-simple:hover{color: #1c1d3e;}
 
-.btn span {display: inline-block; opacity: 0; -webkit-transform: translate3d(10, 10px, 0); -moz-transform: translate3d(10, 10px, 0); -ms-transform: translate3d(10, 10px, 0); -o-transform: translate3d(10, 10px, 0); transform: translate3d(10, 10px, 0);
+.btn span {opacity: 0; -webkit-transform: translate3d(10, 10px, 0); -moz-transform: translate3d(10, 10px, 0); -ms-transform: translate3d(10, 10px, 0); -o-transform: translate3d(10, 10px, 0); transform: translate3d(10, 10px, 0);
 -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1); -moz-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1); -o-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1); transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);}
 
-.btn::before {content: attr(data-text); height: 100%; left: 0; position: absolute; top: 0; transition: all 0.3s cubic-bezier(0.75, 0, 0.125, 1) 0s; width: 100%; padding: 12px 0;}
+.btn::before {content: attr(data-text); height: 100%; left: 0; position: absolute; top: 0; transition: all 0.3s cubic-bezier(0.75, 0, 0.125, 1) 0s; width: 100%; padding: 4px 0;}
 .btn:hover:before {opacity: 0; -webkit-transform: translate3d(0, 100%, 0); -moz-transform: translate3d(0, 100%, 0); -ms-transform: translate3d(0, 100%, 0); -o-transform: translate3d(0, 100%, 0); transform: translate3d(0, 100%, 0);}
 .btn:hover span{opacity:1; -webkit-transform:translate3d(0, 0, 0); -moz-transform:translate3d(0, 0, 0); -ms-transform:translate3d(0, 0, 0); -o-transform:translate3d(0, 0, 0); transform:translate3d(0, 0, 0)}
 .btn:hover span:nth-child(1){-webkit-transition-delay:0.01s; -moz-transition-delay:0.01s; -o-transition-delay:0.01s; transition-delay:0.01s}
