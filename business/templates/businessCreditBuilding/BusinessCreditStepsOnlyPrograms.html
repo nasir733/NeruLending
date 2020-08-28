@@ -372,11 +372,11 @@
 
         document.getElementById('steps-form').addEventListener('change', calculateAmount)
 
-        $('#steps-form').submit(async function (evt) }
+        $('#steps-form').submit(async function (evt) {
             evt.preventDefault();
-            if (await checkDomain('domain_name_year')) }
+            if (await checkDomain('domain_name_year')) {
                 this.submit();
-            } else if (await checkDomain('domain_name')) }
+            } else if (await checkDomain('domain_name')) {
                 this.submit();
             }
          })
