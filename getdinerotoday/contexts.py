@@ -31,14 +31,15 @@ def ProfileProcessor(request):
 def whitelabel_processor(request):
     sub_domain = request.host.name
     obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
-    
+
+
+    print(sub_domain, obj)
     if obj:
         return {
             'wl_logo': '/static/whitelabel_data/logotrans.png',
             'phone_number': "324354656",
             'bg_color': "#f2f2f2",
             'dynamic': obj,
-           
         }
     else:
         return {
