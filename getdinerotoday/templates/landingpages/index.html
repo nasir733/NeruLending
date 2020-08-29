@@ -134,11 +134,11 @@
                             </div>
                             <h4>Download Our Free Iphone & Android App</h4>
                             {% if dynamic.iphoneApp %}
-                                <a href={{ iphoneApp }} target="_blank" class="btn btn-theme btn-circle">Click Here To
+                                <a href="{{ dynamic.iphoneApp }}" target="_blank" class="btn btn-theme btn-circle">Click Here To
                                     Download On Iphone Store</a> <br> <br>
                             {% endif %}
                             {% if dynamic.androidApp %}
-                                <a href={{ androidApp }} target="_blank" class="btn btn-theme btn-circle">Click Here To
+                                <a href="{{ dynamic.androidApp }}" target="_blank" class="btn btn-theme btn-circle">Click Here To
                                     Download On Google Play Store</a> <br> <br>
                                 </div>
                             {% endif %}
