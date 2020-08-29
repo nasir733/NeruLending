@@ -1,15 +1,9 @@
-import os
-import uuid
-
 from django.db import models
 from django.utils import timezone
+from services.FileServices import get_file_path
 from user.models import Profile
 
 app_name = 'whitelabelpartnerportal'
-
-
-def get_file_path(instance, filename):
-    return os.path.join(f'documents/{uuid.uuid4()}', filename)
 
 
 class ModelMixin:

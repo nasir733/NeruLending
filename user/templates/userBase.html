@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Get Dinero Today</title>
+    {% if dynamic.title %}
+    <title>{{dynamic.title}}</title>
+    {% endif %}
 
     <style media="screen">
 
@@ -224,7 +226,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4 col-xs-12 widthClass">
             <div class="misc-header text-center">
-                <img class="toggle-none hidden-xs image" src="{{ wl_logo }}"/>
+                <img class="toggle-none hidden-xs image" src="{{ dynamic.logo.url }}"/>
             </div>
             <div class="misc-box">
                 {% block content %}

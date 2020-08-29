@@ -31,19 +31,14 @@ def ProfileProcessor(request):
 def whitelabel_processor(request):
     sub_domain = request.host.name
     obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
-    
+
+    # print(sub_domain, obj)
     if obj:
         return {
-            'wl_logo': '/static/whitelabel_data/logotrans.png',
-            'phone_number': "324354656",
-            'bg_color': "#f2f2f2",
             'dynamic': obj,
-           
         }
     else:
         return {
-            'wl_logo': '/static/images/logo.png',
-            'phone_number': "877-726-2604",
             'is_main_site': True,
             'dynamic': {
                 'title': 'Get Dinero Today',
@@ -53,13 +48,13 @@ def whitelabel_processor(request):
                 'email': " info@getdinerotoday.com",
                 'phno': " 877-726-2604",
                 'address': "1629 K St NW Suite 300, Washington, DC 20006",
-                'why_buy_link':"https://www.youtube.com/embed/VaGu7EyHaVk",
+                'why_buy_link': "https://www.youtube.com/embed/VaGu7EyHaVk",
                 'appImage': "/static/images/iphonescreenshot.png",
                 'sub_name': "",
                 'primary_color': "#115d22",
                 'secondary_color': "#dee1e6",
                 'accent_color': "#1c6ef9",
                 'bg_color': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
-                
+                'logo': {"url": '/static/images/logo.png'},
             }
         }

@@ -11,7 +11,7 @@ class SubdomainAdmin(admin.ModelAdmin):
     list_display = ('sub_name', 'is_payment_done', 'webinar',
                     'iphoneApp', 'androidApp', 'chromeExt',
                     'homeVideo', 'email', 'title', 'address',
-                    'phno','fav_icon', 'why_buy_link','appImage',
+                    'phno','logo', 'why_buy_link','appImage',
                     'primary_color','secondary_color',
                     'accent_color','bg_color')
 

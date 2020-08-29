@@ -197,17 +197,18 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
 
 
 # Configure AWS S3 here
-AWS_ACCESS_KEY_ID = os.environ.get('AKIAJ4JCXOSJPP4UMFKA')
-AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_ACCESS_KEY_ID = "AKIA5YAXFMAOY2WTTGN4"
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = "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"
 
 AWS_STORAGE_BUCKET_NAME = 'getdinerotodaybucket2'
-AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_REGION_NAME = 'us-east-1'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 
 
 # Activate Django-Heroku.
