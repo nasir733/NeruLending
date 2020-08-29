@@ -19,7 +19,7 @@ class Subdomain(models.Model):
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     phno = PhoneNumberField(blank=True)
-    fav_icon = models.ImageField(upload_to=get_file_path, blank=True)
+    logo = models.ImageField(upload_to=get_file_path, blank=True)
     why_buy_link = models.CharField(max_length=200, blank=True)
     appImage = models.CharField(max_length=200, blank=True)
     primary_color = models.CharField(max_length=200, blank=True)

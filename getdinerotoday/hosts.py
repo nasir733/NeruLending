@@ -10,7 +10,6 @@ try:
 except Exception as e:
     pass
 
-print(hosts_from_model)
 
 host_patterns = patterns(
     '',
