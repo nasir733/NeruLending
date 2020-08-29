@@ -12,10 +12,10 @@
             height: 150px;
             width: 300px;
         }
-
+        {% if dynamic.bg_color %}
         .bgcolor {
-            background-color: {{ LOGIN_BG_COLOR_CSS }};
-            background: {{ LOGIN_BG_COLOR_CSS }};
+            background-color: {{ dynamic.bg_color }};
+            background: {{ dynamic.bg_color }};
             background-repeat: no-repeat;
             font-family: "Montserrat", sans-serif;
             color: #575962;
@@ -27,6 +27,7 @@
             margin: 0;
             text-align: left;
         }
+        {% endif %}
 
         .misc-box {
             background-color: #fff;

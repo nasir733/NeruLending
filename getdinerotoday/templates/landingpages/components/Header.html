@@ -55,6 +55,20 @@
                             transform: scale(1);
                             transform-origin: center center;
                         }
+                        {% if dynamic.primary_color %}
+                        .btn.btn-white {
+                            background:{{dynamic.primary_color}};
+                            color:{{dynamic.secondary_color}};
+                        }
+                        .btn.btn-white:hover {
+                            background:{{dynamic.accent_color}};
+                            color:{{dynamic.secondary_color}};
+                        }
+                        .btn.btn-theme {
+                            background: {{dynamic.primary_color}};
+                            color: {{dynamic.secondary_color}};
+                        }
+                        {% endif %}
 
                     </style>
                     <!-- Navbar -->
