@@ -20,6 +20,15 @@ class Subdomain(models.Model):
     fav_icon = models.ImageField(upload_to='media', blank=True)
     why_buy_link=models.CharField(max_length=200,blank=True)
     appImage=models.CharField(max_length=200,blank=True)
+    primary_color=models.CharField(max_length=200,blank=True)
+    secondary_color=models.CharField(max_length=200,blank=True)
+    accent_color=models.CharField(max_length=200,blank=True)
+    bg_color=models.CharField(max_length=200,blank=True)
 
     def __str__(self):
         return self.sub_name
+
+
+
+
+

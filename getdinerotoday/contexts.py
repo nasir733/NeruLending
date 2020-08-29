@@ -31,20 +31,20 @@ def ProfileProcessor(request):
 def whitelabel_processor(request):
     sub_domain = request.host.name
     obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
-
+    
     if obj:
         return {
             'wl_logo': '/static/whitelabel_data/logotrans.png',
             'phone_number': "324354656",
-            'LOGIN_BG_COLOR_CSS': "#f2f2f2",
+            'bg_color': "#f2f2f2",
             'dynamic': obj,
+           
         }
     else:
         return {
             'wl_logo': '/static/images/logo.png',
             'phone_number': "877-726-2604",
             'is_main_site': True,
-            'LOGIN_BG_COLOR_CSS': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
             'dynamic': {
                 'title': 'Get Dinero Today',
                 'androidApp': "https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
@@ -56,6 +56,10 @@ def whitelabel_processor(request):
                 'why_buy_link':"https://www.youtube.com/embed/VaGu7EyHaVk",
                 'appImage': "/static/images/iphonescreenshot.png",
                 'sub_name': "",
+                'primary_color': "#115d22",
+                'secondary_color': "#dee1e6",
+                'accent_color': "#1c6ef9",
+                'bg_color': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
                 
             }
         }
