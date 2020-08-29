@@ -53,6 +53,9 @@ def whitelabel_processor(request):
                 'email': " info@getdinerotoday.com",
                 'phno': " 877-726-2604",
                 'address': "1629 K St NW Suite 300, Washington, DC 20006",
+                'why_buy_link':"https://www.youtube.com/embed/VaGu7EyHaVk",
+                'appImage': "/static/images/iphonescreenshot.png",
                 'sub_name': "",
+                
             }
         }

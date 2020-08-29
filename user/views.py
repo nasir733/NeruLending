@@ -57,12 +57,18 @@ class SignUpView(View):
     @csrf_exempt
     def post(self, request):
         data = request.POST
+        sub_domain=request.host.name
+        print(data)
         try:
             profile = Profile.objects.create_user(data['email'], data['password'], data['first_name'],
-                                                  data['last_name'], data['phone_number'])
+                                                  data['last_name'], data['phone_number'],sub_domain)
             auth_login(request, profile.user)
             return HttpResponseRedirect(reverse('homepage'))
-        except Exception:
+        except Exception as e:
+            if hasattr(e, 'message'):
+                print(e.message)
+            else:
+                print(e)
             return render(request, 'registration.html', {"error": "Registration Failed"})
 
 

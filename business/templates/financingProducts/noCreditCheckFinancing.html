@@ -54,6 +54,47 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-default">
+                        Add Business Tradelines
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-striped dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Products</th>
+                                    <th>Tradeline Amount</th>
+                                    <th>Who Company Reports To</th>
+                                    <th>Cost</th>
+                                    <th>Video Link On Product</th>
+                                    <th>Add To Checkout</th>
+                                </tr>
+                                </thead>
+
+
+                                <tbody>
+                                {% for trade in tradelines %}
+                                    <tr>
+                                        <td>{{ trade.company_name }}</td>
+                                        <td>{{ trade.product }}</td>
+                                        <td>{{ trade.tradeline_amount }}</td>
+                                        <td>{{ trade.company_reports_to }}</td>
+                                        <td>{{ trade.cost }}</td>
+                                        <td><a class="btn btn-primary" href="{{ trade.video_link }}" target="_blank">Video Explaining Product</a></td>
+                                        <td><a class="btn btn-primary" href="{% url 'business:business-credit-steps-onlyprograms' %}" target="_blank">Click Here To Add To Checkout</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </section>
