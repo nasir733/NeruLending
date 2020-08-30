@@ -11,9 +11,9 @@ class HomePage(View):
         sub_domain = request.host.name
         obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
         if obj:
-            if obj.is_payment_done == True:
-                if request.user.is_authenticated:
-                    return render(request, 'homepage.html')
+            
+            if request.user.is_authenticated:
+                return render(request, 'homepage.html')
             else:
                 return HttpResponseRedirect("/user/login")
         else:
@@ -26,10 +26,11 @@ class IndexView(View):
         sub_domain = request.host.name
         obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
         if obj:
-            if obj.is_payment_done == True:
-                if request.user.is_authenticated:
-                    return HttpResponseRedirect(reverse("homepage"))
-                return render(request, 'landingpages/index.html')
+           
+            if request.user.is_authenticated:
+                if obj.is_payment_done == True:
+                    return render(request, 'landingpages/index.html')
+                return HttpResponseRedirect(reverse("homepage"))                
             else:
                 return HttpResponseRedirect("/user/login")
         else:

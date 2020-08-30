@@ -19,13 +19,13 @@ class Subdomain(models.Model):
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     phno = PhoneNumberField(blank=True)
-    logo = models.ImageField(upload_to=get_file_path, blank=True)
+    logo = models.ImageField(upload_to=get_file_path, )
     why_buy_link = models.CharField(max_length=200, blank=True)
     appImage = models.CharField(max_length=200, blank=True)
-    primary_color = models.CharField(max_length=200, default='#115d22')
-    secondary_color = models.CharField(max_length=200, default='#dee1e6')
-    accent_color = models.CharField(max_length=200, default='#1c6ef9')
-    bg_color = models.CharField(max_length=200, default='#f2f2f2')
+    primary_color = models.CharField(max_length=200, blank=True)
+    secondary_color = models.CharField(max_length=200, blank=True)
+    accent_color = models.CharField(max_length=200, blank=True)
+    bg_color = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.sub_name
