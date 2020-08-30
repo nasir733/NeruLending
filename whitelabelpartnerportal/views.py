@@ -195,16 +195,17 @@ class ResidualsFromAffiliatesView(View):
 class FreeSignupView(View):
     def get(self, request):
         sub_domain = request.host.name
-        freeprograms = FreeProgram.objects.filter(user=Profile.objects.get(user=request.user and whitelabel_portal == sub_domain))
+        freeprograms = FreeProgram.objects.filter(user=Profile.objects.get(user=request.user))
         return render(request, "freesignup.html", {"freeprograms": freeprograms})
 
 
 class PaidSignupView(View):
     def get(self, request):
         
-        paidprograms = PaidProgram.objects.filter(user=Profile.objects.get(user=request.user))
+        # paidprograms = PaidProgram.objects.filter(user=Profile.objects.get(user=request.user))
+        signedup = SignedUpProgram.objects.filter(user=Profile.objects.get(user=request.user))
 
-        return render(request, "paidsignup.html", {"paidprograms": paidprograms})
+        return render(request, "paidsignup.html", {"signedup": signedup})
 
 
 class OrdersView(View):

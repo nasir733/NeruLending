@@ -51,14 +51,14 @@
                             <tbody>
 
                             <tbody>
-                            {% for program in paidprograms %}
+                            {% for program in signedup %}
                                 <tr>
                                     <td>{{ program.client_name }}</td>
                                     <td>{{ program.client_email }}</td>
                                     <td>{{ program.client_phone_number }}</td>
                                     <td>{{ program.updates_made }}</td>
                                     <td>{{ program.residual_amount }}</td>
-                                    <td>{{ program.expected_payout }}t</td>
+                                    <td>{{ program.expected_payout }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

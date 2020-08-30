@@ -138,6 +138,25 @@ class FreeProgram(ModelMixin, models.Model):
         return self.user.user.get_full_name()
 
 
+class SignedUpProgram(ModelMixin,models.Model):
+    class Meta:
+        db_table = f'{app_name}_signedup_program'
+
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
+    client_name = models.CharField(max_length=500, null=True)
+    client_email = models.CharField(max_length=500, null=True)
+    client_phone_number = models.CharField(max_length=500, null=True)
+    updates_made = models.CharField(max_length=500, null=True,default="N/A")
+    residual_amount = models.CharField(max_length=500, null=True,default="N/A")
+    expected_payout = models.CharField(max_length=500, null=True,default="N/A")
+    created_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return self.user.user.get_full_name()
+
+
+
 class PaidProgram(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_paid_program'
