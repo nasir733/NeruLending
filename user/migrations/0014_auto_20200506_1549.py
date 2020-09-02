@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0013_portalgoal_name'),
     ]
@@ -14,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='portalgoal',
             name='profile',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='portal_goals', to='user.Profile'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='portal_goals',
+                                    to='user.Profile'),
         ),
     ]

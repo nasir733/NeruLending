@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0040_auto_20200626_1403'),
     ]
@@ -13,6 +12,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='usersteps',
             name='domain_dashboard',
-            field=models.CharField(blank=True, default='', max_length=500, null=True, verbose_name='Domain name dashboard'),
+            field=models.CharField(blank=True, default='', max_length=500, null=True,
+                                   verbose_name='Domain name dashboard'),
         ),
     ]

@@ -5,7 +5,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0016_auto_20200506_1657'),
     ]
@@ -14,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='portalgoal',
             name='slug',
-            field=autoslug.fields.AutoSlugField(blank=True, editable=False, max_length=200, null=True, populate_from='name', unique=True),
+            field=autoslug.fields.AutoSlugField(blank=True, editable=False, max_length=200, null=True,
+                                                populate_from='name', unique=True),
         ),
     ]

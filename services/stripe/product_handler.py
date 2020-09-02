@@ -23,7 +23,8 @@ def create_product(product):
 
     if len(prices) > 0:
         for price in prices:
-            if price["recurring"]["interval"] == "month" and int(product["price_monthly"] * 100) != price["unit_amount"]:
+            if price["recurring"]["interval"] == "month" and int(product["price_monthly"] * 100) != price[
+                "unit_amount"]:
                 stripe.Price.create(
                     unit_amount=int(product['price_monthly'] * 100),
                     currency="usd",
@@ -33,7 +34,8 @@ def create_product(product):
                     transfer_lookup_key=True,
                 )
                 print(f"Updated monthly price for {product['name']} : {product['price_monthly']}")
-            elif price["recurring"]["interval"] == "year" and int(product["price_yearly"] * 100) != price["unit_amount"]:
+            elif price["recurring"]["interval"] == "year" and int(product["price_yearly"] * 100) != price[
+                "unit_amount"]:
                 stripe.Price.create(
                     unit_amount=int(product['price_yearly'] * 100),
                     currency="usd",

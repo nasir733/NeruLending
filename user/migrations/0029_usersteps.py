@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0028_auto_20200522_1212'),
     ]
@@ -18,12 +17,20 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(max_length=500, null=True, verbose_name='Custom portal name')),
                 ('last_name', models.CharField(max_length=500, null=True, verbose_name='Custom portal name')),
                 ('phone', models.CharField(max_length=500, null=True, verbose_name='Custom portal name')),
-                ('website', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, max_length=500, null=True, verbose_name='Website')),
-                ('toll_free', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, max_length=500, null=True, verbose_name='Toll free number')),
-                ('fax_number', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, max_length=500, null=True, verbose_name='Fa numberx')),
-                ('domain', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, max_length=500, null=True, verbose_name='Domain')),
-                ('professional_email', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, max_length=500, null=True, verbose_name='Professional email')),
-                ('domain_name', models.CharField(blank=True, default='', max_length=500, null=True, verbose_name='Domain name')),
+                ('website', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1,
+                                             max_length=500, null=True, verbose_name='Website')),
+                ('toll_free', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1,
+                                               max_length=500, null=True, verbose_name='Toll free number')),
+                ('fax_number',
+                 models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1,
+                                  max_length=500, null=True, verbose_name='Fa numberx')),
+                ('domain', models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1,
+                                            max_length=500, null=True, verbose_name='Domain')),
+                ('professional_email',
+                 models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1,
+                                  max_length=500, null=True, verbose_name='Professional email')),
+                ('domain_name',
+                 models.CharField(blank=True, default='', max_length=500, null=True, verbose_name='Domain name')),
             ],
             options={
                 'verbose_name': '6. User Steps',

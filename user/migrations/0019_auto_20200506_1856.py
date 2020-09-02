@@ -23,8 +23,8 @@ def create_portals(apps, schema_editor):
         Portal(name="Offering financing to customers", code="offer_financing2_customers"),
     ])
 
-class Migration(migrations.Migration):
 
+class Migration(migrations.Migration):
     dependencies = [
         ('user', '0018_portal_code'),
     ]

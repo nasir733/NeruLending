@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0048_auto_20200719_1758'),
     ]
@@ -33,12 +32,14 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='usersteps',
             name='toll_free_password',
-            field=models.CharField(blank=True, default='', max_length=500, null=True, verbose_name='Toll Free Number password'),
+            field=models.CharField(blank=True, default='', max_length=500, null=True,
+                                   verbose_name='Toll Free Number password'),
         ),
         migrations.AddField(
             model_name='usersteps',
             name='toll_free_username',
-            field=models.CharField(blank=True, default='', max_length=500, null=True, verbose_name='Toll Free Number username'),
+            field=models.CharField(blank=True, default='', max_length=500, null=True,
+                                   verbose_name='Toll Free Number username'),
         ),
         migrations.AddField(
             model_name='usersteps',

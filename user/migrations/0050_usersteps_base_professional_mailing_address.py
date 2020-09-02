@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0049_auto_20200719_1808'),
     ]
@@ -13,6 +12,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='usersteps',
             name='base_professional_mailing_address',
-            field=models.CharField(blank=True, default='', max_length=500, null=True, verbose_name='Base professional mailing address'),
+            field=models.CharField(blank=True, default='', max_length=500, null=True,
+                                   verbose_name='Base professional mailing address'),
         ),
     ]

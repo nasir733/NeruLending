@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0044_auto_20200701_1807'),
     ]
@@ -13,6 +12,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='usersteps',
             name='business_builder_program',
-            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1, null=True, verbose_name='Toll free number'),
+            field=models.IntegerField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=1,
+                                      null=True, verbose_name='Toll free number'),
         ),
     ]

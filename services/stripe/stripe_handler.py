@@ -1,8 +1,8 @@
-import stripe
 import payments.stripe.config as config
+import stripe
+
 # config.run_production(stripe)
 config.run_development(stripe)
-
 
 
 def create_customer():
@@ -14,12 +14,15 @@ def create_customer():
 def lsit_customers():
     return stripe.Customer.list(limit=3)['data'][0]
 
+
 a = stripe.Customer.list(limit=2)['data'][1]
 
 a['default_source']
 
+
 def list_products():
     stripe.Product.list()
+
 
 def list_prices():
     a = stripe.Price.list()

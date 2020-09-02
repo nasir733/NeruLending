@@ -1,5 +1,5 @@
-import getdinerotoday.settings.production as production
 import getdinerotoday.settings.development as development
+import getdinerotoday.settings.production as production
 
 STRIPE_CONFIG = {
     "STRIPE_PUBLISHABLE_KEY_TEST": development.STRIPE_PUBLISHABLE_KEY,

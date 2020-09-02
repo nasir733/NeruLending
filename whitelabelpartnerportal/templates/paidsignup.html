@@ -37,33 +37,36 @@
                         Clients Who Have Signed Up Under Your Portal
                     </div>
                     <div class="card-body">
-                        <table id="datatable" class="table table-striped dt-responsive nowrap">
-                            <thead>
-                            <tr>
-                                <th>Client Name</th>
-                                <th>Client Email</th>
-                                <th>Client Phone Number</th>
-                                <th>Upgrades Made In Portal</th>
-                                <th>Residual Amount Made From Client</th>
-                                <th>Expected Payout</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tbody>
-                            {% for program in signedup %}
+                        {% for subdomain in user_data %}
+                            {{ subdomain.name }}
+                            <table id="datatable" class="table table-striped dt-responsive nowrap">
+                                <thead>
                                 <tr>
-                                    <td>{{ program.client_name }}</td>
-                                    <td>{{ program.client_email }}</td>
-                                    <td>{{ program.client_phone_number }}</td>
-                                    <td>{{ program.updates_made }}</td>
-                                    <td>{{ program.residual_amount }}</td>
-                                    <td>{{ program.expected_payout }}</td>
+                                    <th>Client Name</th>
+                                    <th>Client Email</th>
+                                    <th>Client Phone Number</th>
+                                    <th>Upgrades Made In Portal</th>
+                                    <th>Residual Amount Made From Client</th>
+                                    <th>Expected Payout</th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+
+                                <tbody>
+                                {% for user in subdomain.users %}
+                                    <tr>
+                                        <td>{{ user.user.first_name }} {{ user.user.last_name }}</td>
+                                        <td>{{ user.user.email }}</td>
+                                        <td>{{ user.phone_number }}</td>
+                                        <td>{{ user.updates_made }}</td>
+                                        <td>{{ user.residual_amount }}</td>
+                                        <td>{{ user.expected_payout }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                </tbody>
+                            </table>
+                        {% endfor %}
 
                     </div>
                 </div>

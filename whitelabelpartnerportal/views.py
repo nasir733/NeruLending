@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic.base import ContextMixin
 
+from services.WhiteLabelService import WhiteLabelService
 from .models import *
 
 
@@ -201,11 +202,8 @@ class FreeSignupView(View):
 
 class PaidSignupView(View):
     def get(self, request):
-        
-        # paidprograms = PaidProgram.objects.filter(user=Profile.objects.get(user=request.user))
-        signedup = SignedUpProgram.objects.filter(user=Profile.objects.get(user=request.user))
-
-        return render(request, "paidsignup.html", {"signedup": signedup})
+        user_data = WhiteLabelService.get_users_by_subdomains(request)
+        return render(request, "paidsignup.html", {"user_data": user_data})
 
 
 class OrdersView(View):

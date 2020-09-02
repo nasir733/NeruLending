@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('user', '0006_profile_virtual_access_card_paid'),
@@ -16,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='virtualcard',
             name='user',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='virtual_card', to=settings.AUTH_USER_MODEL),
+            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                       related_name='virtual_card', to=settings.AUTH_USER_MODEL),
         ),
     ]

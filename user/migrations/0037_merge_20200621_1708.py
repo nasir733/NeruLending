@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0035_auto_20200620_1148'),
         ('user', '0036_auto_20200621_1827'),

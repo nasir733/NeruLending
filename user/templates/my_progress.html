@@ -10,6 +10,7 @@
         body {
             background-image: -webkit-linear-gradient(-30deg, #052157 0%, #91039f 100%) !important;
         }
+
         a {
 
         }
@@ -183,7 +184,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8" >
+            <div class="col-lg-8">
 
                 <div class='widget white-bg clearfix' id="user_info" style="display:block;">
                     <div class="widget-title"><p>My Ordered Services</p></div>
@@ -203,7 +204,9 @@
                                     <td>{{ service.name }}</td>
                                     <td>{{ service.status }}</td>
                                     <td>{{ service.product }}</td>
-                                    <td>{% if service.dashboard %} <a class="btn btn-primary" href="{{ service.dashboard }}">Go To Dashboard</a>{% endif %}</td>
+                                    <td>{% if service.dashboard %}
+                                        <a class="btn btn-primary" href="{{ service.dashboard }}">Go To
+                                            Dashboard</a>{% endif %}</td>
                                 </tr>
                             {% endfor %}
                         </table>

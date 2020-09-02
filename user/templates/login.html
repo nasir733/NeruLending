@@ -14,7 +14,7 @@
     {% endif %}
     <form class="new_user" id="new_user" action="{% url 'user:login' %}" accept-charset="UTF-8" method="post">
         {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="hidden" name="next" value="{{ next }}"/>
         <div class="form-group">
             <label for="user_email">Email</label>
             <div class="group-icon">

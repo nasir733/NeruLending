@@ -2,8 +2,8 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 from services.FileServices import get_file_path
+from user.models import Profile
 
-# Create your models here.
 app_name = 'dynamic'
 
 
@@ -19,13 +19,15 @@ class Subdomain(models.Model):
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     phno = PhoneNumberField(blank=True)
-    logo = models.ImageField(upload_to=get_file_path, )
+    logo = models.ImageField(upload_to=get_file_path)
     why_buy_link = models.CharField(max_length=200, blank=True)
     appImage = models.CharField(max_length=200, blank=True)
     primary_color = models.CharField(max_length=200, blank=True)
     secondary_color = models.CharField(max_length=200, blank=True)
     accent_color = models.CharField(max_length=200, blank=True)
     bg_color = models.CharField(max_length=200, blank=True)
+
+    admins = models.ManyToManyField(Profile)
 
     def __str__(self):
         return self.sub_name

@@ -1,26 +1,26 @@
 import json
+
+import stripe
+from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 # from django.contrib.auth.models import User
 from django.views.generic import DetailView, TemplateView
-from user.models import Portal, PortalGoal
 
+from user.models import Portal, PortalGoal
 from .decorators import unauthenticated_user
 from .models import Profile, UserSteps
-from django.contrib.auth.forms import AuthenticationForm
-from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
-
-import stripe
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -54,14 +54,15 @@ class APIloginView(View):
 class SignUpView(View):
     def get(self, request):
         return render(request, 'registration.html')
+
     @csrf_exempt
     def post(self, request):
         data = request.POST
-        sub_domain=request.host.name
+        sub_domain = request.host.name
         print(data)
         try:
             profile = Profile.objects.create_user(data['email'], data['password'], data['first_name'],
-                                                  data['last_name'], data['phone_number'],sub_domain)
+                                                  data['last_name'], data['phone_number'], sub_domain)
             auth_login(request, profile.user)
             return HttpResponseRedirect(reverse('homepage'))
         except Exception as e:

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% if dynamic.title %}
-    <title>{{dynamic.title}}</title>
+        <title>{{ dynamic.title }}</title>
     {% endif %}
 
     <style media="screen">
@@ -14,21 +14,22 @@
             height: 150px;
             width: 300px;
         }
+
         {% if dynamic.bg_color %}
-        .bgcolor {
-            background-color: {{ dynamic.bg_color }};
-            background: {{ dynamic.bg_color }};
-            background-repeat: no-repeat;
-            font-family: "Montserrat", sans-serif;
-            color: #575962;
-            font-size: 14px;
-            font-weight: 400;
-            min-height: 100vh;
-            line-height: 24px;
-            overflow-x: hidden;
-            margin: 0;
-            text-align: left;
-        }
+            .bgcolor {
+                background-color: {{ dynamic.bg_color }};
+                background: {{ dynamic.bg_color }};
+                background-repeat: no-repeat;
+                font-family: "Montserrat", sans-serif;
+                color: #575962;
+                font-size: 14px;
+                font-weight: 400;
+                min-height: 100vh;
+                line-height: 24px;
+                overflow-x: hidden;
+                margin: 0;
+                text-align: left;
+            }
         {% endif %}
 
         .misc-box {
@@ -215,11 +216,10 @@
         }
 
 
-
     </style>
-   {% block extrastyle %}
+    {% block extrastyle %}
 
-   {% endblock %}
+    {% endblock %}
 </head>
 <body class='bgcolor'>
 <div class="container">

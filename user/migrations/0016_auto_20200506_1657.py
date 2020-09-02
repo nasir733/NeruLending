@@ -22,7 +22,6 @@ def create_portals(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0015_auto_20200506_1656'),
     ]

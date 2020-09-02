@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('user', '0029_usersteps'),
     ]
@@ -13,12 +12,14 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='usersteps',
             name='domain',
-            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Domain'),
+            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')],
+                                   default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Domain'),
         ),
         migrations.AlterField(
             model_name='usersteps',
             name='fax_number',
-            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Fax numberx'),
+            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')],
+                                   default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Fax numberx'),
         ),
         migrations.AlterField(
             model_name='usersteps',
@@ -38,16 +39,21 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='usersteps',
             name='professional_email',
-            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Professional email'),
+            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')],
+                                   default=(1, 'Not ordered'), max_length=500, null=True,
+                                   verbose_name='Professional email'),
         ),
         migrations.AlterField(
             model_name='usersteps',
             name='toll_free',
-            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Toll free number'),
+            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')],
+                                   default=(1, 'Not ordered'), max_length=500, null=True,
+                                   verbose_name='Toll free number'),
         ),
         migrations.AlterField(
             model_name='usersteps',
             name='website',
-            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')], default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Website'),
+            field=models.CharField(choices=[(1, 'Not ordered'), (2, 'In progress'), (3, 'Done')],
+                                   default=(1, 'Not ordered'), max_length=500, null=True, verbose_name='Website'),
         ),
     ]
