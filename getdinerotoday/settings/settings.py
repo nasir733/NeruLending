@@ -1,6 +1,7 @@
 import os
 
 import django_heroku
+from django.utils.log import DEFAULT_LOGGING
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_HOSTCONF = 'getdinerotoday.hosts'
@@ -27,6 +28,8 @@ AWS_STORAGE_BUCKET_NAME = 'getdinerotodaybucket2'
 AWS_S3_REGION_NAME = 'us-east-1'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+DEFAULT_LOGGING['handlers']['console']['filters'] = []
 
 INSTALLED_APPS = [
     'django_hosts',
