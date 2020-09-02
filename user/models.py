@@ -17,20 +17,28 @@ class ProfileUserManager(models.Manager):
 
         user = User.objects.create_user(email=email, username=email, password=password, first_name=first_name,
                                         last_name=last_name)
-        profile = Profile(user=user, phone_number=phone_number, stripe_id=stripe_user['id'], whitelabel_portal=whitelabel_portal)
+        profile = Profile(user=user, phone_number=phone_number, stripe_id=stripe_user['id'],
+                          whitelabel_portal=whitelabel_portal)
         profile.save()
         return profile
 
 
 class Profile(models.Model):
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE, related_name='profile')
-    phone_number = models.CharField(max_length=15)
+    client_name = models.CharField(max_length=500, null=True)
+    client_email = models.CharField(max_length=500, null=True)
+    phone_number = models.CharField(max_length=500, null=True)
+    updates_made = models.CharField(max_length=500, null=True, default="N/A")
+    residual_amount = models.CharField(max_length=500, null=True, default="N/A")
+    expected_payout = models.CharField(max_length=500, null=True, default="N/A")
+    created_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True)
     fax_number_paid = models.BooleanField(default=False)
     toll_free_number_paid = models.BooleanField(default=False)
     website_creation_paid = models.BooleanField(default=False)
     virtual_access_card_paid = models.BooleanField(default=False)
     stripe_id = models.CharField(max_length=200, null=True)
-    whitelabel_portal=models.CharField(max_length=200, null=True)
+    whitelabel_portal = models.CharField(max_length=200, null=True)
     objects = ProfileUserManager()
 
 

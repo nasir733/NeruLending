@@ -14,7 +14,7 @@ class ProfileAdmin(admin.ModelAdmin):
     '''
     list_display = ("user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
                     "virtual_access_card_paid",'whitelabel_portal')
-    filds = [
+    fields = [
         "user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
         "virtual_access_card_paid","whitelabel_portal",
     ]

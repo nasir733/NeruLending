@@ -32,6 +32,8 @@ class IndexView(View):
                     return render(request, 'landingpages/index.html')
                 return HttpResponseRedirect(reverse("homepage"))                
             else:
+                if obj.is_payment_done == True:
+                    return render(request, 'landingpages/index.html')
                 return HttpResponseRedirect("/user/login")
         else:
             if request.user.is_authenticated:
