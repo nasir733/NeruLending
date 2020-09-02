@@ -55,30 +55,33 @@
                             transform: scale(1);
                             transform-origin: center center;
                         }
+
                         {% if dynamic.primary_color %}
-                        .btn.btn-white {
-                            background:{{dynamic.primary_color}};
-                            color:{{dynamic.secondary_color}};
-                        }
-                        .btn.btn-white:hover {
-                            background:{{dynamic.accent_color}};
-                            color:{{dynamic.secondary_color}};
-                        }
-                        .btn.btn-theme {
-                            background: {{dynamic.primary_color}};
-                            color: {{dynamic.secondary_color}};
-                        }
+                            .btn.btn-white {
+                                background: {{dynamic.primary_color}};
+                                color: {{dynamic.secondary_color}};
+                            }
+                            .btn.btn-white:hover {
+                                background: {{dynamic.accent_color}};
+                                color: {{dynamic.secondary_color}};
+                            }
+                            .btn.btn-theme {
+                                background: {{dynamic.primary_color}};
+                                color: {{dynamic.secondary_color}};
+                            }
                         {% endif %}
 
                     </style>
                     <!-- Navbar -->
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand logo" href="/">
-                            <img id="logo-white-img" class="img-center" src="{{ dynamic.logo.url }}"
-                                 height="180px" alt="">
-                            <img id="logo-img" class="img-center sticky-logo" src="{{ dynamic.logo.url }}"
-                                 height="180px" alt="">
-                        </a>
+                        {% if dynamic.logo and dynamic.logo.url %}
+                            <a class="navbar-brand logo" href="/">
+                                <img id="logo-white-img" class="img-center" src="{{ dynamic.logo.url }}"
+                                     height="180px" alt="">
+                                <img id="logo-img" class="img-center sticky-logo" src="{{ dynamic.logo.url }}"
+                                     height="180px" alt="">
+                            </a>
+                        {% endif %}
                         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                                 data-target="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span></span>
@@ -133,7 +136,7 @@
                         </div>
                         <a class="btn btn-white btn-sm" href="/dashboard" target="_blank"
                            data-text="Client Login">
-                        <span>Client<span></span> <span></span><span></span>  <span></span><span></span> <span></span> <span>Login</span><span></span><span></span><span></span><span></span></span>
+                            <span>Client<span></span> <span></span><span></span>  <span></span><span></span> <span></span> <span>Login</span><span></span><span></span><span></span><span></span></span>
                         </a>
                     </nav>
                 </div>
