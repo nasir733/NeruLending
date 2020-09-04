@@ -79,6 +79,10 @@ urlpatterns = [
         name='tollfree'),
     url('professionalemail', login_required(ProfessionalEmailView.as_view(), login_url='/user/login'),
         name='professionalemail'),
-    url('partnercommisssions', login_required(PartnerCommissionView.as_view(), login_url='/user/login'),
-        name='partnercommisssions'),
+    url('partnercommisssions', login_required(PartnerCommissionView.as_view(), login_url='/user/login'), name='partnercommisssions'),
+    url('productmanagement', login_required(ProductManagementView.as_view(), login_url='/user/login'), name='productmanagement'),
+
+    url('edit_tradelines', login_required(EditTradeline.as_view(), login_url='/user/login'), name='edit_tradelines'),
+    url('edit_usersteps', login_required(EditUserSteps.as_view(), login_url='/user/login'), name='edit_usersteps'),
+
 ]

@@ -3,8 +3,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
-from django.views.generic.base import ContextMixin
 
+from products.models import Tradelines, UserStepsProduct
 from services.WhiteLabelService import WhiteLabelService
 from .models import *
 
@@ -12,6 +12,7 @@ from .models import *
 class HomeWhiteLabelView(View):
     def get(self, request):
         return render(request, "home-whitelabel.html")
+
 
 class PartnerCommissionView(View):
     def get(self, request):
@@ -243,7 +244,6 @@ class OfferingFinancingView(View):
 
 class WhiteLabelWebinarView(View):
     def get(self, request):
-
         webinars = Webinar.objects.filter(user=Profile.objects.get(user=request.user))
 
         return render(request, "whitelabelwebinar.html", {'webinars': webinars})
@@ -263,7 +263,7 @@ class ViewPortalsView(View):
     def get(self, request):
         portals = WhitelabelPortal.objects.filter(user=Profile.objects.get(user=request.user))
 
-        return render(request, "viewportals.html", {"portals" : portals})
+        return render(request, "viewportals.html", {"portals": portals})
 
 
 class ViewWhiteLabelWebsiteView(View):
@@ -389,3 +389,38 @@ class TollFreeView(View):
 class ProfessionalEmailView(View):
     def get(self, request):
         return render(request, "professionalemail.html")
+
+
+class ProductManagementView(View):
+    def get(self, request):
+        subdomain_products = WhiteLabelService.get_whitelabel_products(request)
+        return render(request, "productManagement/productManagement.html", {"subdomain_products": subdomain_products})
+
+
+class EditTradeline(View):
+    def get(self, request):
+        obj = Tradelines.objects.filter(product_id=request.GET.get('product')).first()
+        return render(request, "productManagement/editTradeline.html", {"tradeline": obj})
+
+    def post(self, request):
+        print(request.POST)
+        obj = Tradelines.objects.filter(product_id=request.POST.get('product')).first()
+        if obj:
+            obj.price = float(request.POST.get('price'))
+            obj.charge = float(request.POST.get('charge'))
+            obj.save()
+        return redirect("whitelabelpartnerportal:productmanagement")
+
+
+class EditUserSteps(View):
+    def get(self, request):
+        obj = UserStepsProduct.objects.filter(product_id=request.GET.get('product')).first()
+        return render(request, "productManagement/editUserSteps.html", {"userstep": obj})
+
+    def post(self, request):
+        print(request.POST)
+        obj = UserStepsProduct.objects.filter(product_id=request.POST.get('product')).first()
+        if obj:
+            obj.price = float(request.POST.get('price'))
+            obj.save()
+        return redirect("whitelabelpartnerportal:productmanagement")
