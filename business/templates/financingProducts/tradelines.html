@@ -48,8 +48,8 @@
                                         <td>{{ tradeline.product }}</td>
                                         <td>{{ tradeline.tradeline_amount }}</td>
                                         <td>{{ tradeline.company_reports_to }}</td>
-                                        <td>{{ tradeline.price }}$</td>
-                                        <td>{{ tradeline.charge }}$</td>
+                                        <td>${{ tradeline.price }}</td>
+                                        <td>${{ tradeline.charge }}</td>
                                         <td>
                                             {% if tradeline.video_link %}
                                                 <a class="btn btn-primary" href="{{ tradeline.video_link }}"
