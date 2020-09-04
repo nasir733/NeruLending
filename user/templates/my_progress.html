@@ -125,7 +125,7 @@
                                         <label for="ccnumber">Credit Card Number</label>
                                         <div class="input-group">
                                             <input class="form-control" type="text" placeholder="0000 0000 0000 0000"
-                                                   name="cc_number">
+                                                   name="cc_number" maxlength="16">
                                             <div class="input-group-append">
                                         <span class="input-group-text">
                                             <i class="mdi mdi-credit-card"></i>
@@ -190,23 +190,50 @@
                     <div class="widget-title"><p>My Ordered Services</p></div>
                     <div class="widget-content">
 
-                        <table class="table table-responsive">
+                        <table class="table table-sm table-responsive">
                             <thead class="thead-light">
                             <tr>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Product</th>
-                                <th style="width: 1%">Dashboard</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Product</th>
+                                <th scope="col" style="width: 1%">Dashboard</th>
                             </tr>
                             </thead>
                             {% for service in services %}
-                                <tr class="bg-white">
+                                <tr>
                                     <td>{{ service.name }}</td>
                                     <td>{{ service.status }}</td>
                                     <td>{{ service.product }}</td>
                                     <td>{% if service.dashboard %}
-                                        <a class="btn btn-primary" href="{{ service.dashboard }}">Go To
+                                        <a class="btn btn-primary btn-sm" href="{{ service.dashboard }}">Go To
                                             Dashboard</a>{% endif %}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+                <div class='widget white-bg clearfix'>
+                    <div class="widget-title"><p>My Tradelines</p></div>
+                    <div class="widget-content">
+                        <table class="table table-responsive d-table table-sm">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Product</th>
+                                <th>Tradeline Amount</th>
+                                <th>Price</th>
+                                <th>Fee</th>
+
+                            </tr>
+                            </thead>
+                            {% for tradeline in tradelines %}
+                                <tr class="bg-white">
+                                    <td>{{ tradeline.name }}</td>
+                                    <td>{{ tradeline.product }}</td>
+                                    <td>{{ tradeline.amount }}</td>
+                                    <td>{{ tradeline.price }}$</td>
+                                    <td>{{ tradeline.charge }}$</td>
                                 </tr>
                             {% endfor %}
                         </table>
@@ -265,7 +292,7 @@
                     <div class="card mx-2 text-center" style="width: 21rem;">
                         <div class="card-body">
                             <p>Go To Affiliate Agent Portal</p>
-                            <a class="btn btn-primary" href="{% url 'affiliate:home-affiliate' %}" class="nav-link">
+                            <a class="btn btn-primary" href="{% url 'affiliate:home-affiliate' %}">
                                 Click Here To Go To The <br> Affiliate Agent Portal
                             </a>
                         </div>

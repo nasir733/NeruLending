@@ -733,9 +733,7 @@ class FaxNumberPaidView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-
-        profile = Profile.objects.get(user=request.user)
-        user_steps = UserSteps.objects.filter(user=profile)
+        user_steps = UserSteps.objects.filter(user=request.user)
         services = []
 
         for i in user_steps:

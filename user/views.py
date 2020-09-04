@@ -17,10 +17,12 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, TemplateView
 
-from user.models import Portal, PortalGoal
-from .decorators import unauthenticated_user
-from .models import Profile
 from orders.models import UserSteps
+from services.OrderDataService import OrderDataService
+from services.StripeService import StripeService
+from user.models import Portal, PortalGoal
+from user.models import Profile
+from user.decorators import unauthenticated_user
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -108,77 +110,13 @@ class PasswordChangeDoneView(View):
 class MyProgressView(View):
     def get(self, request):
         request.resolver_match.app_name = 'business'
-        context = {
-            'source_cards': [],
-            'subscriptions': []
-        }
-        profile = Profile.objects.get(user=request.user)
-        stripe_id = profile.stripe_id
-        if not stripe_id:
-            stripe_user = stripe.Customer.create(
-                name=f"{request.user.first_name} {request.user.last_name}",
-                email=request.user.email,
-            )
-            profile.stripe_id = stripe_user['id']
-            profile.save()
-        else:
-            stripe_user = stripe.Customer.retrieve(stripe_id)
-
-        default_source = stripe_user['default_source']
+        context = {}
+        stripe_user = StripeService.get_user_or_create_new(Profile.objects.get(user=request.user))
         context['stripe_user'] = stripe_user
-        for i in stripe_user['sources']['data']:
-            if i['id'] == default_source:
-                i['is_default'] = True
-            context['source_cards'].append(i)
-
-        if len(stripe_user['subscriptions']['data']) > 0:
-            for i in stripe_user['subscriptions']['data']:
-                names = []
-                interval = ''
-                total = 0
-
-                for kk in i['items']['data']:
-                    names.append(kk['price']['lookup_key'].split("_")[0])
-                    interval = kk['plan']['interval']
-                    total = kk['price']['unit_amount'] / 100
-
-                sub = {
-                    'name': ', '.join(names),
-                    'total': total,
-                    'interval': interval,
-                    'subscription_id': i['id']
-                }
-                context['subscriptions'].append(sub)
-        user_steps = UserSteps.objects.filter(user=profile)
-        services = []
-
-        for i in user_steps:
-
-            for k in ['website', 'toll_free_number',
-                      'fax_number',
-                      'domain',
-                      'professional_email_address']:
-                if getattr(i, k) == 2 or getattr(i, k) == 3:
-                    dash = ''
-                    if k == 'website':
-                        dash = "/business/website-creation-paid"
-                    elif k == 'toll_free_number':
-                        dash = '/business/toll-free-options/'
-                    elif k == 'fax_number':
-                        dash = "/business/fax-number-paid"
-                    elif k == 'domain':
-                        dash = getattr(i, 'domain_dashboard')
-                    elif k == 'professional_email_address':
-                        dash = getattr(i, 'email_provider')
-                    serv = {
-                        'name': k.replace('_', " "),
-                        'status': 'Done',
-                        'product': getattr(i, k + '_act'),
-                        'dashboard': dash
-                    }
-                    services.append(serv)
-        print(services)
-        context['services'] = services
+        context['source_cards'] = StripeService.get_payment_methods(stripe_user)
+        context['subscriptions'] = StripeService.get_user_subscriptions(stripe_user)
+        context['services'] = OrderDataService.get_user_steps_data(request.user)
+        context['tradelines'] = OrderDataService.get_user_tradelines_data(request.user)
         return render(request, "my_progress.html", context=context)
 
     def post(self, request):

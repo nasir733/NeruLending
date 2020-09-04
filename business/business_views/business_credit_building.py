@@ -144,9 +144,7 @@ class TollFreeNumberOptionsView(View):
         if profile:
             toll_free_number_paid = profile[0].toll_free_number_paid
         if toll_free_number_paid:
-
-            profile = Profile.objects.get(user=request.user)
-            user_steps = UserSteps.objects.filter(user=profile)
+            user_steps = UserSteps.objects.filter(user=request.user)
             services = []
 
             for i in user_steps:

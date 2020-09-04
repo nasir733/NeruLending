@@ -1,5 +1,4 @@
 import stripe
-
 from django.conf import settings
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -74,12 +73,13 @@ class StripeService:
         )
 
     @staticmethod
-    def create_price(price, lookup_key, product_id, recurring=None):
+    def create_price(price, lookup_key, nickname, product_id, recurring=None):
         new_price = stripe.Price.create(
             unit_amount=price,
             currency="usd",
             product=product_id,
             recurring=recurring,
+            nickname=nickname,
             lookup_key=lookup_key,
             transfer_lookup_key=True
         )
@@ -119,7 +119,7 @@ class StripeService:
         price = int(price * 100)
         new_product = StripeService.new_product(name)
         lookup_key, recurring_rule = StripeService._get_recurring_rule(name, recurring)
-        new_price = StripeService.create_price(price, lookup_key, new_product.id, recurring_rule)
+        new_price = StripeService.create_price(price, lookup_key, name, new_product.id, recurring_rule)
         return {
             "prod_id": new_product.id,
             "price_id": new_price.id,
@@ -135,7 +135,7 @@ class StripeService:
         price = stripe.Price.retrieve(price_id)
         lookup_key, recurring_rule = StripeService._get_recurring_rule(name, recurring)
         if price.unit_amount != new_price or recurring != StripeService._det_recurring_rule_from_stripe(price):
-            new_price_obj = StripeService.create_price(new_price, lookup_key, product_id, recurring_rule)
+            new_price_obj = StripeService.create_price(new_price, lookup_key, name, product_id, recurring_rule)
             stripe.Price.modify(price_id, active=False)
             price_id = new_price_obj.id
         return price_id, lookup_key
@@ -176,3 +176,53 @@ class StripeService:
                 StripeService.create_subscription(customer=customer_id, items=items, default_source=source_id)
         if one_time['total'] > 0:
             StripeService.charge_customer(source_id if source_id else customer_id, one_time['total'], one_time['name'])
+
+    @staticmethod
+    def get_user_subscriptions(stripe_user):
+        subscriptions_list = []
+        if stripe_user.subscriptions and stripe_user.subscriptions.data and len(stripe_user.subscriptions.data) > 0:
+            for subscription in stripe_user.subscriptions.data:
+                names = []
+                interval = ''
+                total = 0
+                for subsctiption_item in subscription['items']['data']:
+                    name = subsctiption_item.price.nickname
+                    if name:
+                        names.append(name)
+                    else:
+                        names.append(subsctiption_item.price.id)
+                    interval = subsctiption_item.plan.interval
+                    total += subsctiption_item.price.unit_amount / 100
+                total = round(total, 2)
+                subscriprion_data = {
+                    'name': ', '.join(names),
+                    'total': total,
+                    'interval': interval,
+                    'subscription_id': subscription.id
+                }
+                subscriptions_list.append(subscriprion_data)
+        return subscriptions_list
+
+    @staticmethod
+    def get_payment_methods(stripe_user):
+        payment_methods = []
+        default_source = stripe_user.default_source
+        for i in stripe_user.sources.data:
+            if i['id'] == default_source:
+                i['is_default'] = True
+            payment_methods.append(i)
+        return payment_methods
+
+    @staticmethod
+    def get_user_or_create_new(profile):
+        stripe_id = profile.stripe_id
+        if not stripe_id:
+            stripe_user = stripe.Customer.create(
+                name=f"{profile.user.first_name} {profile.user.last_name}",
+                email=profile.user.email,
+            )
+            profile.stripe_id = stripe_user['id']
+            profile.save()
+        else:
+            stripe_user = stripe.Customer.retrieve(stripe_id)
+        return stripe_user

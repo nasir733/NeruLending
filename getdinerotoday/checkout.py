@@ -116,7 +116,7 @@ def subscription(request):
         user_steps_data = request.session.get('user_steps_data')
         if user_steps_data:
             new_steps = UserSteps(
-                user=profile,
+                user=request.user,
                 **user_steps_data
             )
             new_steps.save()
