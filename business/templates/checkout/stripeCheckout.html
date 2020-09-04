@@ -120,35 +120,42 @@
                 <div class="card padding-15">
                     <div class="card-header">Your cart:</div>
                     <div class="card-body">
-
-                        <table class="table">
-                            <thead class="thead-light">
-                            <tr>
-                                <th>Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th style="width: 1%;">Remove</th>
-                            </tr>
-                            </thead>
-                            {% for product in products %}
-                                <tr class="bg-white">
-                                    <td>{{ product.name }}</td>
-                                    <td>{{ product.quantity }}</td>
-                                    <td>${{ product.price_amount }}</td>
-                                    <td>
-                                        <form action="{% url "business:delete_item" %}" method="post">{% csrf_token %}
-                                            <input name="delete_item" type="hidden" value="{{ product.price }}">
-                                            <button type="submit" class="btn btn-primary">Remove</button>
-                                        </form>
-                                    </td>
+                        {% if products %}
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th style="width: 1%;">Remove</th>
                                 </tr>
-                            {% endfor %}
-                            <tr class="bg-white">
-                                <td class="text-right border-0" colspan="2">Total:</td>
-                                <td>${{ amount }}</td>
-                                <td class="border-0"></td>
-                            </tr>
-                        </table>
+                                </thead>
+
+                                {% for product in products %}
+                                    <tr class="bg-white">
+                                        <td>{{ product.name }}</td>
+                                        <td>{{ product.quantity }}</td>
+                                        <td>${{ product.price }}</td>
+                                        <td>
+                                            <form action="{% url "business:delete_item" %}"
+                                                  method="post">{% csrf_token %}
+                                                <input name="delete_item" type="hidden" value="{{ product.name }}">
+                                                <button type="submit" class="btn btn-primary">Remove</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr class="bg-white">
+                                    <td class="text-right border-0" colspan="2">Total:</td>
+                                    <td>${{ amount }}</td>
+                                    <td class="border-0"></td>
+                                </tr>
+                            </table>
+                        {% else %}
+                            <div class="text-center">Your card is empty.</div>
+                        {% endif %}
+
+
                         {% if add_card %}
                             Add card:
                             {% if cards_available %}
@@ -200,7 +207,7 @@
                             <br>
                             <form action="{% url "business:subscription_stripe" %}" method="post">{% csrf_token %}
                                 <input id="stripeToken" name="stripeToken" type="hidden"/>
-                                <button type="submit" class="btn btn-primary btn-block">Pay ${{ amount }}</button>
+                                <button type="submit" class="btn btn-primary btn-block" {% if not products %}disabled{% endif %}>Pay ${{ amount }}</button>
                             </form>
                         {% endif %}
                     </div>

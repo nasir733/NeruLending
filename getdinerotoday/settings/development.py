@@ -10,6 +10,8 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'getdinerotoday@vash.ee'
 EMAIL_HOST_PASSWORD = 'epJ,o0p754'
 DEFAULT_FROM_EMAIL = 'info@getdinerotoday.com'
-STRIPE_PUBLISHABLE_KEY = 'pk_test_k8aDNdIlHgXwyIJIf1tswxny00h0Xyel4S'
-STRIPE_SECRET_KEY = 'sk_test_ZZa6QOdZS7mz9Xo17MxQHRgM00ozbxBI5g'
+
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+
 ALLOWED_HOSTS = ['*']

@@ -15,7 +15,6 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-# from django.contrib.auth.models import User
 from django.views.generic import DetailView, TemplateView
 
 from user.models import Portal, PortalGoal

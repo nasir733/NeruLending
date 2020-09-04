@@ -1,10 +1,10 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from user.views import CreateSpecificPortal
-from django.urls import path
 
 from .views import *
 from .paymentviews.stripe import StripeCheckout, subscription, charge, remove
+from business.business_views.financing_products import TradelinesView, BusinessCreditStepsView, WebsiteCreationView, FaxNumberView, TollFreeNumberOptionsView
 
 app_name = 'business'
 urlpatterns = [
@@ -51,10 +51,12 @@ urlpatterns = [
     url('sic/', login_required(SICView.as_view(), login_url='/user/login'), name='sic'),
     url('business-good-standing/', login_required(BusinessGoodStandingView.as_view(), login_url='/user/login'), name='business-good-standing'),
     url('business-in-good-standing/', login_required(BusinessBackInGoodStandingView.as_view(), login_url='/user/login'), name='business-in-good-standing'),
+
     url('business-credit-step/', login_required(BusinessCreditStepsView.as_view(), login_url='/user/login'), name='business-credit-step'),
     url('business-credit-steps/', login_required(BusinessCreditStepsView.as_view(), login_url='/user/login'), name='business-credit-steps'),
     url('business-credit-steps-onlyprograms/', BusinessCreditStepsView.as_view(), name='business-credit-steps-onlyprograms'),
     url('business-credit-steps-standalone/', login_required(BusinessCreditStepsView.as_view(), login_url='/user/login'), name='business-credit-steps-standalone'),
+
     url('experian/', login_required(ExperianView.as_view(), login_url='/user/login'), name='experian'),
     url('dunn-brad/', login_required(DunnAndBradView.as_view(), login_url='/user/login'), name='dunn-brad'),
     url('equifax/', login_required(EquifaxView.as_view(), login_url='/user/login'), name='equifax'),
@@ -106,6 +108,9 @@ urlpatterns = [
     url('credit-repair-15/', login_required(CreditRepairPlan15View.as_view(), login_url='/user/login'), name='credit_repair_15'),
     url('credit-repair-16/', login_required(CreditRepairPlan16View.as_view(), login_url='/user/login'), name='credit_repair_16'),
     url('credit-repair-17/', login_required(CreditRepairPlan17View.as_view(), login_url='/user/login'), name='credit_repair_17'),
+
+    url('tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
+
     url('charge/', charge, name='charge'),
     url('checkout/', StripeCheckout.as_view(), name='stripe_checkout'),
     url('subscribe/', subscription, name='subscription_stripe'),

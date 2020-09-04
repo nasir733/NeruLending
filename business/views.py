@@ -1,5 +1,3 @@
-import stripe
-from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -7,226 +5,15 @@ from django.views import View
 from django.views.generic.base import ContextMixin
 
 from user.forms import UserDataForm
-from user.models import PortalGoal, UserData, UserSteps
-from .forms import BusinessCreditStepsForm
+from user.models import UserData, UserSteps
+from .conf import get_context_for_all, get_business_plan_context
 from .models import *
-from products.models import *
-
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-portal_list = {
-    "business": "",
-    "fitness": "Fitness",
-    "accountant": "Accountant",
-    "automotive": "Automotive",
-    "cannabis": "cannabis",
-    "credit_repair": "credit repair",
-    "ecommerce": "ecommerce",
-    "hair_salon": "hair salon",
-    "handy_man": "handy man",
-    "insurance_agent": "insurance agent",
-    "lawyer": "lawyer",
-    "medical": "medical",
-    "musician": "musician",
-    "photography": "photography",
-    "real_estate": "real estate",
-    "restaurant_catering": "restaurant and catering",
-    "transportation": "transportation",
-    "trucking": "trucking",
-    "wedding_planner": "wedding planner",
-    "goals": "Goals",
-    "chromeextension": "chromeextension",
-    "user": "User",
-    "user:business": "User"
-}
-
-
-def get_business_plan_context():
-    lenders = Lender.objects.all()
-    store_credits = StoreCreditVendorList.objects.all()
-    revolvings = RevolvingCredit.objects.all()
-    nopgs = Nopg.objects.all()
-    context = {
-        "lenders": lenders,
-        "store_credits": store_credits,
-        "revolvings": revolvings,
-        "nopgs": nopgs,
-    }
-
-    return context
-
-
-def get_context_for_all(request, context=None):
-    app_name = request.resolver_match.app_name
-    if not context:
-        context = {}
-
-    context["stripe_key"] = settings.STRIPE_PUBLISHABLE_KEY
-
-    context["verbose_portal_name"] = portal_list[app_name]
-    if not hasattr(request.resolver_match, 'page_template'):
-        request.resolver_match.page_template = 'pages/base-business.html'
-
-    if request.resolver_match.app_name == 'user:business':
-        request.resolver_match.page_template = 'goals/goals_base.html'
-        slug = request.path.split('/my-portal-goals/')[1].split("/")[0]
-        obj = PortalGoal.objects.get(slug=slug)
-        context['portal_goal'] = obj
-        context['portal_number'] = slug
-
-    if request.resolver_match.app_name == 'chromeextension':
-        request.resolver_match.page_template = 'base-chromeextension.html'
-
-    return context
 
 
 class BusinessHomePage(View):
     def get(self, request):
         return render(request, f"index-{request.resolver_match.app_name}.html",
                       context=get_context_for_all(request, get_business_plan_context()))
-
-
-class BusinessCreditStepsView(View):
-
-    @staticmethod
-    def get_products():
-        products = ['Website_monthly', 'Website_yearly',
-                    'Toll Free Number_monthly', 'Toll Free Number_yearly',
-                    "Fax Number_monthly", 'Fax Number_yearly',
-                    'Domain_yearly', 'Professional Email Address_monthly', 'Business Builder Program_monthly',
-                    'Professional Email Address_yearly']
-        prices = stripe.Price.list(
-            lookup_keys=products,
-        )
-        prices["data"].append(stripe.Price.list(lookup_keys=['Business Builder Program_yearly'])["data"][0])
-
-        return prices
-
-    @staticmethod
-    def get_specific_product(products, name):
-        for i in products:
-            print(i)
-            if name.lower() in i['lookup_key'].lower():
-                return i
-
-    def get(self, request):
-        template = "businessCreditBuilding/BusinessCreditSteps.html"
-        if "standalone" in request.path:
-            template = "businessCreditBuilding/BusinessCreditStepsStandalone.html"
-        elif "onlyprograms" in request.path:
-            template = "businessCreditBuilding/BusinessCreditStepsOnlyPrograms.html"
-
-        form = BusinessCreditStepsForm()
-        return render(request, template, context=get_context_for_all(request, {"form": form}))
-
-    def post(self, request):
-        avail_products = self.get_products()['data']
-        ordering_products = []
-        services = {}
-        total_payment = 0
-        products_to_check = ['website', 'toll_free_number', 'fax_number', 'domain',
-                             'professional_email_address', 'website_year', 'toll_free_number_year',
-                             'fax_number_year', 'domain_year', 'professional_email_address_year',
-                             "business_builder_program", "business_builder_program_year"]
-        # if 'business_builder_program' in request.POST and request.POST['business_builder_program'] == :
-        #     print(request.POST)
-        #     product = stripe.Price.list(lookup_keys='Business Builder Program_monthly')
-        #     ordering_products.append({
-        #         'name': product['lookup_key'].replace("_", ", "),
-        #         'price': product['id'],
-        #         'quantity': 1,
-        #         'price_amount': product['unit_amount'] / 100,
-        #         'object': product
-        #     })
-        # else:
-        print("DASFEFWEFWEFE",request.POST)
-        for i in products_to_check:
-            if i in request.POST and request.POST[i] == 'on':
-
-                if i.endswith("_year"):
-                    service_in_model = i.replace("_year", "")
-                    productname = service_in_model.replace("_", " ") + "_yearly"
-                else:
-                    service_in_model = i
-                    productname = service_in_model.replace("_", " ") + "_monthly"
-                    if i == 'domain':
-                        productname = 'domain_yearly'
-                product = self.get_specific_product(avail_products, productname)
-                ordering_products.append({
-                    'name': product['lookup_key'].replace("_", ", "),
-                    'price': product['id'],
-                    'quantity': int(request.POST.get(i + "_quantity", 1)),
-                    'price_amount': product['unit_amount'] / 100,
-                    'object': product
-                })
-                if i in ['toll_free_number', 'fax_number', 'toll_free_number_year', 'fax_number_year']:
-                    services[i.replace("_year", "").replace("toll_free_number",
-                                                            "toll_free") + "_quantity"] = request.POST.get(
-                        i + "_quantity")
-                    services[i.replace("_year", "") + "_prefix"] = request.POST.get(i + "_prefix")
-                services[service_in_model] = 2
-                total_payment += product['unit_amount'] / 100
-        domain_name = ''
-        if 'domain_name_year' in request.POST and request.POST['domain_name_year']:
-            domain_name = request.POST['domain_name_year']
-        if 'domain_name' in request.POST and request.POST['domain_name']:
-            domain_name = request.POST['domain_name_year']
-        industry_name = ''
-
-        if 'industry_year' in request.POST and request.POST['industry_year']:
-            industry_name = request.POST['industry_year']
-        if 'industry' in request.POST and request.POST['industry']:
-            industry_name = request.POST['industry']
-
-        industry_choices = (
-            (1, "Electrician"),
-            (2, "Gardener"),
-            (3, "Tattoo Artist"),
-            (4, "Photography"),
-            (5, "Limo Service"),
-            (6, "Nutrition Advisor"),
-            (7, "Life Coach"),
-            (8, "Veterinary clinic"),
-            (9, "Laundromat"),
-            (10, "Fitness Club"),
-            (11, "Dentist"),
-            (12, "Consulting"),
-            (13, "Auto Repair"),
-            (14, "Tutor"),
-            (15, "Bakery"),
-            (16, "Financial Advisor"),
-            (17, "Lawyer"),
-            (18, "Marketing Agency"),
-            (19, "Trucking"),
-            (20, "Locksmith"),
-            (21, "Medical Clinic"),
-            (22, "Dance Studio"),
-            (23, "Carpenter"),
-            (24, "Moving Company"),
-            (25, "Hair Salon"),
-            (26, "Cleaning Service"),
-            (27, "Car Dealer"),
-            (28, "Portfolio"),
-            (29, "Real Estate"),
-            (30, "Preschool"),
-            (31, "Spa Service"),
-            (32, "Physical Therapist"),
-        )
-
-        industry_choices_dict = {k: i for i, k in industry_choices}
-
-        request.session['user_steps_data'] = {
-            'first_name': request.POST['first_name'],
-            'last_name': request.POST['last_name'],
-            'email': request.POST['email'],
-            'phone': request.POST['phone'],
-            'domain_name': domain_name,
-            'industry_name': industry_choices_dict.get(industry_name, 1),
-            **services
-        }
-
-        request.session['ordering_products'] = ordering_products
-        return redirect("business:stripe_checkout")
 
 
 class UserDataView(View):
@@ -922,78 +709,6 @@ class WebsiteCreationPaidView(View):
         return render(request, 'businessCreditBuilding/websiteCreationPaid.html', context=context)
 
 
-class WebsiteCreationView(View):
-    def get(self, request):
-        if request.resolver_match.app_name == 'goals':
-            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
-        else:
-            request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, 'businessCreditBuilding/websiteCreation.html', context=get_context_for_all(request))
-
-    def post(self, request):
-
-        industry_choices = (
-            (1, "Electrician"),
-            (2, "Gardener"),
-            (3, "Tattoo Artist"),
-            (4, "Photography"),
-            (5, "Limo Service"),
-            (6, "Nutrition Advisor"),
-            (7, "Life Coach"),
-            (8, "Veterinary clinic"),
-            (9, "Laundromat"),
-            (10, "Fitness Club"),
-            (11, "Dentist"),
-            (12, "Consulting"),
-            (13, "Auto Repair"),
-            (14, "Tutor"),
-            (15, "Bakery"),
-            (16, "Financial Advisor"),
-            (17, "Lawyer"),
-            (18, "Marketing Agency"),
-            (19, "Trucking"),
-            (20, "Locksmith"),
-            (21, "Medical Clinic"),
-            (22, "Dance Studio"),
-            (23, "Carpenter"),
-            (24, "Moving Company"),
-            (25, "Hair Salon"),
-            (26, "Cleaning Service"),
-            (27, "Car Dealer"),
-            (28, "Portfolio"),
-            (29, "Real Estate"),
-            (30, "Preschool"),
-            (31, "Spa Service"),
-            (32, "Physical Therapist"),
-        )
-        industry_choices_dict = {k: i for i, k in industry_choices}
-
-        data = request.POST
-        if 'variant' in data and data['variant']:
-            product = None
-            if data['variant'] == 'monthly':
-                product = stripe.Price.list(lookup_keys=['Website_monthly'])['data'][0]
-            elif data['variant'] == 'yearly':
-                product = stripe.Price.list(lookup_keys=['Website_yearly'])['data'][0]
-            if product:
-                request.session['ordering_products'] = [{
-                    'name': product['lookup_key'].replace("_", ", "),
-                    'price': product['id'],
-                    'quantity': 1,
-                    'price_amount': product['unit_amount'] / 100,
-                    'object': product
-                }]
-                request.session['user_steps_data'] = {
-                    'first_name': request.user.first_name,
-                    'last_name': request.user.last_name,
-                    'email': request.user.email,
-                    'phone': Profile.objects.get(user=request.user).phone_number,
-                    'website': 2,
-                    'industry_name': industry_choices_dict[data["industry"]] if "industry" in data else 1,
-                }
-            return redirect("business:stripe_checkout")
-
-
 class FaxNumberOptionsView(View):
     def get(self, request):
         if request.resolver_match.app_name == 'goals':
@@ -1045,42 +760,6 @@ class FaxNumberPaidView(View):
         context['services'] = services
 
         return render(request, 'businessCreditBuilding/faxNumberPaid.html', context=context)
-
-
-class FaxNumberView(View):
-    def get(self, request):
-        if request.resolver_match.app_name == 'goals':
-            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
-        else:
-            request.resolver_match.page_template = 'pages/base-business.html'
-        return render(request, 'businessCreditBuilding/faxNumber.html', context=get_context_for_all(request))
-
-    def post(self, request):
-        data = request.POST
-        if 'variant' in data and data['variant'] and 'quantity' in data and int(data['quantity']) > 0:
-            product = None
-            if data['variant'] == 'monthly':
-                product = stripe.Price.list(lookup_keys=['Fax Number_monthly'])['data'][0]
-            elif data['variant'] == 'yearly':
-                product = stripe.Price.list(lookup_keys=['Fax Number_yearly'])['data'][0]
-            if product:
-                request.session['ordering_products'] = [{
-                    'name': product['lookup_key'].replace("_", ", "),
-                    'price': product['id'],
-                    'quantity': int(data['quantity']),
-                    'price_amount': product['unit_amount'] / 100,
-                    'object': product
-                }]
-                request.session['user_steps_data'] = {
-                    'first_name': request.user.first_name,
-                    'last_name': request.user.last_name,
-                    'email': request.user.email,
-                    'phone': Profile.objects.get(user=request.user).phone_number,
-                    'fax_number': 2,
-                    'fax_number_prefix': data.get('prefix'),
-                    'fax_number_quantity': data.get('quantity'),
-                }
-            return redirect("business:stripe_checkout")
 
 
 class FourElevenListingView(View):
@@ -1158,85 +837,6 @@ class DomainView(View):
         context = get_context_for_all(request)
         context['services'] = services
         return render(request, 'businessCreditBuilding/domain.html', context=context)
-
-
-class TollFreeNumberOptionsView(View):
-    def get(self, request):
-        if request.resolver_match.app_name == 'goals':
-            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
-        else:
-            request.resolver_match.page_template = 'pages/base-business.html'
-
-        profile = Profile.objects.filter(user=request.user)
-        toll_free_number_paid = False
-        if profile:
-            toll_free_number_paid = profile[0].toll_free_number_paid
-        if toll_free_number_paid:
-
-            profile = Profile.objects.get(user=request.user)
-            user_steps = UserSteps.objects.filter(user=profile)
-            services = []
-
-            for i in user_steps:
-                for k in ['toll_free_number']:
-                    if getattr(i, k) == 2:
-                        serv = {
-                            'name': k.replace('_', " "),
-                            'status': 'In progress',
-                            'product': 'In progress',
-                            'username': getattr(i, 'toll_free_username'),
-                            'password': getattr(i, 'toll_free_password')
-                        }
-                        services.append(serv)
-                    elif getattr(i, k) == 3:
-                        serv = {
-                            'name': k.replace('_', " "),
-                            'status': 'Done',
-                            'product': getattr(i, k + '_act'),
-                            'username': getattr(i, 'toll_free_username'),
-                            'password': getattr(i, 'toll_free_password')
-                        }
-                        services.append(serv)
-            context = get_context_for_all(request)
-            context['services'] = services
-
-            return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html',
-                          context=context)
-            # return redirect(reverse(f"{request.resolver_match.app_name}:toll-free-paid"))
-
-        return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
-        # return redirect(reverse(f"{request.resolver_match.app_name}:toll-free"))
-
-        # return render(request, 'businessCreditBuilding/tollFreeNumberOptions.html', {'toll_free_number_paid':
-        # toll_free_number_paid})
-
-    def post(self, request):
-        data = request.POST
-        if 'variant' in data and data['variant'] and 'quantity' in data and int(data['quantity']) > 0:
-            product = None
-            if data['variant'] == 'monthly':
-                product = stripe.Price.list(lookup_keys=['Toll Free Number_monthly'])['data'][0]
-            elif data['variant'] == 'yearly':
-                product = stripe.Price.list(lookup_keys=['Toll Free Number_yearly'])['data'][0]
-            if product:
-                request.session['ordering_products'] = [{
-                    'name': product['lookup_key'].replace("_", ", "),
-                    'price': product['id'],
-                    'quantity': int(data['quantity']),
-                    'price_amount': product['unit_amount'] / 100,
-                    'object': product
-                }]
-                request.session['user_steps_data'] = {
-                    'first_name': request.user.first_name,
-                    'last_name': request.user.last_name,
-                    'email': request.user.email,
-                    'phone': Profile.objects.get(user=request.user).phone_number,
-                    'toll_free_number': 2,
-                    'toll_free_prefix': data.get('prefix'),
-                    'toll_free_quantity': data.get('quantity'),
-
-                }
-            return redirect("business:stripe_checkout")
 
 
 class TollFreeNumberPaidView(View):
@@ -1574,16 +1174,15 @@ class BusinessLineOfCredit(View):
 
 
 class NoCreditCheckFinancing(View):
-    
+
     def get(self, request):
         if request.resolver_match.app_name == 'goals':
             request.resolver_match.page_template = 'immediatemoney/base-immediatemoney.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         loans = NoCreditCheckLoans.objects.all()
-        trades = tradelines.objects.all()
         return render(request, "financingProducts/noCreditCheckFinancing.html",
-                      context=get_context_for_all(request, {"loans": loans,"tradelines":trades}))
+                      context=get_context_for_all(request, {"loans": loans}))
 
 
 class InvoiceFactoringView(View):
@@ -1955,4 +1554,3 @@ class VirtualCardView(View):
     def get(self, request):
         card = request.user.virtual_card
         return render(request, "home/virtualcard.html", get_context_for_all(request, {"virtual_card": card}))
-

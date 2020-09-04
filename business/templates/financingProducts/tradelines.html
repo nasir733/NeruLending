@@ -9,7 +9,7 @@
 {% block content %}
     <div class="row page-header">
         <div class="col-lg-6 align-self-center ">
-            <h2>No Credit Check Loans</h2></div>
+            <h2>Add Business Tradelines</h2></div>
     </div>
 
     <section class="main-content">
@@ -24,28 +24,41 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-default">
-                        Lenders You Qualify For
+                        Add Business Tradelines
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="datatable" class="table table-striped dt-responsive nowrap">
                                 <thead>
                                 <tr>
-                                    <th>Lender Name</th>
-                                    <th>Estimated Terms</th>
-                                    <th>Apply Now</th>
+                                    <th>Company Name</th>
+                                    <th>Product</th>
+                                    <th>Tradeline Amount</th>
+                                    <th>Company reports to</th>
+                                    <th>Price</th>
+                                    <th>Video Link</th>
+                                    <th>Order</th>
                                 </tr>
                                 </thead>
-
-
                                 <tbody>
-                                {% for data in loans %}
+                                {% for tradeline in tradelines %}
                                     <tr>
-                                        <td>{{ data.lender_name }}</td>
-                                        <td>{{ data.estimated_terms }}</td>
+                                        <td>{{ tradeline.company_name }}</td>
+                                        <td>{{ tradeline.product }}</td>
+                                        <td>{{ tradeline.tradeline_amount }}</td>
+                                        <td>{{ tradeline.company_reports_to }}</td>
+                                        <td>{{ tradeline.price }}$</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ data.url }}" target="_blank">Click Here
-                                                For More Details</a>
+                                            {% if tradeline.video_link %}
+                                                <a class="btn btn-primary" href="{{ tradeline.video_link }}"
+                                                   target="_blank">Video</a>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <form method="post">{% csrf_token %}
+                                                <input name="product_id" type="hidden" value="{{ tradeline.product_id }}">
+                                                <button type="submit" class="btn btn-primary">Order</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 {% endfor %}

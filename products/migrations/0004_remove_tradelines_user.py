@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='tradelines',
+            model_name='Tradelines',
             name='user',
         ),
     ]

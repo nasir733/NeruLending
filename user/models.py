@@ -17,21 +17,22 @@ class ProfileUserManager(models.Manager):
 
 class Profile(models.Model):
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE, related_name='profile')
-    client_name = models.CharField(max_length=500, null=True)
-    client_email = models.CharField(max_length=500, null=True)
     phone_number = models.CharField(max_length=500, null=True)
     updates_made = models.CharField(max_length=500, null=True, default="N/A")
     residual_amount = models.CharField(max_length=500, null=True, default="N/A")
     expected_payout = models.CharField(max_length=500, null=True, default="N/A")
-    created_at = models.DateTimeField(null=True)
-    updated_at = models.DateTimeField(null=True)
     fax_number_paid = models.BooleanField(default=False)
     toll_free_number_paid = models.BooleanField(default=False)
     website_creation_paid = models.BooleanField(default=False)
     virtual_access_card_paid = models.BooleanField(default=False)
-    stripe_id = models.CharField(max_length=200, null=True)
-    whitelabel_portal = models.CharField(max_length=200, null=True)
+    whitelabel_portal = models.CharField(max_length=200, null=True, blank=True)
+
+    stripe_id = models.CharField(max_length=250, null=True)
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
+
     objects = ProfileUserManager()
+
 
     def __str__(self):
         return str(self.user.first_name) + " " + str(self.user.last_name)

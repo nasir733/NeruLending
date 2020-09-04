@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             name='TradelineOrders',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tradeline', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.tradelines')),
+                ('tradeline', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.Tradelines')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

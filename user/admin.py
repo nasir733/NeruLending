@@ -16,12 +16,13 @@ class ProfileAdmin(admin.ModelAdmin):
     '''
     list_display = ("user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
                     "virtual_access_card_paid", 'whitelabel_portal')
-    fields = [
-        "user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
-        "virtual_access_card_paid", "whitelabel_portal",
-    ]
+    # fields = [
+    #     "user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
+    #     "virtual_access_card_paid", "whitelabel_portal",
+    # ]
     list_filter = ("fax_number_paid", "toll_free_number_paid", "website_creation_paid", "virtual_access_card_paid",)
     search_fields = ('user__first_name', "user__last_name")
+    readonly_fields = ('stripe_id',)
 
 
 admin.site.register(Profile, ProfileAdmin)

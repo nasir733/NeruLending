@@ -1,13 +1,36 @@
 from django.apps import apps
 from django.contrib import admin
-from import_export.admin import ImportExportModelAdmin
 
-from .models import tradelines
+from .models import Tradelines, UserStepsProduct
 
 app = apps.get_app_config('products')
 
-class tradelinesAdmin(admin.ModelAdmin):
-	list_display = ('company_name','product','tradeline_amount','company_reports_to','cost','video_link')
+
+class TradelinesAdmin(admin.ModelAdmin):
+    list_display = ('company_name', 'product', 'tradeline_amount', 'company_reports_to', 'price', 'video_link')
+    readonly_fields = ('product_id', 'price_id', 'price_lookup')
+
+    def delete_queryset(self, request, queryset):
+        for product in queryset:
+            product.delete()
 
 
-admin.site.register(tradelines,tradelinesAdmin)
+admin.site.register(Tradelines, TradelinesAdmin)
+
+
+class UserStepsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'whitelabel_portal', 'price', 'recurring',)
+    readonly_fields = ('product_id', 'price_id', 'price_lookup')
+    actions = ('null_whitelabel',)
+
+    def delete_queryset(self, request, queryset):
+        for product in queryset:
+            product.delete()
+
+    def null_whitelabel(self, request, queryset):
+        for product in queryset:
+            product.whitelabel_portal = None
+            product.save()
+
+
+admin.site.register(UserStepsProduct, UserStepsAdmin)
