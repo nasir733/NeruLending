@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Portal, PortalGoal, Profile, VirtualCard, UserData, UserSteps, NewUserCredentials
+from .models import Portal, PortalGoal, Profile, VirtualCard, UserData, NewUserCredentials
+from orders.models import UserSteps
 
 admin.site.site_header = "Get Dinero Today Admin"
 admin.site.site_title = "Get Dinero Today"
@@ -76,18 +77,6 @@ class UserDataAdmin(admin.ModelAdmin):
 
 admin.site.register(UserData, UserDataAdmin)
 
-
-class UserStepsAdmin(admin.ModelAdmin):
-    '''
-        Admin View for PortalGoal
-    '''
-    # list_display = ("name",)
-    # list_filter = ('profile',)
-    # search_fields = ("name", "profile_user__first_name", "profile_user__last_name")
-    # filter_horizontal = ["portals", ]
-
-
-admin.site.register(UserSteps, UserStepsAdmin)
 
 
 class UserCredsAdmin(admin.ModelAdmin):

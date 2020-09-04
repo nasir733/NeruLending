@@ -4,10 +4,12 @@ from django.conf import settings
 from django.shortcuts import redirect, render
 from django.views import View
 
+from business.models import *
+from dynamic.models import Subdomain
+from orders.models import TradelineOrder, UserSteps
+from products.models import Tradelines
 from services.StripeService import StripeService
 from services.UsersService import UsersService
-from user.models import UserSteps
-from ..models import *
 
 
 def get_common_context(request, context=None):
@@ -87,7 +89,6 @@ def subscription(request):
     if request.method == 'POST':
         request.session.pop('cart_uuid')
         data = request.POST
-        # Create new stripe customer or add payment method to existing customer.
         profile = Profile.objects.get(user=request.user)
         stripe_id = profile.stripe_id
         if not stripe_id:
@@ -108,15 +109,11 @@ def subscription(request):
         # Generate new subscriptions to products from session['ordering_products']
         products = request.session.get('ordering_products')
         source_id = request.session.get('use_source_id')
-
         StripeService.make_purchases(products, stripe_id, source_id)
-
         if source_id:
             request.session.pop('use_source_id')
         # Add UserSteps if there is in session
         user_steps_data = request.session.get('user_steps_data')
-
-        # print("DATA:", user_steps_data)
         if user_steps_data:
             new_steps = UserSteps(
                 user=profile,
@@ -124,7 +121,13 @@ def subscription(request):
             )
             new_steps.save()
             request.session.pop('user_steps_data')
-
+        for i in products:
+            if i['type'] == 'tradeline':
+                new_tradeline_order = TradelineOrder(user=request.user,
+                                                     tradeline=Tradelines.objects.get(product_id=i['product_id']),
+                                                     whitelabel_portal=Subdomain.objects.filter(
+                                                         sub_name=request.host.name).first())
+                new_tradeline_order.save()
         amount = sum([i['price'] * i['quantity'] for i in products])
         request.session.pop('ordering_products')
         return render(request, 'checkout/checkout.html', {'amount': amount})
@@ -144,5 +147,6 @@ def remove(request):
 
 def charge(request):
     if request.method == 'POST':
-        StripeService.charge_card(request.POST['stripeToken'], request.POST['amount'], 'Get Dinero Today Service Charge')
+        StripeService.charge_card(request.POST['stripeToken'], request.POST['amount'],
+                                  'Get Dinero Today Service Charge')
         return render(request, 'checkout/checkout.html', {'amount': request.POST['amount']})

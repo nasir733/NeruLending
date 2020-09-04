@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from user.models import UserData, UserSteps
+from user.models import UserData
+from orders.models import UserSteps
 
 from business import models as businessmodels
 

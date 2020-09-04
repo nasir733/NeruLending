@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+import orders.models
 from . import serializers as apiserializers
 from business import models as businessmodels
 from user import models as usermodels
@@ -212,11 +213,11 @@ class GetUserStepsAPI(APIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            steps = usermodels.UserSteps.objects.get(email=request.user.email)
+            steps = orders.models.UserSteps.objects.get(email=request.user.email)
             steps_serialized = apiserializers.UserStepsSerializer().to_representation(steps)
             return Response(steps_serialized, status=200)
 
-        except usermodels.UserSteps.DoesNotExist:
+        except orders.models.UserSteps.DoesNotExist:
             return Response({
                 'website': 1,
                 'toll_free': 1,

@@ -7,7 +7,7 @@ app = apps.get_app_config('products')
 
 
 class TradelinesAdmin(admin.ModelAdmin):
-    list_display = ('company_name', 'product', 'tradeline_amount', 'company_reports_to', 'price', 'video_link')
+    list_display = ('company_name', 'product', 'price', 'charge', 'whitelabel_portal', 'tradeline_amount', 'company_reports_to')
     readonly_fields = ('product_id', 'price_id', 'price_lookup')
 
     def delete_queryset(self, request, queryset):

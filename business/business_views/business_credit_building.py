@@ -6,6 +6,7 @@ from business.forms import BusinessCreditStepsForm
 from dynamic.models import Subdomain
 from products.models import Tradelines, UserStepsProduct
 from user.models import Profile
+from orders.models import UserSteps
 
 
 class TradelinesView(View):
@@ -22,7 +23,7 @@ class TradelinesView(View):
         product = Tradelines.objects.get(product_id=product_id)
         ordering_products.append({
             'name': str(product),
-            'price': float(product.price),
+            'price': float(product.price) + float(product.charge),
             'quantity': 1,
             'type': 'tradeline',
             'product_id': product.product_id,
@@ -60,9 +61,8 @@ class BusinessCreditStepsView(View):
         elif "onlyprograms" in request.path:
             template = "businessCreditBuilding/BusinessCreditStepsOnlyPrograms.html"
         user_steps = self.get_user_steps(request)
-        print(user_steps)
-        return render(request, template, context=get_context_for_all(request, {"form": BusinessCreditStepsForm(), "user_steps": user_steps}))
-
+        return render(request, template, context=get_context_for_all(request, {"form": BusinessCreditStepsForm(),
+                                                                               "user_steps": user_steps}))
 
     def post(self, request):
         avail_products = self.get_user_steps(request)
@@ -71,7 +71,6 @@ class BusinessCreditStepsView(View):
 
         for name, product in avail_products.items():
             if name in request.POST and request.POST[name] == 'on':
-
                 ordering_products.append({
                     'name': str(product),
                     'price': float(product.price),
@@ -85,7 +84,6 @@ class BusinessCreditStepsView(View):
                 # if i in ['toll_free_number', 'fax_number', 'toll_free_number_year', 'fax_number_year']:
                 #     services[i.replace("_year", "").replace("toll_free_number","toll_free") + "_quantity"] = request.POST.get(i + "_quantity")
                 #     services[i.replace("_year", "") + "_prefix"] = request.POST.get(i + "_prefix")
-
 
         domain_name = ''
         if 'domain_name_year' in request.POST and request.POST['domain_name_year']:
@@ -121,36 +119,8 @@ class WebsiteCreationView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
+
         return render(request, 'businessCreditBuilding/websiteCreation.html', context=get_context_for_all(request))
-
-    def post(self, request):
-
-        industry_choices_dict = {k: i for i, k in industry_choices}
-
-        data = request.POST
-        if 'variant' in data and data['variant']:
-            product = None
-            if data['variant'] == 'monthly':
-                product = stripe.Price.list(lookup_keys=['Website_monthly'])['data'][0]
-            elif data['variant'] == 'yearly':
-                product = stripe.Price.list(lookup_keys=['Website_yearly'])['data'][0]
-            if product:
-                request.session['ordering_products'] = [{
-                    'name': product['lookup_key'].replace("_", ", "),
-                    'price': product['id'],
-                    'quantity': 1,
-                    'price_amount': product['unit_amount'] / 100,
-                    'object': product
-                }]
-                request.session['user_steps_data'] = {
-                    'first_name': request.user.first_name,
-                    'last_name': request.user.last_name,
-                    'email': request.user.email,
-                    'phone': Profile.objects.get(user=request.user).phone_number,
-                    'website': 2,
-                    'industry_name': industry_choices_dict[data["industry"]] if "industry" in data else 1,
-                }
-            return redirect("business:stripe_checkout")
 
 
 class FaxNumberView(View):
@@ -160,33 +130,6 @@ class FaxNumberView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, 'businessCreditBuilding/faxNumber.html', context=get_context_for_all(request))
-
-    def post(self, request):
-        data = request.POST
-        if 'variant' in data and data['variant'] and 'quantity' in data and int(data['quantity']) > 0:
-            product = None
-            if data['variant'] == 'monthly':
-                product = stripe.Price.list(lookup_keys=['Fax Number_monthly'])['data'][0]
-            elif data['variant'] == 'yearly':
-                product = stripe.Price.list(lookup_keys=['Fax Number_yearly'])['data'][0]
-            if product:
-                request.session['ordering_products'] = [{
-                    'name': product['lookup_key'].replace("_", ", "),
-                    'price': product['id'],
-                    'quantity': int(data['quantity']),
-                    'price_amount': product['unit_amount'] / 100,
-                    'object': product
-                }]
-                request.session['user_steps_data'] = {
-                    'first_name': request.user.first_name,
-                    'last_name': request.user.last_name,
-                    'email': request.user.email,
-                    'phone': Profile.objects.get(user=request.user).phone_number,
-                    'fax_number': 2,
-                    'fax_number_prefix': data.get('prefix'),
-                    'fax_number_quantity': data.get('quantity'),
-                }
-            return redirect("business:stripe_checkout")
 
 
 class TollFreeNumberOptionsView(View):
@@ -229,40 +172,6 @@ class TollFreeNumberOptionsView(View):
             context = get_context_for_all(request)
             context['services'] = services
 
-            return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html',
-                          context=context)
-            # return redirect(reverse(f"{request.resolver_match.app_name}:toll-free-paid"))
-
+            return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html', context=context)
         return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
-        # return redirect(reverse(f"{request.resolver_match.app_name}:toll-free"))
 
-        # return render(request, 'businessCreditBuilding/tollFreeNumberOptions.html', {'toll_free_number_paid':
-        # toll_free_number_paid})
-
-    def post(self, request):
-        data = request.POST
-        if 'variant' in data and data['variant'] and 'quantity' in data and int(data['quantity']) > 0:
-            product = None
-            if data['variant'] == 'monthly':
-                product = stripe.Price.list(lookup_keys=['Toll Free Number_monthly'])['data'][0]
-            elif data['variant'] == 'yearly':
-                product = stripe.Price.list(lookup_keys=['Toll Free Number_yearly'])['data'][0]
-            if product:
-                request.session['ordering_products'] = [{
-                    'name': product['lookup_key'].replace("_", ", "),
-                    'price': product['id'],
-                    'quantity': int(data['quantity']),
-                    'price_amount': product['unit_amount'] / 100,
-                    'object': product
-                }]
-                request.session['user_steps_data'] = {
-                    'first_name': request.user.first_name,
-                    'last_name': request.user.last_name,
-                    'email': request.user.email,
-                    'phone': Profile.objects.get(user=request.user).phone_number,
-                    'toll_free_number': 2,
-                    'toll_free_prefix': data.get('prefix'),
-                    'toll_free_quantity': data.get('quantity'),
-
-                }
-            return redirect("business:stripe_checkout")

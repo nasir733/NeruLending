@@ -4,6 +4,7 @@ import string
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import User
 
+from services.StripeService import StripeService
 from user.models import Profile, NewUserCredentials
 
 
@@ -29,3 +30,22 @@ class UsersService:
         letters = string.ascii_lowercase
         result_str = ''.join(random.choice(letters) for i in range(length))
         return result_str
+
+    @staticmethod
+    def create_or_get_stripe_user(user, source=None):
+        profile = Profile.objects.get(user=user)
+        stripe_id = profile.stripe_id
+        if not stripe_id:
+            stripe_user = StripeService.create_user(
+                first_name=user.first_name,
+                last_name=user.last_name,
+                email=user.email,
+                source=source
+            )
+            profile.stripe_id = stripe_user['id']
+            profile.save()
+        else:
+            stripe_user = StripeService.get_user_by_id(stripe_id)
+            if source and not stripe_user['default_source']:
+                StripeService.add_source_to_user(stripe_id, source)
+        return stripe_user

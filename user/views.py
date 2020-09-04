@@ -19,7 +19,8 @@ from django.views.generic import DetailView, TemplateView
 
 from user.models import Portal, PortalGoal
 from .decorators import unauthenticated_user
-from .models import Profile, UserSteps
+from .models import Profile
+from orders.models import UserSteps
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 

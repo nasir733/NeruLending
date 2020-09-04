@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from user.views import CreateSpecificPortal
 
 from .views import *
-from .paymentviews.stripe import StripeCheckout, subscription, charge, remove
-from business.business_views.financing_products import TradelinesView, BusinessCreditStepsView, WebsiteCreationView, FaxNumberView, TollFreeNumberOptionsView
+from getdinerotoday.checkout import StripeCheckout, subscription, charge, remove
+from business.business_views.business_credit_building import TradelinesView, BusinessCreditStepsView, WebsiteCreationView, FaxNumberView, TollFreeNumberOptionsView
 
 app_name = 'business'
 urlpatterns = [

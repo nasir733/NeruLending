@@ -5,7 +5,8 @@ from django.views import View
 from django.views.generic.base import ContextMixin
 
 from user.forms import UserDataForm
-from user.models import UserData, UserSteps
+from user.models import UserData
+from orders.models import UserSteps
 from .conf import get_context_for_all, get_business_plan_context
 from .models import *
 
@@ -14,6 +15,7 @@ class BusinessHomePage(View):
     def get(self, request):
         return render(request, f"index-{request.resolver_match.app_name}.html",
                       context=get_context_for_all(request, get_business_plan_context()))
+
 
 
 class UserDataView(View):

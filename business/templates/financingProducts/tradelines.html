@@ -36,6 +36,7 @@
                                     <th>Tradeline Amount</th>
                                     <th>Company reports to</th>
                                     <th>Price</th>
+                                    <th>Fee</th>
                                     <th>Video Link</th>
                                     <th>Order</th>
                                 </tr>
@@ -48,6 +49,7 @@
                                         <td>{{ tradeline.tradeline_amount }}</td>
                                         <td>{{ tradeline.company_reports_to }}</td>
                                         <td>{{ tradeline.price }}$</td>
+                                        <td>{{ tradeline.charge }}$</td>
                                         <td>
                                             {% if tradeline.video_link %}
                                                 <a class="btn btn-primary" href="{{ tradeline.video_link }}"

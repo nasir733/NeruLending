@@ -67,7 +67,7 @@
 
                                         {% if user_steps.toll_free_number %}
                                             <div>
-                                                <input type="checkbox" name="toll_free_number" id="toll_free">
+                                                <input type="checkbox" name="toll_free_number" id="toll_free_number">
                                                 <label for="toll_free">Toll Free Number:
                                                     ${{ user_steps.toll_free_number.price }} USD - monthly</label>
                                             </div>
@@ -148,7 +148,7 @@
                                         {% endif %}
 
                                         {% if user_steps.domain %}
-                                            <div id="domain-field">
+                                            <div id="domain-field" style="display: none">
                                                 <label for="domain_name">Domain name:</label>
                                                 <div style="display: flex">
                                                     <input type="text" name="domain_name" id="domain_name">
@@ -249,7 +249,8 @@
 
                                         {% if user_steps.toll_free_number_year %}
                                             <div>
-                                                <input type="checkbox" name="toll_free_number_year" id="toll_free_year">
+                                                <input type="checkbox" name="toll_free_number_year"
+                                                       id="toll_free_number_year">
                                                 <label for="toll_free_year">Toll Free Number:
                                                     ${{ user_steps.toll_free_number_year.price }} USD - yearly</label>
                                             </div>
@@ -330,7 +331,7 @@
                                             </div>
                                         {% endif %}
                                         {% if user_steps.domain_year %}
-                                            <div id="domain-year-field">
+                                            <div id="domain-year-field" style="display: none">
                                                 <label for="domain_name_year">Domain name:</label>
                                                 <div style="display: flex">
                                                     <input type="text" name="domain_name_year" id="domain_name_year">
@@ -448,7 +449,6 @@
 
     <script>
 
-
         document.getElementById('steps-form').addEventListener('change', calculateAmount)
 
         $('#steps-form').submit(async function (evt) {
@@ -467,14 +467,26 @@
         $('#business-programm').submit(async function (evt) {
             evt.preventDefault();
             document.getElementById('business_builder_program').value = "on";
-            $('#steps-form').submit()
+            validateFormAndSubmit()
         });
 
         $('#business_builder_program_year_form').submit(async function (evt) {
             evt.preventDefault();
             document.getElementById('business_builder_program_year').value = "on";
-            $('#steps-form').submit()
+            validateFormAndSubmit()
         });
+
+        function validateFormAndSubmit() {
+            var form = $('#steps-form');
+            var isValid = true;
+            for (let input of form[0].elements) {
+                isValid = input.reportValidity()
+                if (!isValid) break
+            }
+            if (isValid) {
+                form.submit()
+            }
+        }
 
         async function checkDomain(form_id) {
             var formData = new FormData();
@@ -496,39 +508,36 @@
             }
         }
 
+        var prices = {
+            {% for item, data in user_steps.items %}
+                "{{ item }}": {{ data.price }},
+            {% endfor %}
+        }
+
         function calculateAmount() {
-            var prices = {
-                'website': 50,
-                'toll_free': 40,
-                'fax_number': 20,
-                'domain_year': 13.99,
-                'domain': 13.99,
-                'professional_email': 7.99,
-                'website_year': 300,
-                'toll_free_year': 420,
-                'fax_number_year': 240,
-                'professional_email_year': 42
-            }
             var total = 0
+            console.log(1, total)
             for (let [key, value] of Object.entries(prices)) {
                 var el = document.getElementById(key);
-                if (el.checked) {
+                if (el && el.checked) {
 
-                    if (key === "toll_free") {
+                    if (key === "toll_free_number") {
                         total += value * Number(document.getElementById('toll_free_number_quantity').value)
-                    }
-                    if (key === "toll_free_year") {
+                        console.log(2, total)
+                    } else if (key === "toll_free_number_year") {
                         total += value * Number(document.getElementById('toll_free_number_year_quantity').value)
-                    }
-                    if (key === "fax_number") {
+                        console.log(3, total)
+                    } else if (key === "fax_number") {
                         total += value * Number(document.getElementById('fax_number_quantity').value)
-                    }
-                    if (key === "fax_number_year") {
+                        console.log(4, total)
+                    } else if (key === "fax_number_year") {
                         total += value * Number(document.getElementById('fax_number_year_quantity').value)
+                        console.log(5, total)
                     } else {
                         total += value
+                        console.log(6, total)
                     }
-
+                    console.log(7, total, key, value, Number(document.getElementById('toll_free_number_quantity').value));
 
                 }
             }
