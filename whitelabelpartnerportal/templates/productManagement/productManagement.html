@@ -55,8 +55,8 @@
                                 <tbody>
                                 {% for product in subdomain.usersteps %}
                                     <tr>
-                                        <td>{{ product.name }} </td>
-                                        <td>{{ product.price }}$</td>
+                                        <td>{{ product.name }}</td>
+                                        <td>${{ product.price }}</td>
                                         <td>
                                             <form method="get" action={% url "whitelabelpartnerportal:edit_usersteps" %}>
                                                 {% csrf_token %}
@@ -93,8 +93,8 @@
                                         <td>{{ tradeline.product }}</td>
                                         <td>{{ tradeline.tradeline_amount }}</td>
                                         <td>{{ tradeline.company_reports_to }}</td>
-                                        <td>{{ tradeline.price }}$</td>
-                                        <td>{{ tradeline.charge }}$</td>
+                                        <td>${{ tradeline.price }}</td>
+                                        <td>${{ tradeline.charge }}</td>
                                         <td>{{ tradeline.video_link }}</td>
                                         <td>
                                             <form method="get"
