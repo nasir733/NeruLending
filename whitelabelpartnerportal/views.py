@@ -406,7 +406,6 @@ class EditTradeline(View):
         print(request.POST)
         obj = Tradelines.objects.filter(product_id=request.POST.get('product')).first()
         if obj:
-            obj.price = float(request.POST.get('price'))
             obj.charge = float(request.POST.get('charge'))
             obj.save()
         return redirect("whitelabelpartnerportal:productmanagement")

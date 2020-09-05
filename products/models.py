@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from dynamic.models import Subdomain
@@ -32,8 +33,8 @@ class Tradelines(models.Model):
     product = models.CharField(max_length=200)
     tradeline_amount = models.DecimalField(max_digits=100, decimal_places=2)
     company_reports_to = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=100, default=0, decimal_places=2)
-    charge = models.DecimalField(max_digits=100, default=0, decimal_places=2)
+    price = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
+    charge = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
     video_link = models.URLField(max_length=300, null=True, blank=True)
 
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.CASCADE, null=True, blank=True)
@@ -50,14 +51,18 @@ class Tradelines(models.Model):
         return f"{self.company_name} {self.product} tradeline"
 
     def save(self, *args, **kwargs):
+        if self.price < 0 or self.charge < 0:
+            return
+
         if not self.product_id:
-            response = StripeService.create_product(str(self), self.price + self.charge, self.company_name)
+            response = StripeService.create_product(str(self), float(self.price) + float(self.charge),
+                                                    self.company_name)
             self.product_id = response['prod_id']
             self.price_id = response['price_id']
             self.price_lookup = response['price_lookup']
         else:
             price_id, _ = StripeService.update_product(self.product_id, self.price_id, str(self),
-                                                       self.price + self.charge)
+                                                       float(self.price) + float(self.charge))
             if price_id != self.price_id:
                 self.price_id = price_id
         super().save(*args, **kwargs)
@@ -86,6 +91,11 @@ class UserStepsProduct(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+
+        if self.name in available_user_steps:
+            if self.price < available_user_steps[self.name][0]:
+                return
+
         if not self.product_id:
             response = StripeService.create_product(self.name, self.price, recurring=self.recurring)
             self.product_id = response['prod_id']

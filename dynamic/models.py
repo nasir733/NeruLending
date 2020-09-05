@@ -27,7 +27,7 @@ class Subdomain(models.Model):
     accent_color = models.CharField(max_length=200, blank=True)
     bg_color = models.CharField(max_length=200, blank=True)
 
-    admins = models.ManyToManyField(Profile)
+    admins = models.ManyToManyField(Profile, related_name='portals')
 
     def __str__(self):
         return self.sub_name

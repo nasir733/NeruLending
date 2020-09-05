@@ -1,45 +1,45 @@
 from dynamic.models import *
 from yourplan.models import *
 
+plans = {
+    "sezzle": Sezzle,
+    "klarna": Klarna,
+    "viabill": Viabill,
+    "regularpayment": RegularPayment,
+    "paypal": Paypal,
+    "quadpay": Quadpay,
+    "affirm": Affirm,
+    "behalf": Behalf,
+    "fundboxpay": FundBoxPay,
+    "invoicefactoringpayment": InvoiceFactoringPayment,
+    "stripe": Stripe,
+}
+
 
 def ProfileProcessor(request):
     try:
         user = Profile.objects.get(user=request.user)
-        plans = {
-            "sezzle": Sezzle,
-            "klarna": Klarna,
-            "viabill": Viabill,
-            "regularpayment": RegularPayment,
-            "paypal": Paypal,
-            "quadpay": Quadpay,
-            "affirm": Affirm,
-            "behalf": Behalf,
-            "fundboxpay": FundBoxPay,
-            "invoicefactoringpayment": InvoiceFactoringPayment,
-            "stripe": Stripe,
 
-        }
         for i, k in plans.items():
-            filter = k.objects.filter(user=user)
-            if len(filter) > 0:
+            if k.objects.filter(user=user).count() > 0:
                 return {'on_payment_plan': True}
-    except Exception as e:
+    except Exception:
         pass
     return {}
 
 
 def whitelabel_processor(request):
-    sub_domain = request.host.name
-    obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
+    obj = Subdomain.objects.filter(sub_name__exact=request.host.name).first()
 
-    # print(sub_domain, obj)
     if obj:
         return {
             'dynamic': obj,
         }
     else:
+        portal_count = Profile.objects.get(user=request.user).portals.count()
         return {
             'is_main_site': True,
+            'iswhitelabeladmin': bool(portal_count),
             'dynamic': {
                 'title': 'Get Dinero Today',
                 'androidApp': "https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
