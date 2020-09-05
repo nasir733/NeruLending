@@ -28,6 +28,7 @@ class TradelinesAdmin(admin.ModelAdmin):
                 if count == 0:
                     new_tradeline = product
                     new_tradeline.pk = None
+                    new_tradeline.product_id = None
                     new_tradeline.whitelabel_portal = subdomain
                     new_tradeline.save()
 
