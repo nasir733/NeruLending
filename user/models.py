@@ -94,7 +94,7 @@ class UserData(models.Model):
         verbose_name_plural = "5. Personal Information"
 
     # user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    user = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    user = models.OneToOneField(Profile, on_delete=models.CASCAD)
 
     duns = models.CharField("DUNS Number", null=True, blank=True, max_length=255)
     ein = models.CharField("EIN number", null=True, blank=True, max_length=255)

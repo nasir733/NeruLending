@@ -36,7 +36,11 @@ def whitelabel_processor(request):
             'dynamic': obj,
         }
     else:
-        portal_count = Profile.objects.get(user=request.user).portals.count()
+        if not request.user.is_anonymous:
+            portal_count = Profile.objects.get(user=request.user).portals.count()
+        else:
+            portal_count = 0
+
         return {
             'is_main_site': True,
             'iswhitelabeladmin': bool(portal_count),
