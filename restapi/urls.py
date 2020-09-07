@@ -1,6 +1,10 @@
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
+
+from .rest_views.whitelabel_views import ResidualsAPI, LeadsAPI, SalesAPI, SignedUsersAPI, OrdersAPI, InvoicesAPI, \
+    PaymentsAPI, CreditsAPI, BankPaymentInformationAPI, PaypalInformationAPI
 from .views import *
+
 
 urlpatterns = [
 
@@ -31,6 +35,25 @@ urlpatterns = [
 
     path('loans/upload-document/', uploadLoanDocument.as_view(), name='upload-document'),
     path('domain/check', checkDomainApi.as_view(), name='check_domain'),
+
+
+
+    path('wt/residuals/', ResidualsAPI.as_view(), name='wt_myresiduals'),
+    path('wt/leads/', LeadsAPI.as_view(), name='wt_leads'),
+    path('wt/sales/', SalesAPI.as_view(), name='wt_sales'),
+    path('wt/signedusers/', SignedUsersAPI.as_view(), name='wt_signedusers'),
+    path('wt/orders/', OrdersAPI.as_view(), name='wt_orders'),
+    path('wt/invoices/', InvoicesAPI.as_view(), name='wt_invoices'),
+    path('wt/payments/', PaymentsAPI.as_view(), name='wt_payments'),
+    path('wt/credits/', CreditsAPI.as_view(), name='wt_credits'),
+    path('wt/bankpayments/', BankPaymentInformationAPI.as_view(), name='wt_bankpayments'),
+    path('wt/paypalinfo/', PaypalInformationAPI.as_view(), name='wt_paypalinfo'),
+
+
+
+
+
+
 
 
 ]

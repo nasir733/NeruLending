@@ -1,10 +1,6 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.shortcuts import render
 from django.views import View
-from django.views.generic.base import ContextMixin
 
-from .models import *
 
 class DnbProductsView(View):
     def get(self, request):

@@ -1,18 +1,18 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+import whois
 from rest_framework import generics
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 import orders.models
-from . import serializers as apiserializers
 from business import models as businessmodels
+from loanportal import models as loanModels
 from user import models as usermodels
 from yourplan import models as yourplanModels
-from loanportal import models as loanModels
+from . import serializers as apiserializers
 
-import whois
 
 class TokenObtainPairPatchedView(TokenObtainPairView):
     serializer_class = apiserializers.TokenObtainPairPatchedSerializer
@@ -235,7 +235,7 @@ class uploadLoanDocument(APIView):
 
     def post(self, request):
         return Response({
-            'message':'good'
+            'message': 'good'
         })
 
 
