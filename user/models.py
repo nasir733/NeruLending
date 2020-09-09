@@ -33,7 +33,6 @@ class Profile(models.Model):
 
     objects = ProfileUserManager()
 
-
     def __str__(self):
         return str(self.user.first_name) + " " + str(self.user.last_name)
 
