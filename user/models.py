@@ -7,7 +7,7 @@ from services.StripeService import StripeService
 
 
 class ProfileUserManager(models.Manager):
-    def create_user(self, email, password, first_name, last_name, phone_number, whitelabel_portal):
+    def create_user(self, email, password, first_name, last_name, phone_number, whitelabel_portal=None):
         stripe_user = StripeService.create_user(first_name=first_name, last_name=last_name, email=email)
         user = User.objects.create_user(email=email, username=email, password=password, first_name=first_name, last_name=last_name)
         profile = Profile(user=user, phone_number=phone_number, stripe_id=stripe_user['id'], whitelabel_portal=whitelabel_portal)
