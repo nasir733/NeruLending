@@ -77,6 +77,26 @@ class SignedUsersAPI(APIView):
         return Response(new_obj)
 
 
+class WhiteLabelLogoAPI(APIView):
+    class SubdomainSerializer(serializers.Serializer):
+        logo = serializers.ImageField()
+
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        objects = WhiteLabelService.get_administrated_subdomains(request)
+        sub = objects.first()
+        response = {
+            'url': ''
+        }
+
+        if sub and sub.logo and sub.logo.url:
+            response['url'] = sub.logo.url
+        print(response)
+
+        return Response(response)
+
+
 class OrdersAPI(generics.ListAPIView):
     class OrdersSerializer(serializers.ModelSerializer):
         class Meta:
