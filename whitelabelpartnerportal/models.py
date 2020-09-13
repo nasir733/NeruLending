@@ -276,7 +276,8 @@ class MarketingRoi(ModelMixin, models.Model):
 
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-
+    def __str__(self):
+        return self.user.user.get_full_name()
 
 class WhitelabelPortal(ModelMixin, models.Model):
     class Meta:
