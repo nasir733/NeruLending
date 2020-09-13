@@ -38,13 +38,15 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {% for i in markentingroi %}
                                 <tr>
-                                  <td>09/24/2020</td>
-                                  <td>$1,600</td>
-                                  <td>$1,000</td>
-                                  <td>$2,000</td>
-                                  <td>10/19/2020</td>
+                                  <td>{{ i.current_date }}</td>
+                                  <td>{{ i.amount_spent }}</td>
+                                  <td>{{ i.amount_left }}</td>
+                                  <td>{{ i.amount_made }}</td>
+                                  <td>{{ i.payout_date }}</td>
                                 </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
 
