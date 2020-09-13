@@ -96,12 +96,13 @@
                   <p class="lead margin-b-0 toggle-none">
                     {{ request.user.get_full_name }}
                   </p>
-                  <p class="text-muted mv-0 toggle-none">Welcome to White Label Partner</p>
+                  <p class="text-muted mv-0 toggle-none">Welcome White Label Partner</p>
                </div>
                <ul class="metisMenu nav flex-column" id="menu">
                   <li class="nav-item"><a href="/dashboard" class="nav-link">Go Back To Main Portal</a></li>
                   <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link">Dashboard</a></li>
                   <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:becomingapartner' %}" class="nav-link">Becoming A White Label Partner</a></li>
+                  <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:marketingroi' %}" class="nav-link">Your Marketing Return On Investment</a></li>
                   <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:whitelabeltraining' %}" class="nav-link">White Label Training</a></li>
                   <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:myresiduals' %}" class="nav-link">My Residuals</a></li>
                   <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:enternewleads' %}" class="nav-link">Enter New Leads</a></li>

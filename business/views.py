@@ -166,6 +166,9 @@ class GoalView(View):
         request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "businessCreditBuilding/goals.html", context=get_context_for_all(request))
 
+class LifeGoalView(View):
+    def get(self, request):
+        return render(request, "businessCreditBuilding/lifegoals.html", context=get_context_for_all(request))
 
 class FinancingView(View):
     def get(self, request):

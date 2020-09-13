@@ -13,6 +13,7 @@ urlpatterns = [
     url('credit-affiliate/', login_required(CreditAffiliate.as_view(), login_url='/user/login'), name='credit-affiliate'),
     url('upgrade/', login_required(UpgradeView.as_view(), login_url='/user/login'), name='upgrade'),
     url('goals/', login_required(GoalView.as_view(), login_url='/user/login'), name='goals'),
+    url('lifegoals/', login_required(LifeGoalView.as_view(), login_url='/user/login'), name='lifegoals'),
     url('restricted/', login_required(RestrictedView.as_view(), login_url='/user/login'), name='restricted'),
     url('financing/', login_required(FinancingView.as_view(), login_url='/user/login'), name='financing'),
     url('financing-plan-1/', login_required(FinancingPlan1View.as_view(), login_url='/user/login'), name='financing_plan_1'),

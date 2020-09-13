@@ -266,6 +266,24 @@ class WhitelabelWebsite(ModelMixin, models.Model):
     def __str__(self):
         return self.user.user.get_full_name()
 
+class PaypalInformation(ModelMixin, models.Model):
+    class Meta:
+        db_table = f'{app_name}_paypal_information'
+
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
+    paypal_email = models.CharField(max_length=500, null=True)
+    created_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return self.user.user.get_full_name()
+
+
+class MarketingRoi(ModelMixin, models.Model):
+
+    def __str__(self):
+        return self.user.user.get_full_name()
+
 
 class WhitelabelPortal(ModelMixin, models.Model):
     class Meta:

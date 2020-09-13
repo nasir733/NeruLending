@@ -13,6 +13,10 @@ class HomeWhiteLabelView(View):
     def get(self, request):
         return render(request, "home-whitelabel.html")
 
+class MarketingRoi(View):
+    def get(self, request):
+        return render(request, "marketingroi.html")        
+
 
 class PartnerCommissionView(View):
     def get(self, request):
