@@ -13,9 +13,11 @@ class HomeWhiteLabelView(View):
     def get(self, request):
         return render(request, "home-whitelabel.html")
 
-class MarketingRoi(View):
+
+class MarketingRoiView(View):
     def get(self, request):
-        return render(request, "marketingroi.html")        
+        objects = MarketingRoi.objects.all()
+        return render(request, "marketingroi.html", {"markentingroi": objects})
 
 
 class PartnerCommissionView(View):

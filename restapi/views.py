@@ -1,14 +1,15 @@
 import whois
-from rest_framework import generics
+from rest_framework import generics, serializers
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-import orders.models
+from orders.models import TradelineOrder, UserSteps
 from business import models as businessmodels
 from loanportal import models as loanModels
+from services.OrderDataService import OrderDataService
 from user import models as usermodels
 from yourplan import models as yourplanModels
 from . import serializers as apiserializers
@@ -213,11 +214,11 @@ class GetUserStepsAPI(APIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            steps = orders.models.UserSteps.objects.get(email=request.user.email)
+            steps = UserSteps.objects.get(email=request.user.email)
             steps_serialized = apiserializers.UserStepsSerializer().to_representation(steps)
             return Response(steps_serialized, status=200)
 
-        except orders.models.UserSteps.DoesNotExist:
+        except UserSteps.DoesNotExist:
             return Response({
                 'website': 1,
                 'toll_free': 1,
@@ -269,3 +270,19 @@ class checkDomainApi(APIView):
                 'status': 'false',
                 'error': str(e)
             }, 200)
+
+
+class TradelinesAPI(APIView):
+    class TradelinesSerializer(serializers.Serializer):
+        class Meta:
+            model = TradelineOrder
+            exclude = ['user']
+
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        objects = OrderDataService.get_user_tradelines_data(request.user)
+        return Response(objects)
+
+
+

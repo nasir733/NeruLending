@@ -51,6 +51,7 @@ urlpatterns = [
 
 
     path('wt/getlogo/', WhiteLabelLogoAPI.as_view(), name='wt_logo'),
+    path('business/gettradelines/', TradelinesAPI.as_view(), name='get_tradelines'),
 
 
 ]
