@@ -16,7 +16,7 @@ class HomeWhiteLabelView(View):
 
 class MarketingRoiView(View):
     def get(self, request):
-        objects = MarketingRoi.objects.all()
+        objects = MarketingRoi.objects.filter(user=request.user.profile)
         return render(request, "marketingroi.html", {"markentingroi": objects})
 
 
