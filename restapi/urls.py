@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
 from .rest_views.whitelabel_views import ResidualsAPI, LeadsAPI, SalesAPI, SignedUsersAPI, OrdersAPI, InvoicesAPI, \
-    PaymentsAPI, CreditsAPI, BankPaymentInformationAPI, PaypalInformationAPI, WhiteLabelLogoAPI
+    PaymentsAPI, CreditsAPI, BankPaymentInformationAPI, PaypalInformationAPI, WhiteLabelLogoAPI, WhiteLabelUserLogoAPI
 from .views import *
 
 
@@ -51,7 +51,8 @@ urlpatterns = [
 
 
     path('wt/getlogo/', WhiteLabelLogoAPI.as_view(), name='wt_logo'),
-    path('business/gettradelines/', TradelinesAPI.as_view(), name='get_tradelines'),
+    path('wt/getuserlogo/', WhiteLabelUserLogoAPI.as_view(), name='wt_user_logo'),
 
+    path('business/gettradelines/', TradelinesAPI.as_view(), name='get_tradelines'),
 
 ]

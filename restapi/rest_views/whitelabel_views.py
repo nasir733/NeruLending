@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from dynamic.models import Subdomain
 from services.WhiteLabelService import WhiteLabelService
 from user.models import Profile
 from whitelabelpartnerportal.models import Residual, Lead, Sale, Order, Invoice, Payment, Credit, \
@@ -78,9 +79,6 @@ class SignedUsersAPI(APIView):
 
 
 class WhiteLabelLogoAPI(APIView):
-    class SubdomainSerializer(serializers.Serializer):
-        logo = serializers.ImageField()
-
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
@@ -95,6 +93,25 @@ class WhiteLabelLogoAPI(APIView):
         print(response)
 
         return Response(response)
+
+
+class WhiteLabelUserLogoAPI(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        profile = Profile.objects.filter(user=request.user).first()
+        if profile.whitelabel_portal:
+            subdomain = Subdomain.objects.filter(sub_name=profile.whitelabel_portal).first()
+            if subdomain:
+                responseobj = {
+                    "status": True,
+                    "url": subdomain.logo.url,
+                    "bgColor": subdomain.bg_color,
+                    "subdomain": subdomain.sub_name,
+                }
+                return Response(responseobj)
+
+        return Response({"status": False})
 
 
 class OrdersAPI(generics.ListAPIView):
