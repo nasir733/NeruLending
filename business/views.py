@@ -684,8 +684,7 @@ class WebsiteCreationPaidView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
 
-        profile = Profile.objects.get(user=request.user)
-        user_steps = UserSteps.objects.filter(user=profile)
+        user_steps = UserSteps.objects.filter(user=request.user)
         services = []
         for i in user_steps:
             for k in ['website']:
@@ -781,8 +780,7 @@ class ProfessionalEmailAddress(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
 
-        profile = Profile.objects.get(user=request.user)
-        user_steps = UserSteps.objects.filter(user=profile)
+        user_steps = UserSteps.objects.filter(user=request.user)
         services = []
 
         for i in user_steps:
@@ -815,8 +813,7 @@ class DomainView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
 
-        profile = Profile.objects.get(user=request.user)
-        user_steps = UserSteps.objects.filter(user=profile)
+        user_steps = UserSteps.objects.filter(user=request.user)
         services = []
 
         for i in user_steps:
@@ -849,8 +846,7 @@ class TollFreeNumberPaidView(View):
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
 
-        profile = Profile.objects.get(user=request.user)
-        user_steps = UserSteps.objects.filter(user=profile)
+        user_steps = UserSteps.objects.filter(user=request.user)
         services = []
 
         for i in user_steps:
