@@ -7,6 +7,7 @@ from dynamic.models import Subdomain
 from orders.models import UserSteps
 from products.models import Tradelines, UserStepsProduct
 from services.ModelServices import check_all_required_fields_filled
+from user.forms import UserDataForm
 from user.models import Profile, UserData
 
 
@@ -15,10 +16,37 @@ class TradelinesView(View):
         request.resolver_match.page_template = 'pages/base-business.html'
         subdomain = Subdomain.objects.filter(sub_name=request.host.name).first()
         tradelines = Tradelines.objects.filter(whitelabel_portal__sub_name=subdomain)
+
+
+        data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+        if data:
+            form = UserDataForm(None, instance=data)
+        else:
+            form = UserDataForm()
+
+
         return render(request, "financingProducts/tradelines.html",
-                      context=get_context_for_all(request, {"tradelines": tradelines}))
+                      context=get_context_for_all(request, {"tradelines": tradelines, "form":form}))
 
     def post(self, request):
+
+        print(request.POST)
+
+        form = UserDataForm(request.POST)
+        if form.is_valid():
+            data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+            if data:
+                form = UserDataForm(request.POST, instance=data)
+                new_data = form.save(commit=False)
+                new_data.user = Profile.objects.get(user=request.user)
+                new_data.save()
+            else:
+                new_data = form.save(commit=False)
+                new_data.user = Profile.objects.get(user=request.user)
+                new_data.save()
+        else:
+            return redirect("business:tradelines")
+
         ordering_products = []
         product_id = request.POST['product_id']
         product = Tradelines.objects.get(product_id=product_id)
@@ -31,13 +59,11 @@ class TradelinesView(View):
             'price_id': product.price_id,
         })
         request.session['ordering_products'] = ordering_products
-
         user_data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
-
         if not user_data:
-            return redirect("business:user_data")
+            return redirect("business:tradelines")
         if user_data and not check_all_required_fields_filled(user_data):
-            return redirect("business:user_data")
+            return redirect("business:tradelines")
 
         return redirect("business:stripe_checkout")
 

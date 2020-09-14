@@ -118,9 +118,9 @@ class UserData(models.Model):
     billing_country = models.CharField("Billing Country", null=True, max_length=255)
     billing_phone = models.CharField("Billing Phone", null=True, max_length=255)
 
-    business_name = models.CharField("Business Name", null=True, blank=True, max_length=255)
+    business_name = models.CharField("Business Name", null=True, max_length=255)
 
-    business_street_address_1 = models.CharField("Business Address Line 1", null=True, blank=True, max_length=255)
+    business_street_address_1 = models.CharField("Business Address Line 1", null=True, max_length=255)
     business_street_address_2 = models.CharField("Business Address Line 2", null=True, blank=True, max_length=255)
     business_zip_code = models.CharField("Business Zip Code", null=True, max_length=255)
     business_city = models.CharField("Business City", null=True, max_length=255)
