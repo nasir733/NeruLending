@@ -9,8 +9,10 @@ from services.StripeService import StripeService
 class ProfileUserManager(models.Manager):
     def create_user(self, email, password, first_name, last_name, phone_number, whitelabel_portal=None):
         stripe_user = StripeService.create_user(first_name=first_name, last_name=last_name, email=email)
-        user = User.objects.create_user(email=email, username=email, password=password, first_name=first_name, last_name=last_name)
-        profile = Profile(user=user, phone_number=phone_number, stripe_id=stripe_user['id'], whitelabel_portal=whitelabel_portal)
+        user = User.objects.create_user(email=email, username=email, password=password, first_name=first_name,
+                                        last_name=last_name)
+        profile = Profile(user=user, phone_number=phone_number, stripe_id=stripe_user['id'],
+                          whitelabel_portal=whitelabel_portal)
         profile.save()
         return profile
 
@@ -92,45 +94,45 @@ class UserData(models.Model):
         verbose_name = "5. Personal Information"
         verbose_name_plural = "5. Personal Information"
 
-    # user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     user = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
-    duns = models.CharField("DUNS Number", null=True, blank=True, max_length=255)
-    ein = models.CharField("EIN number", null=True, blank=True, max_length=255)
+    duns = models.CharField("DUNS Number", null=True, max_length=255)
+    ein = models.CharField("EIN number", null=True, max_length=255)
 
-    first_name = models.CharField("First Name", null=True, blank=True, max_length=255)
-    last_name = models.CharField("Last Name", null=True, blank=True, max_length=255)
+    first_name = models.CharField("First Name", null=True, max_length=255)
+    last_name = models.CharField("Last Name", null=True, max_length=255)
 
-    personal_street_address_1 = models.CharField("Personal Address Line 1", null=True, blank=True, max_length=255)
+    personal_street_address_1 = models.CharField("Personal Address Line 1", null=True, max_length=255)
     personal_street_address_2 = models.CharField("Personal Address Line 2", null=True, blank=True, max_length=255)
-    personal_zip_code = models.CharField("Personal Zip Code", null=True, blank=True, max_length=255)
-    personal_city = models.CharField("Personal City", null=True, blank=True, max_length=255)
-    personal_state = models.CharField("Personal State", null=True, blank=True, max_length=255)
-    personal_country = models.CharField("Personal Country", null=True, blank=True, max_length=255)
-    personal_phone = models.CharField("Personal Phone", null=True, blank=True, max_length=255)
+    personal_zip_code = models.CharField("Personal Zip Code", null=True, max_length=255)
+    personal_city = models.CharField("Personal City", null=True, max_length=255)
+    personal_state = models.CharField("Personal State", null=True, max_length=255)
+    personal_country = models.CharField("Personal Country", null=True, max_length=255)
+    personal_phone = models.CharField("Personal Phone", null=True, max_length=255)
 
-    billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, blank=True, max_length=255)
+    billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, max_length=255)
     billing_street_address_2 = models.CharField("Billing Address Line 2", null=True, blank=True, max_length=255)
-    billing_zip_code = models.CharField("Billing Zip Code", null=True, blank=True, max_length=255)
-    billing_city = models.CharField("Billing City", null=True, blank=True, max_length=255)
-    billing_state = models.CharField("Billing State", null=True, blank=True, max_length=255)
-    billing_country = models.CharField("Billing Country", null=True, blank=True, max_length=255)
-    billing_phone = models.CharField("Billing Phone", null=True, blank=True, max_length=255)
+    billing_zip_code = models.CharField("Billing Zip Code", null=True, max_length=255)
+    billing_city = models.CharField("Billing City", null=True, max_length=255)
+    billing_state = models.CharField("Billing State", null=True, max_length=255)
+    billing_country = models.CharField("Billing Country", null=True, max_length=255)
+    billing_phone = models.CharField("Billing Phone", null=True, max_length=255)
 
     business_name = models.CharField("Business Name", null=True, blank=True, max_length=255)
 
     business_street_address_1 = models.CharField("Business Address Line 1", null=True, blank=True, max_length=255)
     business_street_address_2 = models.CharField("Business Address Line 2", null=True, blank=True, max_length=255)
-    business_zip_code = models.CharField("Business Zip Code", null=True, blank=True, max_length=255)
-    business_city = models.CharField("Business City", null=True, blank=True, max_length=255)
-    business_state = models.CharField("Business State", null=True, blank=True, max_length=255)
-    business_country = models.CharField("Business Country", null=True, blank=True, max_length=255)
-    business_phone = models.CharField("Business Phone", null=True, blank=True, max_length=255)
+    business_zip_code = models.CharField("Business Zip Code", null=True, max_length=255)
+    business_city = models.CharField("Business City", null=True, max_length=255)
+    business_state = models.CharField("Business State", null=True, max_length=255)
+    business_country = models.CharField("Business Country", null=True, max_length=255)
+    business_phone = models.CharField("Business Phone", null=True, max_length=255)
 
-    email = models.CharField("Email Address", null=True, blank=True, max_length=255)
-    website = models.CharField("Website", null=True, blank=True, max_length=255)
-    toll_free_number = models.CharField("Toll Free Number", null=True, blank=True, max_length=255)
-    fax_number = models.CharField("Fax Number", null=True, blank=True, max_length=255)
+    email = models.CharField("Email Address", null=True, max_length=255)
+
+    website = models.CharField("Website", null=True, max_length=255)
+    toll_free_number = models.CharField("Toll Free Number", null=True, max_length=255)
+    fax_number = models.CharField("Fax Number", null=True, max_length=255)
 
     def save(self, *args, **kwargs):
         if self.first_name == "":

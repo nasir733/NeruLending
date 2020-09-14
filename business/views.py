@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic.base import ContextMixin
 
+from orders.models import UserSteps
 from user.forms import UserDataForm
 from user.models import UserData
-from orders.models import UserSteps
 from .conf import get_context_for_all, get_business_plan_context
 from .models import *
 
@@ -17,34 +17,43 @@ class BusinessHomePage(View):
                       context=get_context_for_all(request, get_business_plan_context()))
 
 
-
 class UserDataView(View):
     def get(self, request):
 
-        data = UserData.objects.filter(user=Profile.objects.get(user=request.user))
-        if len(data) > 0:
-            data = data[0]
+        data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+        if data:
             form = UserDataForm(None, instance=data)
         else:
             form = UserDataForm()
-        return render(request, "userData/userData.html", context=get_context_for_all(request, {"form": form}))
+
+        going_to_checout = False
+        if request.session.get('ordering_products'):
+            going_to_checout = True
+        return render(request, "userData/userData.html",
+                      context=get_context_for_all(request, {"form": form, "checkout": going_to_checout}))
 
     def post(self, request):
-        data = UserData.objects.filter(user=Profile.objects.get(user=request.user))
-        if len(data) > 0:
-            data = data[0]
+        data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+        if data:
             form = UserDataForm(request.POST, instance=data)
             new_data = form.save(commit=False)
             new_data.user = Profile.objects.get(user=request.user)
             new_data.save()
         else:
             form = UserDataForm(request.POST)
-            new_data = form.save(commit=False)
-            new_data.user = Profile.objects.get(user=request.user)
-            new_data.save()
+            if form.is_valid():
+                new_data = form.save(commit=False)
+                new_data.user = Profile.objects.get(user=request.user)
+                new_data.save()
+            else:
+                return render(request, "userData/userData.html", context=get_context_for_all(request, {"form": form}))
+
+        if request.session.get('ordering_products'):
+            return redirect("business:stripe_checkout")
 
         data = UserData.objects.filter(user=Profile.objects.get(user=request.user))
         form = UserDataForm(None, instance=data[0])
+
         return render(request, "userData/userData.html", context=get_context_for_all(request, {"form": form}))
 
 
@@ -166,9 +175,11 @@ class GoalView(View):
         request.resolver_match.page_template = 'pages/base-business.html'
         return render(request, "businessCreditBuilding/goals.html", context=get_context_for_all(request))
 
+
 class LifeGoalView(View):
     def get(self, request):
         return render(request, "businessCreditBuilding/lifegoals.html", context=get_context_for_all(request))
+
 
 class FinancingView(View):
     def get(self, request):

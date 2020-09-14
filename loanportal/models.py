@@ -9,7 +9,7 @@ app_name = 'loansportal'
 
 
 def get_file_path(instance, filename):
-    return os.path.join(f'documents/{uuid.uuid4()}', filename)
+    return os.path.join(f'documents/loans/{uuid.uuid4()}', filename)
 
 
 class Loan(models.Model):

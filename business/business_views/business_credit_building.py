@@ -4,9 +4,10 @@ from django.views import View
 from business.conf import get_context_for_all, industry_choices
 from business.forms import BusinessCreditStepsForm
 from dynamic.models import Subdomain
-from products.models import Tradelines, UserStepsProduct
-from user.models import Profile
 from orders.models import UserSteps
+from products.models import Tradelines, UserStepsProduct
+from services.ModelServices import check_all_required_fields_filled
+from user.models import Profile, UserData
 
 
 class TradelinesView(View):
@@ -30,6 +31,14 @@ class TradelinesView(View):
             'price_id': product.price_id,
         })
         request.session['ordering_products'] = ordering_products
+
+        user_data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+
+        if not user_data:
+            return redirect("business:user_data")
+        if user_data and not check_all_required_fields_filled(user_data):
+            return redirect("business:user_data")
+
         return redirect("business:stripe_checkout")
 
 
@@ -172,4 +181,3 @@ class TollFreeNumberOptionsView(View):
 
             return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html', context=context)
         return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
-
