@@ -108,6 +108,7 @@ class WhiteLabelUserLogoAPI(APIView):
                     "url": subdomain.logo.url,
                     "bgColor": subdomain.bg_color,
                     "subdomain": subdomain.sub_name,
+                    "title": subdomain.title,
                     "webinar": subdomain.webinar
                 }
                 return Response(responseobj)
