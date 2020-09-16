@@ -68,7 +68,7 @@ class UserSteps(models.Model):
     industry_name = models.IntegerField("Industry", choices=_industry_choices, null=True, default=1, blank=True)
 
     toll_free_number = models.IntegerField("Toll free number", choices=_choices, null=True, default=1)
-    fax_number = models.IntegerField("Fax numberx", choices=_choices, null=True, default=1)
+    fax_number = models.IntegerField("Fax number", choices=_choices, null=True, default=1)
     domain = models.IntegerField("Domain", choices=_choices, null=True, default=1)
     professional_email_address = models.IntegerField("Professional email", choices=_choices, null=True, default=1)
     business_builder_program = models.IntegerField("Business Builder Program", choices=_choices, null=True, default=1)
@@ -108,7 +108,7 @@ class UserSteps(models.Model):
     email_username = models.CharField("Email username", null=True, default='', blank=True, max_length=500)
     email_password = models.CharField("Email password", null=True, default='', blank=True, max_length=500)
 
-    whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.SET_NULL, null=True)
+    whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name = "2. User Steps"

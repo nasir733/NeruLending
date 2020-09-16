@@ -214,9 +214,18 @@ class GetUserStepsAPI(APIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            steps = UserSteps.objects.get(email=request.user.email)
-            steps_serialized = apiserializers.UserStepsSerializer().to_representation(steps)
-            return Response(steps_serialized, status=200)
+            steps = UserSteps.objects.filter(user=request.user).first()
+
+            # steps_serialized = apiserializers.UserStepsSerializer().to_representation(steps)
+            return Response({
+                'website': steps.website,
+                'toll_free': steps.toll_free_number,
+                'fax_number': steps.fax_number,
+                'domain': steps.domain,
+                'professional_email': steps.professional_email_address,
+            })
+
+            # return Response(steps_serialized, status=200)
 
         except UserSteps.DoesNotExist:
             return Response({

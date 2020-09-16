@@ -173,9 +173,12 @@ class StripeService:
 
         for interval, items in recurring_items.items():
             if len(items) > 0:
-                StripeService.create_subscription(customer=customer_id, items=items, default_source=source_id)
+                StripeService.create_subscription(customer=customer_id, items=items)
         if one_time['total'] > 0:
-            StripeService.charge_customer(source_id if source_id else customer_id, one_time['total'], one_time['name'])
+            if source_id:
+                StripeService.charge_card(source_id, one_time['total'], one_time['name'])
+            else:
+                StripeService.charge_customer(customer_id, one_time['total'], one_time['name'])
 
     @staticmethod
     def get_user_subscriptions(stripe_user):

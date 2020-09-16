@@ -17,16 +17,14 @@ class TradelinesView(View):
         subdomain = Subdomain.objects.filter(sub_name=request.host.name).first()
         tradelines = Tradelines.objects.filter(whitelabel_portal__sub_name=subdomain)
 
-
         data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
         if data:
             form = UserDataForm(None, instance=data)
         else:
             form = UserDataForm()
 
-
         return render(request, "financingProducts/tradelines.html",
-                      context=get_context_for_all(request, {"tradelines": tradelines, "form":form}))
+                      context=get_context_for_all(request, {"tradelines": tradelines, "form": form}))
 
     def post(self, request):
 
