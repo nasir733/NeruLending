@@ -109,11 +109,15 @@ class WhiteLabelUserLogoAPI(APIView):
                     "bgColor": subdomain.bg_color,
                     "subdomain": subdomain.sub_name,
                     "title": subdomain.title,
-                    "webinar": subdomain.webinar
+                    "webinar": subdomain.webinar,
+                    "extensionVideo": subdomain.extensionVideo,
                 }
                 return Response(responseobj)
 
-        return Response({"status": False, "webinar": 'https://www.youtube.com/watch?v=xNCfnbGT5hY'})
+        return Response({"status": False,
+                         "webinar": 'https://www.youtube.com/watch?v=xNCfnbGT5hY',
+                         "extensionVideo": 'https://www.youtube.com/embed/Z1HK9uSOMCI'
+                         })
 
 
 class OrdersAPI(generics.ListAPIView):
