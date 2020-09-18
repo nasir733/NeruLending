@@ -9,6 +9,7 @@ from products.models import Tradelines, UserStepsProduct
 from services.ModelServices import check_all_required_fields_filled
 from user.forms import UserDataForm
 from user.models import Profile, UserData
+from django.forms.models import model_to_dict
 
 
 class TradelinesView(View):
@@ -115,7 +116,14 @@ class BusinessCreditStepsView(View):
         elif "onlyprograms" in request.path:
             template = "businessCreditBuilding/BusinessCreditStepsOnlyPrograms.html"
         user_steps = self.get_user_steps(request)
-        return render(request, template, context=get_context_for_all(request, {"form": BusinessCreditStepsForm(),
+        user_data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+        form = BusinessCreditStepsForm()
+        if user_data:
+            da = model_to_dict(user_data)
+            da['phone'] = user_data.personal_phone
+            form = BusinessCreditStepsForm(da)
+
+        return render(request, template, context=get_context_for_all(request, {"form": form,
                                                                                "user_steps": user_steps}))
 
     def post(self, request):

@@ -29,6 +29,8 @@
                 var element = $(`input[id="${prod}"]`)
                 element.prop("checked", true);
                 calculateAmount()
+            } else if (commandData.command === "goToCheckout") {
+                $('#steps-form').submit()
             }
         },
         rootEl: document.getElementById("alan-btn"),
