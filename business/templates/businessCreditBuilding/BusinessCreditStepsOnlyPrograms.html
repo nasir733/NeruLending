@@ -449,7 +449,7 @@
 
     <script>
 
-        document.getElementById('steps-form').addEventListener('change', calculateAmount)
+        $('#steps-form').on('change', calculateAmount)
 
         $('#steps-form').submit(async function (evt) {
             evt.preventDefault();

@@ -23,8 +23,12 @@
                 }
             } else if (commandData.command === "addProduct") {
                 var prod = commandData.product
-                {#alanBtnInstance.playText("Hi");#}
                 $(`input[name="${prod}"]`).closest("form").submit()
+            } else if (commandData.command === "addUserStep") {
+                var prod = commandData.product
+                var element = $(`input[id="${prod}"]`)
+                element.prop("checked", true);
+                calculateAmount()
             }
         },
         rootEl: document.getElementById("alan-btn"),
