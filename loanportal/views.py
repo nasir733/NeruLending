@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic.base import ContextMixin
 
+from user.forms import UserDataForm
+from user.models import UserData
 from .models import *
 
 
@@ -9,9 +11,38 @@ class LoanApplicationView(View):
 
     def get(self, request):
         documents = Document.objects.filter(user=Profile.objects.get(user=request.user))
-        return render(request, "loanapplication.html", {"documents": documents})
+        data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+        if data:
+            form = UserDataForm(None, instance=data)
+        else:
+            form = UserDataForm()
+        error = request.session.get("formInvalid")
+
+        return render(request, "loanapplication.html", {"documents": documents, "form": form, "error": error})
 
     def post(self, request):
+        form = UserDataForm(request.POST)
+        if form.is_valid():
+            print('valid')
+            data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
+            if data:
+                form = UserDataForm(request.POST, instance=data)
+                new_data = form.save(commit=False)
+                new_data.user = Profile.objects.get(user=request.user)
+                new_data.save()
+            else:
+                new_data = form.save(commit=False)
+                new_data.user = Profile.objects.get(user=request.user)
+                new_data.save()
+            if request.session.get('formInvalid'):
+                request.session.pop('formInvalid')
+        else:
+            print('invalid')
+            request.session['formInvalid'] = True
+            return redirect("loanportal:loanapplication")
+
+
+
         if request.POST.get('all_documents') == "on":
             data = {
                 "document": request.FILES['Driver License / Photo Id'],
@@ -39,7 +70,8 @@ class LoanApplicationView(View):
             }
             new_document = Document(user=Profile.objects.get(user=request.user), **data)
             new_document.save()
-        return render(request, "loanapplication.html")
+
+        return redirect("loanportal:loanapplication")
 
 
 class LoanOffersView(ContextMixin, View):

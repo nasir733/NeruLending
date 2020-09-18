@@ -12,25 +12,39 @@ from user.models import Profile, UserData
 
 
 class TradelinesView(View):
+
     def get(self, request):
         request.resolver_match.page_template = 'pages/base-business.html'
         subdomain = Subdomain.objects.filter(sub_name=request.host.name).first()
         tradelines = Tradelines.objects.filter(whitelabel_portal__sub_name=subdomain)
-
         data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
         if data:
             form = UserDataForm(None, instance=data)
         else:
             form = UserDataForm()
 
+        error = request.session.get("formInvalid")
+
         return render(request, "financingProducts/tradelines.html",
-                      context=get_context_for_all(request, {"tradelines": tradelines, "form": form}))
+                      context=get_context_for_all(request, {"tradelines": tradelines, "form": form, "error": error}))
 
     def post(self, request):
 
         print(request.POST)
 
         form = UserDataForm(request.POST)
+
+        form.fields['duns'].required = True
+        form.fields['billing_street_address_1'].required = True
+        form.fields['billing_zip_code'].required = True
+        form.fields['billing_city'].required = True
+        form.fields['billing_state'].required = True
+        form.fields['billing_country'].required = True
+        form.fields['billing_phone'].required = True
+        form.fields['website'].required = True
+        form.fields['toll_free_number'].required = True
+        form.fields['fax_number'].required = True
+
         if form.is_valid():
             data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
             if data:
@@ -42,7 +56,10 @@ class TradelinesView(View):
                 new_data = form.save(commit=False)
                 new_data.user = Profile.objects.get(user=request.user)
                 new_data.save()
+            if request.session.get('formInvalid'):
+                request.session.pop('formInvalid')
         else:
+            request.session['formInvalid'] = True
             return redirect("business:tradelines")
 
         ordering_products = []

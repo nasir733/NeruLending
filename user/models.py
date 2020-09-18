@@ -96,7 +96,7 @@ class UserData(models.Model):
 
     user = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
-    duns = models.CharField("DUNS Number", null=True, max_length=255)
+    duns = models.CharField("DUNS Number", null=True, blank=True, max_length=255)
     ein = models.CharField("EIN number", null=True, max_length=255)
 
     first_name = models.CharField("First Name", null=True, max_length=255)
@@ -110,13 +110,13 @@ class UserData(models.Model):
     personal_country = models.CharField("Personal Country", null=True, max_length=255)
     personal_phone = models.CharField("Personal Phone", null=True, max_length=255)
 
-    billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, max_length=255)
+    billing_street_address_1 = models.CharField("Billing Address Line 1", null=True, blank=True, max_length=255)
     billing_street_address_2 = models.CharField("Billing Address Line 2", null=True, blank=True, max_length=255)
-    billing_zip_code = models.CharField("Billing Zip Code", null=True, max_length=255)
-    billing_city = models.CharField("Billing City", null=True, max_length=255)
-    billing_state = models.CharField("Billing State", null=True, max_length=255)
-    billing_country = models.CharField("Billing Country", null=True, max_length=255)
-    billing_phone = models.CharField("Billing Phone", null=True, max_length=255)
+    billing_zip_code = models.CharField("Billing Zip Code", null=True, blank=True, max_length=255)
+    billing_city = models.CharField("Billing City", null=True, blank=True, max_length=255)
+    billing_state = models.CharField("Billing State", null=True, blank=True, max_length=255)
+    billing_country = models.CharField("Billing Country", null=True, blank=True, max_length=255)
+    billing_phone = models.CharField("Billing Phone", null=True, blank=True, max_length=255)
 
     business_name = models.CharField("Business Name", null=True, max_length=255)
 
@@ -130,9 +130,9 @@ class UserData(models.Model):
 
     email = models.CharField("Email Address", null=True, max_length=255)
 
-    website = models.CharField("Website", null=True, max_length=255)
-    toll_free_number = models.CharField("Toll Free Number", null=True, max_length=255)
-    fax_number = models.CharField("Fax Number", null=True, max_length=255)
+    website = models.CharField("Website", null=True, blank=True, max_length=255)
+    toll_free_number = models.CharField("Toll Free Number", blank=True, null=True, max_length=255)
+    fax_number = models.CharField("Fax Number", null=True, blank=True, max_length=255)
 
     def save(self, *args, **kwargs):
         if self.first_name == "":

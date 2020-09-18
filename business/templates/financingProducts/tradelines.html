@@ -26,6 +26,9 @@
             <div class="col-md-8 mb-5 card p-2">
                 <div class="col-md-12">
                     <div class="card-title">Enter your personal data</div>
+                    {% if error %}
+                        <div class="text-danger"><h4>Please fill all required fields</h4></div>
+                    {% endif %}
                     <form id="userdata" method="post">{% csrf_token %}
                         <div class="row mb-2">
                             <div class="col-6 required">
@@ -206,7 +209,7 @@
                                         </td>
                                         <td>
                                             <form id="{{ tradeline.product_id }}" method="post" onsubmit="(function(){
-                                                                console.log('jehe')
+                                                                console.log('data updated')
                                                                 $('#userdata :input').not(':submit').clone().hide().appendTo('#{{ tradeline.product_id }}');
                                                                 return true;
                                                                 })()">{% csrf_token %}
