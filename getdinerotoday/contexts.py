@@ -31,6 +31,8 @@ def ProfileProcessor(request):
 def whitelabel_processor(request):
     obj = Subdomain.objects.filter(sub_name__exact=request.host.name).first()
 
+    print("CONTEXT: ", obj)
+
     if obj:
         return {
             'dynamic': obj,
