@@ -48,6 +48,8 @@ class UserDataView(View):
             else:
                 return render(request, "userData/userData.html", context=get_context_for_all(request, {"form": form}))
 
+
+
         if request.session.get('ordering_products'):
             return redirect("business:stripe_checkout")
 

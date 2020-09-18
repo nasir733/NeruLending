@@ -158,15 +158,19 @@
                                 {{ form.fax_number.label_tag }}*{{ form.fax_number }}
                             </div>
                         </div>
-
-
-                        <div class="btn-toolbar">
-                            {#                            <input type="text" name="userdata" value="on" hidden/>#}
-                            {#                            <input type="submit"#}
-                            {#                                   value="Submit"#}
-                            {#                                   class="btn btn-primary mr-1 btn-block"/>#}
-                        </div>
                     </form>
+                 <div class="btn-toolbar">
+                        <form id="datadata" method="post" onsubmit="(function(){
+                                                                console.log('data updated')
+                                                                $('#userdata :input').not(':submit').clone().hide().appendTo('#datadata');
+                                                                return true;
+                                                                })()">{% csrf_token %}
+                            <input type="submit"
+                                   name="saveData"
+                                   value="Save Information"
+                                   class="btn btn-primary mr-1"/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

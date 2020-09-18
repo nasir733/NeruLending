@@ -41,7 +41,8 @@ class LoanApplicationView(View):
             request.session['formInvalid'] = True
             return redirect("loanportal:loanapplication")
 
-
+        if 'saveData' in request.POST:
+            return redirect("loanportal:loanapplication")
 
         if request.POST.get('all_documents') == "on":
             data = {

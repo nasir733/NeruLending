@@ -23,6 +23,7 @@
                 }
             } else if (commandData.command === "addProduct") {
                 var prod = commandData.product
+                {#alanBtnInstance.playText("Hi");#}
                 $(`input[name="${prod}"]`).closest("form").submit()
             }
         },

@@ -62,6 +62,10 @@ class TradelinesView(View):
             request.session['formInvalid'] = True
             return redirect("business:tradelines")
 
+        if 'saveData' in request.POST:
+            return redirect("business:tradelines")
+
+
         ordering_products = []
         product_id = request.POST['product_id']
         product = Tradelines.objects.get(product_id=product_id)
