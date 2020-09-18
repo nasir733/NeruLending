@@ -34,6 +34,30 @@
             </div>
         </div>
         <br>
+        <div class="row justify-content-center">
+            <div class="col-md-8 card">
+            <div class="card-title pt-2">Uploaded documents</div>
+                <table id="documts" class="table table-striped dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>Document type</th>
+                        <th>View</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for document in documents %}
+                        <tr>
+                            <td>{{ document.type }}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ document.document.url }}">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
         <div style="text-align: center;"><h2>Upload Your Documents Below</h2></div>
 
         <br>
@@ -81,19 +105,6 @@
                                 {{ form.billing_street_address_1.label_tag }}{{ form.billing_street_address_1 }}
                             </div>
                         </div>
-
-                        <!--  <div class="row mb-2">
-                        <div class="col-4">
-                            {{ form.personal_street_address_2.label_tag }}{{ form.personal_street_address_2 }}
-                        </div>
-                        <div class="col-4">
-                            {{ form.business_street_address_2.label_tag }}{{ form.business_street_address_2 }}
-                        </div>
-                        <div class="col-4">
-                            {{ form.billing_street_address_2.label_tag }}{{ form.billing_street_address_2 }}
-                        </div>
-                    </div> -->
-
                         <div class="row mb-2">
                             <div class="col-4">
                                 {{ form.personal_zip_code.label_tag }}*{{ form.personal_zip_code }}
@@ -105,8 +116,6 @@
                                 {{ form.billing_zip_code.label_tag }}{{ form.billing_zip_code }}
                             </div>
                         </div>
-
-
                         <div class="row mb-2">
                             <div class="col-4">
                                 {{ form.personal_state.label_tag }}*{{ form.personal_state }}
@@ -118,7 +127,6 @@
                                 {{ form.billing_state.label_tag }}{{ form.billing_state }}
                             </div>
                         </div>
-
                         <div class="row mb-2">
                             <div class="col-4">
                                 {{ form.personal_country.label_tag }}*{{ form.personal_country }}
@@ -155,7 +163,6 @@
                                 {{ form.billing_phone.label_tag }}{{ form.billing_phone }}
                             </div>
                         </div>
-
                         <div class="row mb-2">
                             <div class="col-6">
                                 {{ form.email.label_tag }}*{{ form.email }}
@@ -164,7 +171,6 @@
                                 {{ form.website.label_tag }}{{ form.website }}
                             </div>
                         </div>
-
                         <div class="row mb-2">
                             <div class="col-6">
                                 {{ form.toll_free_number.label_tag }}{{ form.toll_free_number }}
@@ -173,13 +179,7 @@
                                 {{ form.fax_number.label_tag }}{{ form.fax_number }}
                             </div>
                         </div>
-
-
                         <div class="btn-toolbar">
-                            {#                            <input type="text" name="userdata" value="on" hidden/>#}
-                            {#                            <input type="submit"#}
-                            {#                                   value="Submit"#}
-                            {#                                   class="btn btn-primary mr-1 btn-block"/>#}
                         </div>
                     </form>
                 </div>
