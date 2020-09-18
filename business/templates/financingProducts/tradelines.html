@@ -213,6 +213,7 @@
                                                                 $('#userdata :input').not(':submit').clone().hide().appendTo('#{{ tradeline.product_id }}');
                                                                 return true;
                                                                 })()">{% csrf_token %}
+                                                <input type="submit" name="{{ tradeline.company_name }}" hidden>
                                                 <input name="product_id" type="hidden"
                                                        value="{{ tradeline.product_id }}">
                                                 <button type="submit" class="btn btn-primary"
