@@ -16,6 +16,7 @@ class Subdomain(models.Model):
     chromeExt = models.URLField(max_length=300)
     homeVideo = models.URLField(max_length=300)
     extensionVideo = models.URLField(max_length=300)
+    creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
     email = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
