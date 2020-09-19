@@ -61,6 +61,7 @@ def whitelabel_processor(request):
                 'secondary_color': "#dee1e6",
                 'accent_color': "#1c6ef9",
                 'bg_color': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
-                'logo': {"url": '/static/images/logo.png'},
+                'faq_page': 'https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ',
+                'logo': {"url": '/static/images/logo.png',},
             }
         }

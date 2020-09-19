@@ -1566,3 +1566,13 @@ class VirtualCardView(View):
     def get(self, request):
         card = request.user.virtual_card
         return render(request, "home/virtualcard.html", get_context_for_all(request, {"virtual_card": card}))
+
+
+class FAQsView(View):
+    def get(self, request):
+        return render(request, "help/faqs.html", get_context_for_all(request))
+
+
+class ChatView(View):
+    def get(self, request):
+        return render(request, "help/chat.html", get_context_for_all(request))

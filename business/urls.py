@@ -112,6 +112,9 @@ urlpatterns = [
 
     url('tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
 
+    url('faqs/', login_required(FAQsView.as_view(), login_url='/user/login'), name='faqs'),
+    url('chat/', login_required(ChatView.as_view(), login_url='/user/login'), name='chat'),
+
     url('charge/', charge, name='charge'),
     url('checkout/', StripeCheckout.as_view(), name='stripe_checkout'),
     url('subscribe/', subscription, name='subscription_stripe'),

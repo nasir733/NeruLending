@@ -16,6 +16,7 @@ class Subdomain(models.Model):
     chromeExt = models.URLField(max_length=300)
     homeVideo = models.URLField(max_length=300)
     extensionVideo = models.URLField(max_length=300)
+    faq_page = models.CharField(max_length=300, null=True, default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
     creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
     email = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
