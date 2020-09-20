@@ -68,6 +68,7 @@ urlpatterns = [
     url('services/', ServicesView.as_view(), name='services'),
     url('financing/', FinancingView.as_view(), name='financing'),
     url('webinar/', WebinarView.as_view(), name='webinar'),
+    url('webinaroffer/', WebinarOfferView.as_view(), name='webinaroffer'),
     url('partner/', PartnerView.as_view(), name='partner'),
     url('contact/', ContactView.as_view(), name='contact'),
     url('whitelabel/', WhiteLabelView.as_view(), name='whitelabel'),
@@ -75,7 +76,7 @@ urlpatterns = [
     url('faq/', FAQView.as_view(), name='faq'),
     url('testimonial/', TestimonialsView.as_view(), name='testimonial'),
     url('^$', IndexView.as_view(), name='index'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += [
