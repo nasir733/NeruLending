@@ -93,7 +93,7 @@
                                         <td>{{ tradeline.company_reports_to }}</td>
                                         <td>${{ tradeline.price }}</td>
                                         <td>${{ tradeline.charge }}</td>
-                                        <td>{{ tradeline.video_link }}</td>
+                                        <td><a class="btn btn-primary btn-sm" href="{{ tradeline.video_link }}">View</a></td>
                                         <td>
                                             <form method="get"
                                                   action={% url "whitelabelpartnerportal:edit_tradelines" %}>
