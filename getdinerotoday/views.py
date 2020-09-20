@@ -93,6 +93,10 @@ class WebinarView(View):
     def get(self, request):
         return render(request, 'landingpages/webinar.html')
 
+class WebinarOfferView(View):
+    def get(self, request):
+        return render(request, 'landingpages/webinaroffer.html')        
+
 
 class FAQView(View):
     def get(self, request):
