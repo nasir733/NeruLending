@@ -1,19 +1,3 @@
-from django_hosts import patterns, host
-from dynamic.models import Subdomain
+from services.HostsService import HostsService
 
-
-hosts_from_model = []
-try:
-    subdomains = Subdomain.objects.all()
-    for i in subdomains:
-        hosts_from_model.append(host(i.sub_name, 'getdinerotoday.urls', name=i.sub_name))
-except Exception as e:
-    pass
-
-
-host_patterns = patterns(
-    '',
-    host(r'www', 'getdinerotoday.urls', name='www'),
-    *hosts_from_model,
-    # host(r'businesscreditbuilders', 'getdinerotoday.urls', name='businesscreditbuilders'),
-)
+host_patterns = HostsService.get_host_patterns()

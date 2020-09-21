@@ -2,6 +2,7 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
 from services.FileServices import get_file_path
+from services.HostsService import HostsService
 from user.models import Profile
 
 app_name = 'dynamic'
@@ -16,7 +17,8 @@ class Subdomain(models.Model):
     chromeExt = models.URLField(max_length=300)
     homeVideo = models.URLField(max_length=300)
     extensionVideo = models.URLField(max_length=300)
-    faq_page = models.CharField(max_length=300, null=True, default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
+    faq_page = models.CharField(max_length=300, null=True,
+                                default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
     creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
     email = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
@@ -34,3 +36,11 @@ class Subdomain(models.Model):
 
     def __str__(self):
         return self.sub_name
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        HostsService.update_hosts_conf()
+
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+        HostsService.update_hosts_conf()
