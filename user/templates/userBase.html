@@ -12,9 +12,7 @@
 
         img {
             height: 150px;
-            width: 300px;
         }
-
 
         .bgcolor {
         {% if dynamic.bg_color %}
@@ -212,10 +210,6 @@
             color: #fff !important;
         }
 
-        .image {
-            width: 200px;
-        }
-
 
     </style>
     {% block extrastyle %}
@@ -225,12 +219,15 @@
 <body class='bgcolor'>
 <div class="container">
     <div class="row justify-content-center">
+        <div class="misc-header text-center">
+            {% if dynamic.logo and dynamic.logo.url %}
+                <img class="toggle-none hidden-xs image" src="{{ dynamic.logo.url }}"/>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="row justify-content-center">
         <div class="col-md-4 col-xs-12 widthClass">
-            <div class="misc-header text-center">
-                {% if dynamic.logo and dynamic.logo.url %}
-                    <img class="toggle-none hidden-xs image" src="{{ dynamic.logo.url }}"/>
-                {% endif %}
-            </div>
             <div class="misc-box">
                 {% block content %}
 
