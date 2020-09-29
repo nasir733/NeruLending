@@ -36,6 +36,7 @@ def whitelabel_processor(request):
     if obj:
         return {
             'dynamic': obj,
+            'why_buy_video': 'https://www.youtube.com/embed/bM8A5BDZglk'
         }
     else:
         if not request.user.is_anonymous:
@@ -46,6 +47,7 @@ def whitelabel_processor(request):
         return {
             'is_main_site': True,
             'iswhitelabeladmin': bool(portal_count),
+            'why_buy_video': 'https://www.youtube.com/embed/el9irdyyWcQ',
             'dynamic': {
                 'title': 'Get Dinero Today',
                 'androidApp': "https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
