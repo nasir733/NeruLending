@@ -275,10 +275,12 @@
                                 0% Business Credit Card
                                 Strategy </a>
                         </li>
+                    {% if is_main_site %}
                         <li class="nav-item">
                             <a href="/{{ request.resolver_match.app_name }}/refer" class="nav-link"> Make Extra Money
                                 Referring Friends! </a>
                         </li>
+                    {% endif %}
                         {% if dynamic.sub_name == "" %}
                             <li class="nav-item">
                                 <a href="https://getdinerotoday1.leaddyno.com/" target="_blank" class="nav-link">Go To

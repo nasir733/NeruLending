@@ -19,11 +19,13 @@
     <section class="main-content">
 
         <div class="row">
+            {% if is_main_site %}
             <div class="col-md-12">
                 <iframe width="100%" height="515" src="https://www.youtube.com/embed/cW3SMdOtbJw" frameborder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
             </div>
+            {% endif %}
         </div>
         <h2 style="text-align:center;">My Corporate Business Credit Solution</h2><br>
 {#        <form accept-charset="UTF-8" action="{% url 'business:business-credit-plan' %}" method="post">#}
