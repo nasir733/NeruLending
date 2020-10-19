@@ -1,7 +1,7 @@
 from django.apps import apps
 from django.contrib import admin
 
-from products.models import UserStepsProduct, available_user_steps
+from products.services import create_usersteps_for_subdomain
 from .models import Subdomain
 
 # Register your models here.
@@ -21,10 +21,7 @@ class SubdomainAdmin(admin.ModelAdmin):
 
     def create_user_steps(self, request, queryset):
         for subdomain in queryset:
-            for user_step, data in available_user_steps.items():
-                new_step = UserStepsProduct(name=user_step, price=data[0], recurring=data[1],
-                                            whitelabel_portal=subdomain)
-                new_step.save()
+            create_usersteps_for_subdomain(subdomain)
 
     create_user_steps.short_description = "Create user steps"
 

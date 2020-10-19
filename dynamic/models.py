@@ -4,6 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from services.FileServices import get_file_path
 from services.HostsService import HostsService
 from user.models import Profile
+from products.services import create_usersteps_for_subdomain, create_tradelines_for_subdomain
 
 app_name = 'dynamic'
 
@@ -40,6 +41,8 @@ class Subdomain(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         HostsService.update_hosts_conf()
+        create_usersteps_for_subdomain(self.sub_name)
+        create_tradelines_for_subdomain(self.sub_name)
 
     def delete(self, *args, **kwargs):
         super().delete(*args, **kwargs)

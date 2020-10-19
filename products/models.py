@@ -73,6 +73,7 @@ class Tradelines(models.Model):
 
 
 class UserStepsProduct(models.Model):
+
     name = models.CharField(max_length=200, choices=user_steps_choices)
     price = models.DecimalField(max_digits=100, decimal_places=2)
     recurring = models.IntegerField(choices=recurring_choices, null=True)
