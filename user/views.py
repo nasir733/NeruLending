@@ -11,12 +11,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
+from django.template import RequestContext
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, TemplateView
 
+from dynamic.models import Subdomain
 from orders.models import UserSteps
 from services.OrderDataService import OrderDataService
 from services.StripeService import StripeService
@@ -55,14 +57,24 @@ class APIloginView(View):
 @method_decorator(unauthenticated_user, name='dispatch')
 class SignUpView(View):
     def get(self, request):
-        return render(request, 'registration.html')
+        obj = Subdomain.objects.filter(sub_name__exact=request.host.name).first()
+        context = {}
+        context["stripe_key"] = settings.STRIPE_PUBLISHABLE_KEY
+        # print(context)
+        return render(request, 'registration.html', context=context)
 
     @csrf_exempt
     def post(self, request):
         data = request.POST
         sub_domain = request.host.name
-        print(data)
+        # print(data)
+
         try:
+            obj = Subdomain.objects.filter(sub_name__exact=request.host.name).first()
+            if obj and obj.is_paid:
+                StripeService.charge_card(data['stripeToken'], round(obj.portal_price * 100),
+                                          description="registration")
+
             profile = Profile.objects.create_user(data['email'], data['password'], data['first_name'],
                                                   data['last_name'], data['phone_number'], sub_domain)
             auth_login(request, profile.user)
@@ -73,6 +85,7 @@ class SignUpView(View):
             else:
                 print(e)
             return render(request, 'registration.html', {"error": "Registration Failed"})
+        # return render(request, 'registration.html', {"error": "Registration Failed"})
 
 
 class PasswordResetView(auth_views.PasswordResetView):

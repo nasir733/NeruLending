@@ -1,10 +1,10 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
+from products.services import create_usersteps_for_subdomain, create_tradelines_for_subdomain
 from services.FileServices import get_file_path
 from services.HostsService import HostsService
 from user.models import Profile
-from products.services import create_usersteps_for_subdomain, create_tradelines_for_subdomain
 
 app_name = 'dynamic'
 
@@ -34,6 +34,9 @@ class Subdomain(models.Model):
     bg_color = models.CharField(max_length=200, blank=True)
 
     admins = models.ManyToManyField(Profile, related_name='portals')
+
+    is_paid = models.BooleanField(default=False)
+    portal_price = models.DecimalField(verbose_name="Portal price", max_digits=50, decimal_places=2, default=0)
 
     def __str__(self):
         return self.sub_name
