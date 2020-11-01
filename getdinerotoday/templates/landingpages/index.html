@@ -636,7 +636,7 @@
                         <div class="price-table">
                             <div class="price-inside">Starter</div>
                             <div class="price-header mb-3">
-                                <h2 class="price-title">Forever Free Package</h2>
+                                <h2 class="price-title">{% if dynamic.is_paid %}Business Credit Information Package{% else %}Forever Free Package{% endif %}</h2>
                                 <br>
                             </div>
                             <div class="price-list">
@@ -656,8 +656,9 @@
                                 </ul>
                                 <br>
                                 <div class="col-md-12 mt-2">
-                                    <a href="{% url "user:login" %}" target="_blank" class="btn btn-theme btn-circle">Sign
-                                        Up For Forever Free Package</a>
+                                    <a href="{% url "user:signup" %}" target="_blank" class="btn btn-theme btn-circle">
+                                        {% if dynamic.is_paid %}${{ dynamic.portal_price }} One Time Payment Option{% else %}
+                                        Sign Up For Forever Free Package{% endif %}</a>
                                 </div>
                             </div>
                         </div>
@@ -701,9 +702,9 @@
                             </ul>
                             <br>
                             <div class="col-md-12 mt-2">
-                                <a href="{% url "business:business-credit-steps-onlyprograms" %}"
+                                <a href="{% url "user:login" %}"
                                    class="btn btn-theme btn-circle">${{ yearly }} Annual Payment Option</a><br><br>
-                                <a href="{% url "business:business-credit-steps-onlyprograms" %}"
+                                <a href="{% url "user:login" %}"
                                    class="btn btn-theme btn-circle">${{ monthly }} Monthly Payment Option</a><br>
                             </div>
                         </div>

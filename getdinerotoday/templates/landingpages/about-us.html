@@ -50,24 +50,24 @@
             </div>
             <div class="container">
                 <div class="row text-center">
-                {% if is_main_site %}
-                    <div class="col-lg-6 col-md-6 ml-auto mr-auto">
-                        <div class="section-title">
-                            <div class="title-effect">
-                                <div class="bar bar-top"></div>
-                                <div class="bar bar-right"></div>
-                                <div class="bar bar-bottom"></div>
-                                <div class="bar bar-left"></div>
-                            </div>
-                            <h2 class="title">Our Story</h2>
+                    {% if is_main_site %}
+                        <div class="col-lg-6 col-md-6 ml-auto mr-auto">
+                            <div class="section-title">
+                                <div class="title-effect">
+                                    <div class="bar bar-top"></div>
+                                    <div class="bar bar-right"></div>
+                                    <div class="bar bar-bottom"></div>
+                                    <div class="bar bar-left"></div>
+                                </div>
+                                <h2 class="title">Our Story</h2>
 
                                 <iframe width="100%" height="315" src="{{ why_buy_video }}" frameborder="0"
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
 
+                            </div>
                         </div>
-                    </div>
-                {% endif %}
+                    {% endif %}
                     <div class="col-lg-6 col-md-6 ml-auto mr-auto">
                         <div class="section-title">
                             <div class="title-effect">
@@ -78,13 +78,18 @@
                             </div>
                             <h2 class="title">Who are we?</h2>
                             {% if dynamic %}
-                                <p>{{ dynamic.title }} offers a wide range of products which includes our business
-                                    builder program, business funding program, and 0% business credit card program. Our
-                                    business builder program helps you with each step of the business credit building
-                                    process. Our business funding program helps you get all the funding you can qualify
-                                    for, we do not charge a fee to help you acquire funding. Our 0% business credit card
-                                    program helps you obtain 0% business credit cards for up to 18 months. Sign up for
-                                    the program that best fits your business needs.</p>
+                                <p>{{ dynamic.title }} offers a wide range of services. Which include getting clients
+                                    loans, building business credit, $1,500 in free marketing, business credit course,
+                                    credit repair course, autodialer, website builder and much more. Our business
+                                    builder program helps you with each step of the business credit building
+                                    process.</p>
+                                {#                                <p>{{ dynamic.title }} offers a wide range of products which includes our business#}
+                                {#                                    builder program, business funding program, and 0% business credit card program. Our#}
+                                {#                                    business builder program helps you with each step of the business credit building#}
+                                {#                                    process. Our business funding program helps you get all the funding you can qualify#}
+                                {#                                    for, we do not charge a fee to help you acquire funding. Our 0% business credit card#}
+                                {#                                    program helps you obtain 0% business credit cards for up to 18 months. Sign up for#}
+                                {#                                    the program that best fits your business needs.</p>#}
                             {% endif %}
                             <a href="/pricing" class="btn btn-theme btn-circle" target="_blank"
                                style="margin-top: 10px;">Check Our Packages</a>
