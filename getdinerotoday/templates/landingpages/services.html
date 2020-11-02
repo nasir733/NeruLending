@@ -70,7 +70,7 @@
                                 <h2>We're Helping Clients Build Business Credits</h2>
                             </div>
                             <p class="lead">Click The Play Button To The Left To See Our Software Demo</p>
-                            
+
                             <a class="btn btn-theme btn-circle" href="/pricing" data-text="">Sign Up Today
                             </a>
                         </div>
@@ -83,11 +83,11 @@
                         <div class="row">
                             <div class="col-lg-10 col-md-12 ml-auto mr-auto">
                                 {% if dynamic %}
-                                <h3 class="text-black font-weight-normal line-h-2">{{dynamic.title}} Is <span
-                                        class="text-theme">Built </span>For Businesses Like Yours. See All The
-                                    Features
-                                    We Do For You Below.</h3>
-                               
+                                    <h3 class="text-black font-weight-normal line-h-2">{{ dynamic.title }} Is <span
+                                            class="text-theme">Built </span>For Businesses Like Yours. See All The
+                                        Features
+                                        We Do For You Below.</h3>
+
                                 {% endif %}
                             </div>
                         </div>
@@ -797,7 +797,8 @@
                                     <div class="price-table">
                                         <div class="price-inside">Starter</div>
                                         <div class="price-header mb-3">
-                                            <h2 class="price-title">Forever Free Package</h2>
+                                            <h2 class="price-title">{% if dynamic.is_paid %}Business Credit Information
+                                                Package{% else %}Forever Free Package{% endif %}</h2>
                                             <br>
                                         </div>
                                         <div class="price-list">
@@ -807,25 +808,25 @@
                                                 <li>Create My Credit Repair Plan Access</li>
                                                 <li>Apply For Business Loan Access To Get Best Rates</li>
                                                 <li>Business Credit Building Course (Usually $1,000)</li>
-                                                <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash Credit
+                                                <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, &
+                                                    Cash Credit
                                                     List
                                                 </li>
                                                 <li>Your Own Backend Client Portal To Track Progress</li>
-                                                <li>Full Access To Our Create My Financing Plan Section (*You Get Your Own Financing
+                                                <li>Full Access To Our Create My Financing Plan Section (*You Get Your
+                                                    Own Financing
                                                     Plan Based On Your Current Situation* & Access To 300+ Lenders)
                                                 </li>
                                             </ul>
                                             <br>
                                             <div class="col-md-12 mt-2">
-                                             
-                                                    {% if dynamic.sub_name != "" %}
-                                                    <a href="https://www.{{dynamic.sub_name}}.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
-                                                        Package</a>
-                                                    {% else %}
-                                                    <a href="https://www.getdinerotoday.com/user/login/" target="_blank" class="btn btn-theme btn-circle">Sign Up For Forever Free
-                                                        Package</a>
-                                                    {% endif %}
-                                               
+
+                                                <a href="{% url "user:signup" %}" target="_blank"
+                                                   class="btn btn-theme btn-circle">
+                                                    {% if dynamic.is_paid %}${{ dynamic.portal_price }} One Time Payment
+                                                        Option{% else %}
+                                                        Sign Up For Forever Free Package{% endif %}</a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -839,7 +840,8 @@
                                     <br>
                                     <div class="price-list">
                                         <ul class="list-unstyled">
-                                            <li>We help you get $50,000 in business vendor credit, we set up your business credibly,
+                                            <li>We help you get $50,000 in business vendor credit, we set up your
+                                                business credibly,
                                                 and manage your account
                                             </li>
                                             <li>Create My Financing Plan Access</li>
@@ -850,18 +852,22 @@
                                             <li>Free Web Hosting For The Entire Year</li>
                                             <li>We Buy Your Fax Number For Entire Year(Usually $100+)</li>
                                             <li>Professional Email (Usually $100+)</li>
-                                            <li>Toll-Free Number Purchase For The Entire Year (Whole sale rate of $10 Per Month On
+                                            <li>Toll-Free Number Purchase For The Entire Year (Whole sale rate of $10
+                                                Per Month On
                                                 Up To 2 Other Members) (Savings Of $1,500+ Per Year)
                                             </li>
                                             <li>Business Credit Building Course (Usually $1,000)</li>
-                                            <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash Credit
+                                            <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash
+                                                Credit
                                                 List
                                             </li>
                                             <li>411 Listing</li>
-                                            <li>Full Video Library & Live Chat Assistants To Be Able To Answer Any Questions 24/7
+                                            <li>Full Video Library & Live Chat Assistants To Be Able To Answer Any
+                                                Questions 24/7
                                             </li>
                                             <li>Your Own Backend Client Portal To Track Progress</li>
-                                            <li>Full Access To Our Create My Financing Plan Section (*You Get Your Own Financing
+                                            <li>Full Access To Our Create My Financing Plan Section (*You Get Your Own
+                                                Financing
                                                 Plan Based On Your Current Situation* & Access To 300+ Lenders)
                                             </li>
                                             <li>Free Access To Our Affiliate Program</li>
@@ -869,10 +875,12 @@
                                         </ul>
                                         <br>
                                         <div class="col-md-12 mt-2">
-                                            <a href="{% url "business:business-credit-steps-onlyprograms" %}" class="btn btn-theme btn-circle">$999 Annual Payment Option</a><br><br>
-            {#                                <a href="/financing" class="btn btn-theme btn-circle">No Money Down Option Subject To#}
-            {#                                    Financing</a><br><br>#}
-                                            <a href="{% url "business:business-credit-steps-onlyprograms" %}" class="btn btn-theme btn-circle">$109.99 Monthly Payment Option</a><br>
+                                            <a href="{% url "business:business-credit-steps-onlyprograms" %}"
+                                               class="btn btn-theme btn-circle">$999 Annual Payment Option</a><br><br>
+                                            {#                                <a href="/financing" class="btn btn-theme btn-circle">No Money Down Option Subject To#}
+                                            {#                                    Financing</a><br><br>#}
+                                            <a href="{% url "business:business-credit-steps-onlyprograms" %}"
+                                               class="btn btn-theme btn-circle">$109.99 Monthly Payment Option</a><br>
                                         </div>
                                     </div>
                                 </div>
