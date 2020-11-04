@@ -50,7 +50,8 @@ def whitelabel_processor(request):
             'why_buy_video': 'https://www.youtube.com/embed/el9irdyyWcQ',
             'dynamic': {
                 # 'title': 'Get Dinero Today',
-                'title': 'Holliday consulting',
+                # 'title': 'Holliday consulting',
+                'title': 'Saw consulting',
                 'androidApp': "https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.getdianotoday",
                 'iphoneApp': "https://apps.apple.com/us/app/get-dinero-today/id1520722061",
                 'chromeExt': "https://chrome.google.com/webstore/detail/get-dinero-today/nopllamladnpdgmgcfbnhdfpllpgpcgk",
@@ -66,7 +67,8 @@ def whitelabel_processor(request):
                 'bg_color': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
                 'faq_page': 'https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ',
                 # 'logo': {"url": '/static/images/logo.png'},
-                'logo': {"url": '/static/images/logos/Attachment-1.png'},
+                'logo': {"url": '/static/images/logos/sawlogo.png'},
+                # 'logo': {"url": '/static/images/logos/Attachment-1.png'},
                 'is_paid': False,
                 'portal_price': 00.00,
             }
