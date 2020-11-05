@@ -20,7 +20,7 @@ django-heroku
 whitenoise
 boto3
 django-storages
-django-autoslug
+django-autoslug==1.9.8
 djangorestframework_simplejwt
 djangorestframework
 django-cors-headers
