@@ -24,7 +24,7 @@ class Subdomain(models.Model):
     email = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
-    phno = PhoneNumberField(blank=True)
+    phno = models.CharField(blank=True, max_length=100)
     logo = models.ImageField(upload_to=get_file_path)
     why_buy_link = models.CharField(max_length=200, blank=True, default='https://www.youtube.com/embed/bM8A5BDZglk')
     appImage = models.CharField(max_length=200, blank=True)
