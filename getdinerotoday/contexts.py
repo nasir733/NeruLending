@@ -31,19 +31,20 @@ def ProfileProcessor(request):
 def whitelabel_processor(request):
     obj = Subdomain.objects.filter(sub_name__exact=request.host.name).first()
 
+    if not request.user.is_anonymous:
+        portal_count = Profile.objects.get(user=request.user).portals.count()
+    else:
+        portal_count = 0
+
     print("CONTEXT: ", request.host)
 
     if obj:
         return {
             'dynamic': obj,
-            'why_buy_video': 'https://www.youtube.com/embed/bM8A5BDZglk'
+            'why_buy_video': 'https://www.youtube.com/embed/bM8A5BDZglk',
+            'iswhitelabeladmin': bool(portal_count),
         }
     else:
-        if not request.user.is_anonymous:
-            portal_count = Profile.objects.get(user=request.user).portals.count()
-        else:
-            portal_count = 0
-
         return {
             'is_main_site': True,
             'iswhitelabeladmin': bool(portal_count),
