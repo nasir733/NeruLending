@@ -281,9 +281,9 @@
                                 Referring Friends! </a>
                         </li>
                     {% endif %}
-                        {% if dynamic.is_main_site %}
+                        {% if dynamic.is_main_site and dynamic.show_affiliate %}
                             <li class="nav-item">
-                                <a href="https://getdinerotoday1.leaddyno.com/" target="_blank" class="nav-link">Go To
+                                <a href="{{ dynamic.affiliate_link }}" target="_blank" class="nav-link">Go To
                                     Affiliate Agent
                                     Portal</a>
                             </li>

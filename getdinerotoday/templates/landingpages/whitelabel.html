@@ -44,7 +44,7 @@
                     <div class="col-lg-6 col-md-12">
                         <div class="video-btn video-btn-pos">
                             <a class="play-btn popup-youtube" href="https://www.youtube.com/watch?v=87lWRIttCv0"><i
-                                class="la la-play"></i>
+                                    class="la la-play"></i>
                             </a>
                             <div class="spinner-eff">
                                 <div class="spinner-circle circle-1"></div>
@@ -62,13 +62,18 @@
                             <h2>Help Clients Build Business Credit Under Your Brand</h2>
                         </div>
                         <p class="lead">Click On The Play Button To The Left To Learn About Our White Label Program</p>
-                        <a class="btn btn-theme btn-circle" href="http://mbbwhitelabelpartnerportal.herokuapp.com/"
-                           target="_blank" data-text=""> Become A White Label Partner
-                        </a><br><br>
-                        <a class="btn btn-dark btn-circle"
-                           href="https://getdinerotoday.setmore.com/resourcebookingpage/r8bbebe11bc17836e0391491b03bf0426b86724a4"
-                           target="_blank" data-text=""> Schedule An Appointment To Learn More
-                        </a>
+                        {% if dynamic.show_whitelabel_link %}
+                            <a class="btn btn-theme btn-circle" href="{{ dynamic.whitelabelpartner_link }}"
+                               target="_blank" data-text=""> Become A White Label Partner
+                            </a><br>
+                        {% endif %}
+                        {% if dynamic.show_appointment %}
+                            <br>
+                            <a class="btn btn-dark btn-circle"
+                               href="{{ dynamic.appointment_link }}"
+                               target="_blank" data-text=""> Schedule An Appointment To Learn More
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

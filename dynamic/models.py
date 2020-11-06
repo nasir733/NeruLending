@@ -38,6 +38,17 @@ class Subdomain(models.Model):
     is_main_site = models.BooleanField(default=False)
     show_index_white_label = models.BooleanField(default=False)
 
+    show_affiliate = models.BooleanField(default=False)
+    affiliate_link = models.CharField(max_length=200)
+
+    show_becoming_whitelabel_partner = models.BooleanField(default=False)
+
+    show_appointment = models.BooleanField(default=True)
+    appointment_link = models.CharField(max_length=200)
+
+    show_whitelabel_link = models.BooleanField(default=True)
+    whitelabelpartner_link = models.CharField(max_length=200)
+
     def __str__(self):
         return self.sub_name
 
