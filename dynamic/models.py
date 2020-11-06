@@ -1,5 +1,4 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 from products.services import create_usersteps_for_subdomain, create_tradelines_for_subdomain
 from services.FileServices import get_file_path
@@ -18,8 +17,7 @@ class Subdomain(models.Model):
     chromeExt = models.URLField(max_length=300)
     homeVideo = models.URLField(max_length=300)
     extensionVideo = models.URLField(max_length=300)
-    faq_page = models.CharField(max_length=300, null=True,
-                                default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
+    faq_page = models.CharField(max_length=300, null=True,default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
     creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
     email = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
@@ -38,7 +36,7 @@ class Subdomain(models.Model):
     is_paid = models.BooleanField(default=False)
     portal_price = models.DecimalField(verbose_name="Portal price", max_digits=50, decimal_places=2, default=0)
     is_main_site = models.BooleanField(default=False)
-    show_index_white_label = models.BooleanField(default=True)
+    show_index_white_label = models.BooleanField(default=False)
 
     def __str__(self):
         return self.sub_name

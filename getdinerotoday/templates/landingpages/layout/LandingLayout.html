@@ -5,13 +5,26 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="Get Dinero Today"/>
-    <meta name="description" content="Get Dinero Today"/>
+    <meta name="keywords" content="{% if dynamic.is_main_site %}
+            {{ dynamic.title }}
+        {% else %}
+            Get Dinero Today
+        {% endif %}"/>
+    <meta name="description" content="{% if dynamic.is_main_site %}
+            {{ dynamic.title }}
+        {% else %}
+            Get Dinero Today
+        {% endif %}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    {% if dynamic %}
-    <title>{{dynamic.title}}</title>
-    {% endif %}
+
+    <title>
+        {% if dynamic.is_main_site %}
+            {{ dynamic.title }}
+        {% else %}
+            Get Dinero Today
+        {% endif %}
+    </title>
     {% include "landingpages/components/StylesBlock.html" %}
     {% block extrastyle %}
     {% endblock extrastyle %}
