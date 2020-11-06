@@ -46,10 +46,11 @@ def whitelabel_processor(request):
         }
     else:
         return {
-            'is_main_site': True,
+
             'iswhitelabeladmin': bool(portal_count),
             'why_buy_video': 'https://www.youtube.com/embed/el9irdyyWcQ',
             'dynamic': {
+                'is_main_site': True,
                 'title': 'Get Dinero Today',
                 # 'title': 'Holliday consulting',
                 # 'title': 'Saw consulting',
