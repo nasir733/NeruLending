@@ -38,7 +38,7 @@ class Subdomain(models.Model):
     is_paid = models.BooleanField(default=False)
     portal_price = models.DecimalField(verbose_name="Portal price", max_digits=50, decimal_places=2, default=0)
     is_main_site = models.BooleanField(default=False)
-
+    show_index_white_label = models.BooleanField(default=True)
 
     def __str__(self):
         return self.sub_name

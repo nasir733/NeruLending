@@ -51,6 +51,8 @@ def whitelabel_processor(request):
             'why_buy_video': 'https://www.youtube.com/embed/el9irdyyWcQ',
             'dynamic': {
                 'is_main_site': True,
+                'show_index_white_label': True,
+
                 'title': 'Get Dinero Today',
                 # 'title': 'Holliday consulting',
                 # 'title': 'Saw consulting',
