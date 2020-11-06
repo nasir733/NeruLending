@@ -48,6 +48,7 @@ class Subdomain(models.Model):
 
     show_whitelabel_link = models.BooleanField(default=True)
     whitelabelpartner_link = models.CharField(max_length=200, blank=True)
+    whitelabel_index_video = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.sub_name
