@@ -49,7 +49,7 @@
                             <a href="{% url 'business:tradelines' %}"
                                class="nav-link"> Add Business Tradelines </a>
                         </li>
-                        {% if dynamic.sub_name != "" %}
+                        {% if not dynamic.is_main_site %}
                             <li class="nav-item">
                                 <a href="https://www.youtube.com/watch?v=tD1H2-1xihA" target="_blank"
                                    class="nav-link"> Watch Webinar On Building Business Credit </a>
@@ -281,14 +281,14 @@
                                 Referring Friends! </a>
                         </li>
                     {% endif %}
-                        {% if dynamic.sub_name == "" %}
+                        {% if dynamic.is_main_site %}
                             <li class="nav-item">
                                 <a href="https://getdinerotoday1.leaddyno.com/" target="_blank" class="nav-link">Go To
                                     Affiliate Agent
                                     Portal</a>
                             </li>
                         {% endif %}
-                        {% if dynamic.sub_name == "" %}
+                        {% if dynamic.is_main_site %}
                             <li class="nav-item">
                                 <a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link"> Go To
                                     White Label Partner Portal</a>
