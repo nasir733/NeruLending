@@ -20,7 +20,7 @@
 {% block content %}
     <div class="row page-header">
         <div class="col-lg-6 align-self-center ">
-            <h2>Make Extra Money With Our Affiliate Program</h2>
+            <h2>Make Extra Money With Our White Label Partner Program</h2>
             </ol></div>
     </div>
 
@@ -46,6 +46,7 @@
         <b><h2 style="text-align:center;">Make Extra Money Today By Joining Our Affiliate Program <br> Or White Label Partner Program. (Both Are Free To Join)</h2></b>
         <br><br>
         <div class="row">
+            {% if dynamic.show_affiliate %}
             <div class="col-md-6 col-sm-6">
                 <div class="card mb-4 shadow-sm">
                     <img src="https://images.pexels.com/photos/2068975/pexels-photo-2068975.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -61,6 +62,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             <div class="col-md-6 col-sm-6">
                 <div class="card mb-4 shadow-sm">
                     <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
