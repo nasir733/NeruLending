@@ -39,15 +39,15 @@ class Subdomain(models.Model):
     show_index_white_label = models.BooleanField(default=False)
 
     show_affiliate = models.BooleanField(default=False)
-    affiliate_link = models.CharField(max_length=200)
+    affiliate_link = models.CharField(max_length=200, blank=True)
 
     show_becoming_whitelabel_partner = models.BooleanField(default=False)
 
     show_appointment = models.BooleanField(default=True)
-    appointment_link = models.CharField(max_length=200)
+    appointment_link = models.CharField(max_length=200, blank=True)
 
     show_whitelabel_link = models.BooleanField(default=True)
-    whitelabelpartner_link = models.CharField(max_length=200)
+    whitelabelpartner_link = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.sub_name
