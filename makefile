@@ -1,4 +1,8 @@
 
+run:
+	./manage.py runserver
+
+
 git-save:
 	git add .
 	git commit -am "update"
