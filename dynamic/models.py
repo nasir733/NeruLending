@@ -30,6 +30,9 @@ class Subdomain(models.Model):
     accent_color = models.CharField(max_length=200, blank=True)
     bg_color = models.CharField(max_length=200, blank=True)
 
+    basic_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Annual", max_digits=50, decimal_places=2, default=2000.00)
+    premium_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Monthly", max_digits=50, decimal_places=2, default=1000.00)
+
     admins = models.ManyToManyField(Profile, related_name='portals')
 
     is_paid = models.BooleanField(default=False)
