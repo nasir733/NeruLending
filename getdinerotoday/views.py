@@ -7,6 +7,24 @@ from dynamic.models import Subdomain
 from products.models import UserStepsProduct
 
 
+def get_prices(sub_domain):
+    obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
+    steps = UserStepsProduct.objects.filter(whitelabel_portal=obj)
+    yearly = steps.filter(name="Business builder program Yearly").first()
+    monthly = steps.filter(name="Business builder program Monthly").first()
+
+    prices = {
+        "yearly": 999,
+        "monthly": 109.99
+    }
+    if yearly:
+        prices['yearly'] = yearly.price
+    if monthly:
+        prices['monthly'] = monthly.price
+
+    return prices
+
+
 class HomePage(View):
     def get(self, request):
         request.resolver_match.app_name = 'business'
@@ -19,20 +37,9 @@ class HomePage(View):
 class IndexView(View):
     def get(self, request):
         sub_domain = request.host.name
-        print("DOMAIN: ", sub_domain)
         obj = Subdomain.objects.filter(sub_name__exact=sub_domain).first()
-        steps = UserStepsProduct.objects.filter(whitelabel_portal=obj)
-        yearly = steps.filter(name="Business builder program Yearly").first()
-        monthly = steps.filter(name="Business builder program Monthly").first()
-        prices = {
-            "yearly": 999,
-            "monthly": 109.99
-        }
-        if yearly:
-            prices['yearly'] = yearly.price
+        prices = get_prices(sub_domain)
 
-        if monthly:
-            prices['monthly'] = monthly.price
 
         if obj:
             if request.user.is_authenticated:
@@ -51,17 +58,20 @@ class IndexView(View):
 
 class AboutUsView(View):
     def get(self, request):
-        return render(request, 'landingpages/about-us.html')
+        prices = get_prices(request.host.name)
+        return render(request, 'landingpages/about-us.html', prices)
 
 
 class PricingView(View):
     def get(self, request):
-        return render(request, 'landingpages/pricing.html')
+        prices = get_prices(request.host.name)
+        return render(request, 'landingpages/pricing.html', prices)
 
 
 class ServicesView(View):
     def get(self, request):
-        return render(request, 'landingpages/services.html')
+        prices = get_prices(request.host.name)
+        return render(request, 'landingpages/services.html', prices)
 
 
 class FinancingView(View):

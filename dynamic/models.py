@@ -24,7 +24,6 @@ class Subdomain(models.Model):
     address = models.CharField(max_length=200)
     phno = models.CharField(blank=True, max_length=100)
     logo = models.ImageField(upload_to=get_file_path)
-    why_buy_link = models.CharField(max_length=200, blank=True, default='https://www.youtube.com/embed/bM8A5BDZglk')
     appImage = models.CharField(max_length=200, blank=True)
     primary_color = models.CharField(max_length=200, blank=True)
     secondary_color = models.CharField(max_length=200, blank=True)
@@ -49,6 +48,14 @@ class Subdomain(models.Model):
     show_whitelabel_link = models.BooleanField(default=True)
     whitelabelpartner_link = models.CharField(max_length=200, blank=True)
     whitelabel_index_video = models.CharField(max_length=200, blank=True)
+
+    show_credit_repair_plan = models.BooleanField(default=True)
+
+    show_why_buy_from_us = models.BooleanField(default=True)
+    why_buy_link = models.CharField(max_length=200, blank=True, default='https://www.youtube.com/embed/bM8A5BDZglk')
+
+    show_money_back_guarantee = models.BooleanField(default=True)
+    show_free_access_to_affiliate_program = models.BooleanField(default=True)
 
     def __str__(self):
         return self.sub_name

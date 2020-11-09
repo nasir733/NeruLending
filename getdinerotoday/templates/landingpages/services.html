@@ -136,23 +136,23 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-lg-4 col-md-12">
-                                <div class="featured-item style-2">
-                                    <div class="featured-icon"><i class="flaticon-data"></i>
-                                        <span class="rotateme"></span>
-                                    </div>
-                                    <div class="featured-title">
-                                        <h5>Create My Credit Repair Plan</h5>
-                                    </div>
-                                    <div class="featured-desc">
-                                        <p>We use artificial intelligence to craft a credit repair plan for you
-                                            based
-                                            off of your current personal credit situation.</p>
+                            {% if dynamic.show_credit_repair_plan %}
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="featured-item style-2">
+                                        <div class="featured-icon"><i class="flaticon-data"></i>
+                                            <span class="rotateme"></span>
+                                        </div>
+                                        <div class="featured-title">
+                                            <h5>Create My Credit Repair Plan</h5>
+                                        </div>
+                                        <div class="featured-desc">
+                                            <p>We use artificial intelligence to craft a credit repair plan for you
+                                                based
+                                                off of your current personal credit situation.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endif %}
                             <div class="col-lg-4 col-md-12 md-mt-5">
                                 <div class="featured-item style-2">
                                     <div class="featured-icon"><i class="flaticon-collaboration"></i>
@@ -181,8 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mt-5">
+
                             <div class="col-lg-4 col-md-12">
                                 <div class="featured-item style-2">
                                     <div class="featured-icon"><i class="flaticon-data"></i>
@@ -226,8 +225,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mt-5">
+
                             <div class="col-lg-4 col-md-12 md-mt-5">
                                 <div class="featured-item style-2">
                                     <div class="featured-icon"><i class="flaticon-collaboration"></i>
@@ -259,8 +257,8 @@
                         </div>
                     </div>
                 </section>
-
-                <div class="page-content">
+                {% if dynamic.show_why_buy_from_us %}
+                    <div class="page-content">
                     <section class="pos-r pt-0">
                         <div class="hexagon-bg style-2">
                             <div class="hexagon"></div>
@@ -280,7 +278,7 @@
                                         </div>
                                         <h2 class="title">Why Buy From Us?</h2>
                                         <iframe width="100%" height="515"
-                                                src="https://www.youtube.com/embed/uS7BjJ83ZIQ" frameborder="0"
+                                                src="{{ dynamic.why_buy_link }}" frameborder="0"
                                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                                 allowfullscreen></iframe>
                                     </div>
@@ -288,362 +286,362 @@
                             </div>
                         </div>
                     </section>
+                {% endif %}
+                <!--about end-->
 
-                    <!--about end-->
-
-                    <section class="pos-r pt-0">
-                        <div class="hexagon-bg style-2">
-                            <div class="hexagon"></div>
-                            <div class="hexagon"></div>
-                            <div class="hexagon"></div>
-                            <div class="hexagon"></div>
-                        </div>
-                        <div class="container">
-                            <div class="row text-center">
-                                <div class="col-lg-8 col-md-12 ml-auto mr-auto">
-                                    <div class="section-title">
-                                        <div class="title-effect">
-                                            <div class="bar bar-top"></div>
-                                            <div class="bar bar-right"></div>
-                                            <div class="bar bar-bottom"></div>
-                                            <div class="bar bar-left"></div>
-                                        </div>
-                                        <h2 class="title">Our Happy Clients</h2>
-                                        <p>View Some Of Our Testimonials From Happy Clients</p>
+                <section class="pos-r pt-0">
+                    <div class="hexagon-bg style-2">
+                        <div class="hexagon"></div>
+                        <div class="hexagon"></div>
+                        <div class="hexagon"></div>
+                        <div class="hexagon"></div>
+                    </div>
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-lg-8 col-md-12 ml-auto mr-auto">
+                                <div class="section-title">
+                                    <div class="title-effect">
+                                        <div class="bar bar-top"></div>
+                                        <div class="bar bar-right"></div>
+                                        <div class="bar bar-bottom"></div>
+                                        <div class="bar bar-left"></div>
                                     </div>
+                                    <h2 class="title">Our Happy Clients</h2>
+                                    <p>View Some Of Our Testimonials From Happy Clients</p>
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    <!--testimonial style-1 start-->
+                <!--testimonial style-1 start-->
 
-                    <section class="p-0 pos-r" data-bg-img="/static/images/pattern/03.png">
-                        <div class="container">
-                            <div class="row custom-mt-10">
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test1.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=OdqsT5r9N7o"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
+                <section class="p-0 pos-r" data-bg-img="/static/images/pattern/03.png">
+                    <div class="container">
+                        <div class="row custom-mt-10">
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test1.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=OdqsT5r9N7o"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/OdqsT5r9N7o" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test2.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=f39zGQMMbA0"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/f39zGQMMbA0" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test3.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=yRHg-oIjbdI"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/yRHg-oIjbdI" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test4.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=rgh1TupF6WM"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/rgh1TupF6WM" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test5.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=uefcAPVNucU"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/uefcAPVNucU" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test6.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=8KKAajZMFmE"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/8KKAajZMFmE" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test7.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=-W-YPfK5Ozg"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/-W-YPfK5Ozg" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test8.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=n-AqwGhJpKg"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/n-AqwGhJpKg" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test9.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=cey3OGZJQpo"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/cey3OGZJQpo" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test10.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=5pIvXUmClos"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/5pIvXUmClos" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test11.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=RaFvwh4rVv4"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/RaFvwh4rVv4" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test12.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=LpAI4D-zbog"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/LpAI4D-zbog" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test13.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=xRAz29BV9v8"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/xRAz29BV9v8" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
-                                     style="margin-top: 30px;">
-                                    <div class="video-box">
-                                        <img class="img-fluid" src="/static/images/testimonial/test14.png" alt="">
-                                        <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
-                                                                                href="https://www.youtube.com/watch?v=a9c-C6ureog"><i
-                                                class="la la-play"></i></a>
-                                            <div class="spinner-eff">
-                                                <div class="spinner-circle circle-1"></div>
-                                                <div class="spinner-circle circle-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
-                                    <div class="video-responsive my-ifram-in-mobile">
-                                        <iframe width="100%" height="250"
-                                                src="https://www.youtube.com/embed/a9c-C6ureog" frameborder="0"
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/OdqsT5r9N7o" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test2.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=f39zGQMMbA0"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/f39zGQMMbA0" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test3.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=yRHg-oIjbdI"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/yRHg-oIjbdI" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test4.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=rgh1TupF6WM"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/rgh1TupF6WM" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test5.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=uefcAPVNucU"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/uefcAPVNucU" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test6.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=8KKAajZMFmE"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/8KKAajZMFmE" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test7.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=-W-YPfK5Ozg"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/-W-YPfK5Ozg" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test8.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=n-AqwGhJpKg"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/n-AqwGhJpKg" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test9.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=cey3OGZJQpo"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/cey3OGZJQpo" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test10.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=5pIvXUmClos"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/5pIvXUmClos" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test11.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=RaFvwh4rVv4"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/RaFvwh4rVv4" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test12.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=LpAI4D-zbog"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/LpAI4D-zbog" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test13.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=xRAz29BV9v8"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/xRAz29BV9v8" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 ml-auto mr-auto my-btn-in-desktop"
+                                 style="margin-top: 30px;">
+                                <div class="video-box">
+                                    <img class="img-fluid" src="/static/images/testimonial/test14.png" alt="">
+                                    <div class="video-btn video-btn-pos"><a class="play-btn popup-youtube"
+                                                                            href="https://www.youtube.com/watch?v=a9c-C6ureog"><i
+                                            class="la la-play"></i></a>
+                                        <div class="spinner-eff">
+                                            <div class="spinner-circle circle-1"></div>
+                                            <div class="spinner-circle circle-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 my-ifram-in-mobile">
+                                <div class="video-responsive my-ifram-in-mobile">
+                                    <iframe width="100%" height="250"
+                                            src="https://www.youtube.com/embed/a9c-C6ureog" frameborder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
                 </div>
 
 
@@ -805,7 +803,9 @@
                                             <ul class="list-unstyled">
                                                 <li>Create My Financing Plan Access</li>
                                                 <li>Create My Business Credit Building Plan Access</li>
-                                                <li>Create My Credit Repair Plan Access</li>
+                                                {% if dynamic.show_credit_repair_plan %}
+                                                    <li>Create My Credit Repair Plan Access</li>
+                                                {% endif %}
                                                 <li>Apply For Business Loan Access To Get Best Rates</li>
                                                 <li>Business Credit Building Course (Usually $1,000)</li>
                                                 <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, &
@@ -846,7 +846,9 @@
                                             </li>
                                             <li>Create My Financing Plan Access</li>
                                             <li>Create My Business Credit Building Plan Access</li>
-                                            <li>Create My Credit Repair Plan Access</li>
+                                            {% if dynamic.show_credit_repair_plan %}
+                                                <li>Create My Credit Repair Plan Access</li>
+                                            {% endif %}
                                             <li>Apply For Business Loan Access To Get Best Rates</li>
                                             <li>Website Design (Usually $2,000+)</li>
                                             <li>Free Web Hosting For The Entire Year</li>
@@ -870,17 +872,23 @@
                                                 Financing
                                                 Plan Based On Your Current Situation* & Access To 300+ Lenders)
                                             </li>
-                                            <li>Free Access To Our Affiliate Program</li>
-                                            <li>100% action based money-back guarantee if you are not satisfied</li>
+                                            {% if dynamic.show_free_access_to_affiliate_program %}
+                                                <li>Free Access To Our Affiliate Program</li>
+                                            {% endif %}
+                                            {% if dynamic.show_money_back_guarantee %}
+                                                <li>100% action based money-back guarantee if you are not satisfied</li>
+                                            {% endif %}
                                         </ul>
                                         <br>
                                         <div class="col-md-12 mt-2">
                                             <a href="{% url "business:business-credit-steps-onlyprograms" %}"
-                                               class="btn btn-theme btn-circle">$999 Annual Payment Option</a><br><br>
+                                               class="btn btn-theme btn-circle">${{ yearly }} Annual Payment
+                                                Option</a><br><br>
                                             {#                                <a href="/financing" class="btn btn-theme btn-circle">No Money Down Option Subject To#}
                                             {#                                    Financing</a><br><br>#}
                                             <a href="{% url "business:business-credit-steps-onlyprograms" %}"
-                                               class="btn btn-theme btn-circle">$109.99 Monthly Payment Option</a><br>
+                                               class="btn btn-theme btn-circle">${{ monthly }} Monthly Payment
+                                                Option</a><br>
                                         </div>
                                     </div>
                                 </div>

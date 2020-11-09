@@ -82,10 +82,13 @@
                                 Create My {{ verbose_portal_name }} Business Credit
                                 Building Plan </a>
                         </li>
+                        {% if dynamic.show_credit_repair_plan %}
                         <li class="nav-item">
                             <a href="/{{ request.resolver_match.app_name }}/credit-situation" class="nav-link"> Create
                                 My Credit Repair Plan </a>
                         </li>
+                        {% endif %}
+
                         <li class="nav-item">
                             <a class="nav-link" href="javascript: void(0);" aria-expanded="false"><span
                                     class="toggle-none">Business Credit Building <span
@@ -239,6 +242,7 @@
                             <a href="{% url 'businesscreditcourse:home' %}" class="nav-link"> Business Credit Building
                                 Course </a>
                         </li>
+                        {% if dynamic.show_credit_repair_plan %}
                         <li class="nav-item">
                             <a href="{% url 'creditcourse:maincreditfile' %}" class="nav-link"> Personal Credit
                                 Course </a>
@@ -252,6 +256,8 @@
                                     Credit Repair Done For You Services {{ verbose_portal_name }} </a>
                             {% endif %}
                         </li>
+                    {% endif %}
+
                         <li class="nav-item">
                             <a href="/{{ request.resolver_match.app_name }}/customer-financing-offer" class="nav-link">
                                 Offering Financing To Your

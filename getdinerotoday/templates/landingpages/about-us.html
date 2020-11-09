@@ -80,7 +80,7 @@
                             {% if dynamic %}
                                 <p>{{ dynamic.title }} offers a wide range of services. Which include getting clients
                                     loans, building business credit, $1,500 in free marketing, business credit course,
-                                    credit repair course, autodialer, website builder and much more. Our business
+                                    {% if dynamic.show_credit_repair_plan %} credit repair course, {% endif %} autodialer, website builder and much more. Our business
                                     builder program helps you with each step of the business credit building
                                     process.</p>
                                 {#                                <p>{{ dynamic.title }} offers a wide range of products which includes our business#}
@@ -98,34 +98,34 @@
                 </div>
             </div>
         </section>
-
-        <section class="pos-r pt-0">
-            <div class="hexagon-bg style-2">
-                <div class="hexagon"></div>
-                <div class="hexagon"></div>
-                <div class="hexagon"></div>
-                <div class="hexagon"></div>
-            </div>
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-lg-12 col-md-12 ml-auto mr-auto">
-                        <div class="section-title">
-                            <div class="title-effect">
-                                <div class="bar bar-top"></div>
-                                <div class="bar bar-right"></div>
-                                <div class="bar bar-bottom"></div>
-                                <div class="bar bar-left"></div>
+        {% if dynamic.show_why_buy_from_us %}
+            <section class="pos-r pt-0">
+                <div class="hexagon-bg style-2">
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                </div>
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-lg-12 col-md-12 ml-auto mr-auto">
+                            <div class="section-title">
+                                <div class="title-effect">
+                                    <div class="bar bar-top"></div>
+                                    <div class="bar bar-right"></div>
+                                    <div class="bar bar-bottom"></div>
+                                    <div class="bar bar-left"></div>
+                                </div>
+                                <h2 class="title">Why Buy From Us?</h2>
+                                <iframe width="100%" height="515" src="{{ dynamic.why_buy_link }}" frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
                             </div>
-                            <h2 class="title">Why Buy From Us?</h2>
-                            <iframe width="100%" height="515" src="{{ why_buy_video }}" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
+        {% endif %}
         <section class="pos-r">
             <div class="hexagon-bg style-2">
                 <div class="hexagon"></div>
@@ -151,14 +151,17 @@
                             <div class="price-table">
                                 <div class="price-inside">Starter</div>
                                 <div class="price-header mb-3">
-                                <h2 class="price-title">{% if dynamic.is_paid %}Business Credit Information Package{% else %}Forever Free Package{% endif %}</h2>
+                                    <h2 class="price-title">{% if dynamic.is_paid %}Business Credit Information
+                                        Package{% else %}Forever Free Package{% endif %}</h2>
                                     <br>
                                 </div>
                                 <div class="price-list">
                                     <ul class="list-unstyled">
                                         <li>Create My Financing Plan Access</li>
                                         <li>Create My Business Credit Building Plan Access</li>
-                                        <li>Create My Credit Repair Plan Access</li>
+                                        {% if dynamic.show_credit_repair_plan %}
+                                            <li>Create My Credit Repair Plan Access</li>
+                                        {% endif %}
                                         <li>Apply For Business Loan Access To Get Best Rates</li>
                                         <li>Business Credit Building Course (Usually $1,000)</li>
                                         <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash
@@ -197,7 +200,9 @@
                                     </li>
                                     <li>Create My Financing Plan Access</li>
                                     <li>Create My Business Credit Building Plan Access</li>
-                                    <li>Create My Credit Repair Plan Access</li>
+                                    {% if dynamic.show_credit_repair_plan %}
+                                        <li>Create My Credit Repair Plan Access</li>
+                                    {% endif %}
                                     <li>Apply For Business Loan Access To Get Best Rates</li>
                                     <li>Website Design (Usually $2,000+)</li>
                                     <li>Free Web Hosting For The Entire Year</li>
@@ -219,17 +224,20 @@
                                     <li>Full Access To Our Create My Financing Plan Section (*You Get Your Own Financing
                                         Plan Based On Your Current Situation* & Access To 300+ Lenders)
                                     </li>
-                                    <li>Free Access To Our Affiliate Program</li>
-                                    <li>100% action based money-back guarantee if you are not satisfied</li>
-                                </ul>
+                                    {% if dynamic.show_free_access_to_affiliate_program %}
+                                        <li>Free Access To Our Affiliate Program</li>
+                                    {% endif %}
+                                    {% if dynamic.show_money_back_guarantee %}
+                                        <li>100% action based money-back guarantee if you are not satisfied</li>
+                                    {% endif %}                                </ul>
                                 <br>
                                 <div class="col-md-12 mt-2">
                                     <a href="{% url "business:business-credit-steps-onlyprograms" %}"
-                                       class="btn btn-theme btn-circle">$999 Annual Payment Option</a><br><br>
+                                       class="btn btn-theme btn-circle">${{ yearly }} Annual Payment Option</a><br><br>
                                     {#                                <a href="/financing" class="btn btn-theme btn-circle">No Money Down Option Subject To#}
                                     {#                                    Financing</a><br><br>#}
                                     <a href="{% url "business:business-credit-steps-onlyprograms" %}"
-                                       class="btn btn-theme btn-circle">$109.99 Monthly Payment Option</a><br>
+                                       class="btn btn-theme btn-circle">${{ monthly }} Monthly Payment Option</a><br>
                                 </div>
                             </div>
                         </div>

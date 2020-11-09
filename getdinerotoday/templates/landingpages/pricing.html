@@ -72,7 +72,9 @@
                                     <ul class="list-unstyled">
                                         <li>Create My Financing Plan Access</li>
                                         <li>Create My Business Credit Building Plan Access</li>
-                                        <li>Create My Credit Repair Plan Access</li>
+                                        {% if dynamic.show_credit_repair_plan %}
+                                            <li>Create My Credit Repair Plan Access</li>
+                                        {% endif %}
                                         <li>Apply For Business Loan Access To Get Best Rates</li>
                                         <li>Business Credit Building Course (Usually $1,000)</li>
                                         <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash
@@ -111,7 +113,9 @@
                                     </li>
                                     <li>Create My Financing Plan Access</li>
                                     <li>Create My Business Credit Building Plan Access</li>
-                                    <li>Create My Credit Repair Plan Access</li>
+                                    {% if dynamic.show_credit_repair_plan %}
+                                        <li>Create My Credit Repair Plan Access</li>
+                                    {% endif %}
                                     <li>Apply For Business Loan Access To Get Best Rates</li>
                                     <li>Website Design (Usually $2,000+)</li>
                                     <li>Free Web Hosting For The Entire Year</li>
@@ -133,17 +137,21 @@
                                     <li>Full Access To Our Create My Financing Plan Section (*You Get Your Own Financing
                                         Plan Based On Your Current Situation* & Access To 300+ Lenders)
                                     </li>
-                                    <li>Free Access To Our Affiliate Program</li>
-                                    <li>100% action based money-back guarantee if you are not satisfied</li>
+                                    {% if dynamic.show_free_access_to_affiliate_program %}
+                                        <li>Free Access To Our Affiliate Program</li>
+                                    {% endif %}
+                                    {% if dynamic.show_money_back_guarantee %}
+                                        <li>100% action based money-back guarantee if you are not satisfied</li>
+                                    {% endif %}
                                 </ul>
                                 <br>
                                 <div class="col-md-12 mt-2">
                                     <a href="{% url "business:business-credit-steps-onlyprograms" %}"
-                                       class="btn btn-theme btn-circle">$999 Annual Payment Option</a><br><br>
+                                       class="btn btn-theme btn-circle">${{ yearly }} Annual Payment Option</a><br><br>
                                     {#                                <a href="/financing" class="btn btn-theme btn-circle">No Money Down Option Subject To#}
                                     {#                                    Financing</a><br><br>#}
                                     <a href="{% url "business:business-credit-steps-onlyprograms" %}"
-                                       class="btn btn-theme btn-circle">$109.99 Monthly Payment Option</a><br>
+                                       class="btn btn-theme btn-circle">${{ monthly }} Monthly Payment Option</a><br>
                                 </div>
                             </div>
                         </div>
