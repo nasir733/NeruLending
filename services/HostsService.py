@@ -25,7 +25,7 @@ class HostsService:
         except Exception as e:
             pass
 
-        print(hosts_from_model)
+        # print(hosts_from_model)
         if not has_www:
             new_host_patterns = patterns(
                 '',

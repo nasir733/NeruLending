@@ -34,6 +34,10 @@
                                         class="toggle-none">Virtual Card Access</span></a>
                             </li>
                         {% endif %}
+
+
+
+
                         <li class="nav-item">
                             <a href="{% url 'business:create_specific_portal' %}" class="nav-link"> Create My Specific
                                 Portal </a>
@@ -49,6 +53,14 @@
                             <a href="{% url 'business:tradelines' %}"
                                class="nav-link"> Add Business Tradelines </a>
                         </li>
+
+                        {% if request.user.external_resources.all %}
+                            <li class="nav-item">
+                                <a href="{% url "business:external_credentials" %}" class="nav-link"><span
+                                        class="toggle-none">External Credentials</span></a>
+                            </li>
+                        {% endif %}
+
                         {% if not dynamic.is_main_site %}
                             <li class="nav-item">
                                 <a href="https://www.youtube.com/watch?v=tD1H2-1xihA" target="_blank"

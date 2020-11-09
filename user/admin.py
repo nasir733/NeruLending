@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Portal, PortalGoal, Profile, VirtualCard, UserData, NewUserCredentials
+from .models import Portal, PortalGoal, Profile, VirtualCard, UserData, NewUserCredentials, ExternalResourceCredentials
 from orders.models import UserSteps
 
 admin.site.site_header = "Get Dinero Today Admin"
@@ -90,3 +90,6 @@ class UserCredsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(NewUserCredentials, UserCredsAdmin)
+admin.site.register(ExternalResourceCredentials, admin.ModelAdmin)
+
+

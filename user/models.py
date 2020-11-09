@@ -155,3 +155,19 @@ class NewUserCredentials(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class ExternalResourceCredentials(models.Model):
+    class Meta:
+        verbose_name = "8. External Credential"
+        verbose_name_plural = "8. External Credentials"
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='external_resources')
+    name = models.CharField(blank=True, null=True, max_length=50)
+    url = models.URLField(blank=True, null=True, max_length=100)
+    login = models.CharField(blank=True, null=True, max_length=50)
+    password = models.CharField(blank=True, null=True, max_length=50)
+    comment = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.name} {self.user.username}"

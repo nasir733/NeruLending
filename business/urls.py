@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from user.views import CreateSpecificPortal
+from .business_views.paid_views import ExternalCredentialsView
 
 from .views import *
 from getdinerotoday.checkout import StripeCheckout, subscription, charge, remove
@@ -111,6 +112,7 @@ urlpatterns = [
     url('credit-repair-17/', login_required(CreditRepairPlan17View.as_view(), login_url='/user/login'), name='credit_repair_17'),
 
     url('tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
+    url('external_credentials/', login_required(ExternalCredentialsView.as_view(), login_url='/user/login'), name='external_credentials'),
 
     url('faqs/', login_required(FAQsView.as_view(), login_url='/user/login'), name='faqs'),
     url('chat/', login_required(ChatView.as_view(), login_url='/user/login'), name='chat'),

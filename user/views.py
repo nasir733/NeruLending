@@ -11,7 +11,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
-from django.template import RequestContext
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -19,12 +18,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, TemplateView
 
 from dynamic.models import Subdomain
-from orders.models import UserSteps
 from services.OrderDataService import OrderDataService
 from services.StripeService import StripeService
+from user.decorators import unauthenticated_user
 from user.models import Portal, PortalGoal
 from user.models import Profile
-from user.decorators import unauthenticated_user
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -208,7 +206,7 @@ class PortalGoalsDetailView(LoginRequiredMixin, DetailView):
     template_name = "goals/portal_goals.html"
     context_object_name = 'portal_goal'
 
-    def get_object(self):
+    def get_object(self, queryset=None):
         try:
             obj = PortalGoal.objects.get(slug=self.kwargs['slug'])
             return obj
