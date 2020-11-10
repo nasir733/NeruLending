@@ -41,20 +41,20 @@ def BecomingAPartner_update(request, pk, template_name='becomingapartner.html'):
     return render(request, template_name, {'form': form})
 
 
-class BecomingAPartnerView(View):
+class BecomingAPartnerView1(View):
     def get(self, request):
         partners = BecomingAPartner.objects.filter(user=Profile.objects.get(user=request.user))
-        return render(request, "becomingapartner.html", {"partners": partners})
+        return render(request, "becomingapartner1.html", {"partners": partners})
 
     def post(self, request):
         if 'delete' in request.POST:
             try:
                 instance = BecomingAPartner.objects.get(id=request.POST['delete'])
                 instance.delete()
-                return redirect('whitelabelpartnerportal:becomingapartner')
+                return redirect('whitelabelpartnerportal:becomingapartner1')
             except Exception as e:
                 print(e)
-                return redirect('whitelabelpartnerportal:becomingapartner')
+                return redirect('whitelabelpartnerportal:becomingapartner1')
 
         else:
             try:
@@ -75,7 +75,12 @@ class BecomingAPartnerView(View):
                 }
                 new_lead = BecomingAPartner(user=Profile.objects.get(user=request.user), **data)
                 new_lead.save()
-            return redirect('whitelabelpartnerportal:becomingapartner')
+            return redirect('whitelabelpartnerportal:becomingapartner1')
+
+
+class BecomingAPartnerView(View):
+    def get(self, request):
+        return render(request, "becomingapartner.html")
 
 
 class WhiteLabelTrainingView(View):

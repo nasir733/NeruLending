@@ -48,6 +48,8 @@ class Subdomain(models.Model):
     show_appointment = models.BooleanField(default=True)
     appointment_link = models.CharField(max_length=200, blank=True)
 
+    offer_paid_whitelabel = models.BooleanField(default=False)
+
     show_whitelabel_link = models.BooleanField(default=True)
     whitelabelpartner_link = models.CharField(max_length=200, blank=True)
     whitelabel_index_video = models.CharField(max_length=200, blank=True)
