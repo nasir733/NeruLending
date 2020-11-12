@@ -154,6 +154,10 @@
                         <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:productmanagement' %}"
                                                 class="nav-link">Manage Products</a></li>
                     {% endif %}
+                    {% if iswhitelabeladmin %}
+                        <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:manageportal' %}"
+                                                class="nav-link">Manage Portal</a></li>
+                    {% endif %}
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:networkmarketing' %}"
                                             class="nav-link">How To Leverage Your Network</a></li>
                     <!-- <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:enteraffiliates' %}" class="nav-link">Enter Affiliate Agents</a></li> -->

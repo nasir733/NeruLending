@@ -8,6 +8,7 @@ from dynamic.models import Subdomain
 from products.models import Tradelines, UserStepsProduct
 from services.StripeService import StripeService
 from services.WhiteLabelService import WhiteLabelService
+from .forms import WhiteLabelForm
 from .models import *
 
 
@@ -440,13 +441,13 @@ class ProfessionalEmailView(View):
 class ProductManagementView(View):
     def get(self, request):
         subdomain_products = WhiteLabelService.get_whitelabel_products(request)
-        return render(request, "productManagement/productManagement.html", {"subdomain_products": subdomain_products})
+        return render(request, "PortalManagement/productManagement.html", {"subdomain_products": subdomain_products})
 
 
 class EditTradeline(View):
     def get(self, request):
         obj = Tradelines.objects.filter(product_id=request.GET.get('product')).first()
-        return render(request, "productManagement/editTradeline.html", {"tradeline": obj})
+        return render(request, "PortalManagement/editTradeline.html", {"tradeline": obj})
 
     def post(self, request):
         print(request.POST)
@@ -460,7 +461,7 @@ class EditTradeline(View):
 class EditUserSteps(View):
     def get(self, request):
         obj = UserStepsProduct.objects.filter(product_id=request.GET.get('product')).first()
-        return render(request, "productManagement/editUserSteps.html", {"userstep": obj})
+        return render(request, "PortalManagement/editUserSteps.html", {"userstep": obj})
 
     def post(self, request):
         print(request.POST)
@@ -469,3 +470,29 @@ class EditUserSteps(View):
             obj.price = float(request.POST.get('price'))
             obj.save()
         return redirect("whitelabelpartnerportal:productmanagement")
+
+
+class ManageWhitelabel(View):
+    def get(self, request):
+
+        obj = WhiteLabelService.get_administrated_subdomains(request).first()
+
+        form = WhiteLabelForm(instance=obj)
+        return render(request, 'PortalManagement/ManageWhiteLabel.html', {'form': form, 'name': obj.sub_name})
+
+
+    def post(self, request):
+        obj = WhiteLabelService.get_administrated_subdomains(request).first()
+
+        form = WhiteLabelForm(request.POST, instance=obj)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect("whitelabelpartnerportal:manageportal")
+        print('govno')
+        print(form.errors)
+        return redirect("whitelabelpartnerportal:manageportal")
+
+        # obj = WhiteLabelService.get_administrated_subdomains(request).first()
+            # o
