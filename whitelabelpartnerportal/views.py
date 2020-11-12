@@ -4,7 +4,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
 
+from dynamic.models import Subdomain
 from products.models import Tradelines, UserStepsProduct
+from services.StripeService import StripeService
 from services.WhiteLabelService import WhiteLabelService
 from .models import *
 
@@ -81,6 +83,39 @@ class BecomingAPartnerView1(View):
 class BecomingAPartnerView(View):
     def get(self, request):
         return render(request, "becomingapartner.html")
+
+    def post(self, request):
+
+        if 'product' in request.POST:
+
+            sub = Subdomain.objects.filter(sub_name=request.host.name).first()
+
+            if request.POST['product'] == 'premium':
+                product_name = "Premium Partnership Program"
+                response = StripeService.create_product(product_name, float(sub.premium_partnership_program_price), recurring=2)
+                ordering_products = [{
+                    'name': product_name,
+                    'price': float(sub.premium_partnership_program_price),
+                    'quantity': 1,
+                    'type': 'whitelabel',
+                    'product_id': response['prod_id'],
+                    'price_id': response['price_id'],
+                }]
+                request.session['ordering_products'] = ordering_products
+            elif request.POST['product'] == 'basic':
+                product_name = "Basic Partnership Program Package"
+                response = StripeService.create_product(product_name, float(sub.basic_partnership_program_price), recurring=3)
+                ordering_products = [{
+                    'name': product_name,
+                    'price': float(sub.basic_partnership_program_price),
+                    'quantity': 1,
+                    'type': 'whitelabel',
+                    'product_id': response['prod_id'],
+                    'price_id': response['price_id'],
+                }]
+                request.session['ordering_products'] = ordering_products
+
+        return redirect("business:stripe_checkout")
 
 
 class WhiteLabelTrainingView(View):

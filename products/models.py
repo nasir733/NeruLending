@@ -55,8 +55,7 @@ class Tradelines(models.Model):
             return
 
         if not self.product_id:
-            response = StripeService.create_product(str(self), float(self.price) + float(self.charge),
-                                                    self.company_name)
+            response = StripeService.create_product(str(self), float(self.price) + float(self.charge), self.company_name)
             self.product_id = response['prod_id']
             self.price_id = response['price_id']
             self.price_lookup = response['price_lookup']

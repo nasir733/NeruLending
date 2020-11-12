@@ -55,11 +55,12 @@
                             <div class="text-center py-4"><h1>${{ dynamic.basic_partnership_program_price }} /
                                 Year</h1>
                                 <h3>(We Do Have Financing Available)</h3></div>
-                            <form>
-                                <button type="submit" class="btn btn-primary btn-block">Order Now</button>
-                            </form>
+                                <form method="post">{% csrf_token %}
+                                    <input type="hidden" name="product" value="basic">
+                                    <button type="submit" class="btn btn-primary btn-block">Order Now</button>
+                                </form>
                         {% else %}
-                             <div class="text-center pt-4"><h1>Free of charge</h1></div>
+                            <div class="text-center pt-4"><h1>Free of charge</h1></div>
                             <a class="btn btn-primary btn-block mt-4"
                                href="{% url "whitelabelpartnerportal:becomingapartner1" %}">Register</a>
                         {% endif %}
@@ -102,8 +103,10 @@
                             Month</h1>
                             <h3>3 Month Commitment</h3>
                             <h3>(Not Including Marketing Budget)</h3></div>
-
-                        <a class="btn btn-primary btn-block">Order Now</a>
+                        <form method="post">{% csrf_token %}
+                            <input type="hidden" name="product" value="premium">
+                            <button class="btn btn-primary btn-block">Order Now</button>
+                        </form>
                     </div>
                 </div>
             </div>
