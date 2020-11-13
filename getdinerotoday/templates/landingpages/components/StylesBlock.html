@@ -1,4 +1,4 @@
-<link rel="shortcut icon" href="/static/images/favicon.ico"/>
+{% if dynamic and dynamic.favicon %}<link rel="shortcut icon" href="{{ dynamic.favicon }}"/>{% endif %}
 <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900" rel="stylesheet">
 <link href="/static/css/animate.css" rel="stylesheet" type="text/css"/>

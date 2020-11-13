@@ -1776,7 +1776,7 @@ a.text-muted:hover {
   background-color: #fff;
   background-image: none; }
 
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], input[type="url"], input[type="number"] {
   font-size: 13px;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;

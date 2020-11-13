@@ -2,13 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-        {% if dynamic.is_main_site %}
-            {{ dynamic.title }}
-        {% else %}
-            Get Dinero Today
-        {% endif %}
-    </title>
+    <title>{{ dynamic.favicon_title }}</title>
     {% include "components/StylesBlock.html" %}
     {% block extrastyle %}
     {% endblock extrastyle %}
