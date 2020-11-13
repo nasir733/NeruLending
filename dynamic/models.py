@@ -7,7 +7,7 @@ from user.models import Profile
 
 app_name = 'dynamic'
 
-default_front_text = "We Help Businesses Acquire Business Credit With Our Free Software, Mobile App, & Google Chrome Extension. Also, We Have A Free Personal Credit, Marketing, & Business Credit Course In Our Software As Well. Get $1,500 In Free Marketing, & Only Pay For Real Services Only When You Need It & Would Like To Upgrade & Purchase Our Business Credit Builder Package."
+default_front_text = 'We Help Businesses Acquire Business Credit With Our Free Software, Mobile App, & Google Chrome Extension. Also, We Have A Free Personal Credit, Marketing, & Business Credit Course In Our Software As Well. Get $1,500 In Free Marketing, & Only Pay For Real Services Only When You Need It & Would Like To Upgrade & Purchase Our Business Credit Builder Package.'
 default_about_text = 'Get Dinero Today offers a wide range of services. Which include getting clients loans, building business credit, $1,500 in free marketing, business credit course, autodialer, website builder and much more. Our business builder program helps you with each step of the business credit building process.'
 
 default_credit_repair_text = 'Click The Button Below To Have One On One Credit Repair <br> Start Fixing Your Credit For As Low As $49.99 Per Month'
@@ -65,8 +65,6 @@ class Subdomain(models.Model):
     credit_repair_service_image = models.CharField(max_length=200, blank=True, default='https://www.creditfirm.net/wp-content/uploads/2012/06/CreditFirm-Logo-300x182.jpg')
     credit_repair_service_button_text = models.CharField(max_length=200, blank=True, default='Click Here To Get Your Free Consultation')
     credit_repair_consultation_link = models.CharField(max_length=200, blank=True, default='https://shareasale.com/r.cfm?b=520260&u=2228198&m=49614&urllink=&afftrack=')
-
-
 
     def __str__(self):
         return self.sub_name
