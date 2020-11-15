@@ -14,7 +14,6 @@ default_credit_repair_text = 'Click The Button Below To Have One On One Credit R
 
 
 class Subdomain(models.Model):
-
     # General
     is_payment_done = models.BooleanField(default=False)
     sub_name = models.CharField(max_length=300)
@@ -49,7 +48,8 @@ class Subdomain(models.Model):
     chromeExt = models.URLField(max_length=300)
     homeVideo = models.URLField(max_length=300)
     extensionVideo = models.URLField(max_length=300)
-    faq_page = models.CharField(max_length=300, null=True,default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
+    faq_page = models.CharField(max_length=300, null=True,
+                                default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
     creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
     appointment_link = models.CharField(max_length=200, blank=True)
     why_buy_link = models.CharField(max_length=200, blank=True, default='https://www.youtube.com/embed/bM8A5BDZglk')
@@ -66,8 +66,10 @@ class Subdomain(models.Model):
     show_whitelabel_link = models.BooleanField(default=True)
     whitelabelpartner_link = models.CharField(max_length=200, blank=True)
     whitelabel_index_video = models.CharField(max_length=200, blank=True)
-    basic_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Annual",max_digits=50, decimal_places=2, default=2000.00)
-    premium_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Monthly",max_digits=50, decimal_places=2, default=1000.00)
+    basic_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Annual",
+                                                          max_digits=50, decimal_places=2, default=2000.00)
+    premium_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Monthly",
+                                                            max_digits=50, decimal_places=2, default=1000.00)
 
     # Affiliate Section
     show_free_access_to_affiliate_program = models.BooleanField(default=False)
@@ -77,9 +79,12 @@ class Subdomain(models.Model):
     # Credit Repair Services
     show_credit_repair_plan = models.BooleanField(default=True)
     credit_repair_service_text = models.TextField(default=default_credit_repair_text, null=True)
-    credit_repair_service_image = models.CharField(max_length=200, blank=True, default='https://www.creditfirm.net/wp-content/uploads/2012/06/CreditFirm-Logo-300x182.jpg')
-    credit_repair_service_button_text = models.CharField(max_length=200, blank=True, default='Click Here To Get Your Free Consultation')
-    credit_repair_consultation_link = models.CharField(max_length=200, blank=True, default='https://shareasale.com/r.cfm?b=520260&u=2228198&m=49614&urllink=&afftrack=')
+    credit_repair_service_image = models.CharField(max_length=200, blank=True,
+                                                   default='https://www.creditfirm.net/wp-content/uploads/2012/06/CreditFirm-Logo-300x182.jpg')
+    credit_repair_service_button_text = models.CharField(max_length=200, blank=True,
+                                                         default='Click Here To Get Your Free Consultation')
+    credit_repair_consultation_link = models.CharField(max_length=200, blank=True,
+                                                       default='https://shareasale.com/r.cfm?b=520260&u=2228198&m=49614&urllink=&afftrack=')
 
     def __str__(self):
         return self.sub_name

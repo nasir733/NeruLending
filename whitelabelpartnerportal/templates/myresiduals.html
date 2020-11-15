@@ -30,6 +30,10 @@
                         <table id="datatable" class="table table-striped dt-responsive nowrap">
                             <thead>
                             <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Business Name</th>
+                                <th>Commissions made</th>
                                 <th>Amount Of Residuals</th>
                                 <th>Product</th>
                                 <th>Payout Date</th>
@@ -38,6 +42,10 @@
                             <tbody>
                             {% for residual in residuals %}
                                 <tr>
+                                    <td>{{ residual.first_name }}</td>
+                                    <td>{{ residual.last_name }}</td>
+                                    <td>{{ residual.business_name }}</td>
+                                    <td>{{ residual.commissions_made }}</td>
                                     <td>${{ residual.amountofresiduals }}</td>
                                     <td>{{ residual.product }}</td>
                                     <td>{{ residual.payout_date }}</td>

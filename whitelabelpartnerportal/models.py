@@ -18,6 +18,10 @@ class Residual(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_residual'
 
+    first_name = models.CharField(max_length=200, null=True)
+    last_name = models.CharField(max_length=200, null=True)
+    business_name = models.CharField(max_length=200, null=True)
+    commissions_made = models.CharField(max_length=200, null=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
     amountofresiduals = models.CharField(max_length=500, null=True)
     product = models.CharField(max_length=500, null=True)
