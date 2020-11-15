@@ -23,6 +23,8 @@ class WhiteLabelForm(forms.ModelForm):
             'show_free_access_to_affiliate_program',
             'whitelabel_index_video',
             'is_main_site',
+            'faq_page',
+            'is_paid_for_whitelabel'
         ]
 
 

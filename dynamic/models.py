@@ -12,17 +12,24 @@ default_about_text = 'Get Dinero Today offers a wide range of services. Which in
 
 default_credit_repair_text = 'Click The Button Below To Have One On One Credit Repair <br> Start Fixing Your Credit For As Low As $49.99 Per Month'
 
+
 class Subdomain(models.Model):
+
+    # General
     is_payment_done = models.BooleanField(default=False)
     sub_name = models.CharField(max_length=300)
-    webinar = models.URLField(max_length=300)
-    iphoneApp = models.URLField(max_length=300)
-    androidApp = models.URLField(max_length=300)
-    chromeExt = models.URLField(max_length=300)
-    homeVideo = models.URLField(max_length=300)
-    extensionVideo = models.URLField(max_length=300)
-    faq_page = models.CharField(max_length=300, null=True,default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
-    creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
+    is_main_site = models.BooleanField(default=False)
+    admins = models.ManyToManyField(Profile, related_name='portals')
+
+    # Styles and Info
+    can_edit = models.BooleanField(default=False)
+    primary_color = models.CharField(max_length=200, blank=True)
+    secondary_color = models.CharField(max_length=200, blank=True)
+    accent_color = models.CharField(max_length=200, blank=True)
+    bg_color = models.CharField(max_length=200, blank=True)
+    appImage = models.CharField(max_length=200, blank=True)
+    favicon = models.ImageField(upload_to=get_file_path, blank=True)
+    logo = models.ImageField(upload_to=get_file_path)
     email = models.CharField(max_length=200)
     title = models.CharField(max_length=200, null=True)
     favicon_title = models.CharField(max_length=200, null=True)
@@ -31,33 +38,41 @@ class Subdomain(models.Model):
     aboutus_text = models.TextField("About Us text", default=default_about_text, null=True)
     address = models.CharField(max_length=200, null=True)
     phno = models.CharField(blank=True, max_length=100)
-    logo = models.ImageField(upload_to=get_file_path)
-    favicon = models.ImageField(upload_to=get_file_path, blank=True)
-    appImage = models.CharField(max_length=200, blank=True)
-    primary_color = models.CharField(max_length=200, blank=True)
-    secondary_color = models.CharField(max_length=200, blank=True)
-    accent_color = models.CharField(max_length=200, blank=True)
-    bg_color = models.CharField(max_length=200, blank=True)
-    basic_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Annual",max_digits=50, decimal_places=2, default=2000.00)
-    premium_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Monthly",max_digits=50, decimal_places=2, default=1000.00)
-    admins = models.ManyToManyField(Profile, related_name='portals')
+    show_money_back_guarantee = models.BooleanField(default=True)
+    show_why_buy_from_us = models.BooleanField(default=True)
+    show_appointment = models.BooleanField(default=True)
+
+    # Links
+    webinar = models.URLField(max_length=300)
+    iphoneApp = models.URLField(max_length=300)
+    androidApp = models.URLField(max_length=300)
+    chromeExt = models.URLField(max_length=300)
+    homeVideo = models.URLField(max_length=300)
+    extensionVideo = models.URLField(max_length=300)
+    faq_page = models.CharField(max_length=300, null=True,default='https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ')
+    creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
+    appointment_link = models.CharField(max_length=200, blank=True)
+    why_buy_link = models.CharField(max_length=200, blank=True, default='https://www.youtube.com/embed/bM8A5BDZglk')
+
+    # Prices
     is_paid = models.BooleanField(default=False)
     portal_price = models.DecimalField(verbose_name="Portal price", max_digits=50, decimal_places=2, default=0)
-    is_main_site = models.BooleanField(default=False)
+
+    # White Label Section
+    is_paid_for_whitelabel = models.BooleanField(default=False)
     show_index_white_label = models.BooleanField(default=False)
-    show_affiliate = models.BooleanField(default=False)
-    affiliate_link = models.CharField(max_length=200, blank=True)
     show_becoming_whitelabel_partner = models.BooleanField(default=False)
-    show_appointment = models.BooleanField(default=True)
-    appointment_link = models.CharField(max_length=200, blank=True)
     offer_paid_whitelabel = models.BooleanField(default=False)
     show_whitelabel_link = models.BooleanField(default=True)
     whitelabelpartner_link = models.CharField(max_length=200, blank=True)
     whitelabel_index_video = models.CharField(max_length=200, blank=True)
-    show_why_buy_from_us = models.BooleanField(default=True)
-    why_buy_link = models.CharField(max_length=200, blank=True, default='https://www.youtube.com/embed/bM8A5BDZglk')
-    show_money_back_guarantee = models.BooleanField(default=True)
-    show_free_access_to_affiliate_program = models.BooleanField(default=True)
+    basic_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Annual",max_digits=50, decimal_places=2, default=2000.00)
+    premium_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Monthly",max_digits=50, decimal_places=2, default=1000.00)
+
+    # Affiliate Section
+    show_free_access_to_affiliate_program = models.BooleanField(default=False)
+    show_affiliate = models.BooleanField(default=False)
+    affiliate_link = models.CharField(max_length=200, blank=True)
 
     # Credit Repair Services
     show_credit_repair_plan = models.BooleanField(default=True)

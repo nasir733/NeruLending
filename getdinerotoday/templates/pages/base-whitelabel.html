@@ -142,8 +142,10 @@
                         Marketing Return On Investment</a></li>
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:whitelabeltraining' %}"
                                             class="nav-link">White Label Training</a></li>
+                {% if dynamic.is_paid_for_whitelabel %}
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:myresiduals' %}" class="nav-link">My
                         Residuals</a></li>
+                {% endif %}
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:enternewleads' %}" class="nav-link">Enter
                         New Leads</a></li>
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:leadoverview' %}" class="nav-link">Lead
