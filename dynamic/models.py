@@ -31,7 +31,7 @@ class Subdomain(models.Model):
     logo = models.ImageField(upload_to=get_file_path)
     email = models.CharField(max_length=200)
     title = models.CharField(max_length=200, null=True)
-    favicon_title = models.CharField(max_length=200, null=True)
+    favicon_title = models.CharField(verbose_name="Tab Title", max_length=200, null=True)
     seo_description = models.CharField(max_length=200, null=True)
     frontpage_text = models.TextField("Main text", default=default_front_text, null=True)
     aboutus_text = models.TextField("About Us text", default=default_about_text, null=True)
