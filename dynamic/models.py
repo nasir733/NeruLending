@@ -26,6 +26,7 @@ class Subdomain(models.Model):
     secondary_color = models.CharField(max_length=200, blank=True)
     accent_color = models.CharField(max_length=200, blank=True)
     bg_color = models.CharField(max_length=200, blank=True)
+    login_window_color = models.CharField(max_length=200, blank=True)
     appImage = models.CharField(max_length=200, blank=True)
     favicon = models.ImageField(upload_to=get_file_path, blank=True)
     logo = models.ImageField(upload_to=get_file_path)

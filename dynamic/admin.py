@@ -3,10 +3,19 @@ from django.contrib import admin
 
 from products.services import create_usersteps_for_subdomain
 from .models import Subdomain
+# from import_export.admin import ImportExportModelAdmin
+# from import_export import resources
 
 # Register your models here.
 
 app = apps.get_app_config('dynamic')
+
+#
+# class BookResource(resources.ModelResource):
+#
+#     class Meta:
+#         model = Subdomain
+#         fields = ('sub_name', 'phno')
 
 
 class SubdomainAdmin(admin.ModelAdmin):
@@ -18,6 +27,7 @@ class SubdomainAdmin(admin.ModelAdmin):
                     'accent_color', 'bg_color')
     filter_horizontal = ('admins',)
     actions = ['create_user_steps']
+    # resource_class = BookResource
 
     def create_user_steps(self, request, queryset):
         for subdomain in queryset:
