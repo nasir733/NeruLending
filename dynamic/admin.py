@@ -26,14 +26,21 @@ class SubdomainAdmin(admin.ModelAdmin):
                     'primary_color', 'secondary_color',
                     'accent_color', 'bg_color')
     filter_horizontal = ('admins',)
-    actions = ['create_user_steps']
+    actions = ['create_user_steps', 'payment_done']
     # resource_class = BookResource
 
     def create_user_steps(self, request, queryset):
         for subdomain in queryset:
             create_usersteps_for_subdomain(subdomain)
 
+    def payment_done(self, request, queryset):
+        for subdomain in queryset:
+            subdomain.is_payment_done = True
+            subdomain.save()
+
+
     create_user_steps.short_description = "Create user steps"
+    payment_done.short_description = "Make Payment Done"
 
 
 admin.site.register(Subdomain, SubdomainAdmin)
