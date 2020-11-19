@@ -10,13 +10,14 @@ app_name = 'dynamic'
 default_front_text = 'We Help Businesses Acquire Business Credit With Our Free Software, Mobile App, & Google Chrome Extension. Also, We Have A Free Personal Credit, Marketing, & Business Credit Course In Our Software As Well. Get $1,500 In Free Marketing, & Only Pay For Real Services Only When You Need It & Would Like To Upgrade & Purchase Our Business Credit Builder Package.'
 default_about_text = 'Get Dinero Today offers a wide range of services. Which include getting clients loans, building business credit, $1,500 in free marketing, business credit course, autodialer, website builder and much more. Our business builder program helps you with each step of the business credit building process.'
 
-default_credit_repair_text = 'Click The Button Below To Have One On One Credit Repair <br> Start Fixing Your Credit For As Low As $49.99 Per Month'
+default_credit_repair_text = """Click The Button Below To Have One On One Credit Repair 
+Start Fixing Your Credit For As Low As $49.99 Per Month"""
 
 
 class Subdomain(models.Model):
     # General
-    is_payment_done = models.BooleanField(default=False)
-    sub_name = models.CharField(max_length=300)
+    is_payment_done = models.BooleanField(default=True)
+    sub_name = models.CharField(max_length=300, unique=True)
     is_main_site = models.BooleanField(default=False)
     admins = models.ManyToManyField(Profile, related_name='portals')
 
@@ -27,10 +28,10 @@ class Subdomain(models.Model):
     accent_color = models.CharField(max_length=200, blank=True)
     bg_color = models.CharField(max_length=200, blank=True)
     login_window_color = models.CharField(max_length=200, blank=True)
-    appImage = models.CharField(max_length=200, blank=True)
+    appImage = models.CharField(max_length=200, blank=True, default='/static/images/thebusinessbuildersapp.png')
     favicon = models.ImageField(upload_to=get_file_path, blank=True)
     logo = models.ImageField(upload_to=get_file_path)
-    email = models.CharField(max_length=200)
+    email = models.CharField(max_length=200, default='info@businesscreditbuildersllc.com', null=True, blank=True)
     title = models.CharField(max_length=200, null=True)
     favicon_title = models.CharField(verbose_name="Tab Title", max_length=200, null=True)
     seo_description = models.CharField(max_length=200, null=True)
@@ -43,10 +44,10 @@ class Subdomain(models.Model):
     show_appointment = models.BooleanField(default=True)
 
     # Links
-    webinar = models.URLField(max_length=300)
-    iphoneApp = models.URLField(max_length=300)
-    androidApp = models.URLField(max_length=300)
-    chromeExt = models.URLField(max_length=300)
+    webinar = models.URLField(max_length=300, default='https://youtu.be/xNCfnbGT5hY')
+    iphoneApp = models.URLField(max_length=300, default='https://apps.apple.com/us/app/the-business-credit-builders/id1528895728')
+    androidApp = models.URLField(max_length=300, default='https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.businesscreditbuilders')
+    chromeExt = models.URLField(max_length=300, default='https://chrome.google.com/webstore/detail/the-business-credit-build/jpbbaabmhfpfdjnomgdieempedlaelfi')
     homeVideo = models.URLField(max_length=300)
     extensionVideo = models.URLField(max_length=300)
     faq_page = models.CharField(max_length=300, null=True,
