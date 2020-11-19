@@ -25,7 +25,7 @@ class SubdomainResource(resources.ModelResource):
             row['sub_name'] = row['sub_name'] + str(count)
             count += 1
         row['sub_name'] = row['sub_name'] + 'businessbuilders'
-        row['sub_name'] = row['sub_name'].lower()
+        row['sub_name'] = row['sub_name'].lower().replace(" ", "")
 
 
 # class SubdomainAdmin(admin.ModelAdmin):
@@ -37,7 +37,7 @@ class SubdomainAdmin(ImportExportModelAdmin):
                     'primary_color', 'secondary_color',
                     'accent_color', 'bg_color')
     filter_horizontal = ('admins',)
-    actions = ['create_user_steps', 'payment_done']
+    actions = ['create_user_steps', 'payment_done', 'default_appimage', 'default_email', 'default_links']
     resource_class = SubdomainResource
 
     def create_user_steps(self, request, queryset):
@@ -59,10 +59,19 @@ class SubdomainAdmin(ImportExportModelAdmin):
             subdomain.email = 'info@businesscreditbuildersllc.com'
             subdomain.save()
 
+    def default_links(self, request, queryset):
+        for subdomain in queryset:
+            subdomain.webinar = 'https://youtu.be/xNCfnbGT5hY'
+            subdomain.iphoneApp = 'https://apps.apple.com/us/app/the-business-credit-builders/id1528895728'
+            subdomain.androidApp = 'https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.businesscreditbuilders'
+            subdomain.chromeExt = 'https://chrome.google.com/webstore/detail/the-business-credit-build/jpbbaabmhfpfdjnomgdieempedlaelfi'
+            subdomain.save()
+
     create_user_steps.short_description = "Create user steps"
     payment_done.short_description = "Make Payment Done"
     payment_done.default_appimage = "Set Default App Image"
-    payment_done.default_appimage = "Set Default Email"
+    payment_done.default_email = "Set Default Email"
+    payment_done.default_links = "Set Default Links"
 
 
 admin.site.register(Subdomain, SubdomainAdmin)
