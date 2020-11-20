@@ -65,6 +65,8 @@ class SubdomainAdmin(ImportExportModelAdmin):
             subdomain.iphoneApp = 'https://apps.apple.com/us/app/the-business-credit-builders/id1528895728'
             subdomain.androidApp = 'https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.businesscreditbuilders'
             subdomain.chromeExt = 'https://chrome.google.com/webstore/detail/the-business-credit-build/jpbbaabmhfpfdjnomgdieempedlaelfi'
+            subdomain.homeVideo = 'https://youtu.be/xNCfnbGT5hY'
+            subdomain.extensionVideo = 'https://www.youtube.com/watch?v=Z1HK9uSOMCI'
             subdomain.save()
 
     create_user_steps.short_description = "Create user steps"
