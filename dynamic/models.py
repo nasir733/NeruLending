@@ -23,9 +23,9 @@ class Subdomain(models.Model):
 
     # Styles and Info
     can_edit = models.BooleanField(default=False)
-    primary_color = models.CharField(max_length=200, blank=True)
-    secondary_color = models.CharField(max_length=200, blank=True)
-    accent_color = models.CharField(max_length=200, blank=True, default='#ffffff')
+    primary_color = models.CharField(max_length=200, blank=True, default='#916e06')
+    secondary_color = models.CharField(max_length=200, blank=True, default='#fffff')
+    accent_color = models.CharField(max_length=200, blank=True, default='#115d22')
     bg_color = models.CharField(max_length=200, blank=True, default='#333333')
     login_window_color = models.CharField(max_length=200, blank=True, default='#ffffff')
     appImage = models.CharField(max_length=200, blank=True, default='/static/images/thebusinessbuildersapp.png')

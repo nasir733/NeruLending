@@ -28,7 +28,6 @@ class SubdomainResource(resources.ModelResource):
         row['sub_name'] = row['sub_name'].lower().replace(" ", "")
 
 
-# class SubdomainAdmin(admin.ModelAdmin):
 class SubdomainAdmin(ImportExportModelAdmin):
     list_display = ('sub_name', 'is_payment_done', 'webinar',
                     'iphoneApp', 'androidApp', 'chromeExt',
@@ -37,7 +36,7 @@ class SubdomainAdmin(ImportExportModelAdmin):
                     'primary_color', 'secondary_color',
                     'accent_color', 'bg_color')
     filter_horizontal = ('admins',)
-    actions = ['create_user_steps', 'payment_done', 'default_appimage', 'default_email', 'default_links']
+    actions = ['create_user_steps', 'payment_done', 'default_appimage', 'default_email', 'default_links', 'default_colors']
     resource_class = SubdomainResource
 
     def create_user_steps(self, request, queryset):
@@ -69,11 +68,21 @@ class SubdomainAdmin(ImportExportModelAdmin):
             subdomain.extensionVideo = 'https://www.youtube.com/watch?v=Z1HK9uSOMCI'
             subdomain.save()
 
+    def default_colors(self, request, queryset):
+        for subdomain in queryset:
+            subdomain.primary_color = '#916e06'
+            subdomain.secondary_color = '#fffff'
+            subdomain.accent_color = '#115d22'
+            subdomain.bg_color = '#333333'
+            subdomain.login_window_color = '#ffffff'
+            subdomain.save()
+
     create_user_steps.short_description = "Create user steps"
     payment_done.short_description = "Make Payment Done"
     payment_done.default_appimage = "Set Default App Image"
     payment_done.default_email = "Set Default Email"
     payment_done.default_links = "Set Default Links"
+    payment_done.default_colors = "Set Default Colors"
 
 
 admin.site.register(Subdomain, SubdomainAdmin)
