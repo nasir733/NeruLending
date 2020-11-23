@@ -89,6 +89,11 @@ class ContactView(View):
         return render(request, 'landingpages/contact.html')
 
 
+class CustomerSuccessAgentView(View):
+    def get(self, request):
+        return render(request, 'landingpages/customersuccessagent.html')
+
+
 class WhiteLabelView(View):
     def get(self, request):
         return render(request, 'landingpages/whitelabel.html')

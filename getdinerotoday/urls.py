@@ -71,6 +71,7 @@ urlpatterns = [
     url('webinaroffer/', WebinarOfferView.as_view(), name='webinaroffer'),
     url('partner/', PartnerView.as_view(), name='partner'),
     url('contact/', ContactView.as_view(), name='contact'),
+    url('customersuccessagent/', CustomerSuccessAgentView.as_view(), name='customersuccessagent'),
     url('whitelabel/', WhiteLabelView.as_view(), name='whitelabel'),
     url('affiliate_program/', AffiliatelView.as_view(), name='affiliate'),
     url('faq/', FAQView.as_view(), name='faq'),
