@@ -242,21 +242,27 @@
                             <a href="{% url 'businesscreditcourse:home' %}" class="nav-link"> Business Credit Building
                                 Course </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'business:lifeevents' %}" class="nav-link"> Normal Life Events </a>
+                        </li>
+
                         {% if dynamic.show_credit_repair_plan %}
-                        <li class="nav-item">
-                            <a href="{% url 'creditcourse:maincreditfile' %}" class="nav-link"> Personal Credit
-                                Course </a>
-                        </li>
-                        <li class="nav-item">
-                            {% if dynamic and dynamic.creditRepairLink %}
-                                <a href="{{ dynamic.creditRepairLink }}" class="nav-link">Personal Credit Repair Done
-                                    For You Services {{ verbose_portal_name }} </a>
-                            {% else %}
-                                <a href="/{{ request.resolver_match.app_name }}/credit-affiliate" class="nav-link">Personal
-                                    Credit Repair Done For You Services {{ verbose_portal_name }} </a>
-                            {% endif %}
-                        </li>
-                    {% endif %}
+                            <li class="nav-item">
+                                <a href="{% url 'creditcourse:maincreditfile' %}" class="nav-link"> Personal Credit
+                                    Course </a>
+                            </li>
+                            <li class="nav-item">
+                                {% if dynamic and dynamic.creditRepairLink %}
+                                    <a href="{{ dynamic.creditRepairLink }}" class="nav-link">Personal Credit Repair
+                                        Done
+                                        For You Services {{ verbose_portal_name }} </a>
+                                {% else %}
+                                    <a href="/{{ request.resolver_match.app_name }}/credit-affiliate" class="nav-link">Personal
+                                        Credit Repair Done For You Services {{ verbose_portal_name }} </a>
+                                {% endif %}
+                            </li>
+                        {% endif %}
 
                         <li class="nav-item">
                             <a href="/{{ request.resolver_match.app_name }}/customer-financing-offer" class="nav-link">

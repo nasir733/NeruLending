@@ -5,7 +5,7 @@ from .business_views.paid_views import ExternalCredentialsView
 
 from .views import *
 from getdinerotoday.checkout import StripeCheckout, subscription, charge, remove
-from business.business_views.business_credit_building import TradelinesView, BusinessCreditStepsView, WebsiteCreationView, FaxNumberView, TollFreeNumberOptionsView
+from business.business_views.business_credit_building import *
 
 app_name = 'business'
 urlpatterns = [
@@ -110,6 +110,12 @@ urlpatterns = [
     url('credit-repair-15/', login_required(CreditRepairPlan15View.as_view(), login_url='/user/login'), name='credit_repair_15'),
     url('credit-repair-16/', login_required(CreditRepairPlan16View.as_view(), login_url='/user/login'), name='credit_repair_16'),
     url('credit-repair-17/', login_required(CreditRepairPlan17View.as_view(), login_url='/user/login'), name='credit_repair_17'),
+
+    url('lifeevents/', login_required(LifeEventsView.as_view(), login_url='/user/login'), name='lifeevents'),
+    url('lifeeventsfinancialproducts/', login_required(LifeEventsFinancialProductsView.as_view(), login_url='/user/login'), name='lifeeventsfinancialproducts'),
+    url('business-credit-steps-guided/',
+        login_required(BusinessCreditStepsGuidedView.as_view(), login_url='/user/login'),
+        name='business-credit-steps-guided'),
 
     url('tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
     url('external_credentials/', login_required(ExternalCredentialsView.as_view(), login_url='/user/login'), name='external_credentials'),

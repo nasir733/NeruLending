@@ -4,7 +4,6 @@ import shutil
 
 import getdinerotoday.settings.settings as settings
 
-
 def getListOfFiles(dirName):
     listOfFile = os.listdir(dirName)
     allFiles = list()
@@ -143,3 +142,9 @@ if __name__ == '__main__':
         else:
             parser.format_help()
             parser.exit(1, message='Check action, portal, url')
+
+    from user.models import *
+    usr = User.objects.all().first()
+    profile = Profile(user=usr)
+    profile.save()
+    parser.exit(0, message=f'Successfully added profile')

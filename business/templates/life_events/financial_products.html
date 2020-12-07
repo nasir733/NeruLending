@@ -1,0 +1,43 @@
+{#{% extends "pages/base-business.html" %}#}
+{% extends request.resolver_match.page_template %}
+{% load static %}
+
+{% block extrastyle %}
+
+    <style>
+        .btn {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+    </style>
+
+{% endblock extrastyle %}
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% block content %}
+
+    <div class="row page-header">
+        <div class="col-lg-6 align-self-center ">
+            <h2>Normal Life Events</h2>
+        </div>
+    </div>
+
+    <section class="main-content">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-6">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">Choose Financial Products</div>
+                    <div class="card-body">
+                        <div class="my-1"><a class="btn btn-primary btn-block" href="{% url "business:nocredit-financings" %}">No Credit Check Loans</a></div>
+                        <div class="my-1"><a class="btn btn-primary btn-block" href="{% url "business:personal-loan" %}">Personal Loans</a></div>
+                        <div class="my-1"><a class="btn btn-primary btn-block" href="{% url "business:personal-credit-card" %}">Personal Credit Cards</a></div>
+                        <div class="my-1"><a class="btn btn-primary btn-block" href="{% url "business:business-credit-card" %}">Business Credit Cards</a></div>
+                        <div class="my-1"><a class="btn btn-primary btn-block" href="{% url "whitelabelpartnerportal:becomingapartner" %}">Become A Partner</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

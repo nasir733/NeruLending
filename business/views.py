@@ -1576,3 +1576,13 @@ class FAQsView(View):
 class ChatView(View):
     def get(self, request):
         return render(request, "help/chat.html", get_context_for_all(request))
+
+
+class LifeEventsView(View):
+    def get(self, request):
+        return render(request, "life_events/lifeevents.html", get_context_for_all(request))
+
+
+class LifeEventsFinancialProductsView(View):
+    def get(self, request):
+        return render(request, "life_events/financial_products.html", get_context_for_all(request))
