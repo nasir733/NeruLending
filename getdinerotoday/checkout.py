@@ -61,9 +61,7 @@ class StripeCheckout(View):
             amount = sum([i['price'] * i['quantity'] for i in products])
 
         offer_steps = request.session.get('offer_steps')
-        if offer_steps:
-            request.session.pop('offer_steps')
-        print(offer_steps)
+
         cart_uuid = uuid4()
         request.session['cart_uuid'] = str(cart_uuid)
         return render(request,
@@ -117,6 +115,11 @@ def subscription(request):
         StripeService.make_purchases(products, stripe_id, source_id)
         if source_id:
             request.session.pop('use_source_id')
+
+        offer_steps = request.session.get('offer_steps')
+        if offer_steps:
+            request.session.pop('offer_steps')
+
         # Add UserSteps if there is in session
         user_steps_data = request.session.get('user_steps_data')
         if user_steps_data:
