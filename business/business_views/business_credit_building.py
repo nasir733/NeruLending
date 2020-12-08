@@ -259,9 +259,15 @@ class BusinessCreditStepsGuidedView(View):
             'toll_free_number_prefix': request.POST.get('toll_free_number_prefix'),
             'fax_number_prefix': request.POST.get('fax_number_prefix'),
             'industry_name': industry_choices_dict.get(industry_name),
-            **offer_steps,
+            # **offer_steps,
             **services,
         }
+
+        new_steps = UserSteps(
+            user=request.user,
+            **offer_steps
+        )
+        new_steps.save()
 
         request.session['offer_steps'] = offer_steps
         request.session['ordering_products'] = ordering_products

@@ -7,8 +7,9 @@
         .select_box {
             margin: 0 10px;
             display: flex;
-            width: 100px;
-            height: 100px;
+            width: 130px;
+            height: 130px;
+            padding: 10px;
             cursor: pointer;
             justify-content: center;
             align-items: center;
@@ -54,19 +55,19 @@
                                     <div class="select_box" v-on:click="onSelectOption(1)"
                                          :class="{select_box_selected : pages[currentPage.id].choice === 1 }">
                                         <div class="text-center">
-                                            Yes
+                                            ${currentPage.answer1 || "Yes"}
                                         </div>
                                     </div>
                                     <div class="select_box" v-on:click="onSelectOption(2)"
                                          :class="{select_box_selected : pages[currentPage.id].choice === 2 }">
                                         <div class="text-center">
-                                            No, What Is This?
+                                            ${currentPage.answer2 || "No, What Is This?"}
                                         </div>
                                     </div>
                                     <div class="select_box" v-on:click="onSelectOption(3)"
                                          :class="{select_box_selected : pages[currentPage.id].choice === 3 }">
                                         <div class="text-center">
-                                            No, But I Would Like To Get
+                                            ${currentPage.answer3 || "No, But I Would Like To Get One."}
                                         </div>
                                     </div>
                                 </div>
@@ -341,6 +342,8 @@
                     {
                         id: 10,
                         name: 'tradelines',
+                        answer1: 'No, I Do Not Need To Add Business Tradelines.',
+                        answer3: 'Yes, I Would Like To Add Business Tradelines',
                         title: "Would you like to add business tradelines?",
                         description: "A business tradeline is a credit account between a business and vendor. ... Like other small business credit options, they include information from vendors who report to commercial credit reporting agencies. For example, a vendor account with net-30, net-60, or net-90 terms.",
 
@@ -348,6 +351,8 @@
                     {
                         id: 11,
                         name: 'marketing',
+                        answer1: 'No, I Do Not Need Help Marketing My Business',
+                        answer3: 'Yes, I Would Like Help With Marketing My Business',
                         title: "Do you need help marketing your business?",
                         description: "Marketing is profitably using the results of studying short term and long term needs of those who can pay for a one-time, or in most cases, a steady flow of service or product placement.",
 
