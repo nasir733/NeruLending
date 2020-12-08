@@ -1,3 +1,4 @@
+from django.forms.models import model_to_dict
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -9,7 +10,6 @@ from products.models import Tradelines, UserStepsProduct
 from services.ModelServices import check_all_required_fields_filled
 from user.forms import UserDataForm
 from user.models import Profile, UserData
-from django.forms.models import model_to_dict
 
 
 class TradelinesView(View):
@@ -214,9 +214,8 @@ class BusinessCreditStepsGuidedView(View):
     def post(self, request):
         avail_products = self.get_user_steps(request)
 
-
         offer_steps = ['LLC', 'EIN', 'business_account', 'merchant_account', 'duns', 'tradelines', 'marketing']
-        offer_steps = {i: request.POST[i] for i in offer_steps if i in request.POST}
+        offer_steps = {i: 2 for i in offer_steps if i in request.POST}
 
         ordering_products = []
         services = {}
@@ -257,12 +256,16 @@ class BusinessCreditStepsGuidedView(View):
             'email': request.user.email,
             'phone': request.user.profile.phone_number,
             'domain_name': domain_name,
-            'industry_name': industry_choices_dict.get(industry_name, 1),
-            **services
+            'toll_free_number_prefix': request.POST.get('toll_free_number_prefix'),
+            'fax_number_prefix': request.POST.get('fax_number_prefix'),
+            'industry_name': industry_choices_dict.get(industry_name),
+            **offer_steps,
+            **services,
         }
-        request.session['offer_steps'] = offer_steps
 
+        request.session['offer_steps'] = offer_steps
         request.session['ordering_products'] = ordering_products
+
         return redirect("business:stripe_checkout")
 
 
@@ -325,3 +328,16 @@ class TollFreeNumberOptionsView(View):
 
             return render(request, 'businessCreditBuilding/tollFreeNumberPaid.html', context=context)
         return render(request, 'businessCreditBuilding/tollFreeNumber.html', context=get_context_for_all(request))
+
+
+class GuidedStepsView(View):
+    def get(self, request):
+        if request.resolver_match.app_name == 'goals':
+            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
+        else:
+            request.resolver_match.page_template = 'pages/base-business.html'
+
+        steps = UserSteps.objects.filter(user=request.user)
+
+        return render(request, 'businessCreditBuilding/steps/guidedStepsToDo.html',
+                      context=get_context_for_all(request, {"steps": steps}))

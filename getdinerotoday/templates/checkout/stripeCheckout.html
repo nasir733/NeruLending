@@ -220,31 +220,31 @@
                         <h3>Steps To Do After Checkout Based On Your Answers </h3>
                         {% for key, values in offer_steps.items %}
                             {% if key == 'LLC' %}
-                                <a class="btn btn-primary my-2" href="{% url "business:business-entity" %}">Go Here To Set Up Your LLC</a>
+                                <a class="btn btn-primary my-2" href="{% url "business:business-entity" %}" target="_blank">Go Here To Set Up Your LLC</a>
                             {% endif %}
 
                             {% if key == 'EIN' %}
-                                <a class="btn btn-primary my-2" href="{% url "business:ein" %}">Go Here To Set Up Your EIN</a>
+                                <a class="btn btn-primary my-2" href="{% url "business:ein" %}" target="_blank">Go Here To Set Up Your EIN</a>
                             {% endif %}
 
                             {% if key == 'business_account' %}
-                                <a class="btn btn-primary my-2" href="{% url "business:business-bank-account" %}">Go Here To Set Up Your Business Account</a>
+                                <a class="btn btn-primary my-2" href="{% url "business:business-bank-account" %}" target="_blank">Go Here To Set Up Your Business Account</a>
                             {% endif %}
 
                             {% if key == 'merchant_account' %}
-                                <a class="btn btn-primary my-2" href="{% url "business:merchant-account" %}">Go Here To Set Up Your Merchant Account</a>
+                                <a class="btn btn-primary my-2" href="{% url "business:merchant-account" %}" target="_blank">Go Here To Set Up Your Merchant Account</a>
                             {% endif %}
 
                             {% if key == 'duns' %}
-                                <a class="btn btn-primary my-2" href="{% url "business:duns" %}">Go Here To Set Up Your DUNS Number</a>
+                                <a class="btn btn-primary my-2" href="{% url "business:duns" %}" target="_blank">Go Here To Set Up Your DUNS Number</a>
                             {% endif %}
 
                             {% if key == 'tradelines' %}
-                                <a class="btn btn-primary my-2" href="{% url "business:tradelines" %}">Go Here To Set Up Your Tradelines</a>
+                                <a class="btn btn-primary my-2" href="{% url "business:tradelines" %}" target="_blank">Go Here To Set Up Your Tradelines</a>
                             {% endif %}
 
                             {% if key == 'marketing' %}
-                                <a class="btn btn-primary my-2" href="{% url "business:marketing-business" %}">Go Here To Set Up Your Business Marketing</a>
+                                <a class="btn btn-primary my-2" href="{% url "business:marketing-business" %}" target="_blank">Go Here To Set Up Your Business Marketing</a>
                             {% endif %}
                         {% endfor %}
                     {% endif %}

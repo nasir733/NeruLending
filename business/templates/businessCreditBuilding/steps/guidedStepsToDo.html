@@ -1,0 +1,60 @@
+{% extends "pages/base-business.html" %}
+{% load static %}
+{% block extrastyle %}
+
+{% endblock extrastyle %}
+{% block content %}
+
+    <div class="row page-header">
+        <div class="col-lg-6 align-self-center ">
+            <h2>Saved Guided Creation Progress</h2>
+        </div>
+    </div>
+    <section class="main-content">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card padding-15">
+
+                    <h3>Steps To Do After Checkout Based On Your Answers </h3>
+                    {% for step in steps %}
+                            {% if step.LLC == 2 %}
+                                <a class="btn btn-primary my-2" href="{% url "business:business-entity" %}"
+                                   target="_blank">Go Here To Set Up Your LLC</a>
+                            {% endif %}
+
+                            {% if step.EIN == 2 %}
+                                <a class="btn btn-primary my-2" href="{% url "business:ein" %}" target="_blank">Go Here
+                                    To Set Up Your EIN</a>
+                            {% endif %}
+
+                            {% if step.business_account == 2 %}
+                                <a class="btn btn-primary my-2" href="{% url "business:business-bank-account" %}"
+                                   target="_blank">Go Here To Set Up Your Business Account</a>
+                            {% endif %}
+
+                            {% if step.merchant_account == 2 %}
+                                <a class="btn btn-primary my-2" href="{% url "business:merchant-account" %}"
+                                   target="_blank">Go Here To Set Up Your Merchant Account</a>
+                            {% endif %}
+
+                            {% if step.duns == 2 %}
+                                <a class="btn btn-primary my-2" href="{% url "business:duns" %}" target="_blank">Go Here
+                                    To Set Up Your DUNS Number</a>
+                            {% endif %}
+
+                            {% if step.tradelines == 2 %}
+                                <a class="btn btn-primary my-2" href="{% url "business:tradelines" %}" target="_blank">Go
+                                    Here To Set Up Your Tradelines</a>
+                            {% endif %}
+
+                            {% if step.marketing == 2 %}
+                                <a class="btn btn-primary my-2" href="{% url "business:marketing-business" %}"
+                                   target="_blank">Go Here To Set Up Your Business Marketing</a>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

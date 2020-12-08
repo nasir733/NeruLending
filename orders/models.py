@@ -23,6 +23,12 @@ class UserSteps(models.Model):
         (3, "Done"),
     )
 
+    STEPS_OFFER = (
+        (1, "Not Ordered"),
+        (2, "Ordered"),
+        (3, "Done"),
+    )
+
     _industry_choices = (
         (1, "Electrician"),
         (2, "Gardener"),
@@ -109,6 +115,15 @@ class UserSteps(models.Model):
     email_password = models.CharField("Email password", null=True, default='', blank=True, max_length=500)
 
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.SET_NULL, null=True, blank=True)
+
+    # STEPS_TO_DO:
+    LLC = models.IntegerField("LLC", choices=STEPS_OFFER, null=True, default=1)
+    EIN = models.IntegerField("EIN", choices=STEPS_OFFER, null=True, default=1)
+    business_account = models.IntegerField("Business Account", choices=STEPS_OFFER, null=True, default=1)
+    merchant_account = models.IntegerField("Merchant Account", choices=STEPS_OFFER, null=True, default=1)
+    duns = models.IntegerField("DUNS", choices=STEPS_OFFER, null=True, default=1)
+    tradelines = models.IntegerField("tradelines", choices=STEPS_OFFER, null=True, default=1)
+    marketing = models.IntegerField("marketing", choices=STEPS_OFFER, null=True, default=1)
 
     class Meta:
         verbose_name = "2. User Steps"

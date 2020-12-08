@@ -117,6 +117,10 @@ urlpatterns = [
         login_required(BusinessCreditStepsGuidedView.as_view(), login_url='/user/login'),
         name='business-credit-steps-guided'),
 
+    url('guided-creation-progress/',
+        login_required(GuidedStepsView.as_view(), login_url='/user/login'),
+        name='guided-creation-progress'),
+
     url('tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
     url('external_credentials/', login_required(ExternalCredentialsView.as_view(), login_url='/user/login'), name='external_credentials'),
 
