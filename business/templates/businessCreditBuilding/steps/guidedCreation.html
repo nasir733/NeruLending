@@ -12,7 +12,8 @@
             cursor: pointer;
             justify-content: center;
             align-items: center;
-            border: 2px solid grey;
+            background: #fafafa;
+            border: 1px solid grey;
             border-radius: 5px;
         }
 
@@ -32,430 +33,18 @@
 {% endblock %}
 
 {% block content %}
-    <style>
-        .quantity_input {
-            width: 40px;
-        }
-    </style>
     <div class="row page-header">
         <div class="col-lg-6 align-self-center ">
-            <h2>Business Credit Building Steps You Need Done For You</h2>
+            <h2>Guided Business Creation Steps</h2>
         </div>
     </div>
     <div class="room">
         <section class="main-content">
             <div class="row">
-                {#                {% if dynamic.is_main_site %}#}
-                {#                    <div class="col-md-12">#}
-                {#                        <iframe width="100%" height="515" src="https://www.youtube.com/embed/86-3dyRmSXw"#}
-                {#                                frameborder="0"#}
-                {#                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"#}
-                {#                                allowfullscreen></iframe>#}
-                {#                        <h3> Watch The Introduction Video To Understand How To Use The Extension</h3>#}
-                {#                    </div>#}
-                {#                {% endif %}#}
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-body" style="display: none">
-                            <form method="post" id="business-programm">{% csrf_token %}</form>
-                            <form method="post" id="business_builder_program_year_form">{% csrf_token %}</form>
-                            <form method="post" id="steps-form">{% csrf_token %}
-                                <div class="row mb-2">
-                                    <div class="col-6">
-                                        {{ form.first_name.label_tag }}{{ form.first_name }}
-                                    </div>
-                                    <div class="col-6">
-                                        {{ form.last_name.label_tag }}{{ form.last_name }}
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-12">
-                                        {{ form.email.label_tag }}{{ form.email }}
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-12">
-                                        {{ form.phone.label_tag }}{{ form.phone }}
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-12 font-weight-bold">
-                                        Choose The Business Credit Building Steps From The List That You Need
-                                    </div>
-                                </div>
-                                <div class="row mb-2 justify-content-center">
-                                    <div class="card bg-gray m-2 " style="width: 30rem;">
-                                        <div class="card-body">
-                                            <div class="text-center mb-2 font-weight-bold">
-                                                Monthly Options
-                                            </div>
-
-                                            {% if user_steps.website %}
-                                                <div>
-                                                    <input type="checkbox" name="website" id="website">
-                                                    <label for="website">Website: ${{ user_steps.website.price }} USD -
-                                                        monthly</label>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.toll_free_number %}
-                                                <div>
-                                                    <input type="checkbox" name="toll_free_number"
-                                                           id="toll_free_number">
-                                                    <label for="toll_free">Toll Free Number:
-                                                        ${{ user_steps.toll_free_number.price }} USD - monthly</label>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-center">
-                                                    <div>
-                                                        Toll Free NumberQuantity: <input class="quantity_input"
-                                                                                         value="1"
-                                                                                         type="number" min="1"
-                                                                                         name="toll_free_number_quantity"
-                                                                                         id="toll_free_number_quantity">
-                                                    </div>
-                                                    <select class="custom-select mb-2" name="toll_free_number_prefix">
-                                                        <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.fax_number %}
-                                                <div>
-                                                    <input type="checkbox" name="fax_number" id="fax_number">
-                                                    <label for="fax_number">Fax Number:
-                                                        ${{ user_steps.fax_number.price }}
-                                                        USD - monthly</label>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-center">
-                                                    <div>
-                                                        Fax Number Quantity: <input class="quantity_input" value="1"
-                                                                                    type="number"
-                                                                                    min="1"
-                                                                                    name="fax_number_quantity"
-                                                                                    id="fax_number_quantity">
-                                                    </div>
-                                                    <select class="custom-select mb-2" name="fax_number_prefix">
-                                                        <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.domain %}
-                                                <div>
-                                                    <input type="checkbox" name="domain" id="domain">
-                                                    <label for="domain">Domain: ${{ user_steps.domain.price }}
-                                                        USD</label>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.professional_email_address %}
-                                                <div>
-                                                    <input type="checkbox" name="professional_email_address"
-                                                           id="professional_email" disabled>
-                                                    <label for="professional_email">Professional Email Address:
-                                                        ${{ user_steps.professional_email_address.price }} USD -
-                                                        monthly</label>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.domain %}
-                                                <div>
-                                                    <label for="industry">Select Industry:</label><br>
-                                                    <select name="industry" id="industry" class="custom-select w-100">
-                                                        <option>Electrician</option>
-                                                        <option>Gardener</option>
-                                                        <option>Tattoo Artist</option>
-                                                        <option>Photography</option>
-                                                        <option>Limo Service</option>
-                                                        <option>Nutrition Advisor</option>
-                                                        <option>Life Coach</option>
-                                                        <option>Veterinary clinic</option>
-                                                        <option>Laundromat</option>
-                                                        <option>Fitness Club</option>
-                                                        <option>Dentist</option>
-                                                        <option>Consulting</option>
-                                                        <option>Auto Repair</option>
-                                                        <option>Tutor</option>
-                                                        <option>Bakery</option>
-                                                        <option>Financial Advisor</option>
-                                                        <option>Lawyer</option>
-                                                        <option>Marketing Agency</option>
-                                                        <option>Trucking</option>
-                                                        <option>Locksmith</option>
-                                                        <option>Medical Clinic</option>
-                                                        <option>Dance Studio</option>
-                                                        <option>Carpenter</option>
-                                                        <option>Moving Company</option>
-                                                        <option>Hair Salon</option>
-                                                        <option>Cleaning Service</option>
-                                                        <option>Car Dealer</option>
-                                                        <option>Portfolio</option>
-                                                        <option>Real Estate</option>
-                                                        <option>Preschool</option>
-                                                        <option>Spa Services</option>
-                                                        <option>Physical Therapist</option>
-                                                    </select>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.business_builder_program %}
-                                                <div style="height: 1px; background-color: black" class="mt-3"></div>
-                                                <div class=" my-2">
-                                                    Extra Bonuses If You Purchase All Options:
-                                                </div>
-                                                <div class="mb-2" style="font-size: 12px">
-
-                                                    &#8226; 60 days free on our accounting and payroll software <br>
-                                                    &#8226; 10% off our special auto dialer software that can do sms
-                                                    texting
-                                                    and
-                                                    voice broadcasting to grow your business for 60 days<br>
-                                                    &#8226; Free Access to our data platform that helps you get and
-                                                    export
-                                                    100,000 leads for 60 days<br>
-                                                    <!--  <a href="#">Watch video to explain bonuses</a> -->
-                                                </div>
-                                                <div class="text-center mb-2 font-weight-bold">
-                                                    Need All The Steps? Get The Business Builder Monthly Program for
-                                                    ${{ user_steps.business_builder_program.price }}
-                                                </div>
-                                                <div class="text-center">
-                                                    <input type="hidden" value="" name="business_builder_program"
-                                                           id="business_builder_program">
-                                                    <button class="btn btn-primary" name="business_builder_program"
-                                                            value="on"
-                                                            form="business-programm">
-                                                        Get Business
-                                                        Builder Monthly Program
-                                                    </button>
-                                                </div>
-                                            {% endif %}
-
-                                        </div>
-                                    </div>
-                                    <div class="card bg-gray m-2" style="width: 30rem;">
-                                        <div class="card-body ">
-                                            <div class="text-center mb-2 font-weight-bold">
-                                                Yearly Options
-                                            </div>
-
-                                            {% if user_steps.website_year %}
-                                                <div>
-                                                    <input type="checkbox" name="website_year" id="website_year">
-                                                    <label for="website_year">Website:
-                                                        ${{ user_steps.website_year.price }}
-                                                        USD - yearly</label>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.toll_free_number_year %}
-                                                <div>
-                                                    <input type="checkbox" name="toll_free_number_year"
-                                                           id="toll_free_number_year">
-                                                    <label for="toll_free_year">Toll Free Number:
-                                                        ${{ user_steps.toll_free_number_year.price }} USD -
-                                                        yearly</label>
-                                                </div>
-
-                                                <div class="d-flex align-items-center justify-content-center">
-                                                    <div>
-                                                        Toll Free Number Quantity: <input class="quantity_input"
-                                                                                          value="1"
-                                                                                          type="number" min="1"
-                                                                                          name="toll_free_number_year_quantity"
-                                                                                          id="toll_free_number_year_quantity">
-                                                    </div>
-                                                    <select class="custom-select mb-2"
-                                                            name="toll_free_number_year_prefix">
-                                                        <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.fax_number_year %}
-                                                <div>
-                                                    <input type="checkbox" name="fax_number_year" id="fax_number_year">
-                                                    <label for="fax_number_year">Fax Number:
-                                                        ${{ user_steps.fax_number_year.price }} USD - yearly</label>
-                                                </div>
-
-                                                <div class="d-flex align-items-center justify-content-center">
-                                                    <div>
-                                                        Fax Number Quantity: <input class="quantity_input" value="1"
-                                                                                    type="number"
-                                                                                    min="1"
-                                                                                    name="fax_number_year_quantity"
-                                                                                    id="fax_number_year_quantity">
-                                                    </div>
-                                                    <select class="custom-select mb-2" name="fax_number_year_prefix">
-                                                        <option value="888 (Toll Free Prefix)">888 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="877 (Toll Free Prefix)">877 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="866 (Toll Free Prefix)">866 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="855 (Toll Free Prefix)">855 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="844 (Toll Free Prefix)">844 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="833 (Toll Free Prefix)">833 (Toll Free Prefix)
-                                                        </option>
-                                                        <option value="800 (Toll Free Prefix)">800 (Toll Free Prefix)
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.domain_year %}
-                                                <div>
-                                                    <input type="checkbox" name="domain_year" id="domain_year">
-                                                    <label for="domain_year">Domain: $13.99 USD</label>
-                                                </div>
-                                            {% endif %}
-                                            {% if user_steps.professional_email_address_year %}
-                                                <div>
-                                                    <input type="checkbox" disabled
-                                                           name="professional_email_address_year"
-                                                           id="professional_email_year">
-                                                    <label for="professional_email_year">Professional Email Address:
-                                                        ${{ user_steps.professional_email_address_year.price }} USD -
-                                                        yearly</label>
-                                                </div>
-                                            {% endif %}
-                                            {% if user_steps.domain_year %}
-
-
-                                                <div>
-                                                    <label for="industry_year">Select Industry:</label><br>
-                                                    <select name="industry_year" id="industry_year"
-                                                            class="custom-select w-100">
-                                                        <option>Electrician</option>
-                                                        <option>Gardener</option>
-                                                        <option>Tattoo Artist</option>
-                                                        <option>Photography</option>
-                                                        <option>Limo Service</option>
-                                                        <option>Nutrition Advisor</option>
-                                                        <option>Life Coach</option>
-                                                        <option>Veterinary clinic</option>
-                                                        <option>Laundromat</option>
-                                                        <option>Fitness Club</option>
-                                                        <option>Dentist</option>
-                                                        <option>Consulting</option>
-                                                        <option>Auto Repair</option>
-                                                        <option>Tutor</option>
-                                                        <option>Bakery</option>
-                                                        <option>Financial Advisor</option>
-                                                        <option>Lawyer</option>
-                                                        <option>Marketing Agency</option>
-                                                        <option>Trucking</option>
-                                                        <option>Locksmith</option>
-                                                        <option>Medical Clinic</option>
-                                                        <option>Dance Studio</option>
-                                                        <option>Carpenter</option>
-                                                        <option>Moving Company</option>
-                                                        <option>Hair Salon</option>
-                                                        <option>Cleaning Service</option>
-                                                        <option>Car Dealer</option>
-                                                        <option>Portfolio</option>
-                                                        <option>Real Estate</option>
-                                                        <option>Preschool</option>
-                                                        <option>Spa Services</option>
-                                                        <option>Physical Therapist</option>
-                                                    </select>
-                                                </div>
-                                            {% endif %}
-
-                                            {% if user_steps.business_builder_program_year %}
-                                                <div style="height: 1px; background-color: black" class="mt-3"></div>
-                                                <div class=" my-2">
-                                                    Extra Bonuses If You Purchase All Options:
-                                                </div>
-                                                <div class="mb-2" style="font-size: 12px">
-
-
-                                                    &#8226; 1 year free on our accounting and payroll software<br>
-                                                    &#8226; 50% off our special auto dialer software that can do sms
-                                                    texting
-                                                    and
-                                                    voice
-                                                    broadcasting to grow your business for 60 days<br>
-                                                    &#8226; Free Access to our data platform that helps you get and
-                                                    export
-                                                    100,000 leads for 120 days<br>
-                                                    <!--  <a href="#">Watch video to explain bonuses</a> -->
-
-                                                </div>
-                                                <div class="text-center mb-2 font-weight-bold">
-                                                    Need All The Steps? Get The Business Builder Annual Program for
-                                                    ${{ user_steps.business_builder_program_year.price }} and
-                                                    save $50
-                                                </div>
-                                                <div class="text-center ">
-                                                    <input type="hidden" value="" name="business_builder_program_year"
-                                                           id="business_builder_program_year">
-                                                    <button class="btn btn-primary" name="business_builder_program_year"
-                                                            form="business_builder_program_year_form"
-                                                            value="on">
-                                                        Get Business Builder Annual Program
-                                                    </button>
-                                                </div>
-                                            {% endif %}
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row justify-content-center">
-                                    <div class="col text-center mt-4" id="stripe-form">
-                                        <div>Total: $<span id="total_amount">0</span></div>
-                                        <button type="submit" class="btn btn-primary">Proceed to checkout</button>
-                                    </div>
-
-                                </div>
-
-                            </form>
-                        </div>
                         <div id="applicat">
                             <div class="card-header d-flex flex-column align-items-center">
                                 ${currentPage.title}
@@ -471,13 +60,13 @@
                                     <div class="select_box" v-on:click="onSelectOption(2)"
                                          :class="{select_box_selected : pages[currentPage.id].choice === 2 }">
                                         <div class="text-center">
-                                            No, What is This?
+                                            No, What Is This?
                                         </div>
                                     </div>
                                     <div class="select_box" v-on:click="onSelectOption(3)"
                                          :class="{select_box_selected : pages[currentPage.id].choice === 3 }">
                                         <div class="text-center">
-                                            No, But I would like to Get
+                                            No, But I Would Like To Get
                                         </div>
                                     </div>
                                 </div>
@@ -521,7 +110,7 @@
                                     </select>
                                 </div>
 
-                                <div v-if="currentPage.askForDomain && pages[currentPage.id].choice === 3" class="mt-5">
+                                <div v-if="currentPage.askForDomain && pages[currentPage.id].choice === 3" class="mt-5 w-50">
 
                                     <label for="domain_name">Domain name:</label>
                                     <div style="display: flex">
@@ -537,8 +126,23 @@
                                 </div>
 
 
-                                <div v-if="currentPage.explainEmail" class="mt-5">
-                                    You have to buy domain in order to get professional email address.
+                                <div v-if="currentPage.askForDomain && pages[currentPage.id].choice === 1" class="mt-5 w-50">
+
+                                    <label for="domain_name1">Domain name:</label>
+                                    <div style="display: flex">
+                                        <input type="text" v-model="domain" name="domain_name1" id="domain_name1">
+                                    </div>
+                                </div>
+
+
+
+
+                                <div v-if="disabledNext && currentPage.explainEmail" class="mt-5 text-danger">
+                                    You Have To Buy Domain To  Professional Email Address.
+                                </div>
+
+                                <div v-if="pages[currentPage.id].choice === 2" class="mt-5 px-5">
+                                    ${pages[currentPage.id].description}
                                 </div>
 
 
@@ -552,7 +156,7 @@
 
                                 <div v-if="currentPage.id !== pages.length-1">
                                     <button class="btn btn-disabled" v-on:click="nextPage"
-                                            :class="{'btn-primary' : pages[currentPage.id].choice, 'btn-disabled' : !pages[currentPage.id].choice }">
+                                            :class="{'btn-primary' : !disabledNext && pages[currentPage.id].choice, 'btn-disabled' : disabledNext || !pages[currentPage.id].choicde }">
                                         Next
                                     </button>
                                 </div>
@@ -562,7 +166,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div></div>
                     </div>
 
                 </div>
@@ -578,116 +182,6 @@
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-
-        $('#steps-form').on('change', calculateAmount)
-
-        $('#steps-form').submit(async function (evt) {
-            evt.preventDefault();
-            if (document.getElementById('domain_year').checked && await checkDomain('domain_name_year')) {
-                this.submit();
-            } else if (document.getElementById('domain').checked && await checkDomain('domain_name')) {
-                this.submit();
-            }
-            if (!document.getElementById('domain_year').checked && !document.getElementById('domain').checked) {
-                this.submit();
-            }
-
-        })
-
-        $('#business-programm').submit(async function (evt) {
-            evt.preventDefault();
-            document.getElementById('business_builder_program').value = "on";
-            validateFormAndSubmit()
-        });
-
-        $('#business_builder_program_year_form').submit(async function (evt) {
-            evt.preventDefault();
-            document.getElementById('business_builder_program_year').value = "on";
-            validateFormAndSubmit()
-        });
-
-        function validateFormAndSubmit() {
-            var form = $('#steps-form');
-            var isValid = true;
-            for (let input of form[0].elements) {
-                isValid = input.reportValidity()
-                if (!isValid) break
-            }
-            if (isValid) {
-                form.submit()
-            }
-        }
-
-
-        var prices = {
-            {% for item, data in user_steps.items %}
-                "{{ item }}": {{ data.price }},
-            {% endfor %}
-        }
-
-        function calculateAmount() {
-            var total = 0
-            console.log(1, total)
-            for (let [key, value] of Object.entries(prices)) {
-                var el = document.getElementById(key);
-                if (el && el.checked) {
-
-                    if (key === "toll_free_number") {
-                        total += value * Number(document.getElementById('toll_free_number_quantity').value)
-                        console.log(2, total)
-                    } else if (key === "toll_free_number_year") {
-                        total += value * Number(document.getElementById('toll_free_number_year_quantity').value)
-                        console.log(3, total)
-                    } else if (key === "fax_number") {
-                        total += value * Number(document.getElementById('fax_number_quantity').value)
-                        console.log(4, total)
-                    } else if (key === "fax_number_year") {
-                        total += value * Number(document.getElementById('fax_number_year_quantity').value)
-                        console.log(5, total)
-                    } else {
-                        total += value
-                        console.log(6, total)
-                    }
-                    console.log(7, total, key, value, Number(document.getElementById('toll_free_number_quantity').value));
-
-                }
-            }
-            $("#total_amount").html(round(total))
-        }
-
-        function round(amount) {
-            var rounded = Math.round(amount * 100) / 100
-            return rounded
-        }
-
-        $("#domain_year").on('change', (event) => {
-            var field = document.getElementById('domain-year-field')
-            if (event.target.checked) {
-                field.style.display = 'block'
-                document.getElementById('professional_email_year').disabled = false
-            } else {
-                field.style.display = 'none'
-                document.getElementById('professional_email_year').disabled = true
-                document.getElementById('professional_email_year').checked = false
-            }
-        });
-
-        $("#domain").on('change', (event) => {
-            var field = document.getElementById('domain-field')
-            if (event.target.checked) {
-                field.style.display = 'block'
-                document.getElementById('professional_email').disabled = false
-            } else {
-                field.style.display = 'none'
-                document.getElementById('professional_email').disabled = true
-                document.getElementById('professional_email').checked = false
-            }
-        });
-
-        calculateAmount()
-    </script>
 
 {% endblock %}
 
@@ -707,59 +201,79 @@
                 },
 
                 domain: '',
-
+                disabledNext: false,
 
                 pages: [
                     {
                         id: 0,
-                        title: "Do you have an LLC?"
+                        title: "Do you have an LLC?",
+                        description: "LLC - A limited liability company (LLC) is a business structure in the United States whereby the owners are not personally liable for the company's debts or liabilities. Limited liability companies are hybrid entities that combine the characteristics of a corporation with those of a partnership or sole proprietorship."
                     },
                     {
                         id: 1,
-                        title: "Do you have an EIN?"
+                        title: "Do you have an EIN?",
+                        description: "The Employer Identification Number, also known as the Federal Employer Identification Number or the Federal Tax Identification Number, is a unique nine-digit number assigned by the Internal Revenue Service to business entities operating in the United States for the purposes of identification.",
+
                     },
                     {
                         id: 2,
                         title: "Do you have a website?",
+                        description: "A website is a collection of web pages and related content that is identified by a common domain name and published on at least one web server. Notable examples are wikipedia.org, google.com, and amazon.com.",
                         askForIndustry: true
                     },
                     {
                         id: 3,
-                        title: "Do you Have a Toll free Number?"
+                        title: "Do you Have a Toll free Number?",
+                        description: "A toll-free telephone number or freephone number is a telephone number that is billed for all arriving calls instead of incurring charges to the originating telephone subscriber. For the calling party, a call to a toll-free number from a landline is free of charge.",
+
                     },
                     {
                         id: 4,
-                        title: "Do you have a fax number?"
+                        title: "Do you have a fax number?",
+                        description: "A fax number is a phone number that can be used to contact a fax machine. It looks exactly like a regular phone number.",
+
                     },
                     {
                         id: 5,
                         title: "Do you have a domain name?",
+                        description: "Domain names are used to identify one or more IP addresses. ... Domain names are used in URLs to identify particular Web pages. For example, in the URL http://www.pcwebopedia.com/index.html, the domain name is pcwebopedia.com.",
                         askForDomain: true
                     },
                     {
                         id: 6,
                         title: "Do you have a professional email address?",
+                        description: "A professional email address is the one that has your business name in it. For example, john@myphotostudio.com is a professional email address. ... For a professional email address, you will need a domain name and a website",
                         explainEmail: true,
                     },
                     {
                         id: 7,
-                        title: "Do you have a business bank account?"
+                        title: "Do you have a business bank account?",
+                        description: "A business bank account is an account that helps the business owner keep business transactions separate from personal finances, and usually comes with special conditions for businesses. ... Business bank accounts are different to private or personal bank accounts as they are made specifically for businesses.",
+
                     },
                     {
                         id: 8,
-                        title: "Do you have a merchant account?"
+                        title: "Do you have a merchant account?",
+                        description: "A merchant account is a type of bank account that allows businesses to accept payments in multiple ways, typically debit or credit cards. A merchant account is established under an agreement between an acceptor and a merchant acquiring bank for the settlement of payment card transactions.",
+
                     },
                     {
                         id: 9,
-                        title: "Do you have a duns number?"
+                        title: "Do you have a duns number?",
+                        description: "The Data Universal Numbering System, abbreviated as DUNS or D-U-N-S, is a proprietary system developed and managed by Dun & Bradstreet that assigns a unique numeric identifier, referred to as a \"DUNS number\" to a single business entity. It was introduced in 1963 to support D&B's credit reporting practice",
+
                     },
                     {
                         id: 10,
-                        title: "Would you like to add business tradelines?"
+                        title: "Would you like to add business tradelines?",
+                        description: "A business tradeline is a credit account between a business and vendor. ... Like other small business credit options, they include information from vendors who report to commercial credit reporting agencies. For example, a vendor account with net-30, net-60, or net-90 terms.",
+
                     },
                     {
                         id: 11,
-                        title: "Do you need help marketing your business?"
+                        title: "Do you need help marketing your business?",
+                        description: "Marketing is profitably using the results of studying short term and long term needs of those who can pay for a one-time, or in most cases, a steady flow of service or product placement.",
+
                     },
                 ],
             },
@@ -775,26 +289,22 @@
                 },
 
                 nextPage: function () {
-                    if (this.pages[this.currentPage.id].choice && this.currentPage.id + 1 <= this.pages.length) {
+                    if (this.pages[this.currentPage.id].choice && this.currentPage.id + 1 <= this.pages.length && !this.disabledNext) {
                         this.currentPage = this.pages[this.currentPage.id + 1]
+                        this.onSelectOption(this.pages[this.currentPage.id].choice)
                     }
-                    console.log(this.domain)
                 },
 
                 prevPage: function () {
                     if (this.currentPage.id - 1 >= 0) {
                         this.currentPage = this.pages[this.currentPage.id - 1]
+                        this.onSelectOption(this.pages[this.currentPage.id].choice)
                     }
                 },
 
                 onSelectOption: function (choice) {
                     if (choice >= 1 && choice <= 3) {
-
-                        if (this.currentPage.explainEmail && choice === 3 && !this.domain) {
-                            return
-                        }
-
-
+                        this.disabledNext = choice === 2 || this.currentPage.explainEmail && choice === 3 && !this.domain;
                         const pages = [...this.pages];
                         pages[this.currentPage.id].choice = choice
                         this.pages = pages
@@ -821,6 +331,7 @@
             } else {
                 document.getElementById('domain-status' + form_id).innerHTML = data.error
                 document.getElementById('domain-status' + form_id).style.color = 'red'
+                app.domain = '';
                 return false
             }
         }

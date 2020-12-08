@@ -1585,4 +1585,9 @@ class LifeEventsView(View):
 
 class LifeEventsFinancialProductsView(View):
     def get(self, request):
-        return render(request, "life_events/financial_products.html", get_context_for_all(request))
+        loans = NoCreditCheckLoans.objects.all()
+        personal_loans = PersonalLoan.objects.all()
+        personal_credit_cards = PersonalCreditCard.objects.all()
+        cc_list = BusinessCreditCard.objects.all()
+
+        return render(request, "life_events/financial_products.html", get_context_for_all(request, {"loans": loans, 'personal_loans': personal_loans,'personal_credit_cards': personal_credit_cards, "cc_list": cc_list}))
