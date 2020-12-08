@@ -198,13 +198,13 @@
                                         Next
                                     </button>
                                 </div>
-                                {#                                <div v-else>#}
+                                                                <div v-else>
                                 <button class="btn btn-disabled" :class="{'btn-primary' : canCheckout }"
                                         v-on:click="onSubmitForm">Checkout
                                 </button>
 
                                 <form method="post" id="steps-form" style="display: none">{% csrf_token %}</form>
-                                {#                                </div>#}
+                                                                </div>
                             </div>
                         </div>
                     </div>

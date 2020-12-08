@@ -213,10 +213,11 @@
                         {% endif %}
                     </div>
 
-                <hr>
 
-                <h3>Steps To Do After Checkout Based On Your Answers </h3>
                     {% if offer_steps %}
+                        <hr>
+
+                        <h3>Steps To Do After Checkout Based On Your Answers </h3>
                         {% for key, values in offer_steps.items %}
                             {% if key == 'LLC' %}
                                 <a class="btn btn-primary my-2" href="{% url "business:business-entity" %}">Go Here To Set Up Your LLC</a>
