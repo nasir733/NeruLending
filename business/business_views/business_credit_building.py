@@ -66,7 +66,6 @@ class TradelinesView(View):
         if 'saveData' in request.POST:
             return redirect("business:tradelines")
 
-
         ordering_products = []
         product_id = request.POST['product_id']
         product = Tradelines.objects.get(product_id=product_id)
@@ -130,6 +129,8 @@ class BusinessCreditStepsView(View):
         avail_products = self.get_user_steps(request)
         ordering_products = []
         services = {}
+
+        print(request.POST)
 
         for name, product in avail_products.items():
             if name in request.POST and request.POST[name] == 'on':
@@ -199,7 +200,6 @@ class BusinessCreditStepsGuidedView(View):
     def get(self, request):
         template = "businessCreditBuilding/steps/guidedCreation.html"
 
-
         user_steps = self.get_user_steps(request)
         user_data = UserData.objects.filter(user=Profile.objects.get(user=request.user)).first()
         form = BusinessCreditStepsForm()
@@ -213,6 +213,11 @@ class BusinessCreditStepsGuidedView(View):
 
     def post(self, request):
         avail_products = self.get_user_steps(request)
+
+
+        offer_steps = ['LLC', 'EIN', 'business_account', 'merchant_account', 'duns', 'tradelines', 'marketing']
+        offer_steps = {i: request.POST[i] for i in offer_steps if i in request.POST}
+
         ordering_products = []
         services = {}
 
@@ -255,13 +260,10 @@ class BusinessCreditStepsGuidedView(View):
             'industry_name': industry_choices_dict.get(industry_name, 1),
             **services
         }
+        request.session['offer_steps'] = offer_steps
 
         request.session['ordering_products'] = ordering_products
         return redirect("business:stripe_checkout")
-
-
-
-
 
 
 class WebsiteCreationView(View):

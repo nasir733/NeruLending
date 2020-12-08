@@ -64,13 +64,13 @@ class Subdomain(models.Model):
     is_paid_for_whitelabel = models.BooleanField(default=False)
     show_index_white_label = models.BooleanField(default=False)
     show_becoming_whitelabel_partner = models.BooleanField(default=False)
-    offer_paid_whitelabel = models.BooleanField(default=False)
+    offer_paid_whitelabel = models.BooleanField(default=True)
     show_whitelabel_link = models.BooleanField(default=True)
     whitelabelpartner_link = models.CharField(max_length=200, blank=True)
     whitelabel_index_video = models.CharField(max_length=200, blank=True)
     basic_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Annual",
-                                                          max_digits=50, decimal_places=2, default=2000.00)
-    premium_partnership_program_price = models.DecimalField(verbose_name="Basic Partnership Program Price Monthly",
+                                                          max_digits=50, decimal_places=2, default=1500.00)
+    premium_partnership_program_price = models.DecimalField(verbose_name="Premium Partnership Program Price Monthly",
                                                             max_digits=50, decimal_places=2, default=1000.00)
 
     # Affiliate Section

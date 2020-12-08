@@ -207,10 +207,46 @@
                             <br>
                             <form action="{% url "business:subscription_stripe" %}" method="post">{% csrf_token %}
                                 <input id="stripeToken" name="stripeToken" type="hidden"/>
-                                <button type="submit" class="btn btn-primary btn-block" {% if not products %}disabled{% endif %}>Pay ${{ amount }}</button>
+                                <button type="submit" class="btn btn-primary btn-block"
+                                        {% if not products %}disabled{% endif %}>Pay ${{ amount }}</button>
                             </form>
                         {% endif %}
                     </div>
+
+                <hr>
+
+                <h3>Steps To Do After Checkout Based On Your Answers </h3>
+                    {% if offer_steps %}
+                        {% for key, values in offer_steps.items %}
+                            {% if key == 'LLC' %}
+                                <a class="btn btn-primary my-2" href="{% url "business:business-entity" %}">Go Here To Set Up Your LLC</a>
+                            {% endif %}
+
+                            {% if key == 'EIN' %}
+                                <a class="btn btn-primary my-2" href="{% url "business:ein" %}">Go Here To Set Up Your EIN</a>
+                            {% endif %}
+
+                            {% if key == 'business_account' %}
+                                <a class="btn btn-primary my-2" href="{% url "business:business-bank-account" %}">Go Here To Set Up Your Business Account</a>
+                            {% endif %}
+
+                            {% if key == 'merchant_account' %}
+                                <a class="btn btn-primary my-2" href="{% url "business:merchant-account" %}">Go Here To Set Up Your Merchant Account</a>
+                            {% endif %}
+
+                            {% if key == 'duns' %}
+                                <a class="btn btn-primary my-2" href="{% url "business:duns" %}">Go Here To Set Up Your DUNS Number</a>
+                            {% endif %}
+
+                            {% if key == 'tradelines' %}
+                                <a class="btn btn-primary my-2" href="{% url "business:tradelines" %}">Go Here To Set Up Your Tradelines</a>
+                            {% endif %}
+
+                            {% if key == 'marketing' %}
+                                <a class="btn btn-primary my-2" href="{% url "business:marketing-business" %}">Go Here To Set Up Your Business Marketing</a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
 
                 </div>
             </div>

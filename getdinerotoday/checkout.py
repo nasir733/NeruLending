@@ -60,16 +60,19 @@ class StripeCheckout(View):
         if products:
             amount = sum([i['price'] * i['quantity'] for i in products])
 
+        offer_steps = request.session.get('offer_steps')
+        print(offer_steps)
         cart_uuid = uuid4()
         request.session['cart_uuid'] = str(cart_uuid)
         return render(request,
                       "checkout/stripeCheckout.html",
                       context=get_common_context(request, {"add_card": add_new_payment_method,
                                                            "def_card": def_card,
-                                                           "amount": amount,
+                                                           "amount": round(amount, 2),
                                                            "products": products,
                                                            "cards_available": cards_available,
-                                                           "sources_available": sources_available
+                                                           "sources_available": sources_available,
+                                                           "offer_steps": offer_steps
                                                            }))
 
     def post(self, request):
