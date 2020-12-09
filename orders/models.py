@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.db import models
 
+from business.models import Tier1, Tier2, Tier3, Tier4, CustomTier
 from dynamic.models import Subdomain
 from products.models import Tradelines
 from user.models import Profile
@@ -8,8 +11,17 @@ from user.models import Profile
 
 class TradelineOrder(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    tradeline = models.ForeignKey(Tradelines, on_delete=models.CASCADE)
+    which = models.IntegerField(default=0)
+    tradeline = models.ForeignKey(Tradelines, null=True, blank=True, on_delete=models.CASCADE)
+    tradeline_tier1 = models.ForeignKey(Tier1, null=True, blank=True, on_delete=models.CASCADE)
+    tradeline_tier2 = models.ForeignKey(Tier2, null=True, blank=True, on_delete=models.CASCADE)
+    tradeline_tier3 = models.ForeignKey(Tier3, null=True, blank=True, on_delete=models.CASCADE)
+    tradeline_tier4 = models.ForeignKey(Tier4, null=True, blank=True, on_delete=models.CASCADE)
+    custom_tier = models.ForeignKey(CustomTier, null=True, blank=True, on_delete=models.CASCADE)
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.SET_NULL, null=True)
+    last_purchased = models.DateField(auto_now_add=True, null=True, blank=True)
+    screenshot = models.CharField(max_length=200, null=True, blank=True)
+    expected_time = models.DateField(default=datetime.now, null=True, blank=True)
 
     class Meta:
         verbose_name = "1. Tradeline Order"

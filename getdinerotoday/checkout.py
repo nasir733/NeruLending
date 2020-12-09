@@ -1,6 +1,5 @@
 from uuid import uuid4
 
-from django.conf import settings
 from django.shortcuts import redirect, render
 from django.views import View
 
@@ -129,12 +128,39 @@ def subscription(request):
             )
             new_steps.save()
             request.session.pop('user_steps_data')
+
         for i in products:
             if i['type'] == 'tradeline':
+                if 'tier' in i and i['tier'] == 1:
+                    tradeline = {
+                        'which': 1,
+                        'tradeline_tier1': Tier1.objects.get(product_id=i['product_id'])
+                    }
+                elif 'tier' in i and i['tier'] == 2:
+                    tradeline = {
+                        'which': 2,
+                        'tradeline_tier2': Tier2.objects.get(product_id=i['product_id'])
+                    }
+                elif 'tier' in i and i['tier'] == 3:
+                    tradeline = {
+                        'which': 3,
+                        'tradeline_tier3': Tier3.objects.get(product_id=i['product_id'])
+                    }
+                elif 'tier' in i and i['tier'] == 4:
+                    tradeline = {
+                        'which': 4,
+                        'tradeline_tier4': Tier4.objects.get(product_id=i['product_id'])
+                    }
+                else:
+                    tradeline = {
+                        'which': 0,
+                        'tradeline': Tradelines.objects.get(product_id=i['product_id'])
+                    }
+
                 new_tradeline_order = TradelineOrder(user=request.user,
-                                                     tradeline=Tradelines.objects.get(product_id=i['product_id']),
                                                      whitelabel_portal=Subdomain.objects.filter(
-                                                         sub_name=request.host.name).first())
+                                                         sub_name=request.host.name).first(),
+                                                     **tradeline)
                 new_tradeline_order.save()
         amount = sum([i['price'] * i['quantity'] for i in products])
         request.session.pop('ordering_products')

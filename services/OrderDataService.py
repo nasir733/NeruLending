@@ -40,12 +40,53 @@ class OrderDataService:
         tradeline_data = []
 
         for tradeline in tradelines:
-            data = {
-                'name': tradeline.tradeline.company_name,
-                'product': tradeline.tradeline.product,
-                'amount': float(tradeline.tradeline.tradeline_amount),
-                'price': float(tradeline.tradeline.price),
-                'charge': float(tradeline.tradeline.charge),
-            }
-            tradeline_data.append(data)
+            if tradeline.which == 0 and tradeline.tradeline:
+                tradeline_data.append({
+                    "whitelabel_portal": tradeline.whitelabel_portal,
+                    "last_purchased": tradeline.last_purchased,
+                    "screenshot": tradeline.screenshot,
+                    "expected_time": tradeline.expected_time,
+                    "tradeline": tradeline.tradeline
+                })
+            elif tradeline.which == 1 and tradeline.tradeline_tier1:
+                tradeline_data.append({
+                    "whitelabel_portal": tradeline.whitelabel_portal,
+                    "last_purchased": tradeline.last_purchased,
+                    "screenshot": tradeline.screenshot,
+                    "expected_time": tradeline.expected_time,
+                    "tradeline": tradeline.tradeline_tier1
+                })
+            elif tradeline.which == 2 and tradeline.tradeline_tier2:
+                tradeline_data.append({
+                    "whitelabel_portal": tradeline.whitelabel_portal,
+                    "last_purchased": tradeline.last_purchased,
+                    "screenshot": tradeline.screenshot,
+                    "expected_time": tradeline.expected_time,
+                    "tradeline": tradeline.tradeline_tier2
+                })
+            elif tradeline.which == 3 and tradeline.tradeline_tier3:
+                tradeline_data.append({
+                    "whitelabel_portal": tradeline.whitelabel_portal,
+                    "last_purchased": tradeline.last_purchased,
+                    "screenshot": tradeline.screenshot,
+                    "expected_time": tradeline.expected_time,
+                    "tradeline": tradeline.tradeline_tier3
+                })
+            elif tradeline.which == 4 and tradeline.tradeline_tier4:
+                tradeline_data.append({
+                    "whitelabel_portal": tradeline.whitelabel_portal,
+                    "last_purchased": tradeline.last_purchased,
+                    "screenshot": tradeline.screenshot,
+                    "expected_time": tradeline.expected_time,
+                    "tradeline": tradeline.tradeline_tier4
+                })
+            elif tradeline.which == -1 and tradeline.custom_tier:
+                tradeline_data.append({
+                    "whitelabel_portal": tradeline.whitelabel_portal,
+                    "last_purchased": tradeline.last_purchased,
+                    "screenshot": tradeline.screenshot,
+                    "expected_time": tradeline.expected_time,
+                    "tradeline": tradeline.custom_tier
+                })
+
         return tradeline_data

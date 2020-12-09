@@ -6,6 +6,9 @@ from .business_views.paid_views import ExternalCredentialsView
 from .views import *
 from getdinerotoday.checkout import StripeCheckout, subscription, charge, remove
 from business.business_views.business_credit_building import *
+from business.business_views.BusinessCreditBuilderTracker import AllTradelinesView, AddCustomTradelineView
+
+
 
 app_name = 'business'
 urlpatterns = [
@@ -121,8 +124,13 @@ urlpatterns = [
         login_required(GuidedStepsView.as_view(), login_url='/user/login'),
         name='guided-creation-progress'),
 
-    url('tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
+    url('^tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
+
+
     url('external_credentials/', login_required(ExternalCredentialsView.as_view(), login_url='/user/login'), name='external_credentials'),
+
+    url('^business-credit-builder-tracker/', login_required(AllTradelinesView.as_view(), login_url='/user/login'), name='business-credit-builder-tracker'),
+    url('^add-custom-tradelines/', login_required(AddCustomTradelineView.as_view(), login_url='/user/login'), name='add-tradelines-tracker'),
 
     url('faqs/', login_required(FAQsView.as_view(), login_url='/user/login'), name='faqs'),
     url('chat/', login_required(ChatView.as_view(), login_url='/user/login'), name='chat'),

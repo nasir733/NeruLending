@@ -32,11 +32,12 @@ class Tradelines(models.Model):
     company_name = models.CharField(max_length=200)
     product = models.CharField(max_length=200)
     tradeline_amount = models.DecimalField(max_digits=100, decimal_places=2)
+    tradeline_credit_amount = models.CharField(max_length=500, null=True, blank=True)
     company_reports_to = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
     charge = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
     video_link = models.URLField(max_length=300, null=True, blank=True)
-
+    tier = models.CharField(max_length=10, null=True, blank=True)
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.CASCADE, null=True, blank=True)
 
     product_id = models.CharField(max_length=100, null=True)

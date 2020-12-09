@@ -7,8 +7,8 @@ from django.views.generic.base import ContextMixin
 from orders.models import UserSteps
 from user.forms import UserDataForm
 from user.models import UserData
-from .conf import get_context_for_all, get_business_plan_context
-from .models import *
+from business.conf import get_context_for_all, get_business_plan_context
+from business.models import *
 
 
 class BusinessHomePage(View):

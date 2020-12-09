@@ -8,6 +8,7 @@ from .models import *
 app = apps.get_app_config('business')
 
 
+
 class BusinessCreditStepsAdmin(admin.ModelAdmin):
     list_display = ("user", )
     list_filter = ('user',)
@@ -285,3 +286,9 @@ class PersonalCreditTradeLineAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(PersonalCreditTradeLine, PersonalCreditTradeLineAdmin)
+
+for model in app.get_models():
+    try:
+        admin.site.register(model)
+    except:
+        pass
