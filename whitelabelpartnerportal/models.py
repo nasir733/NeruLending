@@ -311,14 +311,10 @@ class WhitelabelBusinessPackage(ModelMixin, models.Model):
         return self.user.user.get_full_name()
 
 
-class Webinar(ModelMixin, models.Model):
-    class Meta:
-        db_table = f'{app_name}_webinars'
+class WholeSale(ModelMixin, models.Model):
+    name = models.CharField(max_length=100, null=True)
+    price = models.CharField(max_length=100, null=True)
+    description = models.CharField(max_length=200, null=True)
 
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
-    link = models.CharField(max_length=500, null=True)
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
-
-    def __str__(self):
-        return self.user.user.get_full_name()

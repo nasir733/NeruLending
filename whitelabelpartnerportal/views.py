@@ -494,5 +494,10 @@ class ManageWhitelabel(View):
         print(form.errors)
         return redirect("whitelabelpartnerportal:manageportal")
 
-        # obj = WhiteLabelService.get_administrated_subdomains(request).first()
-            # o
+            # obj = WhiteLabelService.get_administrated_subdomains(request).first()
+
+class WholesaleView(View):
+    def get(self, request):
+
+        wholesales = WholeSale.objects.all()
+        return render(request, 'wholesales.html', {'wholesales': wholesales})

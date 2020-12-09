@@ -89,6 +89,9 @@ urlpatterns = [
         name='partnercommisssions'),
     url('productmanagement', login_required(ProductManagementView.as_view(), login_url='/user/login'),
         name='productmanagement'),
+    url('wholesales', login_required(WholesaleView.as_view(), login_url='/user/login'),
+        name='wholesales'),
+
 
     url('portalsettings', login_required(ManageWhitelabel.as_view(), login_url='/user/login'),
         name='manageportal'),
