@@ -72,6 +72,8 @@
                                     <th>Tradeline Credit Amount</th>
                                     <th>Where Business Tradelines Reports To</th>
                                     <th>Tier Of Business Credit</th>
+                                    <th>Price</th>
+                                    <th>Fee</th>
                                     <th>Add Tradeline</th>
                                 </tr>
                                 </thead>
@@ -81,9 +83,11 @@
                                         <td>{{ tradeline.company_name }}</td>
                                         <td>{{ tradeline.product }}</td>
                                         <td>${{ tradeline.tradeline_amount }}</td>
-                                        <td>{% if tradeline.tradeline_credit_amount %}{{ tradeline.tradeline_credit_amount }}{% endif %}</td>
+                                        <td>{% if tradeline.tradeline_credit_amount %}${{ tradeline.tradeline_credit_amount }}{% endif %}</td>
                                         <td>{{ tradeline.company_reports_to }}</td>
                                         <td>{% if tradeline.tier %}{{ tradeline.tier }}{% endif %}</td>
+                                        <td>${{ tradeline.price }}</td>
+                                        <td>${{ tradeline.charge }}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
                                                 <input type="hidden" name="product_id" value="{{ tradeline.product_id }}">
