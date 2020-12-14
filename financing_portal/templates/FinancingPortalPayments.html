@@ -1,0 +1,52 @@
+{% extends "FinancingPortalNavigationBase.html" %}
+{% load static %}
+
+
+{% block content %}
+    <div class="row page-header">
+        <div class="col-lg-6 align-self-center">
+            <h2>Payments</h2>
+        </div>
+    </div>
+
+    <section class="main-content">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            Amount left: {{ amount_left }}
+                        </p>
+                        <p>
+                            Terms: {{ terms }}
+                        </p>
+                        <p>
+                            Payments Left: {{ payments_left }}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+
+                    <div class="card-header">Products Purchased:</div>
+                    <div class="card-body">
+                        {% for prod in products %}
+                            <a class="btn btn-primary" href="{{ prod.url }}">{{ prod.product }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+<script>
+
+</script>

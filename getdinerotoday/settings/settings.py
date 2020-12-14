@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'business',
+    'financing_portal',
     'portals.cannabis',
     'portals.fitness',
     'portals.insurance_agent',
