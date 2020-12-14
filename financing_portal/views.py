@@ -7,7 +7,10 @@ from financing_portal.models import ProductPurchasedModel, Product
 class FinancingPortalHomeView(View):
 
     def get(self, request):
-        return render(request, 'FinancingPortalHomePage.html')
+        profile = request.user.profile
+
+
+        return render(request, 'FinancingPortalHomePage.html', {"profile": profile})
 
 
 class FinancingPortalProductsPurchasedView(View):

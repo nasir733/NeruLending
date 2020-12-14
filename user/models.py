@@ -29,6 +29,9 @@ class Profile(models.Model):
     virtual_access_card_paid = models.BooleanField(default=False)
     whitelabel_portal = models.CharField(max_length=200, null=True, blank=True)
 
+    available_credit_limit = models.DecimalField(max_digits=100, default=1500, decimal_places=2)
+    credit_line = models.DecimalField(max_digits=100, default=1000, decimal_places=2)
+
     stripe_id = models.CharField(max_length=250, null=True)
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
