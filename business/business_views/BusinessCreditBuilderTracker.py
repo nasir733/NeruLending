@@ -20,7 +20,7 @@ class AllTradelinesView(View):
         current_tradelines = OrderDataService.get_user_tradelines_data(request.user)
         tradeline_count = len(current_tradelines)
         return render(request,
-                      "BusinessCreditBuilderTracker/AllTradelines.html",
+                      "BusinessCreditBuilderTracker/BusinessCreditBuilderTracker.html",
                       get_context_for_all(request, {
                           "tradeline_count": tradeline_count,
                           "current_tradelines": current_tradelines,

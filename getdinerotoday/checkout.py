@@ -9,6 +9,7 @@ from orders.models import TradelineOrder, UserSteps
 from products.models import Tradelines
 from services.StripeService import StripeService
 from services.UsersService import UsersService
+from whitelabelpartnerportal.models import WholeSaleOrder, WholeSale
 
 
 def get_common_context(request, context=None):
@@ -60,6 +61,8 @@ class StripeCheckout(View):
             amount = sum([i['price'] * i['quantity'] for i in products])
 
         offer_steps = request.session.get('offer_steps')
+        if offer_steps:
+            request.session.pop('offer_steps')
 
         cart_uuid = uuid4()
         request.session['cart_uuid'] = str(cart_uuid)
@@ -162,6 +165,11 @@ def subscription(request):
                                                          sub_name=request.host.name).first(),
                                                      **tradeline)
                 new_tradeline_order.save()
+            elif i['type'] == 'wholesale':
+                new_wholesale_order = WholeSaleOrder(user=request.user,
+                                                     product=WholeSale.objects.get(product_id=i['product_id']))
+                new_wholesale_order.save()
+
         amount = sum([i['price'] * i['quantity'] for i in products])
         request.session.pop('ordering_products')
         return render(request, 'checkout/checkout.html', {'amount': amount})

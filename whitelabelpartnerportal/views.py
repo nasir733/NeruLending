@@ -281,7 +281,7 @@ class CreditsView(View):
 
 class WholesalePackagesView(View):
     def get(self, request):
-        return render(request, "wholesalepackages.html")
+        return render(request, "WholeSaleSection/wholesalepackages.html")
 
 
 class OfferingFinancingView(View):
@@ -395,9 +395,7 @@ class AddPaypalInfoFormView(View):
         return render(request, "addpaypalinfo_form.html")
 
     def post(self, request):
-        data = {
-            'paypal_email': request.POST['paypal_email'],
-        }
+        data = {'paypal_email': request.POST['paypal_email']}
         new_bank = PaypalInformation(user=Profile.objects.get(user=request.user), **data)
         new_bank.save()
         return HttpResponseRedirect(reverse("whitelabelpartnerportal:addpaypalinfo"))
@@ -474,30 +472,42 @@ class EditUserSteps(View):
 
 class ManageWhitelabel(View):
     def get(self, request):
-
         obj = WhiteLabelService.get_administrated_subdomains(request).first()
-
         form = WhiteLabelForm(instance=obj)
         return render(request, 'PortalManagement/ManageWhiteLabel.html', {'form': form, 'name': obj.sub_name})
 
-
     def post(self, request):
         obj = WhiteLabelService.get_administrated_subdomains(request).first()
-
         form = WhiteLabelForm(request.POST, instance=obj)
-
         if form.is_valid():
             form.save()
 
-            return redirect("whitelabelpartnerportal:manageportal")
-        print('govno')
-        print(form.errors)
         return redirect("whitelabelpartnerportal:manageportal")
 
-            # obj = WhiteLabelService.get_administrated_subdomains(request).first()
 
 class WholesaleView(View):
     def get(self, request):
-
         wholesales = WholeSale.objects.all()
-        return render(request, 'wholesales.html', {'wholesales': wholesales})
+        return render(request, 'WholeSaleSection/wholesales.html', {'wholesales': wholesales})
+
+    def post(self, request):
+        prod_id = request.POST.get('product_id')
+        obj = WholeSale.objects.filter(product_id=prod_id).first()
+
+        if obj:
+            ordering_products = [{
+                'name': f"{obj.name}",
+                'price': float(obj.price) + float(obj.charge),
+                'quantity': 1,
+                'type': 'wholesale',
+                'product_id': obj.product_id,
+                'price_id': obj.price_id,
+            }]
+            request.session['ordering_products'] = ordering_products
+        return redirect("business:stripe_checkout")
+
+
+class ClientsOnWholesaleView(View):
+    def get(self, request):
+        clients = ClientsOnWholeSale.objects.filter(user=request.user)
+        return render(request, 'WholeSaleSection/ClientsOnWholesale.html', {'clients': clients})

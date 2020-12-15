@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from user.views import CreateSpecificPortal
 from .business_views.paid_views import ExternalCredentialsView
-
+from .business_views.BusinessCredibilityChecklist import *
 from .views import *
 from getdinerotoday.checkout import StripeCheckout, subscription, charge, remove
 from business.business_views.business_credit_building import *
@@ -131,6 +131,7 @@ urlpatterns = [
 
     url('^business-credit-builder-tracker/', login_required(AllTradelinesView.as_view(), login_url='/user/login'), name='business-credit-builder-tracker'),
     url('^add-custom-tradelines/', login_required(AddCustomTradelineView.as_view(), login_url='/user/login'), name='add-tradelines-tracker'),
+    url('^business_credibility_checklist/', login_required(BusinessCredibilityChecklist.as_view(), login_url='/user/login'), name='business_credibility_checklist'),
 
     url('faqs/', login_required(FAQsView.as_view(), login_url='/user/login'), name='faqs'),
     url('chat/', login_required(ChatView.as_view(), login_url='/user/login'), name='chat'),

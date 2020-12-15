@@ -1,5 +1,8 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
+
+from core.models import ProductModel
 from services.FileServices import get_file_path
 from user.models import Profile
 
@@ -283,6 +286,7 @@ class MarketingRoi(ModelMixin, models.Model):
     def __str__(self):
         return self.user.user.get_full_name()
 
+
 class WhitelabelPortal(ModelMixin, models.Model):
     class Meta:
         db_table = f'{app_name}_whitelabel_portal'
@@ -311,10 +315,20 @@ class WhitelabelBusinessPackage(ModelMixin, models.Model):
         return self.user.user.get_full_name()
 
 
-class WholeSale(ModelMixin, models.Model):
+class WholeSale(ProductModel):
     name = models.CharField(max_length=100, null=True)
-    price = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=200, null=True)
 
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
+
+
+class WholeSaleOrder(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(WholeSale, on_delete=models.CASCADE, null=True)
+
+
+class ClientsOnWholeSale(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    client_name = models.CharField(max_length=100, null=True)
+    package = models.ForeignKey(WholeSale, null=True, on_delete=models.CASCADE)

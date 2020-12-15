@@ -34,8 +34,11 @@
                                     <td>{{ wholesale.price }}</td>
                                     <td>{{ wholesale.description }}</td>
                                     <td>
-                                        <button class="btn btn-primary">Order</button>
-                                      </td>
+                                        <form method="post">{% csrf_token %}
+                                            <input type="hidden" name="product_id" value="{{ wholesale.product_id }}">
+                                            <button class="btn btn-primary">Add To Cart</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>

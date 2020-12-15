@@ -166,17 +166,6 @@
 
                                 </div>
 
-
-                                <div v-if="currentPage.askForDomain && pages[currentPage.id].choice === 1"
-                                     class="mt-5 w-50">
-
-                                    <label for="domain_name1">Domain name:</label>
-                                    <div style="display: flex">
-                                        <input type="text" v-model="domain" v-on:keyup="onDomainChange" name="domain_name1" id="domain_name1">
-                                    </div>
-                                </div>
-
-
                                 <div v-if="disabledNext && currentPage.explainEmail" class="mt-5 text-danger">
                                     You Have To Buy Domain To Get Professional Email Address.
                                 </div>
@@ -235,7 +224,6 @@
             delimiters: ['${', '}'],
 
             data: {
-
                 currentPage: {
                     id: 0,
                     title: ""
@@ -244,9 +232,7 @@
                 domain: '',
                 toll_free_prefix: 888,
                 fax_prefix: 888,
-
                 disabledNext: false,
-
                 canCheckout: false,
 
                 pages: [
@@ -259,7 +245,6 @@
                     {
                         id: 1,
                         name: 'EIN',
-
                         title: "Do you have an EIN?",
                         description: "The Employer Identification Number, also known as the Federal Employer Identification Number or the Federal Tax Identification Number, is a unique nine-digit number assigned by the Internal Revenue Service to business entities operating in the United States for the purposes of identification.",
 
@@ -319,15 +304,13 @@
                     {
                         id: 7,
                         name: 'business_account',
-
                         title: "Do you have a business bank account?",
                         description: "A business bank account is an account that helps the business owner keep business transactions separate from personal finances, and usually comes with special conditions for businesses. ... Business bank accounts are different to private or personal bank accounts as they are made specifically for businesses.",
 
                     },
                     {
                         id: 8,
-                                                name: 'merchant_account',
-
+                        name: 'merchant_account',
                         title: "Do you have a merchant account?",
                         description: "A merchant account is a type of bank account that allows businesses to accept payments in multiple ways, typically debit or credit cards. A merchant account is established under an agreement between an acceptor and a merchant acquiring bank for the settlement of payment card transactions.",
 
@@ -386,14 +369,23 @@
 
                 onSelectOption: function (choice) {
                     if (choice >= 1 && choice <= 3) {
-                        if (this.currentPage.askForDomain && choice === 3) {
-                            this.domain = ''
+
+                        this.disabledNext = choice === 2;
+
+                        if (this.currentPage.explainEmail) {
+                            if (choice === 3 && !this.domain) {
+                                this.disabledNext = true
+                            }
                         }
 
-                        this.disabledNext = choice === 2 || this.currentPage.explainEmail && choice === 3 && !this.domain;
 
-                        if (this.currentPage.askForDomain && !this.domain) {
-                            this.disabledNext = true
+                        if (this.currentPage.askForDomain) {
+                            if (choice === 1) {
+                                this.disabledNext = false
+                            }
+                            if (choice === 3 && !this.domain) {
+                                this.disabledNext = true
+                            }
                         }
 
                         const pages = [...this.pages];

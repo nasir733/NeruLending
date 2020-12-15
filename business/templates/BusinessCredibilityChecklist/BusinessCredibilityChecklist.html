@@ -1,0 +1,162 @@
+{% extends "pages/base-business.html" %}
+{% load static %}
+{% block extrastyle %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+{% endblock %}
+
+{% block content %}
+    <div class="row page-header">
+        <div class="col-lg-6 align-self-center ">
+            <h2>Business Credibility Checklist</h2>
+        </div>
+    </div>
+    <div id="app">
+        <section class="main-content">
+            <div class="row">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header">${currentPage.title}</div>
+                        <div class="card-body">
+                            <div v-if="currentPage.id === 0">
+                                <b>ENTER BUSINESS NAME</b>
+
+                                <div>
+                                    <input type="text" placeholder="Business Name">
+                                </div>
+
+                            </div>
+                            <div v-if="currentPage.id === 1">
+                                 <b>ENTER BUSINESS ADDRESS</b>
+                                <div>
+                                    <input type="text" placeholder="Business Address">
+                                </div>
+                            </div>
+                            <div v-if="currentPage.id === 2">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/entity.html" %}
+                            </div>
+                            <div v-if="currentPage.id === 3">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/ein.html" %}
+                            </div>
+                            <div v-if="currentPage.id === 4">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/411.html" %}
+                            </div>
+                            <div v-if="currentPage.id === 5">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/website.html" %}
+                            </div>
+                            <div v-if="currentPage.id === 6">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/email.html" %}
+                            </div>
+                            <div v-if="currentPage.id === 7">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/license.html" %}
+                            </div>
+                            <div v-if="currentPage.id === 8">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/bankaccount.html" %}
+                            </div>
+                            <div v-if="currentPage.id === 9">
+                                {% include "businessCreditBuilding/CreditBuildingTemplates/merchant.html" %}
+                            </div>
+{#                            <div v-if="currentPage.id === 10">#}
+                                {#                                {% include "businessCreditBuilding/CreditBuildingTemplates/ein.html" %}#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header">Overview</div>
+                        <div class="card-body">
+                            <p v-for="page in pages" :key="page.id"><a href="#" v-on:click="setCurrentPage(page.id)">${
+                                page.title }</a></p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+    <style media="screen">
+        .room {
+            margin-bottom: 10%;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+{% endblock %}
+
+
+{% block javascriptblock %}
+    <script>
+        const app = new Vue({
+            el: '#app',
+            delimiters: ['${', '}'],
+
+            data: {
+                currentPage: {
+                    id: 0,
+                    title: "",
+                },
+
+                pages: [
+                    {
+                        id: 0,
+                        title: "Step 1 Business Name",
+                    },
+                    {
+                        id: 1,
+                        title: "Step 2 Business Address",
+                    },
+                    {
+                        id: 2,
+                        title: "Step 3 Business Entity",
+                    },
+                    {
+                        id: 3,
+                        title: "Step 4 EIN#",
+                    },
+                    {
+                        id: 4,
+                        title: "Step 5 Business Phone # & 411 Listing",
+                    },
+                    {
+                        id: 5,
+                        title: "Step 6 Website",
+                    },
+                    {
+                        id: 6,
+                        title: "Step 7 Email Address",
+                    },
+                    {
+                        id: 7,
+                        title: "Step 8 Business License",
+                    },
+                    {
+                        id: 8,
+                        title: "Step 9 Business Bank Account",
+                    },
+                    {
+                        id: 9,
+                        title: "Step 10 Business Merchant Account",
+                    },
+
+                ],
+            },
+            mounted: function () {
+                this.currentPage = this.pages[0]
+            },
+            methods: {
+
+                setCurrentPage: function (i) {
+                    this.currentPage = this.pages[i]
+                }
+
+            },
+        });
+    </script>
+{% endblock %}

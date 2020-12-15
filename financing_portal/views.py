@@ -8,8 +8,6 @@ class FinancingPortalHomeView(View):
 
     def get(self, request):
         profile = request.user.profile
-
-
         return render(request, 'FinancingPortalHomePage.html', {"profile": profile})
 
 
