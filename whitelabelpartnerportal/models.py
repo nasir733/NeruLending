@@ -332,3 +332,9 @@ class ClientsOnWholeSale(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     client_name = models.CharField(max_length=100, null=True)
     package = models.ForeignKey(WholeSale, null=True, on_delete=models.CASCADE)
+
+
+class Resource(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    url = models.URLField(null=True)
+    category = models.CharField(max_length=50, null=True)

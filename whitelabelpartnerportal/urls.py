@@ -93,6 +93,8 @@ urlpatterns = [
         name='wholesales'),
     url('^clients_on_wholesale', login_required(ClientsOnWholesaleView.as_view(), login_url='/user/login'),
         name='clients-on-wholesale'),
+    url('^partner_resources', login_required(PartnerResourceView.as_view(), login_url='/user/login'),
+        name='partner_resources'),
 
 
     url('portalsettings', login_required(ManageWhitelabel.as_view(), login_url='/user/login'),

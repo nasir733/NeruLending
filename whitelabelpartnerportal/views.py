@@ -511,3 +511,11 @@ class ClientsOnWholesaleView(View):
     def get(self, request):
         clients = ClientsOnWholeSale.objects.filter(user=request.user)
         return render(request, 'WholeSaleSection/ClientsOnWholesale.html', {'clients': clients})
+
+
+class PartnerResourceView(View):
+    def get(self, request):
+        resources = Resource.objects.all()
+        categories = list(set([i.category for i in resources]))
+        return render(request, 'WholeSaleSection/PartnerResources.html',
+                      {'resources': resources, 'categories': categories})
