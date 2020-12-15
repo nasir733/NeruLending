@@ -18,43 +18,96 @@
                     <div class="card">
                         <div class="card-header">${currentPage.title}</div>
                         <div class="card-body">
-                            <div v-if="currentPage.id === 0">
+                            <div v-if="currentPage.id === 0" class="text-center">
                                 <b>ENTER BUSINESS NAME</b>
 
-                                <div>
-                                    <input type="text" placeholder="Business Name">
+                                <div class="text-center">
+                                    <form method="post" class="d-flex">{% csrf_token %}
+                                        <input type="text" placeholder="Business Name" name="business_name"
+                                               value="{{ steps.business_name }}">
+                                        <input type="hidden" name="page" value="0">
+                                        <button class="btn btn-primary">Save</button>
+                                    </form>
                                 </div>
 
+
                             </div>
-                            <div v-if="currentPage.id === 1">
-                                 <b>ENTER BUSINESS ADDRESS</b>
-                                <div>
-                                    <input type="text" placeholder="Business Address">
+                            <div v-if="currentPage.id === 1" class="text-center">
+                                <b>ENTER BUSINESS ADDRESS</b>
+
+                                <div class="text-center">
+                                    <form method="post" class="d-flex">{% csrf_token %}
+                                        <input type="text" placeholder="Business Address" name="business_address"
+                                               value="{{ steps.business_address }}">
+                                        <input type="hidden" name="page" value="1">
+                                        <button class="btn btn-primary">Save</button>
+                                    </form>
                                 </div>
+
                             </div>
                             <div v-if="currentPage.id === 2">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/entity.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="entity" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                             <div v-if="currentPage.id === 3">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/ein.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="ein" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                             <div v-if="currentPage.id === 4">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/411.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="four11" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                             <div v-if="currentPage.id === 5">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/website.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="website" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                             <div v-if="currentPage.id === 6">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/email.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="email" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                             <div v-if="currentPage.id === 7">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/license.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="license" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                             <div v-if="currentPage.id === 8">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/bankaccount.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="bankaccount" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                             <div v-if="currentPage.id === 9">
                                 {% include "businessCreditBuilding/CreditBuildingTemplates/merchant.html" %}
+                                <form method="post" class="d-flex">{% csrf_token %}
+                                    <input type="hidden" name="page" v-bind:value="currentPage.id">
+                                    <input type="hidden" name="merchant" value="true">
+                                    <button class="btn btn-success btn-block">Mark As Complete</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -63,9 +116,11 @@
                     <div class="card">
                         <div class="card-header">Overview</div>
                         <div class="card-body">
-                            <p v-for="page in pages" :key="page.id"><a href="#" v-on:click="setCurrentPage(page.id)">${
-                                page.title }</a></p>
-
+                            <p v-for="page in pages" :key="page.id">
+                                <i v-if="page.done" class="icon-check bg-success" style="border-radius: 10px"></i>
+                                <i v-if="!page.done" class="icon-check"></i>
+                                <a href="#" v-on:click="setCurrentPage(page.id)">${
+                                    page.title }</a></p>
                         </div>
                     </div>
                 </div>
@@ -104,48 +159,66 @@
                     {
                         id: 0,
                         title: "Step 1 Business Name",
+                        done: '{{ steps.business_name }}'
                     },
                     {
                         id: 1,
                         title: "Step 2 Business Address",
+                        done: '{{ steps.business_address }}'
                     },
                     {
                         id: 2,
                         title: "Step 3 Business Entity",
+                        done: {% if steps.entity %}true{% else %}false{% endif %}
                     },
                     {
                         id: 3,
                         title: "Step 4 EIN#",
+                        done: {% if steps.ein %}true{% else %}false{% endif %}
                     },
                     {
                         id: 4,
                         title: "Step 5 Business Phone # & 411 Listing",
+                        done: {% if steps.four11 %}true{% else %}false{% endif %}
                     },
                     {
                         id: 5,
                         title: "Step 6 Website",
+                        done: {% if steps.website %}true{% else %}false{% endif %}
                     },
                     {
                         id: 6,
                         title: "Step 7 Email Address",
+                        done: {% if steps.email %}true{% else %}false{% endif %}
                     },
                     {
                         id: 7,
                         title: "Step 8 Business License",
+                        done: {% if steps.license %}true{% else %}false{% endif %}
                     },
                     {
                         id: 8,
                         title: "Step 9 Business Bank Account",
+                        done: {% if steps.bankaccount %}true{% else %}false{% endif %}
                     },
                     {
                         id: 9,
                         title: "Step 10 Business Merchant Account",
+                        done: {% if steps.merchant %}true{% else %}false{% endif %}
                     },
 
                 ],
             },
             mounted: function () {
-                this.currentPage = this.pages[0]
+                const page = {% if page %}{{ page }}{% else %}''{% endif %};
+                console.log(page)
+                if (page) {
+                    this.currentPage = this.pages[page]
+                } else {
+                    this.currentPage = this.pages[0]
+                }
+
+
             },
             methods: {
 

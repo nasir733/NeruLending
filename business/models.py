@@ -1,9 +1,9 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
 from core.models import BusinessTierModel, TimeTrackedModel
 from user.models import Profile
-from django.conf import settings
 
 
 class ModelMixin:
@@ -548,3 +548,17 @@ class CurrentTradelines(models.Model):
     reports_to = models.CharField(max_length=500)
     we_can_help = models.BooleanField(null=True, default=True)
     recommended = models.BooleanField(null=True, default=True)
+
+
+class CredibilitySteps(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    business_name = models.CharField(max_length=500)
+    business_address = models.CharField(max_length=500)
+    entity = models.BooleanField(default=False)
+    ein = models.BooleanField(default=False)
+    four11 = models.BooleanField(default=False)
+    website = models.BooleanField(default=False)
+    email = models.BooleanField(default=False)
+    license = models.BooleanField(default=False)
+    bankaccount = models.BooleanField(default=False)
+    merchant = models.BooleanField(default=False)
