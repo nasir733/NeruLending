@@ -562,3 +562,13 @@ class CredibilitySteps(models.Model):
     license = models.BooleanField(default=False)
     bankaccount = models.BooleanField(default=False)
     merchant = models.BooleanField(default=False)
+
+
+class OtherChecklistSteps(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    established = models.BooleanField(default=False)
+    tier1 = models.BooleanField(default=False)
+    tier2 = models.BooleanField(default=False)
+    tier3 = models.BooleanField(default=False)
+    tier4 = models.BooleanField(default=False)
+    monitor = models.BooleanField(default=False)

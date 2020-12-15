@@ -131,7 +131,9 @@ urlpatterns = [
 
     url('^business-credit-builder-tracker/', login_required(AllTradelinesView.as_view(), login_url='/user/login'), name='business-credit-builder-tracker'),
     url('^add-custom-tradelines/', login_required(AddCustomTradelineView.as_view(), login_url='/user/login'), name='add-tradelines-tracker'),
-    url('^business_credibility_checklist/', login_required(BusinessCredibilityChecklist.as_view(), login_url='/user/login'), name='business_credibility_checklist'),
+    url('^business_credit_checklist/', login_required(MainChecklistView.as_view(), login_url='/user/login'), name='business_credibility_checklist'),
+    url('^business_credibility_checklist/', login_required(BusinessCredibilityChecklist.as_view(), login_url='/user/login'), name='business_credibility_checklist1'),
+    url('^business_credibility_establish/', login_required(EstablishingView.as_view(), login_url='/user/login'), name='business_credibility_establishing'),
 
     url('faqs/', login_required(FAQsView.as_view(), login_url='/user/login'), name='faqs'),
     url('chat/', login_required(ChatView.as_view(), login_url='/user/login'), name='chat'),
