@@ -26,7 +26,10 @@ class BusinessCredibilityChecklist(View):
         data = request.POST
         for i in data:
             if hasattr(steps, i):
-                setattr(steps, i, bool(data.get(i)))
+                val = data.get(i)
+                if val == 'true':
+                    val = True
+                setattr(steps, i, val)
         steps.save()
         request.session['page'] = request.POST.get('page')
         return redirect('business:business_credibility_checklist')
