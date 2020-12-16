@@ -32,17 +32,37 @@ class MainChecklistView(View):
             othersteps.save()
 
         stp = request.POST.get('step')
-        stp = int(stp)
-        if stp == 3:
-            othersteps.tier1 = True
-        if stp == 4:
-            othersteps.monitor = True
-        if stp == 5:
-            othersteps.tier2 = True
-        if stp == 6:
-            othersteps.tier3 = True
-        if stp == 7:
-            othersteps.tier4 = True
+        if stp:
+            stp = int(stp)
+            if stp == 2:
+                othersteps.established = True
+            if stp == 3:
+                othersteps.tier1 = True
+            if stp == 4:
+                othersteps.monitor = True
+            if stp == 5:
+                othersteps.tier2 = True
+            if stp == 6:
+                othersteps.tier3 = True
+            if stp == 7:
+                othersteps.tier4 = True
+
+        undo = request.POST.get('undo')
+        print(undo)
+        if undo:
+            undo = int(undo)
+            if undo == 2:
+                othersteps.established = False
+            if undo == 3:
+                othersteps.tier1 = False
+            if undo == 4:
+                othersteps.monitor = False
+            if undo == 5:
+                othersteps.tier2 = False
+            if undo == 6:
+                othersteps.tier3 = False
+            if undo == 7:
+                othersteps.tier4 = False
 
         othersteps.save()
         return redirect('business:business_credibility_checklist')
