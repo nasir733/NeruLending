@@ -35,7 +35,10 @@
                             </li>
                         {% endif %}
 
-
+                        <li class="nav-item">
+                            <a href="/{{ request.resolver_match.app_name }}/business-credit-steps-guided"
+                               class="nav-link"> Guided Business Creation</a>
+                        </li>
 
 
                         <li class="nav-item">
@@ -59,7 +62,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{% url 'financing_portal:financing-portal-home' %}"
-                               class="nav-link"> Financing Products Portal </a>
+                               class="nav-link"> Financing Our Products & Softwares Portal </a>
                         </li>
                         <li class="nav-item">
                             <a href="{% url 'business:tradelines' %}"
@@ -161,10 +164,6 @@
                             <a href="/{{ request.resolver_match.app_name }}/business-credit-steps-onlyprograms"
                                class="nav-link"> Choose Business Credit
                                 Building Steps You Need Done For You </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/{{ request.resolver_match.app_name }}/business-credit-steps-guided"
-                               class="nav-link"> Guided Business Creation</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript: void(0);" aria-expanded="false"> <span
@@ -372,8 +371,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="https://businessbuilders.zendesk.com/hc/en-us/sections/360010349512-FAQ" target="_blank" class="nav-link"><span
-                                    class="toggle-none">Frequently Asked Questions</span></a>
+                            <a href="{% url 'business:faqs' %}" class="nav-link"> Frequently Asked Questions</a>
                         </li>
 
                         <li class="nav-item">
