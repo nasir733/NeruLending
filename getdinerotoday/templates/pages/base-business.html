@@ -61,10 +61,6 @@
                                class="nav-link"> Business Credibility Checklist </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'financing_portal:financing-portal-home' %}"
-                               class="nav-link"> Financing Our Products & Softwares Portal </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{% url 'business:tradelines' %}"
                                class="nav-link"> Add Business Tradelines </a>
                         </li>
@@ -83,10 +79,18 @@
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a href="https://www.youtube.com/watch?v=xNCfnbGT5hY&feature=youtu.be" target="_blank"
+                                <a href="https://www.youtube.com/watch?v=Vm2imqZwlB4&t=216s" target="_blank"
                                    class="nav-link"> Watch Webinar On Building Business Credit </a>
                             </li>
                         {% endif %}
+                        <li class="nav-item">
+                            <a href="{% url 'financing_portal:purchase-products' %}"
+                               class="nav-link"> Purchase Our Other Software Products *(Not Linked To Business Credit)* </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'financing_portal:financing-portal-home' %}"
+                               class="nav-link"> Financing Our Products & Softwares Portal </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="/{{ request.resolver_match.app_name }}/financing" class="nav-link"> Create
