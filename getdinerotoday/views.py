@@ -99,6 +99,11 @@ class WhiteLabelView(View):
         return render(request, 'landingpages/whitelabel.html')
 
 
+class Faqpartner(View):
+    def get(self, request):
+        return render(request, 'help/faqs.html')
+
+
 class AffiliatelView(View):
     def get(self, request):
         return render(request, 'landingpages/affiliate.html')
@@ -116,7 +121,7 @@ class WebinarOfferView(View):
 
 class FAQView(View):
     def get(self, request):
-        return render(request, 'landingpages/faq.html')
+        return render(request, 'help/faq.html')
 
 
 class TestimonialsView(View):

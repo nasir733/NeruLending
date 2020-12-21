@@ -11,7 +11,7 @@
 
     <section class="main-content">
 
-        <div class="row">
+      <!--  <div class="row">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -28,17 +28,31 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-
-                    <div class="card-header">Products Purchased:</div>
-                    <div class="card-body">
-                        {% for prod in products %}
-                            <a class="btn btn-primary" href="{{ prod.url }}">{{ prod.product }}</a>
-                        {% endfor %}
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-default">
+                    Payments Left
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="datatable" class="table table-striped dt-responsive nowrap">
+                            <thead>
+                            <tr>
+                                <th>Amount Left:</th>
+                                <th>Payments Left:</th>
+                                <th>Terms:</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ amount_left }}</td>
+                                    <td>{{ payments_left }}</td>
+                                    <td>{{ terms }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
