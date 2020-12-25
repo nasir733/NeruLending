@@ -61,6 +61,7 @@ urlpatterns = [
     path('onlinetools/', include('onlinetools.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
     path('chromeextension/', include('chromeextension.urls')),
+    path('onboarding/', include('onboarding.urls')),
     path('financing_portal/', include('financing_portal.urls')),
 
     url('dashboard/', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
