@@ -1,12 +1,11 @@
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
-from .rest_views.business_views import StepsChecklistAPI
+from .rest_views.business_views import StepsChecklistAPI, StepsChecklistCredibilityAPI
 from .rest_views.product_views import TradelinesProductsAPI, UserStepsProductsAPI, StripeOrderAPI, UserDataAPI
 from .rest_views.whitelabel_views import ResidualsAPI, LeadsAPI, SalesAPI, SignedUsersAPI, OrdersAPI, InvoicesAPI, \
     PaymentsAPI, CreditsAPI, BankPaymentInformationAPI, PaypalInformationAPI, WhiteLabelLogoAPI, WhiteLabelUserLogoAPI
 from .views import *
-
 
 urlpatterns = [
 
@@ -29,18 +28,18 @@ urlpatterns = [
     path('business/business_term_loan/', BusinessTermLoanAPI.as_view({'get': 'list'}), name='business_term_loan'),
     path('business/sba_loan/', SBALoanAPI.as_view({'get': 'list'}), name='sba_loan'),
     path('business/personal_loan/', PersonalLoanAPI.as_view({'get': 'list'}), name='personal_loan'),
-    path('business/business_lines_of_credit/', BusinessLinesOfCreditAPI.as_view({'get': 'list'}), name='business_lines_of_credit'),
+    path('business/business_lines_of_credit/', BusinessLinesOfCreditAPI.as_view({'get': 'list'}),
+         name='business_lines_of_credit'),
     path('business/no_credit_check_loan/', NoCreditCheckLoansAPI.as_view({'get': 'list'}), name='no_credit_check_loan'),
     path('business/invoice_factoring/', InvoiceFactoringAPI.as_view({'get': 'list'}), name='invoice_factoring'),
     path('business/invoice_financing/', InvoiceFinancingAPI.as_view({'get': 'list'}), name='invoice_financing'),
     path('business/equipment_financing/', EquipmentFinancingAPI.as_view({'get': 'list'}), name='equipment_financing'),
 
     path('business/checklist/', StepsChecklistAPI.as_view(), name='checklist'),
+    path('business/credibilitycheck/', StepsChecklistCredibilityAPI.as_view(), name='checklistcredibility'),
 
     path('loans/upload-document/', uploadLoanDocument.as_view(), name='upload-document'),
     path('domain/check', checkDomainApi.as_view(), name='check_domain'),
-
-
 
     path('wt/residuals/', ResidualsAPI.as_view(), name='wt_myresiduals'),
     path('wt/leads/', LeadsAPI.as_view(), name='wt_leads'),

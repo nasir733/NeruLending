@@ -13,7 +13,7 @@ class MainChecklistView(View):
 
         othersteps = OtherChecklistSteps.objects.filter(user=request.user).first()
         if not othersteps:
-            othersteps = CredibilitySteps(user=request.user)
+            othersteps = OtherChecklistSteps(user=request.user)
             othersteps.save()
 
         steps_done = True
