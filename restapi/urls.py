@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
-from .rest_views.business_views import StepsChecklistAPI, StepsChecklistCredibilityAPI
+from .rest_views.business_views import StepsChecklistAPI, StepsChecklistCredibilityAPI, BusinessCreditBuilderTrackerAPI
 from .rest_views.product_views import TradelinesProductsAPI, UserStepsProductsAPI, StripeOrderAPI, UserDataAPI
 from .rest_views.whitelabel_views import ResidualsAPI, LeadsAPI, SalesAPI, SignedUsersAPI, OrdersAPI, InvoicesAPI, \
     PaymentsAPI, CreditsAPI, BankPaymentInformationAPI, PaypalInformationAPI, WhiteLabelLogoAPI, WhiteLabelUserLogoAPI
@@ -57,6 +57,7 @@ urlpatterns = [
     path('wt/getuserlogo/', WhiteLabelUserLogoAPI.as_view(), name='wt_user_logo'),
 
     path('business/gettradelines/', TradelinesAPI.as_view(), name='get_tradelines'),
+    path('business/getcredittracker/', BusinessCreditBuilderTrackerAPI.as_view(), name='credit_tracker'),
 
 
 

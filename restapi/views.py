@@ -287,11 +287,40 @@ class TradelinesAPI(APIView):
             model = TradelineOrder
             exclude = ['user']
 
+        tradeline = serializers.CharField(source='tradeline.business_name')
+
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
-        objects = OrderDataService.get_user_tradelines_data(request.user)
-        return Response(objects)
+        tradelines = TradelineOrder.objects.filter(user=request.user)
+        response = []
+
+        for i in tradelines:
+            if i.which == 0:
+                tr = i.tradeline
+            elif i.which == 1:
+                tr = i.tradeline_tier1
+            elif i.which == 2:
+                tr = i.tradeline_tier2
+            elif i.which == 3:
+                tr = i.tradeline_tier3
+            elif i.which == 4:
+                tr = i.tradeline_tier4
+            elif i.which == -1:
+                tr = i.custom_tier
+            else:
+                continue
+
+            response.append({
+                "company_name": tr.company_name,
+                "product": tr.product,
+                "tradeline_amount": tr.tradeline_amount,
+                "price": tr.price,
+                "charge": tr.charge
+            })
+
+
+        return Response(response)
 
 
 

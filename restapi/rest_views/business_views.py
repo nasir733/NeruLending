@@ -3,7 +3,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from business.models import CredibilitySteps, OtherChecklistSteps
+from business.models import CredibilitySteps, OtherChecklistSteps, Tier1, Tier2, Tier3, Tier4
+from dynamic.models import Subdomain
+from products.models import Tradelines
+from restapi.serializers import TradelineSerializer, Tier1Serializer
+from services.OrderDataService import OrderDataService
 
 
 class StepsChecklistAPI(APIView):
@@ -86,3 +90,30 @@ class StepsChecklistCredibilityAPI(APIView):
         steps.save()
         print(data)
         return Response({'status': 'ok'})
+
+
+class BusinessCreditBuilderTrackerAPI(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        tier1 = Tier1Serializer(Tier1.objects.all(), many=True).data
+        tier2 = Tier1Serializer(Tier2.objects.all(), many=True).data
+        tier3 = Tier1Serializer(Tier3.objects.all(), many=True).data
+        tier4 = Tier1Serializer(Tier4.objects.all(), many=True).data
+
+        subdomain = Subdomain.objects.filter(sub_name=request.host.name).first()
+        our_tradelines = Tradelines.objects.filter(whitelabel_portal__sub_name=subdomain)
+
+        our_tradelines = Tier1Serializer(our_tradelines, many=True).data
+
+        current_tradelines = OrderDataService.get_user_tradelines_data(request.user)
+        tradeline_count = len(current_tradelines)
+        return Response({
+                          # "tradeline_count": tradeline_count,
+                          "currentAmount": tradeline_count,
+                          "tier1": tier1,
+                          "tier2": tier2,
+                          "tier3": tier3,
+                          "tier4": tier4,
+                          "offeredTradelines": our_tradelines
+                      })

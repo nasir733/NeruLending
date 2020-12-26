@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+from business.models import Tier1
+from core.models import BusinessTierModel
 from user.models import UserData
 from orders.models import UserSteps
 
@@ -124,3 +127,25 @@ class EquipmentFinancingSerializer(serializers.ModelSerializer):
     class Meta:
         model = businessmodels.EquipmentFinancing
         exclude = []
+
+
+
+
+class TradelineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BusinessTierModel
+        exclude = []
+        abstract = True
+
+
+
+
+
+class Tier1Serializer(TradelineSerializer):
+    class Meta:
+        model = Tier1
+        exclude = []
+
+
+
+
