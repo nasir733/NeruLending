@@ -1,7 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as DjangoAdmin
+from django.contrib.auth.models import User
+from import_export import resources
+from import_export.admin import ExportMixin
 
 from .models import Portal, PortalGoal, Profile, VirtualCard, UserData, NewUserCredentials, ExternalResourceCredentials
-from orders.models import UserSteps
 
 admin.site.site_header = "Get Dinero Today Admin"
 admin.site.site_title = "Get Dinero Today"
@@ -9,6 +12,19 @@ admin.site.index_title = "Administration"
 
 
 # admin.site.site_url = None
+class UserResource(resources.ModelResource):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'profile__phone_number')
+
+
+class UserAdmin(ExportMixin, DjangoAdmin):
+    resource_class = UserResource
+    pass
+
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 
 class ProfileAdmin(admin.ModelAdmin):
