@@ -25,3 +25,7 @@ update_gdt:
 	make git-save
 	git push heroku-release master
 	heroku run ./manage.py migrate --app getdinerotoday
+
+pushdt:
+	git push heroku-release master
+	heroku run ./manage.py migrate --app getdinerotoday

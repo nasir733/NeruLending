@@ -41,7 +41,7 @@
                         <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:myresiduals' %}" class="nav-link">My
                             Residuals</a></li>
                     {% endif %}
-                    {% if dynamic.is_paid_for_whitelabel %}
+                    {% if iswhitelabeladmin %}
                         <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:clientProgress' %}" class="nav-link">Client Progress</a></li>
                     {% endif %}
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:enternewleads' %}" class="nav-link">Enter
