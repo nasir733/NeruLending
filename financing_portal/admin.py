@@ -5,7 +5,7 @@ from financing_portal.models import Product, ProductPurchasedModel
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'recurring')
+    # list_display = ('name', 'price', 'recurring')
     readonly_fields = ('product_id', 'price_id', 'price_lookup')
 
 
