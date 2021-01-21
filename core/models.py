@@ -78,12 +78,18 @@ class ProductModel(models.Model):
 
     RECURRING = ((MONTH, "month"), (YEAR, "year"), (ONE_TIME, 'one_time'))
 
+    recurring_choices = (
+        (1, "One time"),
+        (2, "Monthly"),
+        (3, "Yearly")
+    )
+
     name = models.CharField(max_length=500, default='Product', null=True)
 
     price = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
     charge = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
+    recurring = models.IntegerField(choices=recurring_choices, null=True)
 
-    recurring = models.CharField(choices=RECURRING, default=ONE_TIME, max_length=400)
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.CASCADE, null=True, blank=True)
 
     product_id = models.CharField(max_length=100, null=True, blank=True)
@@ -98,13 +104,18 @@ class ProductModel(models.Model):
             return
 
         if not self.product_id:
-            response = StripeService.create_product(str(self), float(self.price) + float(self.charge), self.name)
+            response = StripeService.create_product(str(self),
+                                                    float(self.price) + float(self.charge),
+                                                    recurring=self.recurring)
             self.product_id = response['prod_id']
             self.price_id = response['price_id']
             self.price_lookup = response['price_lookup']
         else:
-            price_id, _ = StripeService.update_product(self.product_id, self.price_id, str(self),
-                                                       float(self.price) + float(self.charge))
+            price_id, _ = StripeService.update_product(self.product_id,
+                                                       self.price_id,
+                                                       str(self),
+                                                       float(self.price) + float(self.charge),
+                                                       recurring=self.recurring)
             if price_id != self.price_id:
                 self.price_id = price_id
         super().save(*args, **kwargs)

@@ -5,6 +5,7 @@ from django.views import View
 
 from business.models import *
 from dynamic.models import Subdomain
+from financing_portal.models import ProductPurchasedModel, Product
 from orders.models import TradelineOrder, UserSteps
 from products.models import Tradelines
 from services.StripeService import StripeService
@@ -169,6 +170,10 @@ def subscription(request):
                 new_wholesale_order = WholeSaleOrder(user=request.user,
                                                      product=WholeSale.objects.get(product_id=i['product_id']))
                 new_wholesale_order.save()
+            elif i['type'] == 'financingProduct':
+                product_order = ProductPurchasedModel(user=request.user,
+                                                      product=Product.objects.get(product_id=i['product_id']))
+                product_order.save()
 
         amount = sum([i['price'] * i['quantity'] for i in products])
         request.session.pop('ordering_products')
