@@ -20,6 +20,7 @@ class ProfileUserManager(models.Manager):
 class Profile(models.Model):
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=500, null=True)
+    is_partner = models.BooleanField(default=False)
     updates_made = models.CharField(max_length=500, null=True, default="N/A")
     residual_amount = models.CharField(max_length=500, null=True, default="N/A")
     expected_payout = models.CharField(max_length=500, null=True, default="N/A")
