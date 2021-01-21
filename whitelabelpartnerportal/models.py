@@ -336,6 +336,6 @@ class ClientsOnWholeSale(models.Model):
 
 class Resource(models.Model):
     name = models.CharField(max_length=100, null=True)
-    url = models.URLField(null=True)
+    # url = models.URLField(null=True)
     document = models.FileField(upload_to=get_file_path, null=True)
     category = models.CharField(max_length=50, null=True)
