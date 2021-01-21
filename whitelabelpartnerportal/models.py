@@ -319,9 +319,6 @@ class WholeSale(ProductModel):
     name = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=200, null=True)
 
-    created_at = models.DateTimeField(null=True)
-    updated_at = models.DateTimeField(null=True)
-
 
 class WholeSaleOrder(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
