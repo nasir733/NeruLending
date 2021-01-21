@@ -99,6 +99,8 @@ urlpatterns = [
 
     url('portalsettings', login_required(ManageWhitelabel.as_view(), login_url='/user/login'),
         name='manageportal'),
+    url('client_progress', login_required(ClientProgress.as_view(), login_url='/user/login'),
+        name='clientProgress'),
 
     url('edit_tradelines', login_required(EditTradeline.as_view(), login_url='/user/login'), name='edit_tradelines'),
     url('edit_usersteps', login_required(EditUserSteps.as_view(), login_url='/user/login'), name='edit_usersteps'),

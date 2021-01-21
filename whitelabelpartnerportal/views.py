@@ -519,3 +519,17 @@ class PartnerResourceView(View):
         categories = list(set([i.category for i in resources]))
         return render(request, 'WholeSaleSection/PartnerResources.html',
                       {'resources': resources, 'categories': categories})
+
+
+class ClientProgress(View):
+    def get(self, request):
+        clients = Profile.objects.filter(whitelabel_portal=request.host.name)
+        for i in clients:
+            goals = []
+            for k in i.portal_goals.all():
+                for kk in k.portals.all().values('name'):
+                    goals.append(kk)
+            i.goals = goals
+
+
+        return render(request, 'ClientProgress.html', {'clients': clients})
