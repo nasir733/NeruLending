@@ -14,8 +14,8 @@ class FinancingPortalHomeView(View):
 class FinancingPortalProductsPurchasedView(View):
 
     def get(self, request):
-        prods = ProductPurchasedModel.objects.filter(user=request.user)
-        return render(request, 'FinancingPortalProductsPurchased.html', {"prods": prods})
+        products = ProductPurchasedModel.objects.filter(user=request.user)
+        return render(request, 'FinancingPortalProductsPurchased.html', {"products": products})
 
 
 class FinancingPortalPurchaseProductsView(View):
@@ -39,6 +39,7 @@ class FinancingPortalPurchaseProductsView(View):
             }]
             request.session['ordering_products'] = ordering_products
         return redirect("business:stripe_checkout")
+
 
 class FinancingPortalPaymentsView(View):
 

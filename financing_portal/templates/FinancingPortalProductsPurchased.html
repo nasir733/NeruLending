@@ -32,7 +32,7 @@
                                 {% for prod in products %}
                                     <tr>
                                         <td>{{ prod.product }}</td>
-                                        <td>${{ prod.amount }}</td>
+                                        <td>${{ prod.product.price }}</td>
                                         <td>{{ prod.payments_left }}</td>
                                         <td>${{ prod.amount_left }}</td>
                                     </tr>

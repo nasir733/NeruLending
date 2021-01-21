@@ -75,12 +75,14 @@ class ProductModel(models.Model):
     MONTH = 'Month'
     YEAR = 'Year'
     ONE_TIME = 'One time'
-
     recurring_choices = (
         (1, ONE_TIME),
         (2, MONTH),
         (3, YEAR)
     )
+
+    # Override this in child classes
+    type = 'product'
 
     name = models.CharField(max_length=500, default='Product', null=True)
 
