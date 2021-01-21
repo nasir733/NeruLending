@@ -26,6 +26,9 @@
                                     <th>Amount</th>
                                     <th>Payments Left</th>
                                     <th>Amount Left</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th>Link</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -35,6 +38,9 @@
                                         <td>${{ prod.product.price }}</td>
                                         <td>{{ prod.payments_left }}</td>
                                         <td>${{ prod.amount_left }}</td>
+                                        <td>{% if prod.username %}{{ prod.username }}{% endif %}</td>
+                                        <td>{% if prod.password %}{{ prod.password }}{% endif %}</td>
+                                        <td>{% if prod.link %}<a class="btn btn-primary" href="{{ prod.link }}">View</a>{% endif %}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

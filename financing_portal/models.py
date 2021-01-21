@@ -13,6 +13,9 @@ class ProductPurchasedModel(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     payments_left = models.DecimalField(max_digits=100, default=0, decimal_places=2)
     amount_left = models.DecimalField(max_digits=100, default=0, decimal_places=2)
+    username = models.CharField(blank=True, null=True, max_length=50)
+    password = models.CharField(blank=True, null=True, max_length=50)
+    link = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.product.name} {self.user}"
