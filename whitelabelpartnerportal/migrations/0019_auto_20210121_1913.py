@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='wholesale',
             name='recurring',
-            field=models.CharField(choices=[('month', 'month'), ('year', 'year'), ('one_time', 'one_time')], default=('month', 'month'), max_length=10),
+            field=models.CharField(choices=[('month', 'month'), ('year', 'year'), ('one_time', 'one_time')], default=('month', 'month'), max_length=400),
         ),
     ]
