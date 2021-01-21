@@ -19,3 +19,9 @@ applymigrations:
 
 bashgdt:
 	heroku run bash --app getdinerotoday
+
+update_gdt:
+	make migrations
+	make git-save
+	git push heroku-release master
+	heroku run ./manage migrate --app getdinerotoday
