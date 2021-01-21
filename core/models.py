@@ -72,16 +72,22 @@ class ProductModel(models.Model):
     class Meta:
         abstract = True
 
+    RECURRING = (("month", "month"), ("year", "year"), ('one_time', 'one_time'))
+
     name = models.CharField(max_length=500, default='Product', null=True)
 
     price = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
     charge = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
 
+    recurring = models.CharField(choices=RECURRING, default=RECURRING[0], max_length=10)
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.CASCADE, null=True, blank=True)
 
     product_id = models.CharField(max_length=100, null=True, blank=True)
     price_id = models.CharField(max_length=100, null=True, blank=True)
     price_lookup = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
     def save(self, *args, **kwargs):
         if self.price < 0 or self.charge < 0:
