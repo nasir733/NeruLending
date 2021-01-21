@@ -83,7 +83,7 @@ class ProductModel(models.Model):
     price = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
     charge = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
 
-    recurring = models.CharField(choices=RECURRING, default=ONE_TIME, max_length=15)
+    recurring = models.CharField(choices=RECURRING, default=ONE_TIME, max_length=400)
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.CASCADE, null=True, blank=True)
 
     product_id = models.CharField(max_length=100, null=True, blank=True)

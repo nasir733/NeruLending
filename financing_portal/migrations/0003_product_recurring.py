@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='recurring',
-            field=models.CharField(choices=[('month', 'month'), ('year', 'year')], default=('month', 'month'), max_length=10),
+            field=models.CharField(choices=[('month', 'month'), ('year', 'year')], default=('month', 'month'), max_length=400),
         ),
     ]
