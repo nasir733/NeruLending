@@ -72,23 +72,21 @@ class ProductModel(models.Model):
     class Meta:
         abstract = True
 
-    MONTH = 'month'
-    YEAR = 'year'
-    ONE_TIME = 'one_time'
-
-    RECURRING = ((MONTH, "month"), (YEAR, "year"), (ONE_TIME, 'one_time'))
+    MONTH = 'Month'
+    YEAR = 'Year'
+    ONE_TIME = 'One time'
 
     recurring_choices = (
-        (1, "One time"),
-        (2, "Monthly"),
-        (3, "Yearly")
+        (1, ONE_TIME),
+        (2, MONTH),
+        (3, YEAR)
     )
 
     name = models.CharField(max_length=500, default='Product', null=True)
 
     price = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
     charge = models.DecimalField(max_digits=100, default=0, decimal_places=2, validators=[MinValueValidator(0)])
-    recurring = models.IntegerField(choices=recurring_choices, null=True)
+    recurring = models.IntegerField(choices=recurring_choices, default=ONE_TIME, null=True)
 
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.CASCADE, null=True, blank=True)
 
