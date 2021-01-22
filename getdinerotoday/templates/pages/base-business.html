@@ -331,7 +331,7 @@
                                     Portal</a>
                             </li>
                         {% endif %}
-                        {% if dynamic.is_paid_for_whitelabel and request.user.profile.is_partner %}
+                        {% if dynamic.is_paid_for_whitelabel and iswhitelabeladmin %}
                             <li class="nav-item">
                                 <a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link"> Go To
                                     White Label Partner Portal</a>

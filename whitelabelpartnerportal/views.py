@@ -4,7 +4,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
 
+from affiliate.models import Webinar
 from dynamic.models import Subdomain
+from financing_portal.models import Product
 from products.models import Tradelines, UserStepsProduct
 from services.StripeService import StripeService
 from services.WhiteLabelService import WhiteLabelService
@@ -452,6 +454,36 @@ class EditTradeline(View):
         obj = Tradelines.objects.filter(product_id=request.POST.get('product')).first()
         if obj:
             obj.charge = float(request.POST.get('charge'))
+            obj.save()
+        return redirect("whitelabelpartnerportal:productmanagement")
+
+
+class EditWholesale(View):
+    def get(self, request):
+        obj = WholeSale.objects.filter(product_id=request.GET.get('product')).first()
+        return render(request, "PortalManagement/EditWholesalee.html", {"tradeline": obj})
+
+    def post(self, request):
+        print(request.POST)
+        obj = WholeSale.objects.filter(product_id=request.POST.get('product')).first()
+        if obj:
+            obj.charge = float(request.POST.get('charge'))
+            obj.price = float(request.POST.get('price'))
+            obj.save()
+        return redirect("whitelabelpartnerportal:productmanagement")
+
+
+class EditSoftware(View):
+    def get(self, request):
+        obj = Product.objects.filter(product_id=request.GET.get('product')).first()
+        return render(request, "PortalManagement/EditWholesalee.html", {"tradeline": obj})
+
+    def post(self, request):
+        print(request.POST)
+        obj = Product.objects.filter(product_id=request.POST.get('product')).first()
+        if obj:
+            obj.charge = float(request.POST.get('charge'))
+            obj.price = float(request.POST.get('price'))
             obj.save()
         return redirect("whitelabelpartnerportal:productmanagement")
 
