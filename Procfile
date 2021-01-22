@@ -1,1 +1,1 @@
-web: gunicorn getdinerotoday.wsgi --log-file -
+web: gunicorn getdinerotoday.wsgi --timeout 30 --log-file -
