@@ -539,6 +539,10 @@ class Tier4(BusinessTierModel):
     pass
 
 
+class NonReportingTradeline(BusinessTierModel):
+    pass
+
+
 class CurrentTradelines(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     business_name = models.CharField(max_length=500)

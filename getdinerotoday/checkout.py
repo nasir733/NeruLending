@@ -155,6 +155,11 @@ def subscription(request):
                         'which': 4,
                         'tradeline_tier4': Tier4.objects.get(product_id=i['product_id'])
                     }
+                elif 'tier' in i and i['tier'] == 5:
+                    tradeline = {
+                        'which': 5,
+                        'non_reporting_tradeline': NonReportingTradeline.objects.get(product_id=i['product_id'])
+                    }
                 else:
                     tradeline = {
                         'which': 0,
