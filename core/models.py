@@ -77,6 +77,10 @@ class BusinessTierModel(ProductModel):
     recommended = models.TextField(null=True, blank=True)
     tier = models.CharField(max_length=10, null=True, blank=True)
 
+    terms = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    website_link = models.URLField(null=True, blank=True)
+
     def __str__(self):
         return f"{self.company_name} {self.product} tradeline"
 
