@@ -47,7 +47,7 @@
                                     <td>{{ client.user.first_name }} {{ client.user.last_name }}</td>
                                     <td>{{ client.what_is_done }}</td>
                                     <td>{{ client.what_is_left }}</td>
-                                    <td>{% for i in client.goals %}<p>{{ i.name }}</p>{% endfor %}</td>
+                                    <td>{% for i in client.goals %}<p>{{ i.name }}</p>{% endfor %} <p>{{ client.user_goals_text }}</p></td>
                                     <td>{{ client.what_is_purchased }}</td>
                                     <td>{{ client.what_is_recommended }}</td>
                                 </tr>

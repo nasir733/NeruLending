@@ -34,6 +34,7 @@ class Profile(models.Model):
     what_is_left = models.TextField(blank=True)
     what_is_purchased = models.TextField(blank=True)
     what_is_recommended = models.TextField(blank=True)
+    user_goals_text = models.TextField(blank=True)
 
     available_credit_limit = models.DecimalField(max_digits=100, default=1500, decimal_places=2)
     credit_line = models.DecimalField(max_digits=100, default=1000, decimal_places=2)
