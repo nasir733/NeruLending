@@ -1,33 +1,15 @@
 {% extends "pages/base-whitelabel.html" %}
 {% load static %}
-
-{% block extrastyle %}
-    <script type="text/javascript" src="https://chatterpal.me/build/js/chatpal.js?7.23" crossorigin="anonymous"
-            data-cfasync="false">
-    </script>
-    <script>
-        var chatPal = new ChatPal({
-            embedId: 'DfT7BnTm5dGn',
-            remoteBaseUrl: 'https://chatterpal.me/',
-            version: '7.23'
-        });
-    </script>
-{% endblock extrastyle %}
-<!-- ============================================================== -->
-<!--            Content Start             -->
-<!-- ============================================================== -->
 {% block content %}
     <div class="row page-header">
         <div class="col-lg-6 align-self-center ">
-            <h2>Your Sales</h2></div>
+            <h2>Client Progress</h2></div>
     </div>
-
     <section class="main-content">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-default">
-                        My Sales
                     </div>
                     <div class="card-body">
                         <table id="datatable" class="table table-striped dt-responsive nowrap">
@@ -39,6 +21,7 @@
                                 <th>Clients Goal</th>
                                 <th>What Is Purchased</th>
                                 <th>What Is Recommended</th>
+                                <th>Create Portal</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -50,6 +33,14 @@
                                     <td>{% for i in client.goals %}<p>{{ i.name }}</p>{% endfor %} <p>{{ client.user_goals_text }}</p></td>
                                     <td>{{ client.what_is_purchased }}</td>
                                     <td>{{ client.what_is_recommended }}</td>
+                                    <td>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <input hidden name="create_portal" value="{{ client.user.id }}">
+                                            <button class="btn btn-primary">Create Portal</button>
+                                        </form>
+                                    </td>
+
                                 </tr>
                             {% endfor %}
                             </tbody>
