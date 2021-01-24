@@ -103,6 +103,9 @@ urlpatterns = [
     url('client_progress', login_required(ClientProgress.as_view(), login_url='/user/login'),
         name='clientProgress'),
 
+    url('add_client_portal', login_required(AddClientPortals.as_view(), login_url='/user/login'),
+        name='add_client_portal'),
+
     url('^edit_wholesaleee$', login_required(EditWholesale.as_view(), login_url='/user/login'), name='edit_wholesaleee'),
     url('^edit_softwares$', login_required(EditSoftware.as_view(), login_url='/user/login'), name='edit_softwares'),
     url('edit_tradelines', login_required(EditTradeline.as_view(), login_url='/user/login'), name='edit_tradelines'),

@@ -1,3 +1,5 @@
+import json
+
 from django.forms import ModelForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -10,6 +12,7 @@ from financing_portal.models import Product
 from products.models import Tradelines, UserStepsProduct
 from services.StripeService import StripeService
 from services.WhiteLabelService import WhiteLabelService
+from user.models import PortalGoal, Portal
 from .forms import WhiteLabelForm
 from .models import *
 
@@ -563,5 +566,42 @@ class ClientProgress(View):
                     goals.append(kk)
             i.goals = goals
 
-
         return render(request, 'ClientProgress.html', {'clients': clients})
+
+    def post(self, request):
+        if 'create_portal' in request.POST:
+            request.session['create_portal'] = request.POST.get('create_portal')
+            return redirect('whitelabelpartnerportal:add_client_portal')
+        return redirect('whitelabelpartnerportal:clientProgress')
+
+
+class AddClientPortals(View):
+    def get(self, request):
+        try:
+            profile = Profile.objects.get(user__id=request.session.pop('create_portal'))
+            portals = PortalGoal.objects.filter(profile=profile)
+            available_portals = Portal.objects.all()
+
+            context = {
+                "profile": profile,
+                "portals": portals,
+                "available_portals": available_portals
+            }
+
+            return render(request, 'PortalManagement/ClientManagement.html', context)
+        except:
+            return redirect('whitelabelpartnerportal:clientProgress')
+
+    def post(self, request):
+        print(request.POST)
+        if 'create_portal' in request.POST:
+            request.session['create_portal'] = request.POST.get('create_portal')
+            profile = Profile.objects.get(user__id=request.POST.get('create_portal'))
+            data = request.POST
+            name = data['name']
+            portal_ids = json.loads(data['portals'])
+            portal_goal = PortalGoal.objects.create(name=name, profile=profile)
+            portal_goal.portals.set(portal_ids)
+
+            return redirect('whitelabelpartnerportal:add_client_portal')
+        return redirect('whitelabelpartnerportal:clientProgress')
