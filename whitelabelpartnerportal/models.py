@@ -1,3 +1,6 @@
+import os
+import uuid
+
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -319,9 +322,6 @@ class WholeSale(ProductModel):
     name = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=200, null=True)
 
-    created_at = models.DateTimeField(null=True)
-    updated_at = models.DateTimeField(null=True)
-
 
 class WholeSaleOrder(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
@@ -336,5 +336,9 @@ class ClientsOnWholeSale(models.Model):
 
 class Resource(models.Model):
     name = models.CharField(max_length=100, null=True)
-    url = models.URLField(null=True)
+    # url = models.URLField(null=True)
+    document = models.FileField(upload_to=get_file_path, null=True)
     category = models.CharField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.name

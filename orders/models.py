@@ -3,7 +3,7 @@ from datetime import datetime
 from django.conf import settings
 from django.db import models
 
-from business.models import Tier1, Tier2, Tier3, Tier4, CustomTier
+from business.models import Tier1, Tier2, Tier3, Tier4, CustomTier, NonReportingTradeline
 from dynamic.models import Subdomain
 from products.models import Tradelines
 from user.models import Profile
@@ -17,6 +17,7 @@ class TradelineOrder(models.Model):
     tradeline_tier2 = models.ForeignKey(Tier2, null=True, blank=True, on_delete=models.CASCADE)
     tradeline_tier3 = models.ForeignKey(Tier3, null=True, blank=True, on_delete=models.CASCADE)
     tradeline_tier4 = models.ForeignKey(Tier4, null=True, blank=True, on_delete=models.CASCADE)
+    non_reporting_tradeline = models.ForeignKey(NonReportingTradeline, null=True, blank=True, on_delete=models.CASCADE)
     custom_tier = models.ForeignKey(CustomTier, null=True, blank=True, on_delete=models.CASCADE)
     whitelabel_portal = models.ForeignKey(Subdomain, on_delete=models.SET_NULL, null=True)
     last_purchased = models.DateField(auto_now_add=True, null=True, blank=True)

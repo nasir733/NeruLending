@@ -20,6 +20,7 @@ class ProfileUserManager(models.Manager):
 class Profile(models.Model):
     user = models.OneToOneField("auth.User", on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=500, null=True)
+    is_partner = models.BooleanField(default=False)
     updates_made = models.CharField(max_length=500, null=True, default="N/A")
     residual_amount = models.CharField(max_length=500, null=True, default="N/A")
     expected_payout = models.CharField(max_length=500, null=True, default="N/A")
@@ -28,6 +29,12 @@ class Profile(models.Model):
     website_creation_paid = models.BooleanField(default=False)
     virtual_access_card_paid = models.BooleanField(default=False)
     whitelabel_portal = models.CharField(max_length=200, null=True, blank=True)
+
+    what_is_done = models.TextField(blank=True)
+    what_is_left = models.TextField(blank=True)
+    what_is_purchased = models.TextField(blank=True)
+    what_is_recommended = models.TextField(blank=True)
+    user_goals_text = models.TextField(blank=True)
 
     available_credit_limit = models.DecimalField(max_digits=100, default=1500, decimal_places=2)
     credit_line = models.DecimalField(max_digits=100, default=1000, decimal_places=2)

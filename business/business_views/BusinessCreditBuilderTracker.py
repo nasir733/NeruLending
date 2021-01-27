@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from business.conf import get_context_for_all
-from business.models import Tier1, Tier2, Tier3, Tier4, CustomTier
+from business.models import Tier1, Tier2, Tier3, Tier4, CustomTier, NonReportingTradeline
 from dynamic.models import Subdomain
 from orders.models import TradelineOrder
 from products.models import Tradelines
@@ -15,6 +15,7 @@ class AllTradelinesView(View):
         tier2 = Tier2.objects.all()
         tier3 = Tier3.objects.all()
         tier4 = Tier4.objects.all()
+        nonreporting = NonReportingTradeline.objects.all()
         subdomain = Subdomain.objects.filter(sub_name=request.host.name).first()
         our_tradelines = Tradelines.objects.filter(whitelabel_portal__sub_name=subdomain)
         current_tradelines = OrderDataService.get_user_tradelines_data(request.user)
@@ -28,6 +29,7 @@ class AllTradelinesView(View):
                           "tier2": tier2,
                           "tier3": tier3,
                           "tier4": tier4,
+                          "nonreporting": nonreporting,
                           "our_tradelines": our_tradelines
                       }))
 
@@ -47,11 +49,13 @@ class AllTradelinesView(View):
             request.session['ordering_products'] = ordering_products
             return redirect("business:stripe_checkout")
 
-        tiers = ['tier1', 'tier2', 'tier3', 'tier4']
+        tiers = ['tier1', 'tier2', 'tier3', 'tier4', 'tier5']
 
         if 'tier' in request.POST and 'tradeline' in request.POST:
             tier = request.POST['tier']
             tradeline = request.POST['tradeline']
+            print("wdfsdfsd", 'sds')
+
             if tier in tiers:
                 obj = None
                 t = 0
@@ -67,9 +71,11 @@ class AllTradelinesView(View):
                 elif tier == 'tier4':
                     obj = Tier4.objects.filter(id=tradeline).first()
                     t = 4
-
+                elif tier == 'tier5':
+                    obj = NonReportingTradeline.objects.filter(id=tradeline).first()
+                    t = 5
                 if obj:
-                    print(obj)
+                    # print(obj)
                     ordering_products = [{
                         'name': f"{obj.company_name} {obj.product}",
                         'price': float(obj.price) + float(obj.charge),
@@ -80,6 +86,7 @@ class AllTradelinesView(View):
                         'price_id': obj.price_id,
                     }]
                     request.session['ordering_products'] = ordering_products
+                    # print("EHHEHEHE", ordering_products)
         return redirect("business:stripe_checkout")
 
 

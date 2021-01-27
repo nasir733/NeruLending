@@ -107,7 +107,55 @@
                 </div>
             </div>
         </div>
-
+       <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-default">
+                        Non Reporting Tradelines
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="datatable" class="table table-striped dt-responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Business Name</th>
+                                    <th>Product</th>
+                                    <th>Amount</th>
+                                    <th>Tradeline Credit Amount</th>
+                                    <th>Where Business Tradelines Report To</th>
+                                    <th>Terms</th>
+                                    <th>Description</th>
+                                    <th>Link</th>
+                                    <th>Add Tradeline</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for tradeline in nonreporting %}
+                                    <tr>
+                                        <td>{{ tradeline.company_name }}</td>
+                                        <td>{{ tradeline.product }}</td>
+                                        <td>${{ tradeline.price }}</td>
+                                        <td>${{ tradeline.tradeline_credit_amount }}</td>
+                                        <td>{{ tradeline.reports_to }}</td>
+                                        <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.description }}</td>
+                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
+                                        <td>
+                                            <form method="post">{% csrf_token %}
+                                                <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
+                                                <input type="hidden" name="tier" value="tier5">
+                                                <button class="btn btn-primary">Add Tradeline</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -129,6 +177,9 @@
                                     <th>Amount</th>
                                     <th>Tradeline Credit Amount</th>
                                     <th>Where Business Tradelines Report To</th>
+                                    <th>Terms</th>
+                                    <th>Description</th>
+                                    <th>Link</th>
                                     <th>Tradeline We Can Help You Add?</th>
                                     <th>Add Tradeline</th>
                                     <th>Recommended?</th>
@@ -139,9 +190,12 @@
                                     <tr>
                                         <td>{{ tradeline.company_name }}</td>
                                         <td>{{ tradeline.product }}</td>
-                                        <td>${{ tradeline.tradeline_amount }}</td>
+                                        <td>${{ tradeline.price }}</td>
                                         <td>${{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
+                                        <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.description }}</td>
+                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
                                         <td>{{ tradeline.we_can_help }}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
@@ -160,6 +214,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -180,6 +236,9 @@
                                     <th>Amount</th>
                                     <th>Tradeline Credit Amount</th>
                                     <th>Where Business Tradelines Report To</th>
+                                    <th>Terms</th>
+                                    <th>Description</th>
+                                    <th>Link</th>
                                     <th>Tradeline We Can Help You Add?</th>
                                     <th>Add Tradeline</th>
                                     <th>Recommended?</th>
@@ -190,9 +249,12 @@
                                     <tr>
                                         <td>{{ tradeline.company_name }}</td>
                                         <td>{{ tradeline.product }}</td>
-                                        <td>{{ tradeline.tradeline_amount }}</td>
+                                        <td>{{ tradeline.price }}</td>
                                         <td>{{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
+                                    <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.description }}</td>
+                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
                                         <td>{{ tradeline.we_can_help }}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
@@ -237,6 +299,9 @@
                                     <th>Amount</th>
                                     <th>Tradeline Credit Amount</th>
                                     <th>Where Business Tradelines Report To</th>
+                                    <th>Terms</th>
+                                    <th>Description</th>
+                                    <th>Link</th>
                                     <th>Tradeline We Can Help You Add?</th>
                                     <th>Add Tradeline</th>
                                     <th>Recommended?</th>
@@ -247,9 +312,12 @@
                                     <tr>
                                         <td>{{ tradeline.company_name }}</td>
                                         <td>{{ tradeline.product }}</td>
-                                        <td>{{ tradeline.tradeline_amount }}</td>
+                                        <td>{{ tradeline.price }}</td>
                                         <td>{{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
+                                    <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.description }}</td>
+                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
                                         <td>{{ tradeline.we_can_help }}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
@@ -292,6 +360,9 @@
                                     <th>Amount</th>
                                     <th>Tradeline Credit Amount</th>
                                     <th>Where Business Tradelines Report To</th>
+                                    <th>Terms</th>
+                                    <th>Description</th>
+                                    <th>Link</th>
                                     <th>Tradeline We Can Help You Add?</th>
                                     <th>Add Tradeline</th>
                                     <th>Recommended?</th>
@@ -302,9 +373,12 @@
                                     <tr>
                                         <td>{{ tradeline.company_name }}</td>
                                         <td>{{ tradeline.product }}</td>
-                                        <td>{{ tradeline.tradeline_amount }}</td>
+                                        <td>{{ tradeline.price }}</td>
                                         <td>{{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
+                                        <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.description }}</td>
+                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
                                         <td>{{ tradeline.we_can_help }}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}

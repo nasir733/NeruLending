@@ -35,7 +35,7 @@
                                         <td>{{ prod.name }}</td>
                                         <td>${{ prod.price }}</td>
                                         <td>{{ prod.description }}</td>
-                                        <td><a class="btn btn-primary" href="{{ prod.video }}">Watch Video</a></td>
+                                        <td>{% if prod.video %}<a class="btn btn-primary" href="{{ prod.video }}">Watch Video</a>{% endif %}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
                                                 <input type="hidden" name="product_id" value="{{ prod.product_id }}">

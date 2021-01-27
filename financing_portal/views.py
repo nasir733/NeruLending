@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from financing_portal.models import ProductPurchasedModel, Product
@@ -14,15 +14,31 @@ class FinancingPortalHomeView(View):
 class FinancingPortalProductsPurchasedView(View):
 
     def get(self, request):
-        prods = ProductPurchasedModel.objects.filter(user=request.user)
-        return render(request, 'FinancingPortalProductsPurchased.html', {"prods": prods})
+        products = ProductPurchasedModel.objects.filter(user=request.user)
+        return render(request, 'FinancingPortalProductsPurchased.html', {"products": products})
 
 
 class FinancingPortalPurchaseProductsView(View):
 
     def get(self, request):
-        prods = Product.objects.all()
-        return render(request, 'FinancingPortalPurchaseProducts.html', {"prods": prods})
+        products = Product.objects.all()
+        return render(request, 'FinancingPortalPurchaseProducts.html', {"products": products})
+
+    def post(self, request):
+        prod_id = request.POST.get('product_id')
+        obj = Product.objects.filter(product_id=prod_id).first()
+
+        if obj:
+            ordering_products = [{
+                'name': f"{obj.name}",
+                'price': float(obj.price) + float(obj.charge),
+                'quantity': 1,
+                'type': 'financingProduct',
+                'product_id': obj.product_id,
+                'price_id': obj.price_id,
+            }]
+            request.session['ordering_products'] = ordering_products
+        return redirect("business:stripe_checkout")
 
 
 class FinancingPortalPaymentsView(View):

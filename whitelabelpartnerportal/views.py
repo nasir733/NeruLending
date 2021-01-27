@@ -4,7 +4,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
 
+from affiliate.models import Webinar
 from dynamic.models import Subdomain
+from financing_portal.models import Product
 from products.models import Tradelines, UserStepsProduct
 from services.StripeService import StripeService
 from services.WhiteLabelService import WhiteLabelService
@@ -456,6 +458,36 @@ class EditTradeline(View):
         return redirect("whitelabelpartnerportal:productmanagement")
 
 
+class EditWholesale(View):
+    def get(self, request):
+        obj = WholeSale.objects.filter(product_id=request.GET.get('product')).first()
+        return render(request, "PortalManagement/EditWholesalee.html", {"tradeline": obj})
+
+    def post(self, request):
+        print(request.POST)
+        obj = WholeSale.objects.filter(product_id=request.POST.get('product')).first()
+        if obj:
+            obj.charge = float(request.POST.get('charge'))
+            obj.price = float(request.POST.get('price'))
+            obj.save()
+        return redirect("whitelabelpartnerportal:productmanagement")
+
+
+class EditSoftware(View):
+    def get(self, request):
+        obj = Product.objects.filter(product_id=request.GET.get('product')).first()
+        return render(request, "PortalManagement/EditWholesalee.html", {"tradeline": obj})
+
+    def post(self, request):
+        print(request.POST)
+        obj = Product.objects.filter(product_id=request.POST.get('product')).first()
+        if obj:
+            obj.charge = float(request.POST.get('charge'))
+            obj.price = float(request.POST.get('price'))
+            obj.save()
+        return redirect("whitelabelpartnerportal:productmanagement")
+
+
 class EditUserSteps(View):
     def get(self, request):
         obj = UserStepsProduct.objects.filter(product_id=request.GET.get('product')).first()
@@ -519,3 +551,17 @@ class PartnerResourceView(View):
         categories = list(set([i.category for i in resources]))
         return render(request, 'WholeSaleSection/PartnerResources.html',
                       {'resources': resources, 'categories': categories})
+
+
+class ClientProgress(View):
+    def get(self, request):
+        clients = Profile.objects.filter(whitelabel_portal=request.host.name)
+        for i in clients:
+            goals = []
+            for k in i.portal_goals.all():
+                for kk in k.portals.all().values('name'):
+                    goals.append(kk)
+            i.goals = goals
+
+
+        return render(request, 'ClientProgress.html', {'clients': clients})

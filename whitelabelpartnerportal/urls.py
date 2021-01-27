@@ -87,8 +87,10 @@ urlpatterns = [
         name='professionalemail'),
     url('partnercommisssions', login_required(PartnerCommissionView.as_view(), login_url='/user/login'),
         name='partnercommisssions'),
+
     url('productmanagement', login_required(ProductManagementView.as_view(), login_url='/user/login'),
         name='productmanagement'),
+
     url('wholesales', login_required(WholesaleView.as_view(), login_url='/user/login'),
         name='wholesales'),
     url('^clients_on_wholesale', login_required(ClientsOnWholesaleView.as_view(), login_url='/user/login'),
@@ -96,10 +98,13 @@ urlpatterns = [
     url('^partner_resources', login_required(PartnerResourceView.as_view(), login_url='/user/login'),
         name='partner_resources'),
 
-
     url('portalsettings', login_required(ManageWhitelabel.as_view(), login_url='/user/login'),
         name='manageportal'),
+    url('client_progress', login_required(ClientProgress.as_view(), login_url='/user/login'),
+        name='clientProgress'),
 
+    url('^edit_wholesaleee$', login_required(EditWholesale.as_view(), login_url='/user/login'), name='edit_wholesaleee'),
+    url('^edit_softwares$', login_required(EditSoftware.as_view(), login_url='/user/login'), name='edit_softwares'),
     url('edit_tradelines', login_required(EditTradeline.as_view(), login_url='/user/login'), name='edit_tradelines'),
     url('edit_usersteps', login_required(EditUserSteps.as_view(), login_url='/user/login'), name='edit_usersteps'),
 

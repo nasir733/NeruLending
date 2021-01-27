@@ -31,7 +31,7 @@
                             {% for wholesale in wholesales %}
                                 <tr>
                                     <td>{{ wholesale.name }}</td>
-                                    <td>{{ wholesale.price }}</td>
+                                    <td>${{ wholesale.price }}</td>
                                     <td>{{ wholesale.description }}</td>
                                     <td>
                                         <form method="post">{% csrf_token %}

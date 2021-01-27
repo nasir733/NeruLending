@@ -74,7 +74,7 @@
                     {% for i in resources %}
                         {
                             name: '{{ i.name }}',
-                            url: '{{ i.url }}',
+                            url: '{% if  i.document %} {{ i.document.url }} {% endif %}',
                             category: '{{ i.category }}',
                             id: '{{ i.id }}',
                         },
