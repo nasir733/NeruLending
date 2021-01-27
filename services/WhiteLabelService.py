@@ -47,7 +47,6 @@ class WhiteLabelService:
         for subdomain in subdomains:
             products_in_subdomains.append({'subdomain': subdomain.sub_name,
                                            'tradelines': cls.get_tradelines_by_subdomain(subdomain),
-                                           'wholesales':  WholeSale.objects.all(),
                                            'softwares':  Product.objects.all(),
                                            'usersteps': cls.get_usersteps_by_subdomain(subdomain)})
         return products_in_subdomains
