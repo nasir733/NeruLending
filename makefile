@@ -12,7 +12,7 @@ migrations:
 	python manage.py migrate
 
 update:
-	git push heroku-release & git push heroku-holliday & git push heroku & git push prof & git push getmoefit
+	git push heroku-release & git push heroku-holliday & git push prof & git push getmoefit
 
 applymigrations:
 	heroku run python manage.py migrate --app getdinerotoday & heroku run python manage.py migrate --app hollidayconsulting & heroku run python manage.py migrate --app sawcorp & heroku run python manage.py migrate --app professorhoneyscreditlenging & heroku run python manage.py migrate --app getmoefit
