@@ -344,6 +344,8 @@ class GuidedStepsView(View):
             request.resolver_match.page_template = 'pages/base-business.html'
 
         steps = UserSteps.objects.filter(user=request.user)
-
+        items = ['EIN', 'LLC', 'business_account', 'merchant_account', 'duns', 'tradelines', 'marketing']
+        values = {i: 2 in steps.values_list(i, flat=True) for i in items}
+        print(values)
         return render(request, 'businessCreditBuilding/steps/guidedStepsToDo.html',
-                      context=get_context_for_all(request, {"steps": steps}))
+                      context=get_context_for_all(request, {"values": values}))

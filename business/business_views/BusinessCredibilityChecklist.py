@@ -24,7 +24,6 @@ class MainChecklistView(View):
         return render(request, "BusinessCredibilityChecklist/MainCheckList.html",
                       {'steps_done': steps_done, 'othersteps': othersteps})
 
-
     def post(self, request):
         othersteps = OtherChecklistSteps.objects.filter(user=request.user).first()
         if not othersteps:
