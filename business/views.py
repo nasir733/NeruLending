@@ -734,14 +734,13 @@ class FaxNumberOptionsView(View):
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
         else:
             request.resolver_match.page_template = 'pages/base-business.html'
-        profile = Profile.objects.filter(user=request.user)
-        fax_number_paid = False
-        if profile:
-            fax_number_paid = profile[0].fax_number_paid
-        if fax_number_paid:
+
+        profile = Profile.objects.filter(user=request.user).first()
+
+        if profile and profile.fax_number_paid:
             return redirect(reverse(f"{request.resolver_match.app_name}:fax-number-paid"))
+
         return redirect(reverse(f"{request.resolver_match.app_name}:fax-number"))
-        # return render(request, 'businessCreditBuilding/fa_xNumberOptionsgetcontext_for_all(html', {'fax_number_paid': fax_number_paid}))
 
 
 class FaxNumberPaidView(View):
