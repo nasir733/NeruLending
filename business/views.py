@@ -6,7 +6,9 @@ from django.views.generic.base import ContextMixin, TemplateView
 
 from business.conf import get_context_for_all, get_business_plan_context
 from business.models import *
+from dynamic.models import Subdomain
 from orders.models import UserSteps
+from services.StripeService import StripeService
 from user.forms import UserDataForm
 from user.models import UserData
 
@@ -1600,4 +1602,27 @@ class SignUpForConciergeProgramView(TemplateView):
     template_name = "signupforconcierge.html"
 
     def get_context_data(self, **kwargs):
-        return get_context_for_all(self.request, {})
+        sub = Subdomain.objects.filter(sub_name=self.request.host.name).first()
+        return get_context_for_all(self.request, {"price": sub.concierge_program_price})
+
+    def post(self, request):
+
+        if 'product' in request.POST:
+
+            sub = Subdomain.objects.filter(sub_name=request.host.name).first()
+
+            if request.POST['product'] == 'concierge_program':
+                product_name = "Concierge Program"
+                response = StripeService.create_product(product_name, float(sub.concierge_program_price),
+                                                        recurring=3)
+                ordering_products = [{
+                    'name': product_name,
+                    'price': float(sub.concierge_program_price),
+                    'quantity': 1,
+                    'type': 'whitelabel',
+                    'product_id': response['prod_id'],
+                    'price_id': response['price_id'],
+                }]
+                request.session['ordering_products'] = ordering_products
+
+        return redirect("business:stripe_checkout")

@@ -8,6 +8,7 @@ from dynamic.models import Subdomain
 from orders.models import UserSteps
 from products.models import Tradelines, UserStepsProduct
 from services.ModelServices import check_all_required_fields_filled
+from services.StripeService import StripeService
 from user.forms import UserDataForm
 from user.models import Profile, UserData
 
@@ -346,6 +347,46 @@ class GuidedStepsView(View):
         steps = UserSteps.objects.filter(user=request.user)
         items = ['EIN', 'LLC', 'business_account', 'merchant_account', 'duns', 'tradelines', 'marketing']
         values = {i: 2 in steps.values_list(i, flat=True) for i in items}
-        print(values)
+
+        products = request.session.get('ordering_products')
+        amount = 0
+        if products:
+            amount = sum([i['price'] * i['quantity'] for i in products])
+
+        def_card = {
+            'card_brand': '',
+            'card_last4': ''
+        }
+
+        profile = Profile.objects.get(user=request.user)
+        stripe_id = profile.stripe_id
+
+        sources_available = []
+        if stripe_id:
+            stripe_user = StripeService.get_user_by_id(stripe_id)
+            sources_available = stripe_user['sources']['data']
+            if stripe_user['default_source']:
+                add_new_payment_method = False
+                cards_available = True
+                card_id = stripe_user['default_source']
+                for i in stripe_user['sources']['data']:
+                    if i['id'] == card_id:
+                        def_card['card_brand'] = i['brand']
+                        def_card['card_last4'] = i['last4']
+                        break
+        if request.session.get('add_new_card'):
+            add_new_payment_method = True
+            request.session.pop('add_new_card')
+        source_id = request.session.get('use_source_id')
+        if source_id:
+            for i in sources_available:
+                if i['id'] == source_id:
+                    def_card['card_brand'] = i['brand']
+                    def_card['card_last4'] = i['last4']
+                    break
+
         return render(request, 'businessCreditBuilding/steps/guidedStepsToDo.html',
-                      context=get_context_for_all(request, {"values": values}))
+                      context=get_context_for_all(request, {"values": values,
+                                                            "products": products,
+                                                            "amount": amount,
+                                                            "def_card": def_card, }))

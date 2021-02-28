@@ -72,6 +72,8 @@ class Subdomain(models.Model):
                                                           max_digits=50, decimal_places=2, default=1500.00)
     premium_partnership_program_price = models.DecimalField(verbose_name="Premium Partnership Program Price Monthly",
                                                             max_digits=50, decimal_places=2, default=1000.00)
+    concierge_program_price = models.DecimalField(verbose_name="Concierge Program Price Yearly",
+                                                  max_digits=50, decimal_places=2, default=3999.00)
 
     # Affiliate Section
     show_free_access_to_affiliate_program = models.BooleanField(default=False)
@@ -87,6 +89,9 @@ class Subdomain(models.Model):
                                                          default='Click Here To Get Your Free Consultation')
     credit_repair_consultation_link = models.CharField(max_length=200, blank=True,
                                                        default='https://shareasale.com/r.cfm?b=520260&u=2228198&m=49614&urllink=&afftrack=')
+
+    show_life_insurance = models.BooleanField(default=False)
+    life_insurance_link = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.sub_name

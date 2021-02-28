@@ -200,12 +200,8 @@
                                         </td>
                                         <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
-                                            <form method="post">{% csrf_token %}
-                                                <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
-                                                <input type="hidden" name="tier" value="tier1">
-                                                <button class="btn btn-primary">Add Tradeline</button>
-                                            </form>
-                                            <button class="btn btn-primary">Go To Concierge Program</button>
+                                            <a class="btn btn-primary" href="{% url "business:signupforconcierge" %}">Go
+                                                To Concierge Program</a>
                                         </td>
                                         <td>Yes, Because Of Your Current Business Tradelines.</td>
                                     </tr>
@@ -262,12 +258,9 @@
                                         </td>
                                         <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
-                                            <form method="post">{% csrf_token %}
-                                                <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
-                                                <input type="hidden" name="tier" value="tier2">
-                                                <button class="btn btn-primary">Add Tradeline</button>
-                                            </form>
-                                            <button class="btn btn-primary">Go To Concierge Program</button>
+                                            <a class="btn btn-primary" href="{% url "business:signupforconcierge" %}">Go
+                                                To Concierge Program</a>
+
                                         </td>
                                         <td>
                                             {% if tradeline_count >= 3 %}
@@ -328,12 +321,9 @@
                                         </td>
                                         <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
-                                            <form method="post">{% csrf_token %}
-                                                <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
-                                                <input type="hidden" name="tier" value="tier3">
-                                                <button class="btn btn-primary">Add Tradeline</button>
-                                            </form>
-                                            <button class="btn btn-primary">Go To Concierge Program</button>
+                                            <a class="btn btn-primary" href="{% url "business:signupforconcierge" %}">Go
+                                                To Concierge Program</a>
+
                                         </td>
                                         <td> {% if tradeline_count >= 6 %}
                                             Yes, Because Of Your Current Business Tradelines.
@@ -392,13 +382,8 @@
                                         </td>
                                         <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
-                                            <form method="post">{% csrf_token %}
-                                                <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
-                                                <input type="hidden" name="tier" value="tier4">
-                                                <button class="btn btn-primary">Add Tradeline</button>
-                                            </form>
-                                            <button class="btn btn-primary">Go To Concierge Program</button>
-
+                                            <a class="btn btn-primary" href="{% url "business:signupforconcierge" %}">Go
+                                                To Concierge Program</a>
                                         </td>
                                         <td> {% if tradeline_count >= 10 %}
                                             Yes, Because Of Your Current Business Tradelines.

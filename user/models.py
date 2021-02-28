@@ -30,6 +30,8 @@ class Profile(models.Model):
     virtual_access_card_paid = models.BooleanField(default=False)
     whitelabel_portal = models.CharField(max_length=200, null=True, blank=True)
 
+    can_see_only_created_portals = models.BooleanField(default=False)
+
     what_is_done = models.TextField(blank=True)
     what_is_left = models.TextField(blank=True)
     what_is_purchased = models.TextField(blank=True)

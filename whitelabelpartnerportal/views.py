@@ -572,6 +572,14 @@ class ClientProgress(View):
         if 'create_portal' in request.POST:
             request.session['create_portal'] = request.POST.get('create_portal')
             return redirect('whitelabelpartnerportal:add_client_portal')
+
+        elif 'see_only_created_portal' in request.POST:
+            profile = Profile.objects.get(user=request.POST.get('see_only_created_portal'))
+            print(request.POST)
+            profile.can_see_only_created_portals = request.POST.get('can_see') == "on"
+            print(request.POST.get('can_see') == "on")
+            profile.save()
+
         return redirect('whitelabelpartnerportal:clientProgress')
 
 

@@ -9,4 +9,5 @@ urlpatterns = [
     url('^purchase_products', login_required(FinancingPortalPurchaseProductsView.as_view(), login_url='/user/login'), name='purchase-products'),
     url('^payments', login_required(FinancingPortalPaymentsView.as_view(), login_url='/user/login'), name='payments'),
     url('^products_purchased', login_required(FinancingPortalProductsPurchasedView.as_view(), login_url='/user/login'), name='products-purchased'),
+    url('^access_software', login_required(FinancingPortalAccessSoftware.as_view(), login_url='/user/login'), name='products-access'),
 ]

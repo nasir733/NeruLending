@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic import TemplateView
 
 from financing_portal.models import ProductPurchasedModel, Product
 
@@ -55,3 +56,11 @@ class FinancingPortalPaymentsView(View):
             "amount_left": amount_left,
             "payments_left": payments_left
         })
+
+
+class FinancingPortalAccessSoftware(TemplateView):
+    template_name = 'FinancingPortalProductsAccessSoftware.html'
+
+    def get_context_data(self, **kwargs):
+        products = ProductPurchasedModel.objects.filter(user=self.request.user)
+        return {"products": products}
