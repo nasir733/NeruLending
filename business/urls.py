@@ -125,6 +125,7 @@ urlpatterns = [
         name='guided-creation-progress'),
 
     url('^tradelines/', login_required(TradelinesView.as_view(), login_url='/user/login'), name='tradelines'),
+    url('^signupforconcierge/', login_required(SignUpForConciergeProgramView.as_view(), login_url='/user/login'), name='signupforconcierge'),
 
 
     url('external_credentials/', login_required(ExternalCredentialsView.as_view(), login_url='/user/login'), name='external_credentials'),

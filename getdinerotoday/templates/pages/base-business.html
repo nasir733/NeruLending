@@ -64,6 +64,10 @@
                             <a href="{% url 'business:tradelines' %}"
                                class="nav-link"> Add Business Tradelines </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{% url 'business:signupforconcierge' %}"
+                               class="nav-link"> Sign Up For Concierge Program </a>
+                        </li>
 
                         {% if request.user.external_resources.all %}
                             <li class="nav-item">

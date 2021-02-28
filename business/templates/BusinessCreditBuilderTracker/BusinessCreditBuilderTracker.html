@@ -193,16 +193,19 @@
                                         <td>${{ tradeline.price }}</td>
                                         <td>${{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
-                                        <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.terms }}</td>
                                         <td>{{ tradeline.description }}</td>
-                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
-                                        <td>{{ tradeline.we_can_help }}</td>
+                                        <td>{% if tradeline.website_link %}<a class="btn btn-primary" target="_blank"
+                                                                              href="{{ tradeline.website_link }}">View</a>{% endif %}
+                                        </td>
+                                        <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
                                                 <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
                                                 <input type="hidden" name="tier" value="tier1">
                                                 <button class="btn btn-primary">Add Tradeline</button>
                                             </form>
+                                            <button class="btn btn-primary">Go To Concierge Program</button>
                                         </td>
                                         <td>Yes, Because Of Your Current Business Tradelines.</td>
                                     </tr>
@@ -252,16 +255,19 @@
                                         <td>{{ tradeline.price }}</td>
                                         <td>{{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
-                                    <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.terms }}</td>
                                         <td>{{ tradeline.description }}</td>
-                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
-                                        <td>{{ tradeline.we_can_help }}</td>
+                                        <td>{% if tradeline.website_link %}<a class="btn btn-primary" target="_blank"
+                                                                              href="{{ tradeline.website_link }}">View</a>{% endif %}
+                                        </td>
+                                        <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
                                                 <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
                                                 <input type="hidden" name="tier" value="tier2">
                                                 <button class="btn btn-primary">Add Tradeline</button>
                                             </form>
+                                            <button class="btn btn-primary">Go To Concierge Program</button>
                                         </td>
                                         <td>
                                             {% if tradeline_count >= 3 %}
@@ -315,16 +321,19 @@
                                         <td>{{ tradeline.price }}</td>
                                         <td>{{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
-                                    <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.terms }}</td>
                                         <td>{{ tradeline.description }}</td>
-                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
-                                        <td>{{ tradeline.we_can_help }}</td>
+                                        <td>{% if tradeline.website_link %}<a class="btn btn-primary" target="_blank"
+                                                                              href="{{ tradeline.website_link }}">View</a>{% endif %}
+                                        </td>
+                                        <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
                                                 <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
                                                 <input type="hidden" name="tier" value="tier3">
                                                 <button class="btn btn-primary">Add Tradeline</button>
                                             </form>
+                                            <button class="btn btn-primary">Go To Concierge Program</button>
                                         </td>
                                         <td> {% if tradeline_count >= 6 %}
                                             Yes, Because Of Your Current Business Tradelines.
@@ -376,16 +385,20 @@
                                         <td>{{ tradeline.price }}</td>
                                         <td>{{ tradeline.tradeline_credit_amount }}</td>
                                         <td>{{ tradeline.reports_to }}</td>
-                                        <td>{{ tradeline.terms}}</td>
+                                        <td>{{ tradeline.terms }}</td>
                                         <td>{{ tradeline.description }}</td>
-                                        <td>{% if tradeline.website_link %} <a class="btn btn-primary" target="_blank" href="{{tradeline.website_link }}">View</a>{% endif %}</td>
-                                        <td>{{ tradeline.we_can_help }}</td>
+                                        <td>{% if tradeline.website_link %}<a class="btn btn-primary" target="_blank"
+                                                                              href="{{ tradeline.website_link }}">View</a>{% endif %}
+                                        </td>
+                                        <td>{% if tradeline.we_can_help %} In Concierge Program {% endif %}</td>
                                         <td>
                                             <form method="post">{% csrf_token %}
                                                 <input type="hidden" name="tradeline" value="{{ tradeline.id }}">
                                                 <input type="hidden" name="tier" value="tier4">
                                                 <button class="btn btn-primary">Add Tradeline</button>
                                             </form>
+                                            <button class="btn btn-primary">Go To Concierge Program</button>
+
                                         </td>
                                         <td> {% if tradeline_count >= 10 %}
                                             Yes, Because Of Your Current Business Tradelines.

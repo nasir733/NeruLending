@@ -2,13 +2,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
-from django.views.generic.base import ContextMixin
+from django.views.generic.base import ContextMixin, TemplateView
 
+from business.conf import get_context_for_all, get_business_plan_context
+from business.models import *
 from orders.models import UserSteps
 from user.forms import UserDataForm
 from user.models import UserData
-from business.conf import get_context_for_all, get_business_plan_context
-from business.models import *
 
 
 class BusinessHomePage(View):
@@ -1590,4 +1590,14 @@ class LifeEventsFinancialProductsView(View):
         personal_credit_cards = PersonalCreditCard.objects.all()
         cc_list = BusinessCreditCard.objects.all()
 
-        return render(request, "life_events/financial_products.html", get_context_for_all(request, {"loans": loans, 'personal_loans': personal_loans,'personal_credit_cards': personal_credit_cards, "cc_list": cc_list}))
+        return render(request, "life_events/financial_products.html", get_context_for_all(request, {"loans": loans,
+                                                                                                    'personal_loans': personal_loans,
+                                                                                                    'personal_credit_cards': personal_credit_cards,
+                                                                                                    "cc_list": cc_list}))
+
+
+class SignUpForConciergeProgramView(TemplateView):
+    template_name = "signupforconcierge.html"
+
+    def get_context_data(self, **kwargs):
+        return get_context_for_all(self.request, {})
