@@ -6,6 +6,7 @@ from core.models import ProductModel
 class Product(ProductModel):
     description = models.TextField(null=True, blank=True)
     video = models.URLField(null=True, blank=True)
+    link = models.URLField(blank=True, null=True)
 
 
 class ProductPurchasedModel(models.Model):

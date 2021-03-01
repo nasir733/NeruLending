@@ -22,7 +22,7 @@
 
     <div class="row page-header">
         <div class="col-lg-6 align-self-center">
-            <h2>Products Purchased</h2>
+            <h2>Access Softwares</h2>
         </div>
     </div>
 
@@ -60,14 +60,14 @@
                                         <td>{% if prod.password %}{{ prod.password }}{% endif %}</td>
                                         <td>
                                             {% if prod.link %}
-                                            <button onclick="setFrameUrl('{{ prod.link }}')" class="btn btn-primary">
+                                            <button onclick="setFrameUrl('{{ prod.product.link }}')" class="btn btn-primary">
                                                 Open
                                             </button>
                                             {% endif %}
                                         </td>
                                         <td>
                                             {% if prod.link %}
-                                                <a class="btn btn-primary" href="{{ prod.link }}" target="_blank">Go To Site</a>
+                                                <a class="btn btn-primary" href="{{ prod.product.link }}" target="_blank">Go To Site</a>
                                             {% endif %}
                                         </td>
                                     </tr>
