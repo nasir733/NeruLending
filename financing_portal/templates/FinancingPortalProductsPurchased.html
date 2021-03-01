@@ -58,9 +58,9 @@
                                         <td>{% if prod.username %}{{ prod.username }}{% endif %}</td>
                                         <td>{% if prod.password %}{{ prod.password }}{% endif %}</td>
                                         <td>
-                                            {% if prod.link %}
-                                                <a class="btn btn-primary" href="{{ prod.logged_link }}">Dashboard</a>
-                                                <a class="btn btn-primary" href="{{ prod.link }}">Main site</a>
+                                            {% if prod.product.link %}
+                                                <a class="btn btn-primary" href="{{ prod.product.link }}">Dashboard</a>
+                                                <a class="btn btn-primary" href="{{ prod.product.link }}">Main site</a>
                                             {% endif %}
                                         </td>
                                     </tr>
