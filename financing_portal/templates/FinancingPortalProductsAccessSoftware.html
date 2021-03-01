@@ -59,14 +59,14 @@
                                         <td>{% if prod.username %}{{ prod.username }}{% endif %}</td>
                                         <td>{% if prod.password %}{{ prod.password }}{% endif %}</td>
                                         <td>
-                                            {% if prod.link %}
+                                            {% if prod.product.link %}
                                             <button onclick="setFrameUrl('{{ prod.product.link }}')" class="btn btn-primary">
                                                 Open
                                             </button>
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if prod.link %}
+                                            {% if prod.product.link %}
                                                 <a class="btn btn-primary" href="{{ prod.product.link }}" target="_blank">Go To Site</a>
                                             {% endif %}
                                         </td>
