@@ -40,11 +40,12 @@ class Subdomain(models.Model):
     address = models.CharField(max_length=200, null=True)
     phno = models.CharField(blank=True, max_length=100)
     show_money_back_guarantee = models.BooleanField(default=True)
-    show_why_buy_from_us = models.BooleanField(default=True)
+    show_why_buy_from_us = models.BooleanField(default=False)
     show_appointment = models.BooleanField(default=True)
 
     # Links
-    webinar = models.URLField(max_length=300, default='https://youtu.be/xNCfnbGT5hY')
+    webinar = models.URLField(max_length=300, default='https://youtu.be/eL6sb34CGiM')
+    services_link = models.URLField(max_length=300, default='https://www.youtube.com/watch?v=OBCWpTtbm_0')
     iphoneApp = models.URLField(max_length=300, default='https://apps.apple.com/us/app/the-business-credit-builders/id1528895728')
     androidApp = models.URLField(max_length=300, default='https://play.google.com/store/apps/details?id=com.millennialbusinessbuilders.businesscreditbuilders')
     chromeExt = models.URLField(max_length=300, default='https://chrome.google.com/webstore/detail/the-business-credit-build/jpbbaabmhfpfdjnomgdieempedlaelfi')

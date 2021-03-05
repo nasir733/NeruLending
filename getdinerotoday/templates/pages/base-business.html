@@ -76,17 +76,11 @@
                             </li>
                         {% endif %}
 
-                        {% if not dynamic.is_main_site %}
-                            <li class="nav-item">
-                                <a href="https://www.youtube.com/watch?v=tD1H2-1xihA" target="_blank"
-                                   class="nav-link"> Watch Webinar On Building Business Credit </a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a href="https://www.youtube.com/watch?v=Vm2imqZwlB4&t=216s" target="_blank"
-                                   class="nav-link"> Watch Webinar On Building Business Credit </a>
-                            </li>
-                        {% endif %}
+                        <li class="nav-item">
+                            <a href="{{ dynamic.webinar }}" target="_blank"
+                               class="nav-link"> Watch Webinar On Building Business Credit </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="{% url 'financing_portal:purchase-products' %}"
                                class="nav-link"> Purchase Our Other Software Products *(Not Linked To Business Credit)* </a>
