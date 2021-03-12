@@ -19,7 +19,7 @@ class Subdomain(models.Model):
     is_payment_done = models.BooleanField(default=True)
     sub_name = models.CharField(max_length=300, unique=True)
     is_main_site = models.BooleanField(default=False)
-    admins = models.ManyToManyField(Profile, related_name='portals')
+    admins = models.ManyToManyField(Profile, related_name='portals', null=True)
 
     # Styles and Info
     can_edit = models.BooleanField(default=False)
@@ -30,7 +30,7 @@ class Subdomain(models.Model):
     login_window_color = models.CharField(max_length=200, blank=True, default='#ffffff')
     appImage = models.CharField(max_length=200, blank=True, default='/static/images/thebusinessbuildersapp.png')
     favicon = models.ImageField(upload_to=get_file_path, blank=True)
-    logo = models.ImageField(upload_to=get_file_path)
+    logo = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     email = models.CharField(max_length=200, default='info@businesscreditbuildersllc.com', null=True, blank=True)
     title = models.CharField(max_length=200, null=True)
     favicon_title = models.CharField(verbose_name="Tab Title", max_length=200, null=True)
