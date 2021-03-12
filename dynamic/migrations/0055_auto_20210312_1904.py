@@ -14,8 +14,7 @@ def create_www(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('dynamic', '0054_auto_20210312_1904'),
-        ('user', '0073_auto_20210312_1841'),
+        ('dynamic', '0054_auto_20210312_1904')
     ]
 
     operations = [
