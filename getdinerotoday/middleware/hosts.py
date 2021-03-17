@@ -17,6 +17,7 @@ class HostsBaseMiddleware(MiddlewareMixin):
     host_patterns = HostsService.get_host_patterns()
 
     def __init__(self, get_response=None):
+        super().__init__(get_response)
         self.get_response = get_response
         self.current_urlconf = None
         try:
@@ -42,9 +43,10 @@ class HostsBaseMiddleware(MiddlewareMixin):
 
     def get_host(self, request_host):
         for host in self.host_patterns:
-            match = host.compiled_regex.match(request_host)
-            if match:
-                return host, match.groupdict()
+            if request_host.startswith(host.name):
+            # match = host.compiled_regex.match(request_host)
+            # if match:
+                return host, {}
         return self.default_host, {}
 
     @classmethod
