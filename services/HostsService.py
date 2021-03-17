@@ -21,7 +21,8 @@ class HostsService:
             for i in subdomains:
                 if i.sub_name == 'www':
                     has_www = True
-                hosts_from_model.append(host(i.sub_name, 'getdinerotoday.urls', name=i.sub_name))
+                else:
+                    hosts_from_model.append(host(i.sub_name, 'getdinerotoday.urls', name=i.sub_name))
         except Exception as e:
             pass
 
@@ -29,8 +30,8 @@ class HostsService:
         if not has_www:
             new_host_patterns = patterns(
                 '',
-                host(r'www', 'getdinerotoday.urls', name='www'),
                 *hosts_from_model,
+                host(r'www', 'getdinerotoday.urls', name='www'),
             )
         else:
             new_host_patterns = patterns(
