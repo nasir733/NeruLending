@@ -19,6 +19,9 @@ USE_TZ = True
 
 X_FRAME_OPTIONS = 'SameOrigin'
 SECURE_REFERRER_POLICY = 'strict-origin'
+EMAIL_BACKEND = 'django_amazon_ses.EmailBackend'
+AWS_DEFAULT_REGION = 'eu-central-1'
+DEFAULT_FROM_EMAIL = 'Getdinerotoday@gmail.com'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]

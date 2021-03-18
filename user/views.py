@@ -87,9 +87,8 @@ class SignUpView(View):
 
 
 class PasswordResetView(auth_views.PasswordResetView):
-    @property
-    def template_name(self):
-        return 'forgotpassword.html'
+    from_email = 'Getdinerotoday@gmail.com'
+    template_name = 'forgotpassword.html'
 
     @property
     def success_url(self):

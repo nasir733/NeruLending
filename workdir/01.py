@@ -24,3 +24,13 @@ for i in range(len(b)):
     sub.logo.save(f"image_{i}.png", File(img_temp))
     sub.save()
 
+
+from django.core.mail import send_mail
+
+send_mail(
+    'Subject here',
+    'Here is the message.',
+    'millennialbusinessbuilders@gmail.com',
+    ['vassili.kiritsenko@gmail.com'],
+    fail_silently=False,
+)
