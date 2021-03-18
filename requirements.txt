@@ -31,3 +31,4 @@ pillow
 django-phonenumber-field==5.0.0
 phonenumbers>=8.12.8
 django-ses>=1.0.3
+django-amazon-ses
