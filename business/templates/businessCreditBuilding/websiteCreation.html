@@ -63,9 +63,17 @@
                             <a href="http://rochellehardymd.com/">http://rochellehardymd.com/</a><br>
                             <a href="https://www.livingwatersministry.org/">https://www.livingwatersministry.org/</a><br>
                             <a href="https://tappandentistry.com/">https://tappandentistry.com/</a><br><br>
-                            <a href="{% url "business:business-credit-steps-onlyprograms" %}" class="btn btn-primary">Order
-                                now</a>
 
+
+                            {% if domain.is_main_site %}
+                                <a href="{% url "business:business-credit-steps-onlyprograms" %}"
+                                   class="btn btn-primary">Order
+                                    now</a>
+                            {% else %}
+                                <a href="https://www.kleuihosting.com/products/website-builder "
+                                   class="btn btn-primary">Order
+                                    now</a>
+                            {% endif %}
                         </div>
 
                     </div>

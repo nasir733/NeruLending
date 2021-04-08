@@ -30,35 +30,46 @@
 
                        <li class="nav-item"><a href="{% url "whitelabelpartnerportal:wholesales" %}" class="nav-link">Wholesale Packages</a></li>
                        <li class="nav-item"><a href="{% url "whitelabelpartnerportal:clients-on-wholesale" %}" class="nav-link">Clients That Are On Your Wholesale Package</a></li>
-                       <li class="nav-item"><a href="{% url "whitelabelpartnerportal:partner_resources" %}" class="nav-link">Partner Resources</a></li>
+{#                       <li class="nav-item"><a href="{% url "whitelabelpartnerportal:partner_resources" %}" class="nav-link">Partner Resources</a></li>#}
 
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:marketingroi' %}" class="nav-link">Your
-                        Marketing Return On Investment</a></li>
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:marketingroi' %}" class="nav-link">Your#}
+{#                        Marketing Return On Investment</a></li>#}
+
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:whitelabeltraining' %}"
                                             class="nav-link">White Label Training</a></li>
-                    {% if dynamic.is_paid_for_whitelabel %}
-                        <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:myresiduals' %}" class="nav-link">My
-                            Residuals</a></li>
-                    {% endif %}
-                    {% if iswhitelabeladmin %}
-                        <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:clientProgress' %}" class="nav-link">Client Progress</a></li>
-                    {% endif %}
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:enternewleads' %}" class="nav-link">Enter
-                        New Leads</a></li>
+
+{#                    {% if dynamic.is_paid_for_whitelabel %}#}
+{#                        <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:myresiduals' %}" class="nav-link">My#}
+{#                            Residuals</a></li>#}
+{#                    {% endif %}#}
+
+{#                    {% if iswhitelabeladmin %}#}
+{#                        <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:clientProgress' %}" class="nav-link">Client Progress</a></li>#}
+{#                    {% endif %}#}
+
+
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:enternewleads' %}" class="nav-link">Enter#}
+{#                        New Leads</a></li>#}
+
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:leadoverview' %}" class="nav-link">Lead
                         Overview</a></li>
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:mysales' %}" class="nav-link">My
-                        Sales</a></li>
-                    {% if iswhitelabeladmin %}
-                        <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:productmanagement' %}"
-                                                class="nav-link">Manage Products</a></li>
-                    {% endif %}
+
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:mysales' %}" class="nav-link">My#}
+{#                        Sales</a></li>#}
+
+{#                    {% if iswhitelabeladmin %}#}
+{#                        <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:productmanagement' %}"#}
+{#                                                class="nav-link">Manage Products</a></li>#}
+{#                    {% endif %}#}
+
                     {% if iswhitelabeladmin %}
                         <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:manageportal' %}"
                                                 class="nav-link">Manage Portal</a></li>
                     {% endif %}
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:networkmarketing' %}"
-                                            class="nav-link">How To Leverage Your Network</a></li>
+
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:networkmarketing' %}"#}
+{#                                            class="nav-link">How To Leverage Your Network</a></li>#}
+
                     <!-- <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:enteraffiliates' %}" class="nav-link">Enter Affiliate Agents</a></li> -->
                     <!--  <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:salesaffiliates' %}" class="nav-link">Sales Affiliates Overview</a></li> -->
                     <!--  <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:residualsfromaffiliates' %}" class="nav-link">Residual Payments From Your Affiliates</a></li> -->
@@ -103,14 +114,14 @@
                                 Purchased)</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:partnercommisssions' %}"
-                                            class="nav-link">Your Residual Commissions On Products</a></li>
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:addbankinfo' %}" class="nav-link">Add
-                        Bank Account Information To Receive Payments *Or You Can Add Paypal Information*</a></li>
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:addpaypalinfo' %}" class="nav-link">Add
-                        Paypal Information To Receive Payments</a></li>
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:merchant' %}" class="nav-link">Sign Up
-                        For Merchant Account</a></li>
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:partnercommisssions' %}"#}
+{#                                            class="nav-link">Your Residual Commissions On Products</a></li>#}
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:addbankinfo' %}" class="nav-link">Add#}
+{#                        Bank Account Information To Receive Payments *Or You Can Add Paypal Information*</a></li>#}
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:addpaypalinfo' %}" class="nav-link">Add#}
+{#                        Paypal Information To Receive Payments</a></li>#}
+{#                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:merchant' %}" class="nav-link">Sign Up#}
+{#                        For Merchant Account</a></li>#}
                     <li class="nav-item"><a href="https://apps.apple.com/us/app/white-label-partner-gdt/id1530824382"
                                             target="_blank" class="nav-link">Download Partner App For Iphone</a></li>
                     <li class="nav-item"><a

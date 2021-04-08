@@ -70,12 +70,21 @@
                                 Personal
                                 Credit. </h5>
                             <div class="btn-group">
-{#                                <a target="_blank" class="btn btn-primary"#}
-{#                                   href="https://www.millennialbusinessbuildersllc.com/products/email">Click Here To Get#}
-{#                                    Your <br>Professional Email Address</a>#}
-                                <a href="{% url "business:business-credit-steps-onlyprograms" %}"
-                                   class="btn btn-primary">Order
-                                    now</a>
+                                {#                                <a target="_blank" class="btn btn-primary"#}
+                                {#                                   href="https://www.millennialbusinessbuildersllc.com/products/email">Click Here To Get#}
+                                {#                                    Your <br>Professional Email Address</a>#}
+
+                                {% if domain.is_main_site %}
+                                    <a href="{% url "business:business-credit-steps-onlyprograms" %}"
+                                       class="btn btn-primary">Order
+                                        now</a>
+                                {% else %}
+                                    <a href="https://www.kleuihosting.com/products/email"
+                                       class="btn btn-primary">Order
+                                        now</a>
+                                {% endif %}
+
+
                             </div>
                         </div>
                     </div>

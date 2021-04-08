@@ -48,47 +48,63 @@
                                 <li>
                                     <a href="{% url 'user:myprogress' %}"><i class="icon-bell"></i>My Dashboard</a>
                                 </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="{% url 'business:business-credit-builder-tracker' %}"><i
-                                            class="icon-bell"></i>Business Credit Tracker</a>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="{% url 'loanportal:loanapplication' %}"><i class="icon-credit-card"></i>Loan
-                                        Portal</a>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="{% url 'business:create_specific_portal' %}"><i class="icon-briefcase"></i>Saved
-                                        Portals</a>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="{% url 'business:guided-creation-progress' %}"><i
-                                            class="icon-briefcase"></i>Guided Creation Progress</a>
-                                </li>
+                                {% if dynamic.is_main_site %}
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="{% url 'business:business-credit-builder-tracker' %}"><i
+                                                class="icon-bell"></i>Business Credit Tracker</a>
+                                    </li>
+                                {% endif %}
+                                {% if dynamic.is_main_site %}
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="{% url 'loanportal:loanapplication' %}"><i
+                                                class="icon-credit-card"></i>Loan
+                                            Portal</a>
+                                    </li>
+                                {% endif %}
+                                {% if dynamic.is_main_site %}
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="{% url 'business:create_specific_portal' %}"><i
+                                                class="icon-briefcase"></i>Saved
+                                            Portals</a>
+                                    </li>
+                                {% endif %}
+                                {% if dynamic.is_main_site %}
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="{% url 'business:guided-creation-progress' %}"><i
+                                                class="icon-briefcase"></i>Guided Creation Progress</a>
+                                    </li>
+                                {% endif %}
                                 <li class="dropdown-divider"></li>
                                 <li>
                                     <a href="{% url 'business:business_credibility_checklist' %}"><i
                                             class="icon-briefcase"></i>Business Credit Checklist</a>
                                 </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="{% url 'business:signupforconcierge' %}"><i
-                                            class="icon-briefcase"></i>Sign Up For Concierge Program</a>
-                                </li>
-                                <li class="dropdown-divider"></li>
+                                {#                                <li class="dropdown-divider"></li>#}
+                                {#                                <li>#}
+                                {#                                    <a href="{% url 'business:signupforconcierge' %}"><i#}
+                                {#                                            class="icon-briefcase"></i>Sign Up For Concierge Program</a>#}
+                                {#                                </li>#}
 
                                 {% if on_payment_plan %}
-                                    <li>
-                                        <a href="{% url 'yourplan:yourplan' %}"><i class="icon-list"></i>Payment plan</a>
-                                    </li>
                                     <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="{% url 'yourplan:yourplan' %}"><i class="icon-list"></i>Payment
+                                            plan</a>
+                                    </li>
+
                                 {% endif %}
-                                <li>
-                                    <a href="{% url 'chromeextension:chromeextensionindex' %}"><i class="icon-list"></i> Extension</a>
-                                </li>
+                                {% if dynamic.is_main_site %}
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="{% url 'chromeextension:chromeextensionindex' %}"><i
+                                                class="icon-list"></i>
+                                            Extension</a>
+                                    </li>
+                                {% endif %}
                                 <li class="dropdown-divider"></li>
                                 <li>
                                     <a href="{% url 'user:logout' %}"><i class="icon-logout"></i> Logout</a>
@@ -97,7 +113,7 @@
                                 <a class="navbar-link" href="#">Sign up</a>
                                 <a class="navbar-link" href="#">Login</a>
                             {% endif %}
-                                                        <div style="height: 5px"></div>
+                            <div style="height: 5px"></div>
 
                         </ul>
                     </li>
