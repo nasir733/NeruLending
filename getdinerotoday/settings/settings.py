@@ -143,3 +143,4 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

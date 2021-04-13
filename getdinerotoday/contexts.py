@@ -68,7 +68,7 @@ def whitelabel_processor(request):
                 'why_buy_link': "https://www.youtube.com/embed/VaGu7EyHaVk",
                 'appImage': "/static/images/iphonescreenshot.png",
                 'sub_name': "",
-                'primary_color': "#115d22",
+                'primary_color': "#3D7BBF",
                 'secondary_color': "#dee1e6",
                 'accent_color': "#1c6ef9",
                 'bg_color': "-webkit-linear-gradient(-30deg, #177b3f, #07231b)",
