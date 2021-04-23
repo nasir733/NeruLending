@@ -65,14 +65,14 @@
                             <a href="{% url 'business:business_credibility_checklist' %}"
                                class="nav-link"> Business Credibility Checklist </a>
                         </li>
-{#                        <li class="nav-item">#}
-{#                            <a href="{% url 'business:tradelines' %}"#}
-{#                               class="nav-link"> Add Business Tradelines </a>#}
-{#                        </li>#}
-{#                        <li class="nav-item">#}
-{#                            <a href="{% url 'business:signupforconcierge' %}"#}
-{#                               class="nav-link"> Sign Up For Concierge Program </a>#}
-{#                        </li>#}
+                       <li class="nav-item">
+                           <a href="{% url 'business:tradelines' %}"
+                               class="nav-link"> Add Business Tradelines </a>
+                      </li>
+                        <li class="nav-item">
+                           <a href="{% url 'business:signupforconcierge' %}"#}
+                               class="nav-link"> Sign Up For Concierge Program </a>
+                       </li>
 
                         {% if request.user.external_resources.all %}
                             <li class="nav-item">
@@ -346,7 +346,7 @@
                     {% endif %}
                         {% if dynamic.show_affiliate %}
                             <li class="nav-item">
-                                <a href="{{ dynamic.affiliate_link }}" target="_blank" class="nav-link">Go To
+                                <a href="{% url 'affiliate:home-affiliate' %}" class="nav-link">Go To
                                     Affiliate Agent
                                     Portal</a>
                             </li>
@@ -413,7 +413,7 @@
                                     class="toggle-none">Your AI Customer Success Agent</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://getdinerotodaystore.com/" target="_blank" class="nav-link"><span
+                            <a href="https://kleuishop.com/" target="_blank" class="nav-link"><span
                                     class="toggle-none">Shop At Our Online Store <br> *(Get Business Cards, Clothes & Much More!)*</span></a>
                         </li>
                         <!--
