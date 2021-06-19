@@ -59,6 +59,7 @@ urlpatterns = [
     path('goals/', include('goals.urls')),
     path('products/', include('products.urls')),
     path('onlinetools/', include('onlinetools.urls')),
+    path('freewhitelabelprogramonboarding/', include('freewhitelabelprogramonboarding.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
     path('chromeextension/', include('chromeextension.urls')),
     path('onboarding/', include('onboarding.urls')),
