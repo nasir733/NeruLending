@@ -357,12 +357,6 @@
                                     White Label Partner Portal</a>
                             </li>
                         {% endif %}
-                        {% if dynamic.is_paid_for_whitelabel and iswhitelabeladmin %}
-                            <li class="nav-item">
-                                <a href="{% url 'freewhitelabelprogramonboarding:onboarding' %}" class="nav-link"> Go To
-                                    Free White Label Partner Portal</a>
-                            </li>
-                        {% endif %}
                         <li class="nav-item">
                             <a href="{% url 'products:dnbproducts' %}" class="nav-link"> Purchase Dunn & Bradstreet
                                 Products</a>
