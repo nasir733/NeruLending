@@ -19,62 +19,16 @@
 <script src='{% static "lib/datatables/dataTables.responsive.min.js" %}'></script>
 <script src='{% static "lib/toast/jquery.toast.min.js" %}'></script>
 <script src='{% static "dashboard.js" %}'></script>
-
-
-<script>
-    window.intercomSettings = {
-        app_id: "q3mlokj9",
-        name: "{{ request.user.name|escapejs }}", // Full name
-        email: "{{ request.user.email|escapejs }}", // Email address
-        created_at: "{{ request.user.date_joined|date:"U" }}" // Signup date as a Unix timestamp
-    };
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/60ce917f65b7290ac636ddc3/1f8jegmmu';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
-
-<script>
-    // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/q3mlokj9'
-    (function () {
-        var w = window;
-        var ic = w.Intercom;
-        if (typeof ic === "function") {
-            ic('reattach_activator');
-            ic('update', w.intercomSettings);
-        } else {
-            var d = document;
-            var i = function () {
-                i.c(arguments);
-            };
-            i.q = [];
-            i.c = function (args) {
-                i.q.push(args);
-            };
-            w.Intercom = i;
-            var l = function () {
-                var s = d.createElement('script');
-                s.type = 'text/javascript';
-                s.async = true;
-                s.src = 'https://widget.intercom.io/widget/q3mlokj9';
-                var x = d.getElementsByTagName('script')[0];
-                x.parentNode.insertBefore(s, x);
-            };
-            if (w.attachEvent) {
-                w.attachEvent('onload', l);
-            } else {
-                w.addEventListener('load', l, false);
-            }
-        }
-    })();
-</script>
-
-
-
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-<script>
-  window.OneSignal = window.OneSignal || [];
-  OneSignal.push(function() {
-    OneSignal.init({
-      appId: "72b090eb-60f1-4424-b837-81a6e7882eba",
-    });
-  });
-</script>
-
-
+<!--End of Tawk.to Script-->
