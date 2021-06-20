@@ -9,3 +9,7 @@ from .models import *
 class OnboardingView(View):
     def get(self, request):
         return render(request, "onboarding.html")
+
+class WhitelabelaccessView(View):
+    def get(self, request):
+        return render(request, "whitelabelaccess.html")

@@ -8,4 +8,6 @@ urlpatterns = [
 
     url('onboarding', login_required(OnboardingView.as_view(), login_url='/user/login'),
         name='onboarding'),
+    url('whitelabelaccess', login_required(WhitelabelaccessView.as_view(), login_url='/user/login'),
+        name='whitelabelaccess'),
 ]
