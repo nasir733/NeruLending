@@ -335,7 +335,7 @@
                                 0% Business Credit Card
                                 Strategy </a>
                         </li>
-                    {% if dynamic.is_main_site %}
+                  <!--  {% if dynamic.is_main_site %}
                         {% if dynamic.is_paid_for_whitelabel %}
                             <li class="nav-item">
                                 <a href="/{{ request.resolver_match.app_name }}/refer" class="nav-link"> Make Extra
@@ -343,7 +343,16 @@
                                     Referring Friends! </a>
                             </li>
                         {% endif %}
+                    {% endif %} -->
+
+                    {% if dynamic.is_main_site %}
+                            <li class="nav-item">
+                                <a href="https://kleui1.leaddyno.com/" target="_blank" class="nav-link"> Make Extra
+                                    Money
+                                    Referring Friends! </a>
+                            </li>
                     {% endif %}
+
                         {% if dynamic.show_affiliate %}
                             <li class="nav-item">
                                 <a href="{% url 'affiliate:home-affiliate' %}" class="nav-link">Go To
