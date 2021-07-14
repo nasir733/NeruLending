@@ -1,3 +1,5 @@
+from django.db.models.fields import BLANK_CHOICE_DASH
+
 from django.db import models
 
 from products.services import create_usersteps_for_subdomain, create_tradelines_for_subdomain
@@ -43,6 +45,17 @@ class Subdomain(models.Model):
     show_why_buy_from_us = models.BooleanField(default=False)
     show_appointment = models.BooleanField(default=True)
 
+    # Models for the http://127.0.0.1:8000/businesscreditcourse/  
+    show_business_credit_course = models.BooleanField(default=True)
+    business_credit_course_video_Heading = models.CharField(max_length=200, default='Business Credit Course',help_text="add the heading for your video heading on /businesscreditcourse/")
+    business_credit_course_video_link = models.CharField(max_length=2000, null=True,blank=True, help_text="add the iframe that you want to show on the https://<Site Name>/businesscreditcourse/ ",default="https://www.youtube.com/embed/jj6AyUyl15Y")
+    business_credit_course_video_link_text = models.CharField(max_length=200, null=True,blank=True, help_text="add the text that you want to show on the https://<Site Name>/businesscreditcourse/ ",default="Watch The Video Above To Get An Introduction To The Business Credit Building Course Portal")
+    
+    # Models for the http://www.localhost:8000/creditcourse/maincreditfile  
+    show_personal_credit_course = models.BooleanField(default=True)
+    personal_credit_course_video_Heading = models.CharField(max_length=200, default='Personal Credit Course',help_text="add the heading for your video heading on/creditcourse/maincreditfile")
+    personal_credit_course_video_link = models.CharField(max_length=2000, null=True,blank=True, help_text="add the iframe  that you want to show on the /creditcourse/maincreditfile ",default="https://youtu.be/0JMgyfFZfiE")
+    personal_credit_course_video_link_text = models.CharField(max_length=200, null=True,blank=True, help_text="add the text that you want to show on the /creditcourse/maincreditfile ",default="Watch The Video Above To Learn How To Use Our Credit Repair Course")
     # Links
     webinar = models.URLField(max_length=300, default='https://youtu.be/eL6sb34CGiM')
     services_link = models.URLField(max_length=300, default='https://www.youtube.com/watch?v=OBCWpTtbm_0')
@@ -75,6 +88,48 @@ class Subdomain(models.Model):
                                                             max_digits=50, decimal_places=2, default=1000.00)
     concierge_program_price = models.DecimalField(verbose_name="Concierge Program Price Yearly",
                                                   max_digits=50, decimal_places=2, default=3999.00)
+    display_first_package=models.BooleanField(default=True)
+    first_package = models.CharField( max_length=200, default="Forever Free Package",null=True,blank=True)
+    first_package_1_bullet_point= models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
+    first_package_2_bullet_point= models.CharField( max_length=200, default="A free monthly credit card for a year.",null=True,blank=True)
+    first_package_1_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
+    first_package_2_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    first_package_3_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    first_package_4_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    first_package_5_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    first_package_6_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    first_package_7_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    first_package_8_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    # Buttons for the 1 pricing card 
+    first_package_1_show_button = models.BooleanField(default = True,null=True,blank=True)
+    first_package_1_button_text = models.CharField(max_length= 200, null=True,blank=True, default="One Time Payment Option")
+    first_package_1_button_link = models.CharField(null=True,blank=True, max_length=50,help_text="paste the link where you want your button to get dirrected to ")
+    first_package_2_show_button = models.BooleanField(default = True,null=True,blank=True)
+    first_package_2_button_text = models.CharField(max_length= 200, null=True,blank=True, default="One Time Payment Option") 
+    first_package_2_button_link = models.CharField(max_length= 200, null=True, blank=True)
+# Buttons for the 2 pricing card 
+    second_package_1_show_button = models.BooleanField(
+        default=True, null=True, blank=True)
+    second_package_1_button_text = models.CharField(
+        max_length=200, null=True, blank=True, default="One Time Payment Option")
+    second_package_1_button_link = models.CharField(
+        null=True, blank=True, max_length=50, help_text="paste the link where you want your button to get dirrected to ")
+    second_package_2_show_button = models.BooleanField(
+        default=True, null=True, blank=True)
+    second_package_2_button_text = models.CharField(max_length=200, null=True, blank=True, default="One Time Payment Option") 
+    second_package_2_button_link = models.CharField(
+        max_length=200, null=True, blank=True)
+    display_second_package=models.BooleanField(default=True)
+    second_package = models.CharField( max_length=200, default="Business Credit Builder Package",null=True,blank=True)
+    second_package_1_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
+    second_package_2_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
+    second_package_3_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
+    second_package_4_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
+    second_package_5_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
+    second_package_6_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
+    second_package_7_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
+    second_package_8_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
+
 
     # Affiliate Section
     show_free_access_to_affiliate_program = models.BooleanField(default=False)

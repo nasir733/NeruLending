@@ -149,10 +149,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-md-12 ml-auto mr-auto">
-                        {% if dynamic.title %}
-                            <h3 class="text-black font-weight-normal line-h-2">{{ dynamic.title }} Is <span
-                                    class="text-theme">Built </span>For
-                                Businesses Like Yours. See All The Features We Do For You Below.</h3>
+                        {% if dynamic.home_page_cards_heading %}
+                            <h3 class="text-black font-weight-normal line-h-2">{{dynamic.home_page_cards_heading}}</h3>
                         {% endif %}
                     </div>
                 </div>
@@ -395,101 +393,102 @@
                     </div>
                 </div>
                 <div class="row align-items-center">
+                
+                {% if dynamic.display_first_package %}
                     <div class="col-lg-6 col-md-6">
                         <div class="forever">
                             <div class="price-table">
                                 <div class="price-inside">Starter</div>
                                 <div class="price-header mb-3">
-                                    <h2 class="price-title">{% if dynamic.is_paid %}Business Credit Information
-                                        Package{% else %}Forever Free Package{% endif %}</h2>
+                                    <h2 class="price-title">{{dynamic.first_package}}</h2>
                                     <br>
                                 </div>
                                 <div class="price-list">
                                     <ul class="list-unstyled">
-                                        <li>Create My Financing Plan Access</li>
-                                        <li>Create My Business Credit Building Plan Access</li>
-                                        {% if dynamic.show_credit_repair_plan %}
-                                            <li>Create My Credit Repair Plan Access</li>
-                                        {% endif %}
-                                        <li>Apply For Business Loan Access To Get Best Rates</li>
-                                        <li>Business Credit Building Course (Usually $1,000)</li>
-                                        <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash
-                                            Credit
-                                            List
-                                        </li>
-                                        <li>Your Own Backend Client Portal To Track Progress</li>
-                                        <li>Full Access To Our Create My Financing Plan Section (*You Get Your Own
-                                            Financing
-                                            Plan Based On Your Current Situation* & Access To 300+ Lenders)
-                                        </li>
+                                        <li>{{dynamic.first_package_1_bullet_point}}</li>
+                                         <li>{{dynamic.first_package_2_bullet_point}}</li>
+                                          <li>{{dynamic.first_package_3_bullet_point}}</li>
+                                           <li>{{dynamic.first_package_4_bullet_point}}</li>
+                                            <li>{{dynamic.first_package_5_bullet_point}}</li>
+                                             <li>{{dynamic.first_package_6_bullet_point}}</li>
+                                              <li>{{dynamic.first_package_7_bullet_point}}</li>
+                                               <li>{{dynamic.first_package_8_bullet_point}}</li>
+                                       
                                     </ul>
                                     <br>
-                                    <div class="col-md-12 mt-2">
-                                        <a href="{% url "user:signup" %}" target="_blank"
+                                    
+                                    {% if dynamic.first_package_1_show_button %}
+                                          <div class="col-md-12 mt-2">
+                                        <a href="{{first_package_1_button_link}}" target="_blank"
                                            class="btn btn-theme btn-circle">
-                                            {% if dynamic.is_paid %}${{ dynamic.portal_price }} One Time Payment
-                                                Option{% else %}
-                                                Sign Up For Forever Free Package{% endif %}</a>
+                                           {{dynamic.first_package_1_button_text}}
+</a>
                                     </div>
+                                    {% endif %}
+                                    
+                                    {% if dynamic.first_package_2_show_button %}
+
+                                                                                  <div class="col-md-12 mt-2">
+                                        <a href="{{first_package_2_button_link}}" target="_blank"
+                                           class="btn btn-theme btn-circle">
+                                           {{dynamic.first_package_2_button_text}}
+</a>
+                                    </div>
+                                    {% endif %}
+                                        
+                                        
+                                  
                                 </div>
                             </div>
                         </div>
                     </div>
+                {% endif %}
+                    
+                    {% if dynamic.display_second_package %}
                     <div class="col-lg-6 col-md-6 md-mt-5">
                         <div class="price-table active">
                             <div class="price-header">
-                                <h3 class="price-title">Business Credit Builder Package</h3>
+                                <h3 class="price-title">{{dynamic.second_package}}</h3>
                             </div>
                             <br>
                             <div class="price-list">
                                 <ul class="list-unstyled">
-                                    <li>We help you get $50,000 in business vendor credit, we set up your business
-                                        credibly,
-                                        and manage your account
+                                    <li>{{dynamic.second_package_1_bullet_point}}
                                     </li>
-                                    <li>Create My Financing Plan Access</li>
-                                    <li>Create My Business Credit Building Plan Access</li>
-                                    {% if dynamic.show_credit_repair_plan %}
-                                        <li>Create My Credit Repair Plan Access</li>
-                                    {% endif %}
-                                    <li>Apply For Business Loan Access To Get Best Rates</li>
-                                    <li>Website Design (Usually $2,000+)</li>
-                                    <li>Free Web Hosting For The Entire Year</li>
-                                    <li>We Buy Your Fax Number For Entire Year(Usually $100+)</li>
-                                    <li>Professional Email (Usually $100+)</li>
-                                    <li>Toll-Free Number Purchase For The Entire Year (Whole sale rate of $10 Per Month
-                                        On
-                                        Up To 2 Other Members) (Savings Of $1,500+ Per Year)
-                                    </li>
-                                    <li>Business Credit Building Course (Usually $1,000)</li>
-                                    <li>Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash Credit
-                                        List
-                                    </li>
-                                    <li>411 Listing</li>
-                                    <li>Full Video Library & Live Chat Assistants To Be Able To Answer Any Questions
-                                        24/7
-                                    </li>
-                                    <li>Your Own Backend Client Portal To Track Progress</li>
-                                    <li>Full Access To Our Create My Financing Plan Section (*You Get Your Own Financing
-                                        Plan Based On Your Current Situation* & Access To 300+ Lenders)
-                                    </li>
-                                    {% if dynamic.show_free_access_to_affiliate_program %}
-                                        <li>Free Access To Our Affiliate Program</li>
-                                    {% endif %}
-                                    {% if dynamic.show_money_back_guarantee %}
-                                        <li>100% action based money-back guarantee if you are not satisfied</li>
-                                    {% endif %}
+                                    <li>{{dynamic.second_package_2_bullet_point}}</li>
+                                    <li>{{dynamic.second_package_3_bullet_point}}</li>
+                                    <li>{{dynamic.second_package_4_bullet_point}}</li>
+                                    <li>{{dynamic.second_package_5_bullet_point}}</li>
+                                    <li>{{dynamic.second_package_6_bullet_point}}</li>
+                                    <li>{{dynamic.second_package_7_bullet_point}}</li>
+                                    <li>{{dynamic.second_package_8_bullet_point}}</li>
+                                    
                                 </ul>
                                 <br>
-                                <div class="col-md-12 mt-2">
-                                    <a href="{% url "user:login" %}"
-                                       class="btn btn-theme btn-circle">${{ yearly }} Annual Payment Option</a><br><br>
-                                    <a href="{% url "user:login" %}"
-                                       class="btn btn-theme btn-circle">${{ monthly }} Monthly Payment Option</a><br>
-                                </div>
+
+                                    {% if dynamic.second_package_1_show_button %}
+                                          <div class="col-md-12 mt-2">
+                                        <a href="{{second_package_1_button_link}}" target="_blank"
+                                           class="btn btn-theme btn-circle">
+                                           {{dynamic.second_package_1_button_text}}
+</a>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if dynamic.second_package_2_show_button %}
+
+                                                                                  <div class="col-md-12 mt-2">
+                                        <a href="{{second_package_2_button_link}}" target="_blank"
+                                           class="btn btn-theme btn-circle">
+                                           {{dynamic.second_package_2_button_text}}
+</a>
+                                    </div>
+                                    {% endif %}
                             </div>
                         </div>
                     </div>
+                    {% endif %}
+                    
                 </div>
             </div>
         </section>
