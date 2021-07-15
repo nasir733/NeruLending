@@ -11,8 +11,8 @@
                 <div class="card">
                     <div class="card-header card-default">
                     </div>
-                    <div class="card-body">
-                        <table id="datatable" class="table table-striped dt-responsive nowrap">
+                    <div class="table-responsive">
+                        <table id="datatable" class="table">
                             <thead>
                             <tr>
                                 <th>Client Name</th>
@@ -31,7 +31,7 @@
                                     <td>{{ client.user.first_name }} {{ client.user.last_name }}</td>
                                     <td>{{ client.what_is_done }}</td>
                                     <td>{{ client.what_is_left }}</td>
-                                    <td>{% for i in client.goals %}<p>{{ i.name }}</p>{% endfor %}
+                                    <td>{% for i in client.goals %}<p> {{ forloop.counter0 }}) {{ i.name }}</p>{% endfor %}
                                         <p>{{ client.user_goals_text }}</p></td>
                                     <td>{{ client.what_is_purchased }}</td>
                                     <td>{{ client.what_is_recommended }}</td>
