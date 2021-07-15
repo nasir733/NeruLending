@@ -69,6 +69,34 @@ class Subdomain(models.Model):
     creditRepairLink = models.CharField(max_length=300, null=True, default='/business/credit-affiliate')
     appointment_link = models.CharField(max_length=200, blank=True)
     why_buy_link = models.CharField(max_length=200, blank=True, default='https://www.youtube.com/embed/bM8A5BDZglk')
+    #Navigation bar links
+    show_navigation_bar_links=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
+    show_navigation_bar_link_1=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
+    navigation_bar_link_1_link = models.CharField(default='/',max_length=200,)
+    navigation_bar_link_1_text =models.CharField(default='Home',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
+    show_navigation_bar_link_2=models.BooleanField(default=True, help_text="check the box if you want to show the navbar links")
+
+    navigation_bar_link_2_Link = models.CharField(default="/about-us",max_length=200, help_text="add the link that you want to show on the navbar")
+    navigation_bar_link_2_text = models.CharField(default='AboutUs',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
+    show_navigation_bar_link_3=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
+
+    navigation_bar_link_3_Link = models.CharField(default="/pricing",max_length=200,
+                                                  help_text="add the link that you want to show on the navbar")
+    navigation_bar_link_3_text = models.CharField(default='Pricing',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
+    show_navigation_bar_link_4=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
+
+    navigation_bar_link_4_Link = models.CharField(default="/services",max_length=200,
+                                                  help_text="add the link that you want to show on the navbar")
+    navigation_bar_link_4_text =models.CharField(default='Services',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
+    navigation_bar_link_5_Link = models.CharField(default="/whitelabel",max_length=200, help_text="add the link that you want to show on the navbar")
+    show_navigation_bar_link_5=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
+
+    navigation_bar_link_5_text =models.CharField(default='White Label Program',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
+    show_navigation_bar_link_6=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
+
+    navigation_bar_link_6_Link = models.CharField(default="/dashboard",max_length=200, help_text="add the link that you want to show on the navbar")
+    navigation_bar_link_6_text =models.CharField(default='Client Login',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
+
 
     # Prices
     is_paid = models.BooleanField(default=False)
