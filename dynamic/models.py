@@ -75,7 +75,7 @@ class Subdomain(models.Model):
     portal_price = models.DecimalField(verbose_name="Portal price", max_digits=50, decimal_places=2, default=0)
 
     # White Label Section
-    is_paid_for_whitelabel = models.BooleanField(default=False)
+    is_paid_for_whitelabel = models.BooleanField(default=False,help_text="check the box if the client has paid for the whitelabel program")
     show_index_white_label = models.BooleanField(default=False)
     show_becoming_whitelabel_partner = models.BooleanField(default=False)
     offer_paid_whitelabel = models.BooleanField(default=True)

@@ -351,13 +351,12 @@
                                     Portal</a>
                             </li>
                         {% endif %}
-                        {% if dynamic.is_paid_for_whitelabel and iswhitelabeladmin %}
+                        {% if dynamic.is_paid_for_whitelabel%}
                             <li class="nav-item">
                                 <a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link"> Go To
                                     White Label Partner Portal</a>
                             </li>
-                        {% endif %}
-                        {% if dynamic.is_paid_for_whitelabel and iswhitelabeladmin %}
+                        {% else %}
                             <li class="nav-item">
                                 <a href="{% url 'freewhitelabelprogramonboarding:onboarding' %}" class="nav-link"> Go To
                                     Free White Label Partner Portal</a>

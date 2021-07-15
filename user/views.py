@@ -29,10 +29,11 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class GDTLoginView(LoginView):
     template_name = 'login.html'
-
+    print('from gdt login view')
     def form_valid(self, form):
         """Security check complete. Log the user in."""
         user = form.get_user()
+        print(user,'from the gdtlogin view')
         auth_login(self.request, user)
         return HttpResponseRedirect(self.get_redirect_url() or '/dashboard')
 
