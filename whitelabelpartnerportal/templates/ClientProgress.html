@@ -28,7 +28,7 @@
                             <tbody>
                             {% for client in clients %}
                                 <tr>
-                                    <td>{{ client.user.first_name }} {{ client.user.last_name }}</td>
+                                    <td>{{ forloop.counter0 }}) &nbsp; {{ client.user.first_name }} {{ client.user.last_name }}</td>
                                     <td>{{ client.what_is_done }}</td>
                                     <td>{{ client.what_is_left }}</td>
                                     <td>{% for i in client.goals %}<p> {{ forloop.counter0 }}) {{ i.name }}</p>{% endfor %}
