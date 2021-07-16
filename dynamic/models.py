@@ -76,25 +76,25 @@ class Subdomain(models.Model):
     navigation_bar_link_1_text =models.CharField(default='Home',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
     show_navigation_bar_link_2=models.BooleanField(default=True, help_text="check the box if you want to show the navbar links")
 
-    navigation_bar_link_2_Link = models.CharField(default="/about-us",max_length=200, help_text="add the link that you want to show on the navbar")
+    navigation_bar_link_2_link = models.CharField(default="/about-us",max_length=200, help_text="add the link that you want to show on the navbar")
     navigation_bar_link_2_text = models.CharField(default='AboutUs',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
     show_navigation_bar_link_3=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
 
-    navigation_bar_link_3_Link = models.CharField(default="/pricing",max_length=200,
+    navigation_bar_link_3_link = models.CharField(default="/pricing",max_length=200,
                                                   help_text="add the link that you want to show on the navbar")
     navigation_bar_link_3_text = models.CharField(default='Pricing',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
     show_navigation_bar_link_4=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
 
-    navigation_bar_link_4_Link = models.CharField(default="/services",max_length=200,
+    navigation_bar_link_4_link = models.CharField(default="/services",max_length=200,
                                                   help_text="add the link that you want to show on the navbar")
     navigation_bar_link_4_text =models.CharField(default='Services',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
-    navigation_bar_link_5_Link = models.CharField(default="/whitelabel",max_length=200, help_text="add the link that you want to show on the navbar")
+    navigation_bar_link_5_link = models.CharField(default="/whitelabel",max_length=200, help_text="add the link that you want to show on the navbar")
     show_navigation_bar_link_5=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
 
     navigation_bar_link_5_text =models.CharField(default='White Label Program',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
     show_navigation_bar_link_6=models.BooleanField(default=True,help_text="check the box if you want to show the navbar links")
 
-    navigation_bar_link_6_Link = models.CharField(default="/dashboard",max_length=200, help_text="add the link that you want to show on the navbar")
+    navigation_bar_link_6_link = models.CharField(default="/dashboard",max_length=200, help_text="add the link that you want to show on the navbar")
     navigation_bar_link_6_text =models.CharField(default='Client Login',max_length=200,help_text="add the text that you want to show in the first link in the navbar")
 
 
@@ -131,7 +131,7 @@ class Subdomain(models.Model):
     # Buttons for the 1 pricing card 
     first_package_1_show_button = models.BooleanField(default = True,null=True,blank=True)
     first_package_1_button_text = models.CharField(max_length= 200, null=True,blank=True, default="One Time Payment Option")
-    first_package_1_button_link = models.CharField(null=True,blank=True, max_length=50,help_text="paste the link where you want your button to get dirrected to ")
+    # first_package_1_button_link = models.CharField(null=True,blank=True, max_length=50,help_text="paste the link where you want your button to get dirrected to ")
     first_package_2_show_button = models.BooleanField(default = True,null=True,blank=True)
     first_package_2_button_text = models.CharField(max_length= 200, null=True,blank=True, default="One Time Payment Option") 
     first_package_2_button_link = models.CharField(max_length= 200, null=True, blank=True)
