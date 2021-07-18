@@ -558,10 +558,10 @@ class PartnerResourceView(View):
 
 class ClientProgress(View):
     def get(self, request):
-        userportal = Profile.objects.get(user=request.user)
-        print(userportal.whitelabel_portal,'from clientprogress')
+        profile_user = Profile.objects.get(user=request.user)
+        sub= Subdomain.objects.filter(admins=profile_user).first()
         print(request.host.name)
-        clients = Profile.objects.filter(whitelabel_portal=userportal.whitelabel_portal)
+        clients = Profile.objects.filter(whitelabel_portal=sub)
         for i in clients:
             goals = []
             for k in i.portal_goals.all():
