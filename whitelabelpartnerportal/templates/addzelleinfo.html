@@ -42,6 +42,7 @@
                             <thead>
                             <tr>
                                 <th>Zelle Email</th>
+                                <th>Zelle Phone</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -52,7 +53,8 @@
                             {% for zelle in zelles %}
                             <tr>
                                 <td>{{ zelle.zelle_email }}</td>
-                                <td><a class="btn btn-primary" href="/whitelabelpartnerportal/addpaypalinfo/edit/{{ zelle.id }}">Edit</a></td>
+                                <td>{{zelle.zelle_phone}}</td>
+                                <td><a class="btn btn-primary" href="/whitelabelpartnerportal/addzelleinfo/edit/{{ zelle.id }}">Edit</a></td>
                                     <td>  <form method="post" id="delete" name="delete" action="">
                                             {% csrf_token %}
                                             <input type="text" name="delete" value="{{ zelle.id }}" hidden/>
@@ -65,7 +67,7 @@
 
                         <br>
                         <div class="form-group">
-                            <a class="btn btn-primary" href="/whitelabelpartnerportal/addpaypalinfo_form">New Zelle</a>
+                            <a class="btn btn-primary" href="/whitelabelpartnerportal/addzelleinfoform">New Zelle</a>
                         </div>
                         <br>
                         <div class="form-group">

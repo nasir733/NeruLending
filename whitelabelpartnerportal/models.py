@@ -8,6 +8,7 @@ from django.utils import timezone
 from core.models import ProductModel
 from services.FileServices import get_file_path
 from user.models import Profile
+from phonenumber_field.modelfields import PhoneNumberField
 
 app_name = 'whitelabelpartnerportal'
 
@@ -248,6 +249,18 @@ class BankPaymentInformation(ModelMixin, models.Model):
 
     def __str__(self):
         return self.user.user.get_full_name()
+
+
+class ZelleInformation(models.Model, ModelMixin):
+    user= models.ForeignKey(Profile, on_delete=models.CASCADE, related_name=f'{app_name}%(class)s_profile')
+    zelle_email=models.EmailField(max_length=500, null=True,blank=True)
+    zelle_phone=PhoneNumberField(max_length=500, null=True,blank=True)
+
+    def __str__(self):
+        return self.user.user.get_full_name()
+
+    class Meta:
+        db_table = f'{app_name}_zelle_information'
 
 
 class PaypalInformation(ModelMixin, models.Model):
