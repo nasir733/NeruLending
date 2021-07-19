@@ -118,45 +118,63 @@ class Subdomain(models.Model):
                                                   max_digits=50, decimal_places=2, default=3999.00)
     display_first_package=models.BooleanField(default=True)
     first_package = models.CharField( max_length=200, default="Forever Free Package",null=True,blank=True)
-    first_package_1_bullet_point= models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
-    first_package_2_bullet_point= models.CharField( max_length=200, default="A free monthly credit card for a year.",null=True,blank=True)
-    first_package_1_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
-    first_package_2_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
-    first_package_3_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
-    first_package_4_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
-    first_package_5_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
-    first_package_6_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
-    first_package_7_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
-    first_package_8_bullet_point = models.CharField( max_length=200, default="A free monthly credit card for a year.", null=True, blank=True)
+    first_package_1_bullet_point = models.CharField(
+        max_length=200, default="Create My Financing Plan Access", null=True, blank=True)
+    first_package_2_bullet_point = models.CharField(
+        max_length=200, default="Create My Business Credit Building Plan Access", null=True, blank=True)
+    first_package_3_bullet_point = models.CharField(
+        max_length=200, default="Apply For Business Loan Access To Get Best Rates", null=True, blank=True)
+    first_package_4_bullet_point = models.CharField(
+        max_length=200, default="Business Credit Building Course (Usually $1,000)", null=True, blank=True)
+    first_package_5_bullet_point = models.CharField(max_length=200, default="""Full Starter Vendor, Retail Store Credit, Revolving Store Credit, & Cash
+                                                    Credit
+                                                    List""", null=True, blank=True)
+    first_package_6_bullet_point = models.CharField(
+        max_length=200, default="Your Own Backend Client Portal To Track Progress", null=True, blank=True)
+    first_package_7_bullet_point = models.CharField(max_length=200, default="""Full Access To Our Create My Financing Plan Section(*You Get Your Own
+                                                                                                                                 Financing
+                                                                                                                                 Plan Based On Your Current Situation * & Access To 300 + Lenders)""", null=True, blank=True)
+    first_package_8_bullet_point = models.CharField(
+        max_length=200, default="Create My Credit Repair Plan Access", null=True, blank=True)
     # Buttons for the 1 pricing card 
     first_package_1_show_button = models.BooleanField(default = True,null=True,blank=True)
-    first_package_1_button_text = models.CharField(max_length= 200, null=True,blank=True, default="One Time Payment Option")
-    # first_package_1_button_link = models.CharField(null=True,blank=True, max_length=50,help_text="paste the link where you want your button to get dirrected to ")
-    first_package_2_show_button = models.BooleanField(default = True,null=True,blank=True)
+    first_package_1_button_text = models.CharField(max_length= 200, null=True,blank=True, default="Sign Up For Forever Free Package")
+    first_package_1_button_link = models.CharField(null=True,blank=True,default="/user/login", max_length=50,help_text="paste the link where you want your button to get dirrected to ")
+    first_package_2_show_button = models.BooleanField(default = False,null=True,blank=True)
     first_package_2_button_text = models.CharField(max_length= 200, null=True,blank=True, default="One Time Payment Option") 
     first_package_2_button_link = models.CharField(max_length= 200, null=True, blank=True)
 # Buttons for the 2 pricing card 
     second_package_1_show_button = models.BooleanField(
         default=True, null=True, blank=True)
     second_package_1_button_text = models.CharField(
-        max_length=200, null=True, blank=True, default="One Time Payment Option")
+        max_length=200, null=True, blank=True, default="""${{yearly}} Annual Payment Option""")
     second_package_1_button_link = models.CharField(
-        null=True, blank=True, max_length=50, help_text="paste the link where you want your button to get dirrected to ")
+        null=True, blank=True, max_length=50, help_text="paste the link where you want your button to get dirrected to ",default="/user/login")
     second_package_2_show_button = models.BooleanField(
         default=True, null=True, blank=True)
-    second_package_2_button_text = models.CharField(max_length=200, null=True, blank=True, default="One Time Payment Option") 
+    second_package_2_button_text = models.CharField(
+        max_length=200, null=True, blank=True, default=""" ${{ monthly }} Monthly Payment Option""")
     second_package_2_button_link = models.CharField(
-        max_length=200, null=True, blank=True)
+        max_length=200, null=True, blank=True,default="/user/login")
     display_second_package=models.BooleanField(default=True)
     second_package = models.CharField( max_length=200, default="Business Credit Builder Package",null=True,blank=True)
-    second_package_1_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
-    second_package_2_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
-    second_package_3_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
-    second_package_4_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
-    second_package_5_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.",null=True,blank=True)
-    second_package_6_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
-    second_package_7_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
-    second_package_8_bullet_point = models.CharField( max_length=200, default="A free credit card for a year.", null=True, blank=True)
+    second_package_1_bullet_point = models.CharField(max_length=200, default=""" We help you get $50,000 in business vendor credit, we set up your business
+                                        credibly,
+                                        and manage your account""", null=True, blank=True)
+    second_package_2_bullet_point = models.CharField(
+        max_length=200, default="Create My Financing Plan Access", null=True, blank=True)
+    second_package_3_bullet_point = models.CharField(
+        max_length=200, default="Create My Business Credit Building Plan Access", null=True, blank=True)
+    second_package_4_bullet_point = models.CharField(
+        max_length=200, default="Apply For Business Loan Access To Get Best Rates", null=True, blank=True)
+    second_package_5_bullet_point = models.CharField(
+        max_length=200, default="Website Design (Usually $2,000+)", null=True, blank=True)
+    second_package_6_bullet_point = models.CharField(
+        max_length=200, default="Free Web Hosting For The Entire Year", null=True, blank=True)
+    second_package_7_bullet_point = models.CharField(
+        max_length=200, default="We Buy Your Fax Number For Entire Year(Usually $100+)", null=True, blank=True)
+    second_package_8_bullet_point = models.CharField(
+        max_length=200, default="Professional Email (Usually $100+) and much more", null=True, blank=True)
 
 
     # Affiliate Section

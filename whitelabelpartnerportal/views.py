@@ -599,8 +599,6 @@ class ClientProgress(View):
     def get(self, request):
         profile_user = Profile.objects.get(user=request.user)
         sub= Subdomain.objects.filter(admins=profile_user).first()
-        print(sub,'from the client Progress =============================')
-        print(request.host.name)
         clients = Profile.objects.filter(whitelabel_portal=sub)
         for i in clients:
             goals = []

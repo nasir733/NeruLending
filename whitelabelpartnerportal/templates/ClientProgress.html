@@ -22,7 +22,9 @@
                                 <th>What Is Purchased</th>
                                 <th>What Is Recommended</th>
                                 <th>Client Can See Only Created Portals</th>
+                                <th>Deactivate Client Account</th>
                                 <th>Create Portal</th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -44,6 +46,13 @@
                                             </label>
                                         </form>
                                     </td>
+                                     <form method="post">
+                                            {% csrf_token %}
+                                            <label>
+                                                <input hidden name="see_only_created_portal" value="{{ client.user.id }}">
+                                                <input type="checkbox" name="access" onChange="this.form.submit()" {% if client.user.profile.can_see_only_created_portals %} checked {% endif %} #}/>
+                                            </label>
+                                        </form>
                                     <td>
                                         <form method="post">
                                             {% csrf_token %}
