@@ -33,12 +33,14 @@
             <div class="card">
                 <div class="card-header">
                     Enter In New Zelle Information
+                    <br> <br> 
+                    Please Fill-Out At Least One Field
                 </div>
                 <div class="card-body">
                     <div class="col-md-12">
                         <form action="/whitelabelpartnerportal/addzelleinfoform" accept-charset="UTF-8"
                               method="post">{% csrf_token %}
-                            <h1>Please Fill-Out At Least One Field</h1>
+                          
                             <div class="form-group">
                                 <label for="zelle_email">Zelle Email</label>
                                 <input type="email" name="zelle_email" id="=zelle_email"/>
