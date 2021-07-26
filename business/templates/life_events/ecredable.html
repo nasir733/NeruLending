@@ -1,0 +1,44 @@
+{#{% extends "pages/base-business.html" %}#}
+{% extends request.resolver_match.page_template %}
+{% load static %}
+
+{% block extrastyle %}
+
+    <style>
+        .btn {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+    </style>
+
+{% endblock extrastyle %}
+<!-- ============================================================== -->
+<!--            Content Start             -->
+<!-- ============================================================== -->
+{% block content %}
+
+    <div class="row page-header">
+        <div class="col-lg-6 align-self-center ">
+            <h2>Normal Life Events</h2>
+        </div>
+    </div>
+
+    <section class="main-content">
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-6">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">Need Extra Money For Holiday Shopping?</div>
+                    <img src="https://images.pexels.com/photos/919436/pexels-photo-919436.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                         height="270px" width="100%" alt="">
+                    <div class="card-body">
+                        <a class="btn btn-primary btn-block" href="{% url "business:lifeeventsfinancialproducts" %}">View The Best
+                            Financing Products</a>
+                    </div>
+                </div>
+
+        </div>
+    </section>
+
+{% endblock %}

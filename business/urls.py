@@ -115,6 +115,7 @@ urlpatterns = [
     url('credit-repair-17/', login_required(CreditRepairPlan17View.as_view(), login_url='/user/login'), name='credit_repair_17'),
 
     url('lifeevents/', login_required(LifeEventsView.as_view(), login_url='/user/login'), name='lifeevents'),
+    url('ecredable/', login_required(EcredableView.as_view(), login_url='/user/login'), name='ecredable'),
     url('lifeeventsfinancialproducts/', login_required(LifeEventsFinancialProductsView.as_view(), login_url='/user/login'), name='lifeeventsfinancialproducts'),
     url('business-credit-steps-guided/',
         login_required(BusinessCreditStepsGuidedView.as_view(), login_url='/user/login'),

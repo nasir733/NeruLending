@@ -1583,6 +1583,10 @@ class LifeEventsView(View):
     def get(self, request):
         return render(request, "life_events/lifeevents.html", get_context_for_all(request))
 
+class EcredableView(View):
+    def get(self, request):
+        return render(request, "life_events/ecredable.html", get_context_for_all(request))
+
 
 class LifeEventsFinancialProductsView(View):
     def get(self, request):
