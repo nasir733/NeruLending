@@ -1058,7 +1058,7 @@ class RevolvingBusinessCreditVendorList(View):
         return render(request, 'cooperateCredit/revolving.html',
                       get_context_for_all(request, {"vendor_list": vendor_list}))
 
-class Ecreable(View):
+class EcredableView(View):
     def get(self, request):
         if request.resolver_match.app_name == 'goals':
             request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
