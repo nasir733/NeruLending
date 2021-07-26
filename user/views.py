@@ -29,10 +29,11 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class GDTLoginView(LoginView):
     template_name = 'login.html'
-
+    print('from gdt login view')
     def form_valid(self, form):
         """Security check complete. Log the user in."""
         user = form.get_user()
+        print(user,'from the gdtlogin view')
         auth_login(self.request, user)
         return HttpResponseRedirect(self.get_redirect_url() or '/dashboard')
 
@@ -178,6 +179,12 @@ class CreateSpecificPortal(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        profile = Profile.objects.get(user= self.request.user)
+        try:
+            context['show_portal'] =Subdomain.objects.get(admins=profile,sub_name=self.request.host.name)
+        except Exception as e:
+            context['show_portal']=False
+        print(context['show_portal'])
         context['available_portals'] = Portal.objects.all()
         context['my_portals'] = PortalGoal.objects.filter(profile=self.request.user.profile)
         return context

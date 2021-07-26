@@ -21,6 +21,7 @@ urlpatterns = [
     path('salesaffiliates/edit/<int:pk>', affiliate_agent_update, name='affiliate_agent_edit'),
     path('addbankinfo/edit/<int:pk>', bank_info_update, name='paypal_info_update'),
     path('addpaypalinfo/edit/<int:pk>', paypal_info_update, name='bank_info_update'),
+    path('addzelleinfo/edit/<int:pk>', zelle_info_update, name='zelle_info_update'),
     url('leadoverview', login_required(LeadOverviewView.as_view(), login_url='/user/login'),
         name='leadoverview'),
     url('mysales', login_required(MySalesView.as_view(), login_url='/user/login'),
@@ -74,9 +75,13 @@ urlpatterns = [
 
     url('addpaypalinfo_form', login_required(AddPaypalInfoFormView.as_view(), login_url='/user/login'),
         name='addpaypalinfo_form'),
-
+    url('addzelleinfoform', login_required(AddZelleInfoFormView.as_view(),
+        login_url='/user/login'), name="addzelleinfo_form"),
     url('addpaypalinfo', login_required(AddPaypalInfoView.as_view(), login_url='/user/login'),
         name='addpaypalinfo'),
+    url('addzelleinfo', login_required(addZelleInfoView.as_view(),
+        login_url='/user/login'), name='addzelleinfo'),
+    
     url('merchant', login_required(MerchantView.as_view(), login_url='/user/login'),
         name='merchant'),
     url('fax', login_required(FaxView.as_view(), login_url='/user/login'),

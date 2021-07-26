@@ -380,6 +380,34 @@ class AddBankInfoFormView(View):
         return HttpResponseRedirect(reverse("whitelabelpartnerportal:addbankinfo"))
 
 
+class addZelleInfoView(View):
+    def get(self, request):
+        zelles = ZelleInformation.objects.filter(user=Profile.objects.get(user=request.user))
+        return render(request, "addzelleinfo.html",{'zelles':zelles})
+    
+    def post(self,request):
+        if 'delete' in request.POST:
+            try:
+                instance = ZelleInformation.objects.get(id=request.POST['delete'])
+                instance.delete()
+            except Exception as e:
+                pass
+        return HttpResponseRedirect(reverse("whitelabelpartnerportal:addzelleinfo"))
+
+
+class AddZelleInfoFormView(View):
+    def get(self,request):
+        print('the zelle infor form view ran ')
+        return render(request, "addzelleinfo_form.html")
+    
+    def post(self,request):
+        data = {'zelle_email':request.POST['zelle_email'],'zelle_phone':request.POST['zelle_phone']}
+        print(data,'from the add zelle post view')
+        new_bank = ZelleInformation(user=Profile.objects.get(user=request.user), **data)
+        print(new_bank)
+        new_bank.save()
+        return HttpResponseRedirect(reverse("whitelabelpartnerportal:addzelleinfo"))
+
 class AddPaypalInfoView(View):
     def get(self, request):
         paypals = PaypalInformation.objects.filter(user=Profile.objects.get(user=request.user))
@@ -406,12 +434,23 @@ class AddPaypalInfoFormView(View):
         return HttpResponseRedirect(reverse("whitelabelpartnerportal:addpaypalinfo"))
 
 
+class ZelleInfoForm(ModelForm):
+    class Meta:
+        model = ZelleInformation
+        fields = ['zelle_email','zelle_phone']
 class PayPalInfoForm(ModelForm):
     class Meta:
         model = PaypalInformation
         fields = ['paypal_email']
 
 
+def zelle_info_update(request,pk,template_name='addzelleinfo_form.html'):
+    lead = get_object_or_404(ZelleInformation, pk=pk)
+    form = ZelleInfoForm(request.POST or None, instance=lead)
+    if form.is_valid():
+        form.save()
+        return redirect('whitelabelpartnerportal:addzelleinfo')
+    return render(request, template_name, {'form': form})
 def paypal_info_update(request, pk, template_name='addpaypalinfo_form.html'):
     lead = get_object_or_404(PaypalInformation, pk=pk)
     form = PayPalInfoForm(request.POST or None, instance=lead)
@@ -558,7 +597,9 @@ class PartnerResourceView(View):
 
 class ClientProgress(View):
     def get(self, request):
-        clients = Profile.objects.filter(whitelabel_portal=request.host.name)
+        profile_user = Profile.objects.get(user=request.user)
+        sub= Subdomain.objects.filter(admins=profile_user).first()
+        clients = Profile.objects.filter(whitelabel_portal=sub)
         for i in clients:
             goals = []
             for k in i.portal_goals.all():

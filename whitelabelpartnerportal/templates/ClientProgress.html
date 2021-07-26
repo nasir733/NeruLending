@@ -11,8 +11,8 @@
                 <div class="card">
                     <div class="card-header card-default">
                     </div>
-                    <div class="card-body">
-                        <table id="datatable" class="table table-striped dt-responsive nowrap">
+                    <div class="table-responsive">
+                        <table id="datatable" class="table">
                             <thead>
                             <tr>
                                 <th>Client Name</th>
@@ -22,16 +22,18 @@
                                 <th>What Is Purchased</th>
                                 <th>What Is Recommended</th>
                                 <th>Client Can See Only Created Portals</th>
+                                {% comment %} <th>Deactivate Client Account</th> {% endcomment %}
                                 <th>Create Portal</th>
+
                             </tr>
                             </thead>
                             <tbody>
                             {% for client in clients %}
                                 <tr>
-                                    <td>{{ client.user.first_name }} {{ client.user.last_name }}</td>
+                                    <td>{{ forloop.counter0 }}) &nbsp; {{ client.user.first_name }} {{ client.user.last_name }}</td>
                                     <td>{{ client.what_is_done }}</td>
                                     <td>{{ client.what_is_left }}</td>
-                                    <td>{% for i in client.goals %}<p>{{ i.name }}</p>{% endfor %}
+                                    <td>{% for i in client.goals %}<p> {{ forloop.counter0 }}) {{ i.name }}</p>{% endfor %}
                                         <p>{{ client.user_goals_text }}</p></td>
                                     <td>{{ client.what_is_purchased }}</td>
                                     <td>{{ client.what_is_recommended }}</td>
@@ -44,6 +46,13 @@
                                             </label>
                                         </form>
                                     </td>
+                                     {% comment %} <form method="post">
+                                            {% csrf_token %}
+                                            <label>
+                                                <input hidden name="see_only_created_portal" value="{{ client.user.id }}">
+                                                <input type="checkbox" name="access" onChange="this.form.submit()" {% if client.user.profile.can_see_only_created_portals %} checked {% endif %} #}/>
+                                            </label>
+                                        </form> {% endcomment %}
                                     <td>
                                         <form method="post">
                                             {% csrf_token %}

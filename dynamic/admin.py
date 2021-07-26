@@ -36,6 +36,7 @@ class SubdomainAdmin(ImportExportModelAdmin):
                     'primary_color', 'secondary_color',
                     'accent_color', 'bg_color')
     filter_horizontal = ('admins',)
+    search_fields = ()
     actions = ['create_user_steps', 'payment_done', 'default_appimage', 'default_email', 'default_links', 'default_colors']
     resource_class = SubdomainResource
 

@@ -86,8 +86,11 @@ class PartnerView(View):
 
 class ContactView(View):
     def get(self, request):
+        print(request.host.name)
+        if request.host.name == 'www.kleui.com':
+            context = {'True': True}
+            return render(request, 'landingpages/contact.html',context)
         return render(request, 'landingpages/contact.html')
-
 
 class CustomerSuccessAgentView(View):
     def get(self, request):
