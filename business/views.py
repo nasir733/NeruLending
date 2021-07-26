@@ -173,6 +173,10 @@ class RestrictedView(View):
     def get(self, request):
         return render(request, "home/restricted.html", context=get_context_for_all(request))
 
+class EcredableView(View):
+    def get(self, request):
+        return render(request, "home/restricted.html", context=get_context_for_all(request))
+
 
 class GoalView(View):
     def get(self, request):
@@ -1058,15 +1062,6 @@ class RevolvingBusinessCreditVendorList(View):
         return render(request, 'cooperateCredit/revolving.html',
                       get_context_for_all(request, {"vendor_list": vendor_list}))
 
-class EcredableView(View):
-    def get(self, request):
-        if request.resolver_match.app_name == 'goals':
-            request.resolver_match.page_template = 'buildbusinesscredit/base-buildbusinesscredit.html'
-        else:
-            request.resolver_match.page_template = 'pages/base-business.html'
-        vendor_list = RevolvingBusinessCreditVendor.objects.all()
-        return render(request, 'cooperateCredit/ecredable.html',
-                      get_context_for_all(request, {"vendor_list": vendor_list}))
 
 
 class RevolvingDetailsView(View):
