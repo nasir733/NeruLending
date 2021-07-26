@@ -175,7 +175,7 @@ class RestrictedView(View):
 
 class EcredableView(View):
     def get(self, request):
-        return render(request, "home/restricted.html", context=get_context_for_all(request))
+        return render(request, "cooperateCredit/ecredable.html", context=get_context_for_all(request))
 
 
 class GoalView(View):
