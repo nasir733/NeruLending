@@ -173,11 +173,6 @@ class RestrictedView(View):
     def get(self, request):
         return render(request, "home/restricted.html", context=get_context_for_all(request))
 
-class EcredableView(View):
-    def get(self, request):
-        return render(request, "cooperateCredit/ecredable.html", context=get_context_for_all(request))
-
-
 class GoalView(View):
     def get(self, request):
         request.resolver_match.page_template = 'pages/base-business.html'
