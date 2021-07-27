@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -620,6 +621,17 @@ class ClientProgress(View):
             profile.can_see_only_created_portals = request.POST.get('can_see') == "on"
             print(request.POST.get('can_see') == "on")
             profile.save()
+
+        elif 'shut_of_client_account' in request.POST:
+            user = User.objects.get(id=request.POST['shut_of_client_account'])
+            if user.is_active:
+                user.is_active=False
+                user.save()
+            else:
+                user.is_active=True
+                user.save()
+            print( f"hi the user {user}is now active {user.is_active}")
+
 
         return redirect('whitelabelpartnerportal:clientProgress')
 
