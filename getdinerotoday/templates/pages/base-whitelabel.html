@@ -23,10 +23,11 @@
                     <li class="nav-item"><a href="/dashboard" class="nav-link">Go Back To Main Portal</a></li>
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link">Dashboard</a>
                     </li>
+                    <!--
                     {% if dynamic.is_main_site and dynamic.show_becoming_whitelabel_partner %}
                         <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:becomingapartner' %}"
                                                 class="nav-link">Becoming A White Label Partner</a></li>
-                    {% endif %}
+                    {% endif %} -->
 
                        <li class="nav-item"><a href="{% url "whitelabelpartnerportal:wholesales" %}" class="nav-link">Wholesale Packages</a></li>
                        <li class="nav-item"><a href="{% url "whitelabelpartnerportal:clients-on-wholesale" %}" class="nav-link">Clients That Are On Your Wholesale Package</a></li>
@@ -34,9 +35,6 @@
 
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:marketingroi' %}" class="nav-link">Your
                        Marketing Return On Investment</a></li>
-
-                    <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:whitelabeltraining' %}"
-                                            class="nav-link">White Label Training</a></li>
 
                     {% if dynamic.is_paid_for_whitelabel %}
                         <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:myresiduals' %}" class="nav-link">My

@@ -173,7 +173,6 @@ class RestrictedView(View):
     def get(self, request):
         return render(request, "home/restricted.html", context=get_context_for_all(request))
 
-
 class GoalView(View):
     def get(self, request):
         request.resolver_match.page_template = 'pages/base-business.html'
@@ -1059,6 +1058,7 @@ class RevolvingBusinessCreditVendorList(View):
                       get_context_for_all(request, {"vendor_list": vendor_list}))
 
 
+
 class RevolvingDetailsView(View):
     def get(self, request, state):
         if request.resolver_match.app_name == 'goals':
@@ -1582,6 +1582,10 @@ class ChatView(View):
 class LifeEventsView(View):
     def get(self, request):
         return render(request, "life_events/lifeevents.html", get_context_for_all(request))
+
+class EcredableView(View):
+    def get(self, request):
+        return render(request, "life_events/ecredable.html", get_context_for_all(request))
 
 
 class LifeEventsFinancialProductsView(View):
