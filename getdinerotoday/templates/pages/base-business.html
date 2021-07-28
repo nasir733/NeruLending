@@ -1,6 +1,27 @@
 {% extends "layout/BaseLayout.html" %}
 {% load static %}
+{% block extrastyle %}
+<style>
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: black;
+            opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: black;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: black;
+ }
+ .form-control {
+     width:90%;
+     margin-left:5%;
+ }
+</style>
+{% endblock extrastyle %}
 {% block navigation %}
+
     <div class="full-menu">
         <div class="main-sidebar-nav dark-navigation">
             <div class="nano">
@@ -19,7 +40,7 @@
                         {% endif %}
 
                        
-                        <input type="text" onkeyup="Search()" id="search"placeholder="Search" class="nav-link" name="search-box" >
+                        <input type="text"   onkeyup="Search()" id="search"placeholder="Search" style="width:90%;margin-left:5%;background-color:whtie;" class="nav-link    form-control " name="search-box" >
               
                         <li class="nav-item">
                             {% if request.resolver_match.app_name == 'business' %}
