@@ -10,8 +10,9 @@
         <div class="col-lg-6 align-self-center ">
             <h2>Create Account For Your Clients</h2></div>
     </div>
-<div class="container-fluid d-flex justify-content-center align-items-center">
-
+<div class="main-content d-flex justify-content-center align-items-center">
+<div class="col-md-12">
+<div class="row"></div>
 <form method="POST">
 {% if e %}
 <div class="alert alert-danger  " role="alert">
@@ -33,17 +34,16 @@
  <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">First Name</label>
     <input type="text" name="first_name" class="form-control" required="required" id="first-name" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">Plzz add your clients first name here </div>
+    
   </div>
    <div class="mb-3">
     <label for="exampleInputEmail1"  class="form-label">Last Name</label>
     <input type="text" class="form-control"  name="last_name"required="required" id="lastname" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">Plzz add your clients Last Name here</div>
+    
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" class="form-control" name="email" required="required" id="email" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -56,6 +56,8 @@
  
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
+
 </div>
 
 {% endblock content %}
