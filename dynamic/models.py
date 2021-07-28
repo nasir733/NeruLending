@@ -194,6 +194,7 @@ class Subdomain(models.Model):
 
     show_life_insurance = models.BooleanField(default=False)
     life_insurance_link = models.CharField(max_length=200, blank=True)
+    
 
     def __str__(self):
         return self.sub_name

@@ -18,7 +18,9 @@
                             <li class="nav-item"><a href="/dashboard" class="nav-link">Go Back To Main Portal</a></li>
                         {% endif %}
 
-
+                       
+                        <input type="text" onkeyup="Search()" id="search"placeholder="Search" class="nav-link" name="search-box" >
+              
                         <li class="nav-item">
                             {% if request.resolver_match.app_name == 'business' %}
                                 <a href="/dashboard" class="nav-link"><span class="toggle-none">Dashboard</span></a>
@@ -444,9 +446,29 @@
             </div>
         </div>
     </div>
+    <script>
+    function Search() {
+   
+var input,filter,ul,li,a,i,txtValue;
+input = document.getElementById("search");
+filter = input.value.toUpperCase();
+ul=document.getElementById('menu');
+li = ul.getElementsByTagName('li');
+
+//loop through all the list items, and hide those who don't match the search query
+for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+    </script>
 {% endblock navigation %}
 {% block content %}
 {% endblock content %}
 
-{% block javascriptblock %}
-{% endblock javascriptblock %}
+
