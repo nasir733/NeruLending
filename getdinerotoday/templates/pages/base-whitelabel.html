@@ -20,6 +20,7 @@
                     <p class="text-muted mv-0 toggle-none">Welcome White Label Partner</p>
                 </div>
                 <ul class="metisMenu nav flex-column" id="menu">
+                 <input type="text"   onkeyup="Search()" id="search"placeholder="Search" style="width:90%;margin-left:5%;background-color:whtie;" class="nav-link    form-control " name="search-box" >
                     <li class="nav-item"><a href="/dashboard" class="nav-link">Go Back To Main Portal</a></li>
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:home-whitelabel' %}" class="nav-link">Dashboard</a>
                     </li>
@@ -32,7 +33,7 @@
                        <li class="nav-item"><a href="{% url "whitelabelpartnerportal:wholesales" %}" class="nav-link">Wholesale Packages</a></li>
                        <li class="nav-item"><a href="{% url "whitelabelpartnerportal:clients-on-wholesale" %}" class="nav-link">Clients That Are On Your Wholesale Package</a></li>
                        <li class="nav-item"><a href="{% url "whitelabelpartnerportal:partner_resources" %}" class="nav-link">Partner Resources</a></li>
-
+<li class="nav-item"><a href="{% url 'whitelabelpartnerportal:create_account' %}" class="nav-link">Create Accounts for your users</a></li>
                     <li class="nav-item"><a href="{% url 'whitelabelpartnerportal:marketingroi' %}" class="nav-link">Your
                        Marketing Return On Investment</a></li>
 
@@ -136,6 +137,27 @@
             </div>
         </div>
     </div>
+     <script>
+    function Search() {
+   
+var input,filter,ul,li,a,i,txtValue;
+input = document.getElementById("search");
+filter = input.value.toUpperCase();
+ul=document.getElementById('menu');
+li = ul.getElementsByTagName('li');
+
+//loop through all the list items, and hide those who don't match the search query
+for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+    </script>
 {% endblock navigation %}
 {% block content %}
 {% endblock content %}

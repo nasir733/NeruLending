@@ -3,6 +3,7 @@ import json
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.http import HttpResponseRedirect
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
@@ -595,6 +596,26 @@ class PartnerResourceView(View):
         return render(request, 'WholeSaleSection/PartnerResources.html',
                       {'resources': resources, 'categories': categories})
 
+
+class CreateAccountView(View):
+    
+
+    def get(self, request):
+        
+        return render(request, 'PortalManagement/CreateClientAccount.html', )
+
+    def post(self, request):
+        data = request.POST
+        profile_user = Profile.objects.get(user=request.user)
+        sub_domain = Subdomain.objects.filter(admins=profile_user).first()
+        try:
+            profile = Profile.objects.create_user(data['email'], data['password'], data['first_name'],
+                                              data['last_name'], data['phone_number'], sub_domain)
+        except Exception as e:
+            print(e)
+            return render(request, 'PortalManagement/CreateClientAccount.html',{'e':e})
+  
+        return render(request, 'PortalManagement/CreateClientAccount.html',{'profile':profile})
 
 class ClientProgress(View):
     def get(self, request):
