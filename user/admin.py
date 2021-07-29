@@ -32,7 +32,7 @@ class ProfileAdmin(admin.ModelAdmin):
         Admin View for Profile
     '''
     list_display = ("user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
-                    "virtual_access_card_paid", 'whitelabel_portal')
+                    "virtual_access_card_paid", 'whitelabel_portal','created_by')
     # fields = [
     #     "user", "phone_number", "fax_number_paid", "toll_free_number_paid", "website_creation_paid",
     #     "virtual_access_card_paid", "whitelabel_portal",

@@ -597,9 +597,14 @@ class PartnerResourceView(View):
                       {'resources': resources, 'categories': categories})
 
 
-class CreateAccountView(View):
-    
 
+class ClientCreatedByYouView(View):
+    def get(self, request):
+        clients = Profile.objects.filter(created_by=request.user.email)
+        print(clients)
+        return render(request, 'PortalManagement/AccountsCreatedByYou.html', {'clients': clients})
+class CreateAccountView(View):
+    """Create clients for your whitelabeladmin"""
     def get(self, request):
         
         return render(request, 'PortalManagement/CreateClientAccount.html', )
@@ -607,10 +612,11 @@ class CreateAccountView(View):
     def post(self, request):
         data = request.POST
         profile_user = Profile.objects.get(user=request.user)
+        created_by=profile_user.user.email
         sub_domain = Subdomain.objects.filter(admins=profile_user).first()
         try:
             profile = Profile.objects.create_user(data['email'], data['password'], data['first_name'],
-                                              data['last_name'], data['phone_number'], sub_domain)
+                                              data['last_name'], data['phone_number'],sub_domain, created_by)
         except Exception as e:
             print(e)
             return render(request, 'PortalManagement/CreateClientAccount.html',{'e':e})

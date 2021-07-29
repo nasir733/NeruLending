@@ -22,6 +22,7 @@ urlpatterns = [
     path('addbankinfo/edit/<int:pk>', bank_info_update, name='paypal_info_update'),
     path('addpaypalinfo/edit/<int:pk>', paypal_info_update, name='bank_info_update'),
     path('create_account', CreateAccountView.as_view(), name='create_account'),
+    path('client-created-by-you', ClientCreatedByYouView.as_view(), name='clients-created-by-you'),
     path('addzelleinfo/edit/<int:pk>', zelle_info_update, name='zelle_info_update'),
     url('leadoverview', login_required(LeadOverviewView.as_view(), login_url='/user/login'),
         name='leadoverview'),

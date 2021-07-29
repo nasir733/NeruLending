@@ -7,12 +7,12 @@ from services.StripeService import StripeService
 
 
 class ProfileUserManager(models.Manager):
-    def create_user(self, email, password, first_name, last_name, phone_number, whitelabel_portal=None):
+    def create_user(self, email, password, first_name, last_name, phone_number, whitelabel_portal=None,created_by='Signup-page'):
         stripe_user = StripeService.create_user(first_name=first_name, last_name=last_name, email=email)
         user = User.objects.create_user(email=email, username=email, password=password, first_name=first_name,
                                         last_name=last_name)
         profile = Profile(user=user, phone_number=phone_number, stripe_id=stripe_user['id'],
-                          whitelabel_portal=whitelabel_portal)
+                          whitelabel_portal=whitelabel_portal,created_by=created_by)
         profile.save()
         return profile
 
@@ -28,6 +28,7 @@ class Profile(models.Model):
     toll_free_number_paid = models.BooleanField(default=False)
     website_creation_paid = models.BooleanField(default=False)
     virtual_access_card_paid = models.BooleanField(default=False)
+    created_by = models.CharField(max_length=500, null=True,blank=True, default="Signup-page")
     whitelabel_portal = models.CharField(max_length=200, null=True, blank=True)
 
     can_see_only_created_portals = models.BooleanField(default=False)
