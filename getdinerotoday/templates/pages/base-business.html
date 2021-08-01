@@ -39,9 +39,9 @@
                             <li class="nav-item"><a href="/dashboard" class="nav-link">Go Back To Main Portal</a></li>
                         {% endif %}
 
-                       
+
                         <input type="text"   onkeyup="Search()" id="search"placeholder="Search" style="width:90%;margin-left:5%;background-color:#131C23;color:white;" class="nav-link    form-control " name="search-box" >
-              
+
                         <li class="nav-item">
                             {% if request.resolver_match.app_name == 'business' %}
                                 <a href="/dashboard" class="nav-link"><span class="toggle-none">Dashboard</span></a>
@@ -417,6 +417,8 @@
                     {% endif %}
                         <!--  <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/lifegoals" class="nav-link">Life Money Hacks</a></li> -->
 
+                        <li class="nav-item"><a href="https://creator.us.uneeq.io/try/81163bf3-cb93-4032-a18b-67ef02cdad33"
+                          target="_blank" class="nav-link">Your AI Customer Success Agent</a></li>
                         <li class="nav-item">
                             {% if dynamic.iphoneApp %}
                                 <a href={{ dynamic.iphoneApp }} target="_blank" class="nav-link"> Download Our Iphone
@@ -469,7 +471,7 @@
     </div>
     <script>
     function Search() {
-   
+
 var input,filter,ul,li,a,i,txtValue;
 input = document.getElementById("search");
 filter = input.value.toUpperCase();
@@ -491,5 +493,3 @@ for (i = 0; i < li.length; i++) {
 {% endblock navigation %}
 {% block content %}
 {% endblock content %}
-
-
