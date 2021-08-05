@@ -23,13 +23,12 @@ from django.views.static import serve
 import debug_toolbar
 
 
-
 from .views import *
 
 urlpatterns = [
     path('api/', include('restapi.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
-
+    path('bcbsoftwares/', include('bcbsoftwares.urls')),
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
     path('business/', include('business.urls')),
@@ -61,13 +60,15 @@ urlpatterns = [
     path('goals/', include('goals.urls')),
     path('products/', include('products.urls')),
     path('onlinetools/', include('onlinetools.urls')),
-    path('freewhitelabelprogramonboarding/', include('freewhitelabelprogramonboarding.urls')),
+    path('freewhitelabelprogramonboarding/',
+         include('freewhitelabelprogramonboarding.urls')),
     path('whitelabelpartnerportal/', include('whitelabelpartnerportal.urls')),
     path('chromeextension/', include('chromeextension.urls')),
     path('onboarding/', include('onboarding.urls')),
     path('financing_portal/', include('financing_portal.urls')),
 
-    url('dashboard/', login_required(HomePage.as_view(), login_url='/user/login'), name='homepage'),
+    url('dashboard/', login_required(HomePage.as_view(),
+        login_url='/user/login'), name='homepage'),
     url('about-us/', AboutUsView.as_view(), name='about-us'),
     url('pricing/', PricingView.as_view(), name='pricing'),
     url('services/', ServicesView.as_view(), name='services'),
@@ -76,7 +77,8 @@ urlpatterns = [
     url('webinaroffer/', WebinarOfferView.as_view(), name='webinaroffer'),
     url('partner/', PartnerView.as_view(), name='partner'),
     url('contact/', ContactView.as_view(), name='contact'),
-    url('customersuccessagent/', CustomerSuccessAgentView.as_view(), name='customersuccessagent'),
+    url('customersuccessagent/', CustomerSuccessAgentView.as_view(),
+        name='customersuccessagent'),
     url('whitelabel/', WhiteLabelView.as_view(), name='whitelabel'),
     url('affiliate_program/', AffiliatelView.as_view(), name='affiliate'),
     url('faq/', FAQView.as_view(), name='faq'),
@@ -86,7 +88,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += [
-        re_path(r'^media/(?P<path>.*)$',serve,{
+        re_path(r'^media/(?P<path>.*)$', serve, {
             'document_root': settings.MEDIA_ROOT,
         }),
     ]

@@ -42,7 +42,7 @@ DEFAULT_LOGGING['handlers']['console']['filters'] = []
 INSTALLED_APPS = [
     'django_hosts',
     'rest_framework',
-     'jazzmin',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'user',
     'business',
+    'bcbsoftwares',
     'financing_portal',
     'portals.cannabis',
     'portals.fitness',

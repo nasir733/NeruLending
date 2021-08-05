@@ -5,7 +5,8 @@ import sys
 
 
 def main():
-    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'getdinerotoday.settings.development')
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+    #                       'getdinerotoday.settings.development')
     os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                           'getdinerotoday.settings.production')
     try:
