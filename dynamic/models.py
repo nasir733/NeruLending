@@ -247,6 +247,8 @@ class Subdomain(models.Model):
     # bcbsoftwares
 
     # https://bcbvideosoftware.com/
+    show_bcb_software = models.BooleanField(
+        default=False, null=True, blank=True)
     bcb_video_software_logo = models.CharField(
         default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
     bcb_video_software_logo_link = models.TextField(
@@ -257,8 +259,6 @@ class Subdomain(models.Model):
     bcb_video_software_heading = models.CharField(default="""Simple tools for any professional, team, and organization to
 create, manage, and share high-quality videos.""",
                                                   max_length=500, blank=True, null=True)
-
-                                                  
 
     def __str__(self):
         return self.sub_name
