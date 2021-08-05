@@ -69,5 +69,5 @@ class Migration(migrations.Migration):
             field=models.BigAutoField(
                 auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
         ),
-        migrations.RunPython(create_user),
+        # migrations.RunPython(create_user),
     ]
