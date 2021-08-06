@@ -10,9 +10,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='subdomain',
-            name='show_bcb_software',
-            field=models.BooleanField(blank=True, default=False, null=True),
-        ),
+        # migrations.AddField(
+        #     model_name='subdomain',
+        #     name='show_bcb_software',
+        #     field=models.BooleanField(blank=True, default=False, null=True),
+        # ),
+
     ]
