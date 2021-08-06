@@ -6,11 +6,11 @@ from user.models import Profile, User
 # TODO  plzz move this code to the last migrations file always
 
 
-def create_user(apps, schema_editor):
-    user = User.objects.create_superuser(
-        'adminn', email='admin@admin.com', password='123123')
-    profile = Profile(user=user)
-    profile.save()
+# def create_user(apps, schema_editor):
+#     user = User.objects.create_superuser(
+#         'adminn', email='admin@admin.com', password='123123')
+#     profile = Profile(user=user)
+#     profile.save()
 
 
 class Migration(migrations.Migration):
