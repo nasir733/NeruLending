@@ -247,8 +247,8 @@ class Subdomain(models.Model):
     # bcbsoftwares
 
     # https://bcbvideosoftware.com/
-    show_bcb_software = models.BooleanField(
-        default=False, null=True, blank=True)
+    # show_bcb_software = models.BooleanField(
+    #     default=False, null=True, blank=True)
     bcb_video_software_logo = models.CharField(
         default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
     bcb_video_software_logo_link = models.TextField(
