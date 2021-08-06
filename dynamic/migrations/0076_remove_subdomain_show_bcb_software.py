@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('dynamic', '0075_subdomain_show_bcb_software'),
+        # ('dynamic', '0075_subdomain_show_bcb_software'),
     ]
 
     operations = [
