@@ -173,9 +173,8 @@ class Subdomain(models.Model):
                                                     List""", null=True, blank=True)
     first_package_6_bullet_point = models.CharField(
         max_length=200, default="Your Own Backend Client Portal To Track Progress", null=True, blank=True)
-    first_package_7_bullet_point = models.CharField(max_length=200, default="""Full Access To Our Create My Financing Plan Section(*You Get Your Own
-                                                                                                                                 Financing
-                                                                                                                                 Plan Based On Your Current Situation * & Access To 300 + Lenders)""", null=True, blank=True)
+    first_package_7_bullet_point = models.CharField(
+        max_length=200, default="""Full Access To Our Create My Financing Plan Section""", null=True, blank=True)
     first_package_8_bullet_point = models.CharField(
         max_length=200, default="Create My Credit Repair Plan Access", null=True, blank=True)
     # Buttons for the 1 pricing card
@@ -195,13 +194,13 @@ class Subdomain(models.Model):
     second_package_1_show_button = models.BooleanField(
         default=True, null=True, blank=True)
     second_package_1_button_text = models.CharField(
-        max_length=200, null=True, blank=True, default="""${{yearly}} Annual Payment Option""")
+        max_length=200, null=True, blank=True, default="""$999 Yearly Payment Option""")
     second_package_1_button_link = models.CharField(
         null=True, blank=True, max_length=50, help_text="paste the link where you want your button to get dirrected to ", default="/user/login")
     second_package_2_show_button = models.BooleanField(
         default=True, null=True, blank=True)
     second_package_2_button_text = models.CharField(
-        max_length=200, null=True, blank=True, default=""" ${{ monthly }} Monthly Payment Option""")
+        max_length=200, null=True, blank=True, default=""" $109 Monthly Payment """)
     second_package_2_button_link = models.CharField(
         max_length=200, null=True, blank=True, default="/user/login")
     display_second_package = models.BooleanField(default=True)
@@ -250,7 +249,7 @@ class Subdomain(models.Model):
     show_bcb_software = models.BooleanField(
         default=False, null=True, blank=True)
     bcb_video_software_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+        default="", max_length=500, blank=True, null=True)
     bcb_video_software_logo_link = models.TextField(
         default="https://bcbvideosoftware.com/", null=True, blank=True)
     bcb_video_software_text = models.CharField(default="""Unlock the
@@ -259,6 +258,29 @@ class Subdomain(models.Model):
     bcb_video_software_heading = models.CharField(default="""Simple tools for any professional, team, and organization to
 create, manage, and share high-quality videos.""",
                                                   max_length=500, blank=True, null=True)
+
+    # bcb_projectmangment models
+    bcb_projectmanagment_software_logo = models.CharField(
+        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_projectmanagment_software_logo_link = models.TextField(
+        default="https://bcbprojectmanagement.com/", null=True, blank=True)
+    bcb_projectmanagment_software_text = models.CharField(
+        default="""Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your team works is unique—accomplish it all with Trello.""", max_length=500, null=True, blank=True)
+    bcb_projectmanagment_software_heading = models.CharField(
+        default="""bcbprojectmanagment helps teams move work forward.""", null=True, blank=True, max_length=500)
+
+# bcbcrm software models
+    bcb_crm_software_logo = models.CharField(
+        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_crm_software_logo_link = models.TextField(
+
+        default="https://bcbcrmsoftware.com/", null=True, blank=True)
+    bcb_crm_software_text = models.CharField(
+        default="""A software suite that is intuitive and easy to use so you have a happy and engaged workforce who in turn help you build and create lasting relationships with customers for life.""", max_length=500, null=True, blank=True)
+    bcb_crm_software_heading = models.CharField(
+        default="""Best-in-class customer and employee engagement""", null=True, blank=True, max_length=500)
+    bcb_crm_software_bottom_heading = models.CharField(
+        default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 
     def __str__(self):
         return self.sub_name
