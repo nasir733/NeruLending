@@ -57,7 +57,7 @@
                 <div class="container">
                     <div class="main-responsive-menu">
                         <div class="logo">
-                            <a href="index-4.html">
+                            <a href="{% url 'banking_home' %}">
                                 <img src="{% static 'banking/assets/img/logo-1.png' %}" alt="image">
                             </a>
                         </div>
@@ -68,7 +68,7 @@
             <div class="main-navbar">
                 <div class="container">
                     <nav class="navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand" href="index-4.html">
+                        <a class="navbar-brand" href="{% url 'banking_home' %}">
                             <img src="{% static 'banking/assets/img/logo-1.png' %}" height="100px" alt="image">
                         </a>
 
@@ -81,32 +81,30 @@
                               </li>
 
                                 <li class="nav-item">
-                                    <a href="{% url 'services' %}" class="nav-link">
+                                    <a href="{% url 'banking_services' %}" class="nav-link">
                                         Services
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{% url 'about' %}" class="nav-link">
+                                    <a href="{% url 'banking_about' %}" class="nav-link">
                                       About Our Company
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{% url 'pricing' %}" class="nav-link">
+                                    <a href="{% url 'banking_pricing' %}" class="nav-link">
                                       Loan & Line Of Credit Pricing
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="{% url 'contact' %}" class="nav-link">
+                                    <a href="{% url 'banking_contact' %}" class="nav-link">
                                         Contact
                                     </a>
                                 </li>
                             </ul>
-
                             <div class="others-options d-flex align-items-center">
-
                                 <div class="option-item">
                                     <a href="#" class="default-btn">Open account</a>
                                 </div>
@@ -115,7 +113,6 @@
                     </nav>
                 </div>
             </div>
-
             <div class="others-option-for-responsive">
                 <div class="container">
                     <div class="dot-menu">
@@ -397,7 +394,7 @@
                                 <a href="#">Mobile banking</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -409,7 +406,7 @@
                                 <a href="#">Credit cards</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
 
@@ -419,10 +416,10 @@
                                 <i class="flaticon-payment-security"></i>
                             </div>
                             <h3>
-                                <a href="services-details.html">Secure payment</a>
+                                <a href="{% url 'banking_services' %}">Secure payment</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
 
@@ -432,10 +429,10 @@
                                 <i class="flaticon-savings"></i>
                             </div>
                             <h3>
-                                <a href="services-details.html">Saving account</a>
+                                <a href="{% url 'banking_services' %}">Saving account</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
 
@@ -445,10 +442,10 @@
                                 <i class="flaticon-protection"></i>
                             </div>
                             <h3>
-                                <a href="services-details.html">Business banking</a>
+                                <a href="{% url 'banking_services' %}">Business banking</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
 
@@ -458,10 +455,10 @@
                                 <i class="flaticon-online-banking"></i>
                             </div>
                             <h3>
-                                <a href="services-details.html">Personal savings</a>
+                                <a href="{% url 'banking_services' %}">Personal savings</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
 
@@ -471,10 +468,10 @@
                                 <i class="flaticon-positive-vote"></i>
                             </div>
                             <h3>
-                                <a href="services-details.html">Personal loans</a>
+                                <a href="{% url 'banking_services' %}">Personal loans</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
 
@@ -484,10 +481,10 @@
                                 <i class="flaticon-bank"></i>
                             </div>
                             <h3>
-                                <a href="services-details.html">Business loans</a>
+                                <a href="{% url 'banking_services' %}">Business loans</a>
                             </h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="services-details.html" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
+                            <a href="{% url 'banking_services' %}" class="learn-btn">Learn more <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
                 </div>
