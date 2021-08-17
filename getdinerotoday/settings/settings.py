@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'orders',
     'chromeextension',
     'onboarding',
+    'banking',
     'freewhitelabelprogramonboarding',
     'corsheaders',
 ]
