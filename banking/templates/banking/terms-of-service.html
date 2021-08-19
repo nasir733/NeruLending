@@ -94,7 +94,18 @@
         {% include "banking/navbar.html" %}
 
         <!-- Start Page Banner -->
-        <div class="page-banner-area">
+        <div class="page-banner-area" style="
+        position: relative;
+        z-index: 1;
+        background-image: url('{% static 'banking/assets/images/page-banner-1.jpg' %}');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        padding-top: 150px;
+        padding-bottom: 150px;
+        background-attachment: fixed;
+        ">
             <div class="container">
                 <div class="page-banner-content">
                     <h2>Terms of service</h2>
@@ -118,7 +129,7 @@
                 </div>
 
                 <div class="privacy-policy-image">
-                    <img src="{% static 'banking/assets/img/privacy-policy.jpg' %}" alt="image">
+                    <img src="{% static 'banking/assets/images/privacy-policy.jpg' %}" alt="image">
                 </div>
 
 				<div class="privacy-content">
