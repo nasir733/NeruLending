@@ -107,7 +107,7 @@ class Subdomain(models.Model):
     navigation_bar_link_2_link = models.CharField(
         default="/about-us", max_length=200, help_text="add the link that you want to show on the navbar")
     navigation_bar_link_2_text = models.CharField(
-        default='AboutUs', max_length=200, help_text="add the text that you want to show in the first link in the navbar")
+        default='About Us', max_length=200, help_text="add the text that you want to show in the first link in the navbar")
     show_navigation_bar_link_3 = models.BooleanField(
         default=True, help_text="check the box if you want to show the navbar links")
 
