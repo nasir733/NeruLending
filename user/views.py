@@ -69,20 +69,27 @@ class SignUpView(View):
         # print(data)
 
         try:
+            print('try block')
             obj = Subdomain.objects.filter(sub_name__exact=request.host.name).first()
+            print(obj)
             if obj and obj.is_paid:
+                print('paid if condition')
                 StripeService.charge_card(data['stripeToken'], round(obj.portal_price * 100),
                                           description="registration")
 
             profile = Profile.objects.create_user(data['email'], data['password'], data['first_name'],
                                                   data['last_name'], data['phone_number'], sub_domain)
+            print(profile)
             auth_login(request, profile.user)
+            print('logged in')
             return HttpResponseRedirect(reverse('homepage'))
         except Exception as e:
             if hasattr(e, 'message'):
+                print('message')
                 print(e.message)
             else:
                 print(e)
+                print('messages')
             return render(request, 'registration.html', {"error": "Registration Failed"})
         # return render(request, 'registration.html', {"error": "Registration Failed"})
 

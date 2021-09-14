@@ -248,8 +248,8 @@ class Subdomain(models.Model):
     # https://bcbvideosoftware.com/
     show_bcb_software = models.BooleanField(
         default=False, null=True, blank=True)
-    bcb_video_software_logo = models.CharField(
-        default="", max_length=500, blank=True, null=True)
+    bcb_video_software_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_video_software_logo_link = models.TextField(
         default="https://bcbvideosoftware.com/", null=True, blank=True)
     bcb_video_software_text = models.CharField(default="""Unlock the
@@ -260,8 +260,8 @@ create, manage, and share high-quality videos.""",
                                                   max_length=500, blank=True, null=True)
 
     # bcb_projectmangment models
-    bcb_projectmanagment_software_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_projectmanagment_software_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_projectmanagment_software_logo_link = models.TextField(
         default="https://bcbprojectmanagement.com/", null=True, blank=True)
     bcb_projectmanagment_software_text = models.CharField(
@@ -270,11 +270,7 @@ create, manage, and share high-quality videos.""",
         default="""bcbprojectmanagment helps teams move work forward.""", null=True, blank=True, max_length=500)
 
 # bcbcrm software models
-    bcb_crm_software_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
-    bcb_crm_software_logo_link = models.TextField(
-
-        default="https://bcbcrmsoftware.com/", null=True, blank=True)
+    bcb_crm_software_logo = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     bcb_crm_software_text = models.CharField(
         default="""A software suite that is intuitive and easy to use so you have a happy and engaged workforce who in turn help you build and create lasting relationships with customers for life.""", max_length=500, null=True, blank=True)
     bcb_crm_software_heading = models.CharField(
@@ -284,8 +280,8 @@ create, manage, and share high-quality videos.""",
 
 
 # bcb web_hosting software models
-    bcb_web_hosting_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_web_hosting_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_web_hosting_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -296,8 +292,8 @@ create, manage, and share high-quality videos.""",
     bcb_web_hosting_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb website_builder software models
-    bcb_website_builder_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_website_builder_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_website_builder_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -308,8 +304,8 @@ create, manage, and share high-quality videos.""",
     bcb_website_builder_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb marketing_automation software models
-    bcb_marketing_automation_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_marketing_automation_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_marketing_automation_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -320,8 +316,8 @@ create, manage, and share high-quality videos.""",
     bcb_marketing_automation_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb voice software models
-    bcb_voice_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_voice_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_voice_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -332,8 +328,8 @@ create, manage, and share high-quality videos.""",
     bcb_voice_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb text_marketing software models
-    bcb_text_marketing_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_text_marketing_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_text_marketing_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -344,8 +340,8 @@ create, manage, and share high-quality videos.""",
     bcb_text_marketing_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb accounting software models
-    bcb_accounting_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_accounting_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_accounting_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -356,8 +352,8 @@ create, manage, and share high-quality videos.""",
     bcb_accounting_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb video_conferencing software models
-    bcb_video_conferencing_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_video_conferencing_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_video_conferencing_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -368,8 +364,8 @@ create, manage, and share high-quality videos.""",
     bcb_video_conferencing_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb filesharing software models
-    bcb_filesharing_software_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_filesharing_software_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_filesharing_software_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -380,8 +376,8 @@ create, manage, and share high-quality videos.""",
     bcb_filesharing_software_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcb appointment software models
-    bcb_appointment_software_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_appointment_software_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_appointment_software_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
@@ -392,8 +388,8 @@ create, manage, and share high-quality videos.""",
     bcb_appointment_software_bottom_heading = models.CharField(
         default="Refreshing business software that your teams will love", null=True, blank=True, max_length=500)
 # bcbseo software models
-    bcb_seo_software_logo = models.CharField(
-        default="https://kleui.s3.amazonaws.com/documents/fe7e8fd5-3607-4e5b-b502-c5fc3819aa1e/Kleui-03-r.png", max_length=500, blank=True, null=True)
+    bcb_seo_software_logo = models.ImageField(
+        upload_to=get_file_path, blank=True, null=True)
     bcb_seo_software_logo_link = models.TextField(
 
         default="https://bcbcrmsoftware.com/", null=True, blank=True)
