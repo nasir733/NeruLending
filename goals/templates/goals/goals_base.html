@@ -12,12 +12,15 @@
         <p class="text-muted mv-0 toggle-none">Welcome</p>
       </div>
       <ul class="metisMenu nav flex-column" id="menu">
-        {% if request.user.profile.can_see_only_created_portals %}
-        <li class="nav-item">
+        
+        {% if not show_portal %}
+          <li class="nav-item">
           <a href="{% url 'homepage' %}" class="nav-link"><span class="toggle-none">Go Back To Main
               Portal</span></a>
         </li>
         {% endif %}
+          
+        
         {% if request.user.profile.virtual_access_card_paid %}
         <li class="nav-item">
           <a href="/user/my-portal-goals/{{ portal_number }}/virtual-card/" class="nav-link"><span

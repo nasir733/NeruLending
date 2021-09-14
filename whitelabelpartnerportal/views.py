@@ -626,8 +626,11 @@ class CreateAccountView(View):
 class ClientProgress(View):
     def get(self, request):
         profile_user = Profile.objects.get(user=request.user)
+        print(profile_user)
         sub= Subdomain.objects.filter(admins=profile_user).first()
+        print(sub)
         clients = Profile.objects.filter(whitelabel_portal=sub)
+        print(clients)
         for i in clients:
             goals = []
             for k in i.portal_goals.all():
@@ -644,10 +647,11 @@ class ClientProgress(View):
 
         elif 'see_only_created_portal' in request.POST:
             profile = Profile.objects.get(user=request.POST.get('see_only_created_portal'))
-            print(request.POST)
+            print('see_only_created_portal')
             profile.can_see_only_created_portals = request.POST.get('can_see') == "on"
             print(request.POST.get('can_see') == "on")
             profile.save()
+            print('profile saved')
 
         elif 'shut_of_client_account' in request.POST:
             user = User.objects.get(id=request.POST['shut_of_client_account'])
