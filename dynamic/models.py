@@ -142,6 +142,8 @@ class Subdomain(models.Model):
     portal_price = models.DecimalField(
         verbose_name="Portal price", max_digits=50, decimal_places=2, default=0)
 
+    footer_text = models.TextField(
+        verbose_name="Footer text", max_length=500, default="We Help Businesses Acquire Business Credit With Our Free Software, Mobile App, & Google Chrome Extension. Also, We Have A Free Personal Credit, Marketing, & Business Credit Course In Our Software As Well.")
     # White Label Section
     is_paid_for_whitelabel = models.BooleanField(
         default=False, help_text="check the box if the client has paid for the whitelabel program")
