@@ -44,6 +44,7 @@ urlpatterns = [
     path('wedding_planner/', include('portals.wedding_planner.urls')),
     path('accountant/', include('portals.accountant.urls')),
     path('credit_repair/', include('portals.credit_repair.urls')),
+    path('construction/', include('portals.construction.urls')),
     path('hair_salon/', include('portals.hair_salon.urls')),
     path('lawyer/', include('portals.lawyer.urls')),
     path('photography/', include('portals.photography.urls')),
