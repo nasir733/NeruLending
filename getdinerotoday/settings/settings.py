@@ -1,5 +1,5 @@
 import os
-# import django_heroku
+import django_heroku
 from django.utils.log import DEFAULT_LOGGING
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -156,5 +156,5 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Activate Django-Heroku.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
