@@ -1,5 +1,4 @@
 import os
-
 import django_heroku
 from django.utils.log import DEFAULT_LOGGING
 
@@ -72,6 +71,7 @@ INSTALLED_APPS = [
     'portals.handy_man',
     'portals.medical',
     'portals.real_estate',
+    'portals.construction',
     'portals.trucking',
     'import_export',
     'loanportal',
@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     'whitelabelpartnerportal',
     'creditcourse',
     'covid19',
+
     'affiliate',
     'storages',
     'goals',
@@ -90,6 +91,7 @@ INSTALLED_APPS = [
     'orders',
     'chromeextension',
     'onboarding',
+    'banking',
     'freewhitelabelprogramonboarding',
     'corsheaders',
 ]

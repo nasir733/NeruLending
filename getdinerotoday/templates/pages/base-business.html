@@ -417,7 +417,7 @@
                     {% endif %}
                         <!--  <li class="nav-item"><a href="/{{ request.resolver_match.app_name }}/lifegoals" class="nav-link">Life Money Hacks</a></li> -->
 
-                        <li class="nav-item"><a href="https://creator.us.uneeq.io/try/cabf776f-8bb3-4fe8-b033-bcec4bc86dcf"
+                        <li class="nav-item"><a href="https://creator.us.uneeq.io/try/a16502cd-d6ab-43e3-9026-a9d487d20a3e"
                           target="_blank" class="nav-link">Your AI Customer Success Agent</a></li>
                         <li class="nav-item">
                             {% if dynamic.iphoneApp %}
@@ -470,26 +470,39 @@
         </div>
     </div>
     <script>
-    function Search() {
+        function Search() {
+    
+     var input,filter,ul,li,a,i,txtValue;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        ul=document.getElementById('menu');
+        li = document.getElementsByClassName('nav-item');
+    //loop through all the list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
 
-var input,filter,ul,li,a,i,txtValue;
-input = document.getElementById("search");
-filter = input.value.toUpperCase();
-ul=document.getElementById('menu');
-li = ul.getElementsByTagName('li');
-
-//loop through all the list items, and hide those who don't match the search query
-for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
+        // search in the second level navbar
+        var second_level = document.getElementsByClassName('nav-second-level');
+        for(var j = 0;j < second_level.length;j++) {
+            li = second_level[j].getElementsByClassName('nav-item');
+            for(var k = 0;k < li.length;k++) {
+                a = li[k].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    second_level[j].parentNode.style.display = "";
+                    break;
+                }
+            }
+        }
     }
-  }
-}
-    </script>
+        </script>
 {% endblock navigation %}
 {% block content %}
 {% endblock content %}

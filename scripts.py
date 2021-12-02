@@ -2,7 +2,8 @@ import argparse
 import os
 import shutil
 
-import getdinerotoday.settings.settings as settings
+# import getdinerotoday.settings.development as settings
+
 
 def getListOfFiles(dirName):
     listOfFile = os.listdir(dirName)
@@ -36,10 +37,13 @@ def create_new_portal(new_app, new_app_name, img_url):
 
     if f'portals.{new_app}' not in settings.INSTALLED_APPS:
         try:
-            urls_string = "path('APP_TEMPLATE/', include('portals.APP_TEMPLATE.urls'))".replace("APP_TEMPLATE", new_app)
-            installed_apps_string = "portals.APP_TEMPLATE".replace("APP_TEMPLATE", new_app)
+            urls_string = "path('APP_TEMPLATE/', include('portals.APP_TEMPLATE.urls'))".replace(
+                "APP_TEMPLATE", new_app)
+            installed_apps_string = "portals.APP_TEMPLATE".replace(
+                "APP_TEMPLATE", new_app)
             shutil.copytree("portals/APP_TEMPLATE", f"portals/{new_app}")
-            os.rename(f"portals/{new_app}/templates/APP_TEMPLATE", f"portals/{new_app}/templates/{new_app}")
+            os.rename(f"portals/{new_app}/templates/APP_TEMPLATE",
+                      f"portals/{new_app}/templates/{new_app}")
             dir_list = getListOfFiles(f"portals/{new_app}")
             for i in dir_list:
                 try:
@@ -58,8 +62,10 @@ def create_new_portal(new_app, new_app_name, img_url):
 
             with open('getdinerotoday/settings/settings.py', "r") as f:
                 data = f.read()
-                index = data.index("INSTALLED_APPS = [") + len("INSTALLED_APPS = [")
-                data = data[:index] + f"\n    '{installed_apps_string}'," + data[index:]
+                index = data.index(
+                    "INSTALLED_APPS = [") + len("INSTALLED_APPS = [")
+                data = data[:index] + \
+                    f"\n    '{installed_apps_string}'," + data[index:]
             with open('getdinerotoday/settings/settings.py', "w") as f:
                 f.write(data)
 
@@ -112,23 +118,32 @@ def change_video_on_portal(portal, url):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='List the content of a folder')
-    parser.add_argument('Action', metavar='action', type=str, help='An action you would like to perform')
-    parser.add_argument('-n', action='store', type=str, nargs='?', help='Name of the new portal, should not contain any special chars')
-    parser.add_argument('-dn', action='store', type=str, nargs='?', help='Displayed name of the new portal')
-    parser.add_argument('-img', action='store', type=str, nargs='?', help='Image url')
-    parser.add_argument('-url', action='store', type=str, nargs='?', help='Url for video')
-    parser.add_argument('-p', action='store', type=str, nargs='?', help='Portal name')
+    parser = argparse.ArgumentParser(
+        description='List the content of a folder')
+    parser.add_argument('Action', metavar='action', type=str,
+                        help='An action you would like to perform')
+    parser.add_argument('-n', action='store', type=str, nargs='?',
+                        help='Name of the new portal, should not contain any special chars')
+    parser.add_argument('-dn', action='store', type=str,
+                        nargs='?', help='Displayed name of the new portal')
+    parser.add_argument('-img', action='store', type=str,
+                        nargs='?', help='Image url')
+    parser.add_argument('-url', action='store', type=str,
+                        nargs='?', help='Url for video')
+    parser.add_argument('-p', action='store', type=str,
+                        nargs='?', help='Portal name')
     args = parser.parse_args()
     action = args.Action
 
     if action == 'createportal':
+        print("the action create postal")
         app = args.n
         app_name = args.dn
         imgurl = args.img
         if app and app_name and imgurl:
             create_new_portal(app, app_name, imgurl)
-            parser.exit(0, message=f'Successfully created new portal {app_name}')
+            parser.exit(
+                0, message=f'Successfully created new portal {app_name}')
         else:
             parser.format_help()
             parser.exit(1, message='Check action, app, and displayname')
@@ -138,7 +153,8 @@ if __name__ == '__main__':
         url = args.url
         if portal and url:
             change_video_on_portal(portal, url)
-            parser.exit(0, message=f'Successfully changed video on portal {portal}')
+            parser.exit(
+                0, message=f'Successfully changed video on portal {portal}')
         else:
             parser.format_help()
             parser.exit(1, message='Check action, portal, url')

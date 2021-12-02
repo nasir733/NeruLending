@@ -69,20 +69,27 @@ class SignUpView(View):
         # print(data)
 
         try:
+            print('try block')
             obj = Subdomain.objects.filter(sub_name__exact=request.host.name).first()
+            print(obj.is_paid ,'the object')
             if obj and obj.is_paid:
+                print('paid')
                 StripeService.charge_card(data['stripeToken'], round(obj.portal_price * 100),
                                           description="registration")
-
+                print('charged')
             profile = Profile.objects.create_user(data['email'], data['password'], data['first_name'],
                                                   data['last_name'], data['phone_number'], sub_domain)
+            print(profile)
             auth_login(request, profile.user)
+            print('logged in')
             return HttpResponseRedirect(reverse('homepage'))
         except Exception as e:
             if hasattr(e, 'message'):
+                print('message')
                 print(e.message)
             else:
                 print(e)
+                print('messages')
             return render(request, 'registration.html', {"error": "Registration Failed"})
         # return render(request, 'registration.html', {"error": "Registration Failed"})
 
@@ -180,10 +187,14 @@ class CreateSpecificPortal(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         profile = Profile.objects.get(user= self.request.user)
-        try:
-            context['show_portal'] =Subdomain.objects.get(admins=profile,sub_name=self.request.host.name)
-        except Exception as e:
-            context['show_portal']=False
+        context['show_portal'] = profile.can_see_only_created_portals
+        
+        # not Required maybe in future
+        # try:
+        #     context['show_portal'] =Subdomain.objects.get(admins=profile,sub_name=self.request.host.name)
+        #     print(context['show_portal'],'hello')
+        # except Exception as e:
+        #     context['show_portal']=False
         print(context['show_portal'])
         context['available_portals'] = Portal.objects.all()
         context['my_portals'] = PortalGoal.objects.filter(profile=self.request.user.profile)
