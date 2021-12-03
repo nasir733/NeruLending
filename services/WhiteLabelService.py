@@ -10,7 +10,7 @@ class WhiteLabelService:
     @classmethod
     def get_administrated_subdomains(cls, request):
         profile = Profile.objects.get(user=request.user)
-        subdomains = Subdomain.objects.filter(admins__in=[profile],sub_name__exact=request.host.name)
+        subdomains = Subdomain.objects.filter(admins__in=[profile])
         return subdomains
 
     @classmethod
