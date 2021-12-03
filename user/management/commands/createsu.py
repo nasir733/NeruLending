@@ -15,7 +15,7 @@ class Command(BaseCommand):
             profile = Profile(user=user)
             profile.save()
             self.stdout.write(self.style.SUCCESS(
-                'Superuser created successfully'%user.name))
+                'Superuser created successfully'))
         else:
             self.stdout.write(self.style.WARNING(
                 'Superuser already exists'))
