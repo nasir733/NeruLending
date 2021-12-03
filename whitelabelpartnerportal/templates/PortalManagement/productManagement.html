@@ -85,7 +85,9 @@
                                 <tbody>
 
                                 <tbody>
+                                    {% if subdomain.subdomain == "www" %}
                                 {% for tradeline in subdomain.tradelines %}
+                                    
                                     <tr>
                                         <td>{{ tradeline.company_name }}</td>
                                         <td>{{ tradeline.product }}</td>
@@ -104,6 +106,7 @@
                                         </td>
                                     </tr>
                                 {% endfor %}
+                                {% endif %}
                             </tbody>
                             </table>
                             <table id="datatable" class="table table-striped dt-responsive nowrap">
