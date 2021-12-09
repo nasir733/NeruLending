@@ -12,6 +12,7 @@ class TradelinesAdmin(admin.ModelAdmin):
     list_display = (
         'company_name', 'product', 'price', 'charge', 'whitelabel_portal', 'tradeline_amount', 'company_reports_to')
     readonly_fields = ('product_id', 'price_id', 'price_lookup')
+    search_fields = ('product','company_name','whitelabel_portal__sub_name',)
     actions = ('clone_tradelines_for_all_subdomains',)
 
     def delete_queryset(self, request, queryset):
