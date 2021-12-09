@@ -1,5 +1,6 @@
 from django.apps import apps
 from django.contrib import admin
+from django.db.models.query_utils import Q
 
 from dynamic.models import Subdomain
 from .models import Tradelines, UserStepsProduct
@@ -24,7 +25,8 @@ class TradelinesAdmin(admin.ModelAdmin):
             for subdomain in subdomains:
                 count = all_tradelines.filter(company_name=product.company_name,
                                               product=product.product,
-                                              whitelabel_portal=subdomain).count()
+                                              whitelabel_portal=subdomain,price=product.price
+                                              ).count()
                 if count == 0:
                     new_tradeline = product
                     new_tradeline.pk = None
