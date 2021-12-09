@@ -24,7 +24,7 @@
                                     <th>Business Name</th>
                                     <th>Product Purchased</th>
                                     <th>Amount</th>
-                                    <th>Last Purchased</th>
+                                    <!-- <th>Last Purchased</th> -->
                                     <th>Where Business Tradelines Reports To</th>
                                     <th>View Screenshot</th>
                                     <th>Tradeline Credit Amount</th>
@@ -37,7 +37,7 @@
                                         <td>{{ tradeline.tradeline.company_name }}</td>
                                         <td>{{ tradeline.tradeline.product }}</td>
                                         <td>${{ tradeline.tradeline.tradeline_amount }}</td>
-                                        <td>{{ tradeline.last_purchased }}</td>
+                                        <!-- <td>{{ tradeline.last_purchased }}</td> -->
                                         <td>{{ tradeline.tradeline.company_reports_to }}</td>
                                         <td>{% if tradeline.screenshot %}{{ tradeline.screenshot }}{% endif %}</td>
                                         <td>{% if tradeline.tradeline.tradeline_credit_amount %}{{ tradeline.tradeline.tradeline_credit_amount }}{% endif %}</td>
