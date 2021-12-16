@@ -95,7 +95,7 @@ class SignUpView(View):
 
 
 class PasswordResetView(auth_views.PasswordResetView):
-    from_email = 'Getdinerotoday@gmail.com'
+    from_email = 'info@kleui.com'
     template_name = 'forgotpassword.html'
 
     @property
