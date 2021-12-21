@@ -2,6 +2,8 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from django.urls import include, path
 
+from restapi.views import RegisterNewUserAPI
+
 from .views import (GDTLoginView, LogoutView, MyProgressView,
                     PasswordChangeDoneView, PasswordResetConfirmView,
                     PasswordResetDoneView, PasswordResetView,
@@ -13,6 +15,7 @@ urlpatterns = [
     url(r'^login/$', GDTLoginView.as_view(), name='login'),
     url(r'^login_api/$', APIloginView.as_view(), name='login_api'),
     url('logout/', LogoutView.as_view(), name='logout'),
+    url('register/', RegisterNewUserAPI.as_view(), name='register_new_user_new'),
     url('signup/', SignUpView.as_view(), name='signup'),
     url('terms/', TermsView.as_view(), name='terms'),
     url(r'forgot-password/',
