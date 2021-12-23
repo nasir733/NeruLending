@@ -50,6 +50,7 @@
                                     <a href="{% url 'user:myprogress' %}"><i class="icon-bell"></i>My Dashboard</a>
                                 </li>
                                 <!-- {% if dynamic.is_main_site %} -->
+                                <!-- {% endif %} -->
                                     <li class="dropdown-divider"></li>
                                     <li>
                                         <a href="{% url 'business:business-credit-builder-tracker' %}"><i
@@ -75,7 +76,7 @@
                                         <a href="{% url 'business:guided-creation-progress' %}"><i
                                                 class="icon-briefcase"></i>Guided Creation Progress</a>
                                     </li>
-                                <!-- {% endif %} -->
+                                
                                 <li class="dropdown-divider"></li>
                                 <li>
                                     <a href="{% url 'business:business_credibility_checklist' %}"><i
@@ -95,14 +96,14 @@
                                     </li>
 
                                 {% endif %}
-                                <!-- {% if dynamic.is_main_site %} -->
+                               
                                     <li class="dropdown-divider"></li>
                                     <li>
                                         <a href="{% url 'chromeextension:chromeextensionindex' %}"><i
                                                 class="icon-list"></i>
                                             Extension</a>
                                     </li>
-                                <!-- {% endif %} -->
+                                
                                 <li class="dropdown-divider"></li>
                                 <li>
                                     <a href="{% url 'user:logout' %}"><i class="icon-logout"></i> Logout</a>
