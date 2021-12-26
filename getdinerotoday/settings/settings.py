@@ -20,7 +20,7 @@ X_FRAME_OPTIONS = 'SameOrigin'
 SECURE_REFERRER_POLICY = 'strict-origin'
 EMAIL_BACKEND = 'django_amazon_ses.EmailBackend'
 AWS_DEFAULT_REGION = 'us-east-1'
-DEFAULT_FROM_EMAIL = 'info@kleui.com'
+DEFAULT_FROM_EMAIL = 'info@nerulending.com'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
